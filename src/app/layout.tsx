@@ -6,6 +6,7 @@ import { siteConfig } from "@/config/site";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { CustomCursor } from "@/components/cursor/custom-cursor";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -101,6 +102,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <div className="flex-1">{children}</div>
           <SiteFooter />
         </div>
+        <SpeedInsights />
       </body>
     </html>
   );

@@ -43,6 +43,16 @@ export const serviceTypes = [
   "Layer 2 Scaling",
   "Blockchain Security Audits",
   "AI + Blockchain Integration",
+  "n8n Automation",
+  "Workflow Automation",
+  "API Orchestration",
+  "Business Process Automation",
+  "AI Agent Workflows",
+  "E-commerce Automation",
+  "Marketing Automation",
+  "Self-hosted n8n Deployment",
+  "Custom n8n Node Development",
+  "Legacy System Integration",
 ] as const;
 
 export const budgetRanges = [

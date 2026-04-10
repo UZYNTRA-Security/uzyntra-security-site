@@ -32,9 +32,9 @@ export function ProductHighlightSection() {
             </p>
 
             <div className="mt-6 grid gap-3">
-              <div className="rounded-2xl border border-slate-200 bg-white px-4 py-4">
+              <div className="group rounded-2xl border border-slate-200 bg-white px-4 py-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-red-200 hover:shadow-[0_6px_18px_rgba(220,38,38,0.10)]">
                 <div className="flex items-center gap-2">
-                  <Shield className="h-4 w-4 text-red-600" />
+                  <Shield className="h-4 w-4 text-red-600 transition-transform duration-200 group-hover:scale-110" />
                   <p className="text-sm font-semibold text-slate-950">Real-time API inspection</p>
                 </div>
                 <p className="mt-2 text-sm leading-7 text-slate-600">
@@ -42,9 +42,9 @@ export function ProductHighlightSection() {
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-slate-200 bg-white px-4 py-4">
+              <div className="group rounded-2xl border border-slate-200 bg-white px-4 py-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-red-200 hover:shadow-[0_6px_18px_rgba(220,38,38,0.10)]">
                 <div className="flex items-center gap-2">
-                  <LayoutDashboard className="h-4 w-4 text-red-600" />
+                  <LayoutDashboard className="h-4 w-4 text-red-600 transition-transform duration-200 group-hover:scale-110" />
                   <p className="text-sm font-semibold text-slate-950">UZYNTRA UI Dashboard</p>
                 </div>
                 <p className="mt-2 text-sm leading-7 text-slate-600">
@@ -56,13 +56,13 @@ export function ProductHighlightSection() {
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/products/uzyntra-api-firewall"
-                className="inline-flex min-h-[50px] items-center justify-center rounded-2xl bg-red-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-red-700"
+                className="btn-solid inline-flex min-h-[50px] items-center justify-center rounded-2xl px-6 py-3 text-sm active:translate-y-0"
               >
                 View Product
               </Link>
               <Link
                 href="/download"
-                className="inline-flex min-h-[50px] items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition hover:border-red-200 hover:bg-red-50"
+                className="btn-neutral inline-flex min-h-[50px] items-center justify-center gap-2 rounded-2xl px-6 py-3 text-sm active:translate-y-0"
               >
                 <Download className="h-4 w-4" />
                 Download
@@ -99,10 +99,10 @@ export function ProductHighlightSection() {
               </p>
               <Link
                 href="/products"
-                className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-red-700"
+                className="group mt-4 inline-flex items-center gap-2 text-sm font-semibold text-red-700 transition-all duration-200 hover:gap-3"
               >
                 Explore products
-                <ArrowRight className="h-4 w-4" />
+                <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
               </Link>
             </div>
           </motion.div>

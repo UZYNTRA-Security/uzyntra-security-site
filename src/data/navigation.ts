@@ -33,6 +33,11 @@ export const mainNavigation: NavItem[] = [
         href: "/services/blockchain",
         description: "Enterprise blockchain, smart contracts, dApps, infrastructure, and consulting.",
       },
+      {
+        title: "n8n Automation",
+        href: "/services/n8n-automation",
+        description: "Workflow automation, API orchestration, AI pipelines, and self-hosted n8n deployment.",
+      },
     ],
   },
   {
@@ -70,6 +75,7 @@ export const footerNavigation = {
     { title: "Cybersecurity", href: "/services/cybersecurity" },
     { title: "Software Development", href: "/services/software-development" },
     { title: "Blockchain", href: "/services/blockchain" },
+    { title: "n8n Automation", href: "/services/n8n-automation" },
   ],
   products: [
     { title: "UZYNTRA API Firewall", href: "/products/uzyntra-api-firewall" },
@@ -86,6 +92,6 @@ export const footerNavigation = {
     { title: "X", href: "https://x.com" },
     { title: "Instagram", href: "https://www.instagram.com" },
     { title: "Facebook", href: "https://www.facebook.com" },
-    { title: "Email", href: "mailto:contact@uzyntra.com" },
+    { title: "Email", href: "mailto:uzyntra@gmail.com" },
   ],
 } as const;

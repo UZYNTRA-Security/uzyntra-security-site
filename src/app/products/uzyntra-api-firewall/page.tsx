@@ -130,7 +130,7 @@ export default function FirewallPage() {
                 href={siteConfig.productLinks.apiFirewallDownload}
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-xl bg-red-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-red-700"
+                className="btn-solid inline-flex items-center rounded-xl px-6 py-3 text-sm"
               >
                 Download Latest Release
               </a>
@@ -138,7 +138,7 @@ export default function FirewallPage() {
                 href={siteConfig.productLinks.apiFirewallRepo}
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-xl border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition hover:border-red-200 hover:bg-red-50"
+                className="btn-neutral inline-flex items-center rounded-xl px-6 py-3 text-sm"
               >
                 View on GitHub
               </a>
@@ -374,7 +374,7 @@ export default function FirewallPage() {
                 href={siteConfig.productLinks.uiRepo}
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-xl border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-900 transition hover:border-red-200 hover:bg-red-50"
+                className="btn-neutral inline-flex items-center rounded-xl px-5 py-2.5 text-sm"
               >
                 View UI Repo on GitHub
               </a>
@@ -422,7 +422,7 @@ export default function FirewallPage() {
                   href={siteConfig.productLinks.apiFirewallDownload}
                   target="_blank"
                   rel="noreferrer"
-                  className="rounded-xl bg-red-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-red-700"
+                  className="btn-solid inline-flex items-center rounded-xl px-6 py-3 text-sm"
                 >
                   Download Latest Release
                 </a>
@@ -430,7 +430,7 @@ export default function FirewallPage() {
                   href={siteConfig.productLinks.apiFirewallRepo}
                   target="_blank"
                   rel="noreferrer"
-                  className="rounded-xl border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition hover:border-red-200 hover:bg-red-50"
+                  className="btn-neutral inline-flex items-center rounded-xl px-6 py-3 text-sm"
                 >
                   View on GitHub
                 </a>

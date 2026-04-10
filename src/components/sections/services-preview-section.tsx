@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { ShieldCheck, Code2, Blocks } from "lucide-react";
 
 import { FlipInfoCard } from "@/components/ui/flip-info-card";
@@ -34,29 +33,28 @@ export function ServicesPreviewSection() {
   return (
     <section className="section-tight">
       <div className="container-shell">
-        <div className="mx-auto max-w-3xl text-center">
+        <div className="mx-auto max-w-2xl text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-red-700">
             Services
           </p>
-          <h2 className="mt-4 text-3xl font-semibold tracking-[-0.04em] text-slate-950 sm:text-4xl">
+          <h2 className="mt-3 text-2xl font-bold text-slate-950 sm:text-3xl">
             Core service areas
           </h2>
-          <p className="mt-4 text-sm leading-7 text-slate-600 sm:text-base">
-            Explore the primary capabilities that define the UZYNTRA Security platform
-            and services model.
+          <p className="mt-3 text-sm leading-7 text-slate-500 sm:text-base sm:leading-8">
+            The primary capabilities that define the UZYNTRA Security platform and services model.
           </p>
         </div>
 
-        <div className="mt-8 grid gap-5 md:grid-cols-3">
+        <div className="mt-10 grid gap-5 md:grid-cols-3">
           {items.map((item) => (
-            <Link key={item.title} href={item.href} className="block">
-              <FlipInfoCard
-                title={item.title}
-                icon={item.icon}
-                frontDescription={item.frontDescription}
-                backDescription={item.backDescription}
-              />
-            </Link>
+            <FlipInfoCard
+              key={item.title}
+              title={item.title}
+              icon={item.icon}
+              frontDescription={item.frontDescription}
+              backDescription={item.backDescription}
+              href={item.href}
+            />
           ))}
         </div>
       </div>

@@ -5,41 +5,47 @@ import { siteConfig } from "@/config/site";
 import { mainNavigation } from "@/data/navigation";
 import { DesktopNav } from "@/components/navigation/desktop-nav";
 import { MobileNav } from "@/components/navigation/mobile-nav";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/92 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-slate-200/70 bg-white/95 backdrop-blur-md">
       <div className="container-shell">
-        <div className="flex h-[64px] items-center justify-between gap-3 sm:h-[70px] lg:h-[var(--header-height)]">
+        <div className="flex items-center justify-between gap-4" style={{ height: "60px" }}>
+
+          {/* Logo */}
           <Link
             href="/"
             className="group inline-flex shrink-0 items-center"
             aria-label="UZYNTRA Security home"
           >
-            <span className="relative h-8 w-[138px] overflow-hidden sm:h-10 sm:w-[164px]">
+            <span className="relative overflow-hidden" style={{ height: "28px", width: "130px" }}>
               <Image
                 src={siteConfig.logos.main}
                 alt="UZYNTRA Security"
                 fill
                 priority
-                className="object-contain object-left transition duration-300 group-hover:scale-[1.02]"
-                sizes="(max-width: 640px) 138px, 164px"
+                className="object-contain object-left transition-opacity duration-200 group-hover:opacity-80"
+                sizes="(max-width: 640px) 130px, 148px"
               />
             </span>
           </Link>
 
+          {/* Desktop nav — centered */}
           <DesktopNav items={mainNavigation} />
 
-          <div className="flex items-center gap-3">
+          {/* Right actions */}
+          <div className="flex items-center gap-2.5">
+            <ThemeToggle />
             <Link
               href="/download"
-              className="hidden rounded-2xl bg-red-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-red-700 lg:inline-flex"
+              className="btn-solid hidden h-9 items-center gap-1.5 rounded-lg px-4 text-sm active:translate-y-0 lg:inline-flex"
             >
               Download
             </Link>
-
             <MobileNav items={mainNavigation} />
           </div>
+
         </div>
       </div>
     </header>

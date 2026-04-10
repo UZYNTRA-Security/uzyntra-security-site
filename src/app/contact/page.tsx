@@ -18,61 +18,71 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <main id="main-content">
-      <section className="section-shell bg-enterprise-radial">
+      <section className="section-shell">
         <div className="container-shell">
-          <div className="max-w-3xl">
-            <span className="eyebrow">Contact</span>
-            <h1 className="mt-6 text-balance font-semibold text-slate-950">
-              Let&apos;s discuss your security, software, or blockchain requirements
+
+          {/* Page header */}
+          <div className="mx-auto max-w-2xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-red-700">
+              Contact
+            </p>
+            <h1 className="mt-3 text-balance text-2xl font-bold text-slate-950 sm:text-3xl lg:text-4xl">
+              Let&apos;s discuss your requirements
             </h1>
-            <p className="mt-5 text-lg text-slate-600">
+            <p className="mt-3 text-[0.9375rem] leading-[1.75] text-slate-500">
               UZYNTRA Security works with organizations seeking enterprise-grade
               cybersecurity, secure engineering, and platform-focused technical delivery.
             </p>
           </div>
 
-          <div className="mt-12 grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
-            <div className="grid gap-6 content-start">
-              <div className="surface-card p-6 sm:p-8">
-                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-red-700">
+          {/* Two-column layout */}
+          <div className="mt-10 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+
+            {/* Left — info cards */}
+            <div className="flex flex-col gap-5">
+
+              {/* Direct contact */}
+              <div className="rounded-2xl border border-slate-200 bg-white p-6">
+                <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-red-700">
                   Direct Contact
                 </p>
-                <h2 className="mt-3 text-2xl font-semibold text-slate-950">
+                <h2 className="mt-2 text-lg font-bold text-slate-950">
                   Reach the team
                 </h2>
-                <div className="mt-5 space-y-4 text-sm text-slate-600">
+                <div className="mt-4 space-y-3 text-sm">
                   <p>
-                    <span className="font-semibold text-slate-950">Email:</span>{" "}
+                    <span className="font-semibold text-slate-800">Email:</span>{" "}
                     <a
-                      href={`mailto:${siteConfig.email}`}
-                      className="transition hover:text-red-700"
+                      href="mailto:uzyntra@gmail.com"
+                      className="text-slate-500 transition-colors hover:text-red-700"
                     >
-                      {siteConfig.email}
+                      uzyntra@gmail.com
                     </a>
                   </p>
                   <p>
-                    <span className="font-semibold text-slate-950">GitHub:</span>{" "}
+                    <span className="font-semibold text-slate-800">GitHub:</span>{" "}
                     <a
                       href={siteConfig.founderLinks.github}
                       target="_blank"
                       rel="noreferrer"
-                      className="transition hover:text-red-700"
+                      className="text-slate-500 transition-colors hover:text-red-700"
                     >
-                      {siteConfig.founderLinks.github}
+                      github.com/UsamaMatrix
                     </a>
                   </p>
                   <p>
-                    <span className="font-semibold text-slate-950">Domain:</span>{" "}
-                    {siteConfig.domain}
+                    <span className="font-semibold text-slate-800">Domain:</span>{" "}
+                    <span className="text-slate-500">{siteConfig.domain}</span>
                   </p>
                 </div>
               </div>
 
-              <div className="surface-card p-6 sm:p-8">
-                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-red-700">
+              {/* Best for */}
+              <div className="rounded-2xl border border-slate-200 bg-white p-6">
+                <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-red-700">
                   Best For
                 </p>
-                <ul className="mt-5 space-y-4 text-sm text-slate-600">
+                <ul className="mt-4 space-y-3">
                   {[
                     "Enterprise security assessments and modernization plans",
                     "API security and firewall adoption discussions",
@@ -80,27 +90,31 @@ export default function ContactPage() {
                     "Blockchain platform architecture and implementation",
                     "Strategic technical partnerships and product collaboration",
                   ].map((item) => (
-                    <li key={item} className="flex items-start gap-2">
-                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-red-600" />
+                    <li key={item} className="flex items-start gap-2.5 text-sm text-slate-500">
+                      <span className="mt-[5px] h-1.5 w-1.5 shrink-0 rounded-full bg-red-500" />
                       {item}
                     </li>
                   ))}
                 </ul>
               </div>
 
-              <div className="surface-card p-6 sm:p-8">
-                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-red-700">
+              {/* Inquiry expectations */}
+              <div className="rounded-2xl border border-slate-200 bg-white p-6">
+                <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-red-700">
                   Inquiry Expectations
                 </p>
-                <p className="mt-4 text-sm text-slate-600">
+                <p className="mt-3 text-sm leading-[1.75] text-slate-500">
                   For the strongest discovery process, include your environment,
                   business goals, technical scope, urgency, and whether you are
                   evaluating services, products, or a long-term engineering relationship.
                 </p>
               </div>
+
             </div>
 
+            {/* Right — form */}
             <ContactForm />
+
           </div>
         </div>
       </section>

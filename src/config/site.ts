@@ -9,7 +9,7 @@ export const siteConfig = {
   domain: "uzyntra.com",
   locale: "en_US",
   type: "website",
-  email: "contact@uzyntra.com",
+  email: "uzyntra@gmail.com",
 
   tagline: "Cybersecurity, Blockchain, and Secure Software Engineering",
 
@@ -68,12 +68,19 @@ export const siteConfig = {
       "Rust Development",
       "Enterprise Security",
       "API Security",
+      "n8n Automation",
+      "Workflow Automation",
+      "API Orchestration",
+      "AI Agent Workflows",
+      "Business Process Automation",
+      "Self-hosted n8n",
     ],
   },
 
   nav: {
     home: "/",
     services: "/services",
+    n8nAutomation: "/services/n8n-automation",
     products: "/products",
     about: "/about",
     contact: "/contact",

@@ -20,9 +20,9 @@ export function PlatformSection() {
             </p>
 
             <div className="mt-6 grid gap-3 sm:grid-cols-2">
-              <div className="rounded-2xl border border-slate-200 bg-white px-4 py-4">
+              <div className="group rounded-2xl border border-slate-200 bg-white px-4 py-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-red-200 hover:shadow-[0_6px_18px_rgba(220,38,38,0.10)]">
                 <div className="flex items-center gap-2">
-                  <Shield className="h-4 w-4 text-red-600" />
+                  <Shield className="h-4 w-4 text-red-600 transition-transform duration-200 group-hover:scale-110" />
                   <p className="text-sm font-semibold text-slate-950">UZYNTRA API Firewall</p>
                 </div>
                 <p className="mt-2 text-sm leading-7 text-slate-600">
@@ -30,9 +30,9 @@ export function PlatformSection() {
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-slate-200 bg-white px-4 py-4">
+              <div className="group rounded-2xl border border-slate-200 bg-white px-4 py-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-red-200 hover:shadow-[0_6px_18px_rgba(220,38,38,0.10)]">
                 <div className="flex items-center gap-2">
-                  <BarChart3 className="h-4 w-4 text-red-600" />
+                  <BarChart3 className="h-4 w-4 text-red-600 transition-transform duration-200 group-hover:scale-110" />
                   <p className="text-sm font-semibold text-slate-950">UZYNTRA UI Dashboard</p>
                 </div>
                 <p className="mt-2 text-sm leading-7 text-slate-600">
@@ -43,9 +43,9 @@ export function PlatformSection() {
           </div>
 
           <div className="grid gap-4">
-            <div className="surface-card p-5 sm:p-6">
+            <div className="surface-card group p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-red-100 hover:shadow-[0_8px_24px_rgba(220,38,38,0.10)] sm:p-6">
               <div className="flex items-center gap-3">
-                <Layers3 className="h-5 w-5 text-red-600" />
+                <Layers3 className="h-5 w-5 text-red-600 transition-transform duration-200 group-hover:scale-110" />
                 <h3 className="text-lg font-semibold text-slate-950">
                   Product + Services Positioning
                 </h3>
@@ -56,9 +56,9 @@ export function PlatformSection() {
               </p>
             </div>
 
-            <div className="surface-card p-5 sm:p-6">
+            <div className="surface-card group p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-red-100 hover:shadow-[0_8px_24px_rgba(220,38,38,0.10)] sm:p-6">
               <div className="flex items-center gap-3">
-                <Workflow className="h-5 w-5 text-red-600" />
+                <Workflow className="h-5 w-5 text-red-600 transition-transform duration-200 group-hover:scale-110" />
                 <h3 className="text-lg font-semibold text-slate-950">
                   Architecture-Driven Execution
                 </h3>

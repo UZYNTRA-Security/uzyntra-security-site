@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ShieldCheck, Code2, Blocks } from "lucide-react";
+import { ShieldCheck, Code2, Blocks, Workflow } from "lucide-react";
 
 import { PageHero } from "@/components/sections/page-hero";
 import { FlipInfoCard } from "@/components/ui/flip-info-card";
@@ -29,6 +29,14 @@ const items = [
     backDescription:
       "Supports blockchain adoption through secure implementation, token systems, dApps, interoperability, infrastructure, and enterprise-focused delivery.",
   },
+  {
+    title: "n8n Automation",
+    href: "/services/n8n-automation",
+    icon: <Workflow className="h-5 w-5" />,
+    frontDescription: "Workflow automation, API orchestration, AI pipelines, and self-hosted n8n deployment.",
+    backDescription:
+      "Custom n8n automation across business processes, cross-platform integrations, AI agent workflows, and production-grade self-hosted deployment.",
+  },
 ];
 
 export default function ServicesPage() {
@@ -42,7 +50,7 @@ export default function ServicesPage() {
 
       <section className="section-tight">
         <div className="container-shell">
-          <div className="grid gap-5 md:grid-cols-3">
+          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
             {items.map((item) => (
               <Link key={item.title} href={item.href} className="block">
                 <FlipInfoCard

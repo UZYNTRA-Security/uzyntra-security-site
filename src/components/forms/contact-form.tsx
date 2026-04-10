@@ -1,212 +1,257 @@
 "use client";
 
-import { useState } from "react";
-import { inquiryTypes, serviceTypes, budgetRanges } from "@/data/contact-options";
+import { useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
 
-type FormState = {
-  name: string;
-  email: string;
-  company: string;
-  inquiryType: string;
-  serviceType: string;
-  budget: string;
-  message: string;
-};
+import { budgetRanges, inquiryTypes } from "@/data/contact-options";
+import { CustomSelect, type SelectGroup, type SelectOption } from "@/components/forms/custom-select";
 
-const initialState: FormState = {
-  name: "",
-  email: "",
-  company: "",
-  inquiryType: "",
-  serviceType: "",
-  budget: "",
-  message: "",
-};
+// ── Grouped service options ───────────────────────────────────────────────────
+const serviceGroups: SelectGroup[] = [
+  {
+    group: "Cybersecurity",
+    options: [
+      { label: "Cybersecurity", value: "Cybersecurity" },
+      { label: "Vulnerability Assessment & Penetration Testing", value: "Vulnerability Assessment & Penetration Testing" },
+      { label: "Managed Detection & Response", value: "Managed Detection & Response" },
+      { label: "SOC as a Service", value: "SOC as a Service" },
+      { label: "SIEM Implementation", value: "SIEM Implementation" },
+      { label: "Identity & Access Management", value: "Identity & Access Management" },
+      { label: "Cloud Security", value: "Cloud Security" },
+      { label: "Application Security", value: "Application Security" },
+      { label: "API Security", value: "API Security" },
+    ],
+  },
+  {
+    group: "Software Development",
+    options: [
+      { label: "Software Development", value: "Software Development" },
+      { label: "Rust Development", value: "Rust Development" },
+      { label: "Web Development", value: "Web Development" },
+      { label: "Mobile Development", value: "Mobile Development" },
+      { label: "DevOps Engineering", value: "DevOps Engineering" },
+      { label: "AI Systems", value: "AI Systems" },
+    ],
+  },
+  {
+    group: "Blockchain",
+    options: [
+      { label: "Blockchain", value: "Blockchain" },
+      { label: "Custom Blockchain Development", value: "Custom Blockchain Development" },
+      { label: "Smart Contract Development", value: "Smart Contract Development" },
+      { label: "Smart Contract Auditing", value: "Smart Contract Auditing" },
+      { label: "dApp Development", value: "dApp Development" },
+      { label: "DeFi Platforms", value: "DeFi Platforms" },
+      { label: "Crypto Wallet Development", value: "Crypto Wallet Development" },
+      { label: "Token Creation", value: "Token Creation" },
+      { label: "CEX/DEX Development", value: "CEX/DEX Development" },
+      { label: "Blockchain Consulting", value: "Blockchain Consulting" },
+      { label: "Node Infrastructure", value: "Node Infrastructure" },
+      { label: "Enterprise Blockchain Solutions", value: "Enterprise Blockchain Solutions" },
+      { label: "BaaS", value: "BaaS" },
+      { label: "Cross-chain Interoperability", value: "Cross-chain Interoperability" },
+      { label: "Layer 2 Scaling", value: "Layer 2 Scaling" },
+      { label: "Blockchain Security Audits", value: "Blockchain Security Audits" },
+      { label: "AI + Blockchain Integration", value: "AI + Blockchain Integration" },
+    ],
+  },
+  {
+    group: "n8n Automation",
+    options: [
+      { label: "n8n Automation", value: "n8n Automation" },
+      { label: "Workflow Automation", value: "Workflow Automation" },
+      { label: "API Orchestration", value: "API Orchestration" },
+      { label: "Business Process Automation", value: "Business Process Automation" },
+      { label: "AI Agent Workflows", value: "AI Agent Workflows" },
+      { label: "E-commerce Automation", value: "E-commerce Automation" },
+      { label: "Marketing Automation", value: "Marketing Automation" },
+      { label: "Self-hosted n8n Deployment", value: "Self-hosted n8n Deployment" },
+      { label: "Custom n8n Node Development", value: "Custom n8n Node Development" },
+      { label: "Legacy System Integration", value: "Legacy System Integration" },
+    ],
+  },
+];
 
-const fieldClass =
-  "rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-red-300 w-full";
+const inquiryOptions: SelectOption[] = inquiryTypes.map((t) => ({ label: t, value: t }));
+const budgetOptions: SelectOption[]  = budgetRanges.map((b) => ({ label: b, value: b }));
 
+// ── Component ─────────────────────────────────────────────────────────────────
 export function ContactForm() {
-  const [formData, setFormData] = useState<FormState>(initialState);
-  const [submitted, setSubmitted] = useState(false);
+  const formRef = useRef<HTMLFormElement | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus]   = useState<null | "success" | "error">(null);
 
-  function updateField<K extends keyof FormState>(key: K, value: FormState[K]) {
-    setFormData((prev) => ({ ...prev, [key]: value }));
-  }
+  const [inquiryValue, setInquiryValue]   = useState("");
+  const [serviceValue, setServiceValue]   = useState("");
+  const [budgetValue,  setBudgetValue]    = useState("");
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    console.log("Contact form submission payload:", formData);
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 5000);
-    setFormData(initialState);
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (!formRef.current || loading) return;
+
+    setLoading(true);
+    setStatus(null);
+
+    try {
+      await emailjs.sendForm(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        formRef.current,
+        { publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY! }
+      );
+      formRef.current.reset();
+      setInquiryValue("");
+      setServiceValue("");
+      setBudgetValue("");
+      setStatus("success");
+    } catch (err) {
+      console.error("EmailJS Error:", err);
+      setStatus("error");
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
-    <div className="surface-card-strong p-6 sm:p-8">
+    <div className="surface-card-strong rounded-2xl p-6 shadow-lg sm:p-8">
       <div className="mb-6">
         <p className="text-sm font-semibold uppercase tracking-[0.16em] text-red-700">
-          Inquiry Form
+          Contact UZYNTRA
         </p>
         <h2 className="mt-3 text-2xl font-semibold text-slate-950 sm:text-3xl">
           Tell us about your requirements
         </h2>
         <p className="mt-3 text-slate-600">
-          Share your project scope, technical needs, or business goals. This form is
-          frontend-ready and structured for future backend/API integration.
+          Security audits, API protection, or enterprise consulting — we&apos;re ready.
         </p>
       </div>
 
-      {submitted && (
+      {status === "success" && (
         <div
-          className="mb-6 rounded-2xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800"
           role="status"
           aria-live="polite"
+          className="mb-6 rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800"
         >
-          Your inquiry has been prepared successfully. Connect this form to your backend
-          or email service in a later phase to enable live submissions.
+          ✅ Message sent successfully. We&apos;ll contact you soon.
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="grid gap-5">
+      {status === "error" && (
+        <div
+          role="alert"
+          className="mb-6 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800"
+        >
+          ❌ Failed to send message. Please try again.
+        </div>
+      )}
+
+      <form ref={formRef} onSubmit={handleSubmit} className="grid gap-5">
+        {/* Hidden metadata */}
+        <input type="hidden" name="site_url" value={process.env.NEXT_PUBLIC_SITE_URL ?? "https://uzyntra.com"} />
+        <input type="hidden" name="submitted_at" value={new Date().toISOString()} />
+
+        {/* Name + Email */}
         <div className="grid gap-5 md:grid-cols-2">
           <div className="grid gap-2">
             <label htmlFor="name" className="text-sm font-medium text-slate-900">
-              Name
+              Name <span className="text-red-600">*</span>
             </label>
             <input
-              id="name"
-              name="name"
-              type="text"
-              required
-              autoComplete="name"
-              value={formData.name}
-              onChange={(e) => updateField("name", e.target.value)}
-              className={fieldClass}
-              placeholder="Your full name"
+              id="name" name="name" type="text" required autoComplete="name"
+              className="input-style" placeholder="Your full name"
             />
           </div>
-
           <div className="grid gap-2">
             <label htmlFor="email" className="text-sm font-medium text-slate-900">
-              Email
+              Email <span className="text-red-600">*</span>
             </label>
             <input
-              id="email"
-              name="email"
-              type="email"
-              required
-              autoComplete="email"
-              value={formData.email}
-              onChange={(e) => updateField("email", e.target.value)}
-              className={fieldClass}
-              placeholder="you@company.com"
+              id="email" name="email" type="email" required autoComplete="email"
+              className="input-style" placeholder="you@company.com"
             />
           </div>
         </div>
 
+        {/* Company + Inquiry Type */}
         <div className="grid gap-5 md:grid-cols-2">
           <div className="grid gap-2">
             <label htmlFor="company" className="text-sm font-medium text-slate-900">
               Company
             </label>
             <input
-              id="company"
-              name="company"
-              type="text"
-              autoComplete="organization"
-              value={formData.company}
-              onChange={(e) => updateField("company", e.target.value)}
-              className={fieldClass}
-              placeholder="Company or organization"
+              id="company" name="company" type="text" autoComplete="organization"
+              className="input-style" placeholder="Company name"
             />
           </div>
 
-          <div className="grid gap-2">
-            <label htmlFor="inquiryType" className="text-sm font-medium text-slate-900">
-              Inquiry Type
-            </label>
-            <select
-              id="inquiryType"
-              name="inquiryType"
+          {/* Inquiry dropdown */}
+          <div className="relative">
+            <CustomSelect
+              id="inquiry_type"
+              name="inquiry_type"
+              label="Inquiry Type"
+              placeholder="Select type"
+              items={inquiryOptions}
               required
-              value={formData.inquiryType}
-              onChange={(e) => updateField("inquiryType", e.target.value)}
-              className={fieldClass}
-            >
-              <option value="">Select inquiry type</option>
-              {inquiryTypes.map((option) => (
-                <option key={option} value={option}>{option}</option>
-              ))}
-            </select>
+              value={inquiryValue}
+              onChange={setInquiryValue}
+            />
           </div>
         </div>
 
+        {/* Service + Budget */}
         <div className="grid gap-5 md:grid-cols-2">
-          <div className="grid gap-2">
-            <label htmlFor="serviceType" className="text-sm font-medium text-slate-900">
-              Service Type
-            </label>
-            <select
-              id="serviceType"
-              name="serviceType"
+          {/* Service dropdown — grouped + searchable */}
+          <div className="relative">
+            <CustomSelect
+              id="service_type"
+              name="service_type"
+              label="Service"
+              placeholder="Select service"
+              items={serviceGroups}
               required
-              value={formData.serviceType}
-              onChange={(e) => updateField("serviceType", e.target.value)}
-              className={fieldClass}
-            >
-              <option value="">Select service type</option>
-              {serviceTypes.map((option) => (
-                <option key={option} value={option}>{option}</option>
-              ))}
-            </select>
+              searchable
+              value={serviceValue}
+              onChange={setServiceValue}
+            />
           </div>
 
-          <div className="grid gap-2">
-            <label htmlFor="budget" className="text-sm font-medium text-slate-900">
-              Budget
-            </label>
-            <select
+          {/* Budget dropdown */}
+          <div className="relative">
+            <CustomSelect
               id="budget"
               name="budget"
-              value={formData.budget}
-              onChange={(e) => updateField("budget", e.target.value)}
-              className={fieldClass}
-            >
-              <option value="">Select budget range</option>
-              {budgetRanges.map((option) => (
-                <option key={option} value={option}>{option}</option>
-              ))}
-            </select>
+              label="Budget"
+              placeholder="Select budget"
+              items={budgetOptions}
+              value={budgetValue}
+              onChange={setBudgetValue}
+            />
           </div>
         </div>
 
+        {/* Message */}
         <div className="grid gap-2">
           <label htmlFor="message" className="text-sm font-medium text-slate-900">
-            Message
+            Message <span className="text-red-600">*</span>
           </label>
           <textarea
-            id="message"
-            name="message"
-            required
-            rows={7}
-            value={formData.message}
-            onChange={(e) => updateField("message", e.target.value)}
-            className={fieldClass}
-            placeholder="Describe your requirements, environment, goals, timeline, or technical challenges."
+            id="message" name="message" required rows={6}
+            className="input-style"
+            placeholder="Explain your security requirements, goals, or technical challenges."
           />
         </div>
 
         <div className="flex flex-col gap-3 border-t border-slate-200 pt-5 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs leading-6 text-slate-500">
-            By submitting this form, you acknowledge that the message is informational
-            and does not create a legal or contractual obligation.
+            By submitting, you acknowledge this is informational and creates no legal obligation.
           </p>
           <button
             type="submit"
-            className="inline-flex items-center justify-center rounded-xl bg-red-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-red-700"
+            disabled={loading}
+            className="btn-primary w-auto shrink-0 self-start sm:self-auto"
           >
-            Submit Inquiry
+            {loading ? "Sending…" : "Submit Inquiry"}
           </button>
         </div>
       </form>

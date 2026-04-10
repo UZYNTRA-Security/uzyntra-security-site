@@ -45,7 +45,7 @@ export default function DownloadPage() {
                   href={siteConfig.productLinks.apiFirewallDownload}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center justify-center rounded-2xl bg-red-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-red-700"
+                  className="btn-solid inline-flex items-center justify-center rounded-2xl px-5 py-3 text-sm"
                 >
                   Download Latest Release
                 </a>
@@ -53,7 +53,7 @@ export default function DownloadPage() {
                   href={siteConfig.productLinks.apiFirewallRepo}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center justify-center rounded-2xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-900 transition hover:border-red-200 hover:bg-red-50"
+                  className="btn-neutral inline-flex items-center justify-center rounded-2xl px-5 py-3 text-sm"
                 >
                   View Firewall Repository
                 </a>
@@ -76,10 +76,10 @@ export default function DownloadPage() {
 
               <div className="mt-6">
                 <a
-                  href={siteConfig.productLinks.uiRepo}
+                  href={siteConfig.productLinks.apiFirewallRepo}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center justify-center rounded-2xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-900 transition hover:border-red-200 hover:bg-red-50"
+                  className="btn-neutral inline-flex items-center justify-center rounded-2xl px-5 py-3 text-sm"
                 >
                   View UI Repository
                 </a>
@@ -101,7 +101,7 @@ export default function DownloadPage() {
               <div className="mt-6">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center rounded-2xl border border-red-200 bg-red-50 px-5 py-3 text-sm font-semibold text-red-700 transition hover:bg-red-100"
+                  className="btn-stroke inline-flex items-center justify-center rounded-2xl px-5 py-3 text-sm"
                 >
                   Discuss Adoption
                 </Link>

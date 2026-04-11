@@ -179,8 +179,8 @@ export default function NotFound() {
       </div>
 
       {/* Copyright */}
-      <p className="relative z-10 mt-6 text-[0.6875rem] text-slate-400">
-        © {new Date().getFullYear()} {siteConfig.legalName}
+      <p className="relative z-10 mt-6 w-full text-center text-[0.6875rem] text-slate-400">
+        © 2025 {siteConfig.legalName}
       </p>
     </main>
   );

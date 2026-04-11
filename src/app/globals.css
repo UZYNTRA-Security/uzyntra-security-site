@@ -1128,6 +1128,20 @@ ol {
   background-color: rgba(15, 23, 42, 0.3) !important;
 }
 
+/* ─── 404 Not Found page ────────────────────────────── */
+
+[data-theme="dark"] .not-found-terminal {
+  background-color: rgba(15, 23, 42, 0.6) !important;
+  border-color: rgba(51, 65, 85, 0.6) !important;
+  color: hsl(215, 16%, 55%) !important;
+}
+
+/* Shield icon badge inside 404 card */
+[data-theme="dark"] .not-found-icon-badge {
+  background-color: rgba(220, 38, 38, 0.12) !important;
+  box-shadow: 0 0 0 1px rgba(220, 38, 38, 0.2) !important;
+}
+
 /* --- Technology Slider / Marquee ----------------------------------------- */
 
 /* reduced-motion: disable JS scroll too via a data attribute set in component */

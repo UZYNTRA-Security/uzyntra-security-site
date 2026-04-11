@@ -62,7 +62,7 @@ export function TechnologySlider({
   const rafRef       = useRef<number>(0);
   const pausedRef    = useRef(false);   // hover pause
   const manualRef    = useRef(false);   // arrow-click pause
-  const resumeTimer  = useRef<ReturnType<typeof setTimeout>>();
+  const resumeTimer  = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const scrollPos    = useRef(0);
 
   // ── Auto-scroll loop ────────────────────────────────────────────────────────

@@ -135,7 +135,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         </a>
         <div className="relative flex min-h-screen flex-col" style={{ overflowX: "clip", zIndex: 1 }}>
           <SiteHeader />
-          <div className="flex-1">{children}</div>
+          <div className="flex flex-1 flex-col">{children}</div>
           <SiteFooter />
         </div>
         <SpeedInsights />

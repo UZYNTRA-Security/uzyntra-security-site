@@ -128,7 +128,7 @@ export function MobileNav({ items }: MobileNavProps) {
     headerBorder:  dark ? "rgba(51,65,85,0.4)" : "#f1f5f9",
     navBg:         dark ? "#0f172a" : "#ffffff",
     textPrimary:   dark ? "hsl(210,40%,90%)" : "#1e293b",
-    textMuted:     dark ? "hsl(215,16%,50%)" : "#94a3b8",
+    textMuted:     dark ? "hsl(215,16%,62%)" : "#64748b",
     textAccent:    dark ? "rgb(248,113,113)" : "#b91c1c",
     activeBg:      dark ? "rgba(220,38,38,0.12)" : "#fef2f2",
     childGroupBg:  dark ? "rgba(30,41,59,0.6)" : "#f8fafc",
@@ -199,13 +199,13 @@ export function MobileNav({ items }: MobileNavProps) {
           }}
         >
           <Link href="/" onClick={close} aria-label="UZYNTRA Security home">
-            <span style={{ position: "relative", display: "block", height: "28px", width: "128px", overflow: "hidden" }}>
+            <span style={{ position: "relative", display: "block", height: "44px", width: "200px", overflow: "hidden" }}>
               <Image
-                src={siteConfig.logos.main}
+                src={dark ? siteConfig.logos.mainDark : siteConfig.logos.main}
                 alt="UZYNTRA Security"
                 fill
                 className="object-contain object-left"
-                sizes="128px"
+                sizes="200px"
               />
             </span>
           </Link>
@@ -220,9 +220,9 @@ export function MobileNav({ items }: MobileNavProps) {
                 display: "inline-flex",
                 alignItems: "center",
                 justifyContent: "center",
-                width: "36px",
-                height: "36px",
-                borderRadius: "8px",
+                width: "44px",
+                height: "44px",
+                borderRadius: "10px",
                 border: `1px solid ${colors.toggleBorder}`,
                 backgroundColor: colors.toggleBg,
                 color: colors.toggleColor,
@@ -232,8 +232,8 @@ export function MobileNav({ items }: MobileNavProps) {
               }}
             >
               {theme === "light"
-                ? <Moon style={{ width: "15px", height: "15px" }} />
-                : <Sun style={{ width: "15px", height: "15px" }} />
+                ? <Moon style={{ width: "16px", height: "16px" }} />
+                : <Sun style={{ width: "16px", height: "16px" }} />
               }
             </button>
 
@@ -246,9 +246,9 @@ export function MobileNav({ items }: MobileNavProps) {
                 display: "inline-flex",
                 alignItems: "center",
                 justifyContent: "center",
-                width: "36px",
-                height: "36px",
-                borderRadius: "8px",
+                width: "44px",
+                height: "44px",
+                borderRadius: "10px",
                 border: `1px solid ${colors.closeBorder}`,
                 backgroundColor: colors.closeBg,
                 color: colors.closeColor,
@@ -392,7 +392,7 @@ export function MobileNav({ items }: MobileNavProps) {
                                   style={{
                                     display: "block",
                                     marginTop: "2px",
-                                    fontSize: "0.6875rem",
+                                    fontSize: "0.75rem",
                                     lineHeight: 1.5,
                                     color: colors.textMuted,
                                   }}
@@ -426,11 +426,11 @@ export function MobileNav({ items }: MobileNavProps) {
                     style={{
                       display: "flex",
                       alignItems: "center",
-                      height: "36px",
+                      height: "44px",
                       padding: "0 12px",
                       borderRadius: "8px",
                       fontSize: "0.75rem",
-                      fontWeight: 400,
+                      fontWeight: 500,
                       color: colors.textMuted,
                       textDecoration: "none",
                       letterSpacing: "0.01em",
@@ -496,9 +496,9 @@ export function MobileNav({ items }: MobileNavProps) {
           display: "inline-flex",
           alignItems: "center",
           justifyContent: "center",
-          width: "36px",
-          height: "36px",
-          borderRadius: "8px",
+          width: "44px",
+          height: "44px",
+          borderRadius: "10px",
           border: "1px solid #e2e8f0",
           backgroundColor: "#ffffff",
           color: "#334155",

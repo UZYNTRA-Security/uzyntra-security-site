@@ -73,7 +73,7 @@
 
   --text-heading:       hsl(210, 40%, 96%);
   --text-body:          hsl(215, 20%, 75%);
-  --text-muted:         hsl(215, 16%, 50%);
+  --text-muted:         hsl(215, 16%, 62%);  /* was 50% — bumped for WCAG AA on dark bg */
   --text-accent:        rgb(248, 113, 113);
 
   --particle-node:      248, 113, 113;  /* red-400 — softer on dark */
@@ -124,6 +124,7 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
+  font-family: var(--font-sans, ui-sans-serif, system-ui, sans-serif);
   color: hsl(var(--foreground));
   background:
     radial-gradient(circle at top left, rgba(254, 226, 226, 0.38), transparent 22%),
@@ -422,6 +423,18 @@ ol {
   box-shadow: var(--shadow-red);
 }
 
+/* Promote animated background elements to their own compositor layer.
+   Prevents forced reflows from bubbling up to the document layout tree.
+   Apply to any element using CSS animations that move/scale. */
+.will-change-transform {
+  will-change: transform;
+}
+
+/* Contain fixed background wrapper — isolates paint/layout from page content */
+.contain-strict {
+  contain: strict;
+}
+
 .sr-only-focusable:not(:focus):not(:active) {
   position: absolute;
   width: 1px;
@@ -462,6 +475,21 @@ ol {
 }
 
 /* ─── Button system — stroke ↔ filled swap on hover ─── */
+
+/* Suppress translateY hover lift on touch devices */
+@media (hover: none) {
+  .btn-solid:hover,
+  .btn-stroke:hover,
+  .btn-neutral:hover {
+    transform: none;
+  }
+  .btn-solid:active,
+  .btn-stroke:active,
+  .btn-neutral:active {
+    transform: scale(0.97);
+    transition-duration: 0.1s;
+  }
+}
 
 /* SOLID: red filled → white bg + red text/border on hover */
 .btn-solid {
@@ -617,6 +645,87 @@ ol {
   color: #0f172a;
   border-color: #ffffff;
 }
+/* Fix dead variants referenced in Button component */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease,
+              border-color 0.2s ease, box-shadow 0.2s ease,
+              transform 0.15s ease;
+  background: hsl(var(--secondary));
+  color: hsl(var(--secondary-foreground));
+  border: 2px solid hsl(var(--border));
+}
+.btn-secondary:hover {
+  background: rgb(220, 38, 38);
+  color: #ffffff;
+  border-color: rgb(220, 38, 38);
+  transform: translateY(-2px);
+}
+.btn-secondary:active { transform: translateY(0); }
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease,
+              border-color 0.2s ease, box-shadow 0.2s ease,
+              transform 0.15s ease;
+  background: transparent;
+  color: rgb(185, 28, 28);
+  border: 2px solid rgb(220, 38, 38);
+}
+.btn-outline:hover {
+  background: rgb(220, 38, 38);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+.btn-outline:active { transform: translateY(0); }
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease,
+              border-color 0.2s ease, transform 0.15s ease;
+  background: transparent;
+  color: hsl(var(--foreground));
+  border: 2px solid transparent;
+}
+.btn-ghost:hover {
+  background: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
+}
+.btn-ghost:active { transform: scale(0.97); }
+
+@media (hover: none) {
+  .btn-secondary:hover,
+  .btn-outline:hover,
+  .btn-ghost:hover {
+    transform: none;
+  }
+  .btn-secondary:active,
+  .btn-outline:active {
+    transform: scale(0.97);
+    transition-duration: 0.1s;
+  }
+}
+
+/* btn-primary is an alias of btn-solid — kept for backward compat with any
+   existing usages outside the Button component (e.g. contact form). */
 .btn-primary {
   display: inline-flex;
   align-items: center;
@@ -631,6 +740,7 @@ ol {
   font-weight: 600;
   color: #ffffff;
   white-space: nowrap;
+  cursor: pointer;
   transition: background-color 0.2s ease, color 0.2s ease,
               border-color 0.2s ease, transform 0.15s ease;
 }
@@ -640,6 +750,7 @@ ol {
   border-color: rgb(220, 38, 38);
   transform: translateY(-1px);
 }
+.btn-primary:active { transform: translateY(0); }
 .btn-primary:disabled {
   opacity: 0.6;
   pointer-events: none;
@@ -654,8 +765,56 @@ ol {
   color: rgb(248, 113, 113);
   border-color: rgb(248, 113, 113);
 }
+@media (hover: none) {
+  .btn-primary:hover { transform: none; }
+  .btn-primary:active {
+    transform: scale(0.97);
+    transition-duration: 0.1s;
+  }
+}
 
-/* ─── Footer ─────────────────────────────────────────── */
+/* ─── Hero stat cards ────────────────────────────────── */
+
+.hero-stat-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  background: #ffffff;
+  padding: 1rem;
+  text-align: left;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.05);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+@media (hover: hover) {
+  .hero-stat-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(254, 202, 202, 0.8);
+    box-shadow: 0 6px 18px rgba(220, 38, 38, 0.09);
+  }
+}
+
+@media (hover: none) {
+  .hero-stat-card:active {
+    transform: scale(0.98);
+    transition-duration: 0.1s;
+  }
+}
+
+[data-theme="dark"] .hero-stat-card {
+  background: #111827;
+  border-color: rgba(51, 65, 85, 0.6);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+@media (hover: hover) {
+  [data-theme="dark"] .hero-stat-card:hover {
+    border-color: rgba(220, 38, 38, 0.25);
+    box-shadow: 0 6px 18px rgba(220, 38, 38, 0.12);
+  }
+}
 
 .footer-link-hover {
   transition: color 0.2s ease, transform 0.2s ease;
@@ -706,9 +865,9 @@ ol {
     line-height: 1.4;
   }
 
-  /* Prevent horizontal overflow on all pages */
+  /* Prevent horizontal overflow on all pages except the tech slider */
   main,
-  section,
+  section:not(.tech-slider-section),
   .container-shell {
     overflow-x: hidden;
   }
@@ -720,6 +879,7 @@ ol {
 }
 
 /* ─── Scrollbar ──────────────────────────────────────── */
+/* Non-critical — does not affect above-the-fold rendering */
 
 * {
   scrollbar-width: thin;
@@ -853,7 +1013,7 @@ ol {
 [data-theme="dark"] .text-slate-800 { color: hsl(210, 40%, 85%) !important; }
 [data-theme="dark"] .text-slate-700 { color: hsl(215, 20%, 75%) !important; }
 [data-theme="dark"] .text-slate-600 { color: hsl(215, 16%, 60%) !important; }
-[data-theme="dark"] .text-slate-500 { color: hsl(215, 16%, 50%) !important; }
+[data-theme="dark"] .text-slate-500 { color: hsl(215, 16%, 62%) !important; } /* was 50% — WCAG AA fix */
 
 /* Border overrides */
 [data-theme="dark"] .border-slate-200 { border-color: rgba(51, 65, 85, 0.6) !important; }
@@ -966,4 +1126,96 @@ ol {
 }
 [data-theme="dark"] section.bg-slate-50 {
   background-color: rgba(15, 23, 42, 0.3) !important;
+}
+
+/* --- Technology Slider / Marquee ----------------------------------------- */
+
+/* reduced-motion: disable JS scroll too via a data attribute set in component */
+@media (prefers-reduced-motion: reduce) {
+  .tech-slider-track {
+    animation: none !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    width: 100% !important;
+  }
+}
+
+/* Dark mode badge overrides */
+[data-theme="dark"] .tech-badge {
+  background-color: #1e293b !important;
+  border-color: rgba(51, 65, 85, 0.7) !important;
+}
+[data-theme="dark"] .tech-badge:hover {
+  border-color: rgba(220, 38, 38, 0.4) !important;
+  box-shadow: 0 4px 14px rgba(220, 38, 38, 0.12) !important;
+}
+
+/* Dark mode fade masks */
+[data-theme="dark"] .tech-fade-left {
+  background: linear-gradient(to right, #0a0f1a, transparent) !important;
+}
+[data-theme="dark"] .tech-fade-right {
+  background: linear-gradient(to left, #0a0f1a, transparent) !important;
+}
+
+/* ── Arrow buttons ── */
+.tech-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 9999px;
+  border: 1.5px solid rgba(203, 213, 225, 0.9);
+  background: #ffffff;
+  color: #475569;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.12);
+  cursor: pointer !important;
+  opacity: 1;
+  transition: background-color 0.2s ease, border-color 0.2s ease,
+              color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+.tech-arrow-left  { left:  0.75rem; }
+.tech-arrow-right { right: 0.75rem; }
+
+.tech-arrow:hover {
+  background: rgb(220, 38, 38) !important;
+  border-color: rgb(220, 38, 38) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 16px rgba(220, 38, 38, 0.35) !important;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.tech-arrow:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+/* Dark mode arrows */
+[data-theme="dark"] .tech-arrow {
+  background: #1e293b !important;
+  border-color: rgba(51, 65, 85, 0.9) !important;
+  color: hsl(215, 20%, 65%) !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35) !important;
+}
+[data-theme="dark"] .tech-arrow:hover {
+  background: rgb(220, 38, 38) !important;
+  border-color: rgb(220, 38, 38) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 16px rgba(220, 38, 38, 0.40) !important;
+}
+
+/* Prevent mobile overflow-x:hidden on section from clipping the marquee wrapper */
+@media (max-width: 640px) {
+  .tech-slider-section {
+    overflow-x: visible !important;
+  }
+  .tech-arrow {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
 }

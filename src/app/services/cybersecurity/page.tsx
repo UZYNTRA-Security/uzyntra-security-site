@@ -2,6 +2,8 @@ import { ShieldCheck, Radar, Cloud, LockKeyhole, Activity, Bug } from "lucide-re
 
 import { PageHero } from "@/components/sections/page-hero";
 import { ServiceCapabilityGrid } from "@/components/sections/service-capability-grid";
+import { TechnologySlider } from "@/components/sections/technology-slider";
+import { cybersecurityTechnologies } from "@/data/technologies";
 
 const items = [
   {
@@ -61,6 +63,13 @@ export default function CybersecurityPage() {
         eyebrow="Cybersecurity"
         title="Protect, detect, and respond with enterprise-grade security capability"
         description="UZYNTRA Security delivers practical cybersecurity services across applications, infrastructure, identity, cloud, and detection operations for modern organizations."
+      />
+
+      <TechnologySlider
+        eyebrow="SECURITY TOOLING"
+        title="Platforms and Tools We Work With"
+        items={cybersecurityTechnologies}
+        variant="compact"
       />
 
       <ServiceCapabilityGrid

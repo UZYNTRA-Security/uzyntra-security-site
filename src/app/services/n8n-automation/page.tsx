@@ -16,6 +16,8 @@ import {
 
 import { PageHero } from "@/components/sections/page-hero";
 import { ServiceCapabilityGrid } from "@/components/sections/service-capability-grid";
+import { TechnologySlider } from "@/components/sections/technology-slider";
+import { n8nTechnologies } from "@/data/technologies";
 import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
@@ -137,6 +139,13 @@ export default function N8nAutomationPage() {
         eyebrow="n8n Automation"
         title="Automate workflows, integrations, and operational systems with n8n"
         description="UZYNTRA Security builds custom n8n automation systems across API orchestration, business process automation, AI agent pipelines, and self-hosted deployment — engineered for reliability and operational scale."
+      />
+
+      <TechnologySlider
+        eyebrow="AUTOMATION STACK"
+        title="Platforms and Tools We Automate With"
+        items={n8nTechnologies}
+        variant="compact"
       />
 
       <ServiceCapabilityGrid

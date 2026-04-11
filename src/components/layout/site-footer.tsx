@@ -5,6 +5,7 @@ import { FaGithub, FaLinkedinIn, FaInstagram, FaFacebookF, FaXTwitter } from "re
 
 import { siteConfig } from "@/config/site";
 import { footerNavigation } from "@/data/navigation";
+import { ThemedLogo } from "@/components/ui/themed-logo";
 
 type FooterGroupProps = {
   title: string;
@@ -55,15 +56,7 @@ export function SiteFooter() {
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-[1.2fr_0.9fr_0.9fr_0.9fr_0.9fr]">
           <div className="max-w-sm">
             <Link href="/" className="inline-flex items-center" aria-label="UZYNTRA Security home">
-              <span className="relative h-10 w-[164px] overflow-hidden">
-                <Image
-                  src={siteConfig.logos.main}
-                  alt="UZYNTRA Security"
-                  fill
-                  className="object-contain object-left"
-                  sizes="164px"
-                />
-              </span>
+              <ThemedLogo width={240} height={56} />
             </Link>
 
             <p className="mt-4 text-sm leading-7 text-slate-600">
@@ -72,7 +65,7 @@ export function SiteFooter() {
               production-ready architecture.
             </p>
 
-            <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-red-100 bg-red-50 px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-red-700">
+            <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-red-100 bg-red-50 px-3 py-2 text-[12px] font-semibold uppercase tracking-[0.14em] text-red-700">
               <Shield className="h-3.5 w-3.5" />
               Enterprise Security Platform
             </div>
@@ -87,7 +80,7 @@ export function SiteFooter() {
         </div>
 
         <div className="mt-8 flex flex-col gap-5 border-t border-slate-200 pt-6 sm:mt-10 lg:flex-row lg:items-center lg:justify-between">
-          <p className="text-sm text-slate-500">
+          <p className="text-sm text-slate-600">
             © {new Date().getFullYear()} {siteConfig.legalName}. All rights reserved.
           </p>
 

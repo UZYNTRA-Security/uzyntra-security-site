@@ -1,14 +1,13 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
-import Script from "next/script";
 import "./globals.css";
 
 import { siteConfig } from "@/config/site";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { CustomCursor } from "@/components/cursor/custom-cursor";
-import { ParticleNetworkBackground } from "@/components/effects/particle-network-background";
-import { GlobalBackground } from "@/components/effects/global-background";
+import { DeferredEffects } from "@/components/effects/deferred-effects";
+import { GoogleAnalytics } from "@/components/analytics";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 
@@ -16,10 +15,14 @@ const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-sans",
+  // Preload the most common weights used across the site
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
+  // metadataBase makes all relative URLs absolute — required for OG/Twitter images
   metadataBase: new URL(siteConfig.url),
+
   title: {
     default: siteConfig.seo.defaultTitle,
     template: siteConfig.seo.titleTemplate,
@@ -32,7 +35,8 @@ export const metadata: Metadata = {
   creator: siteConfig.name,
   publisher: siteConfig.name,
   category: "technology",
-  alternates: { canonical: "/" },
+  alternates: { canonical: siteConfig.url },
+
   openGraph: {
     type: "website",
     locale: siteConfig.locale,
@@ -42,20 +46,32 @@ export const metadata: Metadata = {
     description: siteConfig.seo.defaultDescription,
     images: [
       {
-        url: siteConfig.ogImage,
+        url: siteConfig.ogImage,          // absolute URL — WhatsApp, LinkedIn, Facebook, Discord
+        secureUrl: siteConfig.ogImage,    // og:image:secure_url — required by some scrapers
         width: 1200,
         height: 630,
-        alt: `${siteConfig.name} Open Graph Image`,
+        type: "image/webp",              // og:image:type — helps crawlers skip content negotiation
+        alt: `${siteConfig.name} — ${siteConfig.tagline}`,
       },
     ],
   },
+
   twitter: {
-    card: "summary_large_image",
+    card: "summary_large_image",          // large image card — required for X/Twitter preview
+    site: "@uzyntra",                     // twitter:site — the account that owns the domain
+    creator: "@uzyntra",                  // twitter:creator — content author
     title: siteConfig.seo.defaultTitle,
     description: siteConfig.seo.defaultDescription,
-    images: [siteConfig.ogImage],
-    creator: "@uzyntra",
+    images: [
+      {
+        url: siteConfig.ogImage,          // must be absolute for Twitter card validator
+        alt: `${siteConfig.name} — ${siteConfig.tagline}`,
+        width: 1200,
+        height: 630,
+      },
+    ],
   },
+
   robots: {
     index: true,
     follow: true,
@@ -68,10 +84,16 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
+
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
     apple: "/apple-touch-icon.png",
+  },
+
+  // Cache-control for social crawlers — Vercel honours this header
+  other: {
+    "Cache-Control": "public, max-age=3600, stale-while-revalidate=86400",
   },
 };
 
@@ -80,54 +102,31 @@ export const viewport: Viewport = {
   colorScheme: "light",
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
+  // maximumScale removed — restricting zoom harms accessibility (WCAG 1.4.4)
 };
 
 type RootLayoutProps = Readonly<{ children: React.ReactNode }>;
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className={inter.variable} suppressHydrationWarning>
       <head>
+        {/* Preconnect to analytics origins — reduces DNS + TLS handshake time */}
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://vitals.vercel-insights.com" />
         {/* Theme init — runs before paint to prevent flash */}
         <script
           dangerouslySetInnerHTML={{
             __html: `(function(){var t=localStorage.getItem('uzyntra-theme');var p=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t||p);})();`,
           }}
         />
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-2ZB18T10P3"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-2ZB18T10P3');
-          `}
-        </Script>
       </head>
       <body
-        className={[
-          inter.variable,
-          "min-h-screen bg-white text-slate-950 antialiased",
-        ].join(" ")}
+        className="min-h-screen bg-white text-slate-950 antialiased"
       >
         <CustomCursor />
-        {/* Global particle network — fixed layer behind all pages */}
-        <div
-          style={{
-            position: "fixed",
-            inset: 0,
-            zIndex: 0,
-            pointerEvents: "none",
-          }}
-        >
-          <ParticleNetworkBackground />
-        </div>
-        {/* Global decorative background — glows, grid, scan line, orbs */}
-        <GlobalBackground />
+        <DeferredEffects />
         <a
           href="#main-content"
           className="sr-only-focusable fixed left-4 top-4 z-[200] rounded-md bg-white px-4 py-2 text-sm font-medium text-slate-950 shadow-md"
@@ -141,6 +140,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
         </div>
         <SpeedInsights />
         <Analytics />
+        {/* Analytics deferred until browser idle — off the critical path */}
+        <GoogleAnalytics />
       </body>
     </html>
   );

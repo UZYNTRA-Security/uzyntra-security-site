@@ -6,12 +6,13 @@ import { mainNavigation } from "@/data/navigation";
 import { DesktopNav } from "@/components/navigation/desktop-nav";
 import { MobileNav } from "@/components/navigation/mobile-nav";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { ThemedLogo } from "@/components/ui/themed-logo";
 
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200/70 bg-white/95 backdrop-blur-md">
       <div className="container-shell">
-        <div className="flex items-center justify-between gap-4" style={{ height: "60px" }}>
+        <div className="flex items-center justify-between gap-2 sm:gap-4" style={{ height: "56px" }}>
 
           {/* Logo */}
           <Link
@@ -19,15 +20,12 @@ export function SiteHeader() {
             className="group inline-flex shrink-0 items-center"
             aria-label="UZYNTRA Security home"
           >
-            <span className="relative overflow-hidden" style={{ height: "28px", width: "130px" }}>
-              <Image
-                src={siteConfig.logos.main}
-                alt="UZYNTRA Security"
-                fill
-                priority
-                className="object-contain object-left transition-opacity duration-200 group-hover:opacity-80"
-                sizes="(max-width: 640px) 130px, 148px"
-              />
+            {/* Mobile: smaller logo | Desktop: full size */}
+            <span className="block sm:hidden">
+              <ThemedLogo width={140} height={32} priority />
+            </span>
+            <span className="hidden sm:block">
+              <ThemedLogo width={200} height={44} priority />
             </span>
           </Link>
 
@@ -35,7 +33,7 @@ export function SiteHeader() {
           <DesktopNav items={mainNavigation} />
 
           {/* Right actions */}
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-1.5">
             <ThemeToggle />
             <Link
               href="/download"

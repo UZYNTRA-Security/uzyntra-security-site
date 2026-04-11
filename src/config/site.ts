@@ -5,7 +5,7 @@ export const siteConfig = {
   description:
     "UZYNTRA Security delivers enterprise-grade cybersecurity solutions, secure software engineering, and blockchain systems built with modern architecture, security-first thinking, and production-ready technology.",
   url: "https://uzyntra.com",
-  ogImage: "https://uzyntra.com/og-image.png",
+  ogImage: "https://uzyntra.com/preview.webp",
   domain: "uzyntra.com",
   locale: "en_US",
   type: "website",
@@ -27,10 +27,10 @@ export const siteConfig = {
   logos: {
     main: "/logos/uzyntra-logo-main.svg",
     mainDark: "/logos/uzyntra-logo-main-dark.svg",
-    mark: "/logos/uzyntra-mark.svg",
-    markDark: "/logos/uzyntra-mark-dark.svg",
-    wordmark: "/logos/uzyntra-wordmark.svg",
-    wordmarkDark: "/logos/uzyntra-wordmark-dark.svg",
+    mark: "/logos/uzyntra-mark.webp",
+    markDark: "/logos/uzyntra-mark-dark.webp",
+    wordmark: "/logos/uzyntra-wordmark.webp",
+    wordmarkDark: "/logos/uzyntra-wordmark-dark.webp",
   },
 
   socials: {

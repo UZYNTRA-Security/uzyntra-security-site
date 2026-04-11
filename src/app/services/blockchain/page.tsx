@@ -2,6 +2,8 @@ import { Blocks, FileCode2, Wallet, Landmark, Network, Shield } from "lucide-rea
 
 import { PageHero } from "@/components/sections/page-hero";
 import { ServiceCapabilityGrid } from "@/components/sections/service-capability-grid";
+import { TechnologySlider } from "@/components/sections/technology-slider";
+import { blockchainTechnologies } from "@/data/technologies";
 
 const items = [
   {
@@ -61,6 +63,13 @@ export default function BlockchainPage() {
         eyebrow="Blockchain"
         title="Enterprise blockchain engineering with product, infrastructure, and security depth"
         description="UZYNTRA Security delivers blockchain services across smart contracts, dApps, token systems, node infrastructure, and enterprise adoption strategy."
+      />
+
+      <TechnologySlider
+        eyebrow="BLOCKCHAIN ECOSYSTEM"
+        title="Protocols, Frameworks, and Infrastructure We Build With"
+        items={blockchainTechnologies}
+        variant="compact"
       />
 
       <ServiceCapabilityGrid

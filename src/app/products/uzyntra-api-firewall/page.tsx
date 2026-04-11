@@ -147,7 +147,7 @@ export default function FirewallPage() {
 
           <div className="relative overflow-hidden rounded-2xl border border-slate-200 bg-slate-100">
             <Image
-              src="/images/products/api-firewall-hero.png"
+              src="/images/products/api-firewall-hero.webp"
               alt="UZYNTRA API Firewall"
               width={800}
               height={500}
@@ -226,7 +226,7 @@ export default function FirewallPage() {
 
             <div className="relative overflow-hidden rounded-2xl border border-slate-200 bg-slate-900">
               <Image
-                src="/images/products/api-firewall-logs.png"
+                src="/images/products/api-firewall-logs.webp"
                 alt="API Firewall detection logs"
                 width={800}
                 height={600}
@@ -327,7 +327,7 @@ export default function FirewallPage() {
 
           <div className="relative overflow-hidden rounded-2xl border border-slate-200 bg-slate-900">
             <Image
-              src="/images/products/api-firewall-logs.png"
+              src="/images/products/api-firewall-logs.webp"
               alt="API Firewall structured logs"
               width={800}
               height={500}
@@ -342,7 +342,7 @@ export default function FirewallPage() {
         <div className="container-shell grid items-center gap-10 lg:grid-cols-2">
           <div className="relative overflow-hidden rounded-2xl border border-slate-200 bg-slate-100">
             <Image
-              src="/images/products/ui-dashboard-overview.png"
+              src="/images/products/ui-dashboard-overview.webp"
               alt="UZYNTRA UI Dashboard"
               width={800}
               height={500}

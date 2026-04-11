@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2413 685">
+  <defs>
+    <style>
+      .cls-1 {
+        font-family: CenturyGothic, 'Century Gothic';
+        font-size: 145.97px;
+        letter-spacing: .03em;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        fill: #f1f2f6;
+      }
+
+      .cls-3 {
+        font-family: Tahoma-Bold, Tahoma;
+        font-size: 334.4px;
+        font-weight: 700;
+        letter-spacing: .04em;
+      }
+
+      .cls-4 {
+        fill: #dc2626;
+      }
+    </style>
+  </defs>
+  <rect class="cls-4" x="237.15" y="178.2" width="190.36" height="84.38"/>
+  <rect class="cls-4" x="237.15" y="275.49" width="190.36" height="92.33"/>
+  <path class="cls-4" d="M237.15,384.97s-1.06,80.25,95.18,124.37c0,0,88.8-25.81,95.18-124.37H237.15Z"/>
+  <path class="cls-2" d="M0,45.17V422.5s1.06,127.99,131.87,177.62l166.96,73.46-137.19-128.07s-81.89-56.59-69.13-184.65l-3.19-258.12L0,45.17Z"/>
+  <path class="cls-2" d="M127.08,0V405.34s-2.13,72.17,68.06,132.73l163.77,146.93,98.9-46.66-165.37-129s-87.65-49.7-74.4-131.1l-1.64-323.64L127.08,0Z"/>
+  <path class="cls-2" d="M438.68,56.59V397.84s6.38,70.74-89.33,122.37l73.38,55.59,57.96-54.11s43.07-22.34,53.7-112.68V0l-95.71,56.59Z"/>
+  <path class="cls-2" d="M571.61,110.2V419.28s1.06,85.04-123.36,172.4l43.6,33.75,54.24-29.78s77.63-38.72,104.22-116.15c0,0,11.7-15.88,12.76-65.52V45.17l-91.46,65.03Z"/>
+  <text class="cls-3" transform="translate(748.25 375.36) scale(.98 1)"><tspan x="0" y="0">UZYNTRA</tspan></text>
+  <text class="cls-1" transform="translate(769.95 553.65) scale(1.4 1)"><tspan x="0" y="0">SECURITY</tspan></text>
+</svg>

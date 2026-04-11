@@ -2,6 +2,8 @@ import { ServerCog, Globe, Smartphone, Workflow, BrainCircuit, Database } from "
 
 import { PageHero } from "@/components/sections/page-hero";
 import { ServiceCapabilityGrid } from "@/components/sections/service-capability-grid";
+import { TechnologySlider } from "@/components/sections/technology-slider";
+import { softwareTechnologies } from "@/data/technologies";
 
 const items = [
   {
@@ -61,6 +63,13 @@ export default function SoftwareDevelopmentPage() {
         eyebrow="Software Development"
         title="Build secure, scalable, and production-ready digital systems"
         description="UZYNTRA Security delivers engineering services across backend systems, web platforms, mobile applications, DevOps, and AI-enabled software solutions."
+      />
+
+      <TechnologySlider
+        eyebrow="OUR MAJOR STACKS"
+        title="Languages, Frameworks & Infrastructure"
+        items={softwareTechnologies}
+        variant="compact"
       />
 
       <ServiceCapabilityGrid

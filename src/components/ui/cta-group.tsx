@@ -1,11 +1,6 @@
 import Link from "next/link";
-import { ShieldCheck, Boxes, Download } from "lucide-react";
+import { ShieldCheck, Boxes, ArrowRight } from "lucide-react";
 
-/**
- * CTAGroup — mobile-first CTA hierarchy.
- * Primary: full-width on mobile, auto-width on sm+.
- * Secondaries: equal-split row on mobile, inline on sm+.
- */
 export function CTAGroup() {
   return (
     <div
@@ -13,31 +8,31 @@ export function CTAGroup() {
       role="group"
       aria-label="Primary actions"
     >
-      {/* Primary */}
+      {/* Primary — urgency CTA */}
       <Link
-        href="/services"
+        href="/contact"
         className="btn-solid inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl px-6 text-sm sm:h-11 sm:w-auto"
       >
         <ShieldCheck className="h-4 w-4 shrink-0" aria-hidden="true" />
-        Explore Services
+        Get Security Assessment in 24 Hours
       </Link>
 
-      {/* Secondaries — share a row on mobile via flex, unwrap on sm+ via contents */}
+      {/* Secondaries */}
       <div className="flex gap-2.5 sm:contents">
         <Link
-          href="/products"
+          href="/services"
           className="btn-neutral inline-flex h-12 flex-1 items-center justify-center gap-2 rounded-xl px-5 text-sm sm:h-11 sm:flex-none"
         >
           <Boxes className="h-4 w-4 shrink-0" aria-hidden="true" />
-          View Products
+          Explore Services
         </Link>
 
         <Link
-          href="/download"
+          href="/products/uzyntra-api-firewall"
           className="btn-stroke inline-flex h-12 flex-1 items-center justify-center gap-2 rounded-xl px-5 text-sm sm:h-11 sm:flex-none"
         >
-          <Download className="h-4 w-4 shrink-0" aria-hidden="true" />
-          Download
+          <ArrowRight className="h-4 w-4 shrink-0" aria-hidden="true" />
+          API Firewall
         </Link>
       </div>
     </div>

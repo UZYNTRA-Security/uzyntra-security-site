@@ -1,9 +1,17 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/config/site";
+import { blogPosts } from "@/data/blog";
 
 const base = siteConfig.url;
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const blogEntries: MetadataRoute.Sitemap = blogPosts.map((post) => ({
+    url: `${base}/blog/${post.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
   return [
     {
       url: base,
@@ -23,6 +31,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.8,
     },
+    // ── Blog posts ─────────────────────────────────────────────────────────
+    ...blogEntries,
     // ── New service pages ──────────────────────────────────────────────────
     {
       url: `${base}/services/api-security`,
@@ -54,7 +64,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
-    // ── Legacy service pages (kept for existing backlinks) ─────────────────
+    // ── Legacy redirects (kept for backlinks) ──────────────────────────────
     {
       url: `${base}/services/cybersecurity`,
       lastModified: new Date(),

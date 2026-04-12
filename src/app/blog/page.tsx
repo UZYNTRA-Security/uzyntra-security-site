@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowUpRight, BookOpen, Tag } from "lucide-react";
+import { ArrowUpRight, BookOpen, Tag, ArrowRight } from "lucide-react";
 
 import { PageHero } from "@/components/sections/page-hero";
 import { blogPosts } from "@/data/blog";
@@ -20,10 +20,11 @@ export const metadata: Metadata = {
 };
 
 const platformColors: Record<string, string> = {
-  DEV:       "bg-slate-950 text-white",
-  Medium:    "bg-slate-700 text-white",
-  Hashnode:  "bg-blue-600 text-white",
-  Substack:  "bg-orange-500 text-white",
+  DEV:      "bg-slate-950 text-white",
+  Medium:   "bg-slate-700 text-white",
+  Hashnode: "bg-blue-600 text-white",
+  Substack: "bg-orange-500 text-white",
+  UZYNTRA:  "bg-red-600 text-white",
 };
 
 export default function BlogPage() {
@@ -38,21 +39,20 @@ export default function BlogPage() {
       <section className="section-tight">
         <div className="container-shell">
 
-          {/* Grid */}
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {blogPosts.map((post) => (
               <article
                 key={post.slug}
                 className="blog-card group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-red-200 hover:shadow-[0_12px_40px_rgba(220,38,38,0.10)]"
               >
-                {/* Top accent bar — slides in on hover */}
-                <div className="absolute left-0 right-0 top-0 h-[3px] origin-left scale-x-0 bg-gradient-to-r from-red-600 to-red-400 transition-transform duration-300 group-hover:scale-x-100" />
+                {/* Top accent bar */}
+                <div className="absolute left-0 right-0 top-0 h-[3px] origin-left scale-x-0 bg-gradient-to-r from-red-600 to-red-400 transition-transform duration-300 group-hover:scale-x-100" aria-hidden="true" />
 
                 <div className="flex flex-1 flex-col gap-4 p-6">
 
-                  {/* Category + platform badge */}
+                  {/* Category + platform */}
                   <div className="flex items-center justify-between gap-3">
-                    <span className="inline-flex items-center gap-1.5 rounded-full border border-red-100 bg-red-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-red-700 blog-card-badge">
+                    <span className="blog-card-badge inline-flex items-center gap-1.5 rounded-full border border-red-100 bg-red-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-red-700">
                       <Tag className="h-3 w-3 shrink-0" aria-hidden="true" />
                       {post.category}
                     </span>
@@ -62,16 +62,16 @@ export default function BlogPage() {
                   </div>
 
                   {/* Title */}
-                  <h2 className="text-base font-bold leading-snug text-slate-950 transition-colors duration-200 group-hover:text-red-700 blog-card-title">
+                  <h2 className="blog-card-title text-base font-bold leading-snug text-slate-950 transition-colors duration-200 group-hover:text-red-700">
                     {post.title}
                   </h2>
 
                   {/* Excerpt */}
-                  <p className="flex-1 text-sm leading-7 text-slate-500 blog-card-excerpt">
+                  <p className="blog-card-excerpt flex-1 text-sm leading-7 text-slate-500">
                     {post.excerpt}
                   </p>
 
-                  {/* Meta row — text-slate-500 passes WCAG AA 4.5:1 on white */}
+                  {/* Meta */}
                   <div className="blog-card-border flex items-center justify-between gap-3 border-t border-slate-100 pt-4">
                     <div className="blog-card-meta flex items-center gap-3 text-xs text-slate-500">
                       <span className="inline-flex items-center gap-1">
@@ -86,24 +86,32 @@ export default function BlogPage() {
                     <span className="blog-card-meta text-xs text-slate-500">{post.date}</span>
                   </div>
 
-                  {/* CTA */}
-                  <Link
-                    href={post.externalUrl}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    className="inline-flex items-center gap-2 text-sm font-semibold text-red-700 transition-all duration-200 hover:gap-3 blog-card-link"
-                    aria-label={`Read ${post.title} on ${post.platform}`}
-                  >
-                    Read on {post.platform}
-                    <ArrowUpRight className="h-4 w-4 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
-                  </Link>
+                  {/* Actions */}
+                  <div className="flex items-center justify-between gap-3">
+                    <Link
+                      href={post.externalUrl}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      className="blog-card-link inline-flex items-center gap-1.5 text-sm font-semibold text-red-700 transition-all duration-200 hover:gap-2"
+                      aria-label={`Read ${post.title} on ${post.platform}`}
+                    >
+                      Read on {post.platform}
+                      <ArrowUpRight className="h-4 w-4 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
+                    </Link>
+                    <Link
+                      href={post.serviceLink}
+                      className="inline-flex items-center gap-1 text-xs font-medium text-slate-500 transition-all duration-200 hover:text-red-700"
+                    >
+                      {post.cta}
+                      <ArrowRight className="h-3 w-3 shrink-0" aria-hidden="true" />
+                    </Link>
+                  </div>
 
                 </div>
               </article>
             ))}
           </div>
 
-          {/* Empty state — shown when no posts */}
           {blogPosts.length === 0 && (
             <div className="mx-auto max-w-md py-20 text-center">
               <BookOpen className="mx-auto h-10 w-10 text-slate-300" aria-hidden="true" />
@@ -113,7 +121,6 @@ export default function BlogPage() {
             </div>
           )}
 
-          {/* DEV.to profile link */}
           <div className="mt-12 flex justify-center">
             <Link
               href="https://dev.to/uzyntra"

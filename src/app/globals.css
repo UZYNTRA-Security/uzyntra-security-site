@@ -1357,3 +1357,24 @@ ol {
     height: 1.75rem;
   }
 }
+
+/* --- Social proof bar dark mode ------------------------------------------ */
+
+[data-theme="dark"] .social-proof-bar {
+  background-color: rgba(15, 23, 42, 0.5) !important;
+  border-color: rgba(51, 65, 85, 0.5) !important;
+}
+[data-theme="dark"] .social-proof-bar span {
+  color: hsl(215, 20%, 68%) !important;
+}
+
+/* --- Use cases section dark mode ----------------------------------------- */
+
+[data-theme="dark"] .use-case-problem {
+  background-color: rgba(220, 38, 38, 0.08) !important;
+  border-color: rgba(220, 38, 38, 0.18) !important;
+}
+[data-theme="dark"] .use-case-solution {
+  background-color: rgba(30, 41, 59, 0.8) !important;
+  border-color: rgba(51, 65, 85, 0.5) !important;
+}

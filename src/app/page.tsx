@@ -1,8 +1,9 @@
 import { HeroSection } from "@/components/sections/hero-section";
-import { PlatformSection } from "@/components/sections/platform-section";
+import { SocialProofBar } from "@/components/sections/social-proof-bar";
+import { ImpactStatsSection } from "@/components/sections/impact-stats-section";
 import { ServicesPreviewSection } from "@/components/sections/services-preview-section";
+import { UseCasesSection } from "@/components/sections/use-cases-section";
 import { ProductHighlightSection } from "@/components/sections/product-highlight-section";
-import { WhyChooseUsSection } from "@/components/sections/why-choose-us-section";
 import { TechnologySlider } from "@/components/sections/technology-slider";
 import { InsightsSection } from "@/components/sections/insights-section";
 import { CTASection } from "@/components/sections/cta-section";
@@ -12,10 +13,11 @@ export default function HomePage() {
   return (
     <main id="main-content">
       <HeroSection />
-      <PlatformSection />
+      <SocialProofBar />
+      <ImpactStatsSection />
       <ServicesPreviewSection />
+      <UseCasesSection />
       <ProductHighlightSection />
-      <WhyChooseUsSection />
       <TechnologySlider
         eyebrow="ECOSYSTEM"
         title="Technologies We Work With"

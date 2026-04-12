@@ -1,5 +1,5 @@
 // Server Component — no "use client" directive
-import { Activity, Lock, Workflow } from "lucide-react";
+import { ShieldAlert, Crosshair, CheckCircle2 } from "lucide-react";
 
 import { CTAGroup } from "@/components/ui/cta-group";
 import { EyebrowBadge } from "@/components/ui/eyebrow-badge";
@@ -9,19 +9,19 @@ import { siteConfig } from "@/config/site";
 
 const STAT_CARDS = [
   {
-    icon: <Activity className="h-3.5 w-3.5 shrink-0 text-red-600" aria-hidden="true" />,
-    label: "Active Defense",
-    text: "Security operations, detection visibility, and modern threat control.",
+    icon: <ShieldAlert className="h-3.5 w-3.5 shrink-0 text-red-600" aria-hidden="true" />,
+    label: "API Security Testing",
+    text: "OWASP API Top 10, BOLA, auth bypass, and business logic abuse — manually tested.",
   },
   {
-    icon: <Lock className="h-3.5 w-3.5 shrink-0 text-red-600" aria-hidden="true" />,
-    label: "Secure Engineering",
-    text: "Backend systems, modern APIs, cloud-native architecture, and resilience.",
+    icon: <Crosshair className="h-3.5 w-3.5 shrink-0 text-red-600" aria-hidden="true" />,
+    label: "Real Attack Simulation",
+    text: "Penetration testing and red team operations that simulate actual adversary TTPs.",
   },
   {
-    icon: <Workflow className="h-3.5 w-3.5 shrink-0 text-red-600" aria-hidden="true" />,
-    label: "Platform Direction",
-    text: "Product-led security backed by services and scalable execution.",
+    icon: <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-red-600" aria-hidden="true" />,
+    label: "Not Just Automated Scans",
+    text: "Every finding is manually validated. No scanner-only reports. No false-positive noise.",
   },
 ] as const;
 
@@ -37,9 +37,7 @@ export function HeroSection() {
               <EyebrowBadge>Enterprise Security Platform</EyebrowBadge>
             }
             heading={
-              <h1
-                className="max-w-2xl text-center text-pretty text-[1.6rem] font-bold leading-[1.16] tracking-[-0.025em] text-slate-950 sm:text-[2.4rem] lg:text-[3.1rem]"
-              >
+              <h1 className="max-w-2xl text-center text-pretty text-[1.6rem] font-bold leading-[1.16] tracking-[-0.025em] text-slate-950 sm:text-[2.4rem] lg:text-[3.1rem]">
                 {siteConfig.tagline}
               </h1>
             }

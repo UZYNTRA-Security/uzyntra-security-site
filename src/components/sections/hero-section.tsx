@@ -38,7 +38,6 @@ export function HeroSection() {
             }
             heading={
               <h1
-                fetchPriority="high"
                 className="max-w-2xl text-center text-pretty text-[1.6rem] font-bold leading-[1.16] tracking-[-0.025em] text-slate-950 sm:text-[2.4rem] lg:text-[3.1rem]"
               >
                 {siteConfig.tagline}

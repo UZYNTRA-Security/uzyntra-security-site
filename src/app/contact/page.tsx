@@ -84,11 +84,11 @@ export default function ContactPage() {
                 </p>
                 <ul className="mt-4 space-y-3">
                   {[
-                    "Enterprise security assessments and modernization plans",
-                    "API security and firewall adoption discussions",
-                    "Custom secure software development engagements",
-                    "Blockchain platform architecture and implementation",
-                    "Strategic technical partnerships and product collaboration",
+                    "API security testing and SaaS attack surface reviews",
+                    "Penetration testing and red team engagements",
+                    "Secure backend and cloud engineering projects",
+                    "Blockchain security reviews and smart contract engineering",
+                    "Automation and AI workflow system development",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-2.5 text-sm text-slate-500">
                       <span className="mt-[5px] h-1.5 w-1.5 shrink-0 rounded-full bg-red-500" />

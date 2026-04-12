@@ -70,6 +70,10 @@ export const mainNavigation: NavItem[] = [
     href: "/about",
   },
   {
+    title: "Blog",
+    href: "/blog",
+  },
+  {
     title: "Contact",
     href: "/contact",
   },
@@ -78,6 +82,7 @@ export const mainNavigation: NavItem[] = [
 export const footerNavigation = {
   company: [
     { title: "About", href: "/about" },
+    { title: "Blog", href: "/blog" },
     { title: "Contact", href: "/contact" },
     { title: "Download", href: "/download" },
   ],

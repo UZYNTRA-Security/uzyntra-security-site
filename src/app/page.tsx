@@ -4,6 +4,7 @@ import { ServicesPreviewSection } from "@/components/sections/services-preview-s
 import { ProductHighlightSection } from "@/components/sections/product-highlight-section";
 import { WhyChooseUsSection } from "@/components/sections/why-choose-us-section";
 import { TechnologySlider } from "@/components/sections/technology-slider";
+import { InsightsSection } from "@/components/sections/insights-section";
 import { CTASection } from "@/components/sections/cta-section";
 import { homeFeaturedTechnologies } from "@/data/technologies";
 
@@ -21,6 +22,7 @@ export default function HomePage() {
         items={homeFeaturedTechnologies}
         variant="compact"
       />
+      <InsightsSection />
       <CTASection />
     </main>
   );

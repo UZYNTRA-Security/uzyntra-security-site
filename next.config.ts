@@ -126,6 +126,28 @@ const nextConfig: NextConfig = {
         source: "/(.*)",
         headers: securityHeaders,
       },
+      // ── Sitemap + robots overrides ───────────────────────────────────────
+      // The global rule sets Cross-Origin-Resource-Policy: same-origin which
+      // blocks Googlebot (external origin) from fetching these files.
+      // These per-route overrides relax only what is necessary for crawlers.
+      // Next.js applies headers in order — later rules override earlier ones
+      // for the same key on matching routes.
+      {
+        source: "/sitemap.xml",
+        headers: [
+          { key: "Content-Type",                  value: "application/xml; charset=utf-8" },
+          { key: "Cross-Origin-Resource-Policy",  value: "cross-origin" },
+          { key: "Cache-Control",                 value: "public, max-age=3600, stale-while-revalidate=86400" },
+        ],
+      },
+      {
+        source: "/robots.txt",
+        headers: [
+          { key: "Content-Type",                  value: "text/plain; charset=utf-8" },
+          { key: "Cross-Origin-Resource-Policy",  value: "cross-origin" },
+          { key: "Cache-Control",                 value: "public, max-age=3600, stale-while-revalidate=86400" },
+        ],
+      },
     ];
   },
 };

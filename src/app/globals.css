@@ -1231,6 +1231,27 @@ ol {
   color: rgb(248, 113, 113) !important;
 }
 
+/* About page research cards */
+[data-theme="dark"] .about-research-card {
+  background-color: rgba(30, 41, 59, 0.6) !important;
+  border-color: rgba(51, 65, 85, 0.6) !important;
+}
+[data-theme="dark"] .about-research-card:hover {
+  background-color: #1e293b !important;
+  border-color: rgba(220, 38, 38, 0.28) !important;
+}
+
+/* Footer Research column */
+[data-theme="dark"] footer .footer-research-link {
+  color: hsl(215, 20%, 70%) !important;
+}
+[data-theme="dark"] footer .footer-research-link:hover {
+  color: rgb(248, 113, 113) !important;
+}
+[data-theme="dark"] footer .footer-research-meta {
+  color: hsl(215, 16%, 45%) !important;
+}
+
 /* ─── 404 Not Found page ────────────────────────────── */
 
 [data-theme="dark"] .not-found-terminal {

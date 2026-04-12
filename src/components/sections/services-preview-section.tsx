@@ -1,31 +1,32 @@
-import { ShieldCheck, Code2, Blocks } from "lucide-react";
+import Link from "next/link";
+import { ShieldAlert, Crosshair, ServerCog, Blocks, BrainCircuit } from "lucide-react";
 
 import { FlipInfoCard } from "@/components/ui/flip-info-card";
 
 const items = [
   {
-    title: "Cybersecurity",
-    href: "/services/cybersecurity",
-    icon: <ShieldCheck className="h-5 w-5" />,
-    frontDescription: "VAPT, MDR, SOCaaS, SIEM, IAM, cloud security, and API protection.",
+    title: "API & SaaS Security Testing",
+    href: "/services/api-security",
+    icon: <ShieldAlert className="h-5 w-5" />,
+    frontDescription: "OWASP API Top 10, BOLA, token abuse, auth bypass, and SaaS attack surface testing.",
     backDescription:
-      "Security services designed for enterprises that need practical risk reduction, visibility, architecture review, and modern defensive capability across cloud, identity, infrastructure, and applications.",
+      "Offensive API security testing for SaaS platforms, authentication systems, and cloud-connected APIs — identifying exploitable vulnerabilities before adversaries do.",
   },
   {
-    title: "Software Development",
-    href: "/services/software-development",
-    icon: <Code2 className="h-5 w-5" />,
-    frontDescription: "Web, mobile, Rust backend systems, DevOps pipelines, and AI solutions.",
+    title: "Penetration Testing & Red Teaming",
+    href: "/services/penetration-testing",
+    icon: <Crosshair className="h-5 w-5" />,
+    frontDescription: "Web app, infrastructure, cloud, and identity attack simulations with real adversary TTPs.",
     backDescription:
-      "Secure software engineering focused on production architecture, backend reliability, modern frameworks, cloud readiness, API systems, and scalable delivery for real business environments.",
+      "Structured penetration tests and red team operations that expose exploitable weaknesses across applications, networks, cloud environments, and identity systems.",
   },
   {
-    title: "Blockchain",
-    href: "/services/blockchain",
+    title: "Blockchain Security & Smart Contract Engineering",
+    href: "/services/blockchain-security",
     icon: <Blocks className="h-5 w-5" />,
-    frontDescription: "Smart contracts, dApps, wallets, DeFi, enterprise blockchain, and infrastructure.",
+    frontDescription: "Smart contract development, security reviews, dApp architecture, and Web3 engineering.",
     backDescription:
-      "Blockchain solutions covering custom chains, smart contracts, token systems, wallet development, interoperability, infrastructure, and enterprise adoption strategy with security in mind.",
+      "Security-first blockchain engineering covering smart contracts, token systems, dApp architecture, wallet integration, and contract risk analysis for production Web3 products.",
   },
 ];
 
@@ -38,10 +39,10 @@ export function ServicesPreviewSection() {
             Services
           </p>
           <h2 className="mt-3 text-2xl font-bold text-slate-950 sm:text-3xl">
-            Core service areas
+            Security, engineering, and automation
           </h2>
           <p className="mt-3 text-sm leading-7 text-slate-500 sm:text-base sm:leading-8">
-            The primary capabilities that define the UZYNTRA Security platform and services model.
+            High-intent technical services built for organizations that take security and engineering seriously.
           </p>
         </div>
 
@@ -56,6 +57,15 @@ export function ServicesPreviewSection() {
               href={item.href}
             />
           ))}
+        </div>
+
+        <div className="mt-8 flex justify-center">
+          <Link
+            href="/services"
+            className="btn-stroke inline-flex h-11 items-center gap-2 rounded-xl px-6 text-sm"
+          >
+            View All Services
+          </Link>
         </div>
       </div>
     </section>

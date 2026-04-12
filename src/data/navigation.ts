@@ -19,24 +19,34 @@ export const mainNavigation: NavItem[] = [
     title: "Services",
     children: [
       {
-        title: "Cybersecurity",
-        href: "/services/cybersecurity",
-        description: "Offensive, defensive, cloud, identity, and enterprise security services.",
+        title: "API & SaaS Security Testing",
+        href: "/services/api-security",
+        description:
+          "Offensive testing for APIs, SaaS platforms, authentication systems, and cloud services.",
       },
       {
-        title: "Software Development",
-        href: "/services/software-development",
-        description: "Secure web, mobile, cloud, Rust, AI, and DevOps engineering services.",
+        title: "Penetration Testing & Red Teaming",
+        href: "/services/penetration-testing",
+        description:
+          "Real-world attack simulations across infrastructure, applications, and identity systems.",
       },
       {
-        title: "Blockchain",
-        href: "/services/blockchain",
-        description: "Enterprise blockchain, smart contracts, dApps, infrastructure, and consulting.",
+        title: "Secure Backend & Cloud Engineering",
+        href: "/services/backend-engineering",
+        description:
+          "Secure backend systems, APIs, and cloud-native architectures built with Rust and modern stacks.",
       },
       {
-        title: "n8n Automation",
-        href: "/services/n8n-automation",
-        description: "Workflow automation, API orchestration, AI pipelines, and self-hosted n8n deployment.",
+        title: "Blockchain Security & Smart Contract Engineering",
+        href: "/services/blockchain-security",
+        description:
+          "Smart contract development, blockchain security reviews, dApp architecture, and Web3 engineering.",
+      },
+      {
+        title: "Automation & AI Workflow Systems",
+        href: "/services/automation-ai",
+        description:
+          "n8n automation, API orchestration, AI pipelines, and self-hosted workflow systems.",
       },
     ],
   },
@@ -72,10 +82,11 @@ export const footerNavigation = {
     { title: "Download", href: "/download" },
   ],
   services: [
-    { title: "Cybersecurity", href: "/services/cybersecurity" },
-    { title: "Software Development", href: "/services/software-development" },
-    { title: "Blockchain", href: "/services/blockchain" },
-    { title: "n8n Automation", href: "/services/n8n-automation" },
+    { title: "API & SaaS Security Testing", href: "/services/api-security" },
+    { title: "Penetration Testing & Red Teaming", href: "/services/penetration-testing" },
+    { title: "Secure Backend & Cloud Engineering", href: "/services/backend-engineering" },
+    { title: "Blockchain Security & Smart Contract Engineering", href: "/services/blockchain-security" },
+    { title: "Automation & AI Workflow Systems", href: "/services/automation-ai" },
   ],
   products: [
     { title: "UZYNTRA API Firewall", href: "/products/uzyntra-api-firewall" },

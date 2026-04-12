@@ -120,6 +120,16 @@ const nextConfig: NextConfig = {
     optimizeCss: true,
   },
 
+  async redirects() {
+    return [
+      // 301 redirects from old service slugs to new repositioned pages
+      { source: "/services/cybersecurity",       destination: "/services/penetration-testing", permanent: true },
+      { source: "/services/software-development", destination: "/services/backend-engineering",  permanent: true },
+      { source: "/services/blockchain",           destination: "/services/blockchain-security",  permanent: true },
+      { source: "/services/n8n-automation",       destination: "/services/automation-ai",        permanent: true },
+    ];
+  },
+
   async headers() {
     return [
       {

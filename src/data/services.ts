@@ -1,11 +1,3 @@
-import {
-  ShieldAlert,
-  Crosshair,
-  ServerCog,
-  Blocks,
-  BrainCircuit,
-} from "lucide-react";
-
 export type ServiceItem = {
   slug: string;
   href: string;
@@ -18,7 +10,6 @@ export type ServiceItem = {
   heroCta: string;
   metaTitle: string;
   metaDescription: string;
-  icon: React.ReactNode;
 };
 
 export const services: ServiceItem[] = [
@@ -38,7 +29,6 @@ export const services: ServiceItem[] = [
     metaTitle: "API Security Testing Services | UZYNTRA Security",
     metaDescription:
       "Offensive API security testing for SaaS platforms, authentication systems, and cloud-connected APIs. OWASP API Top 10 coverage, token abuse, BOLA, and business-logic testing.",
-    icon: <ShieldAlert className="h-5 w-5" />,
   },
   {
     slug: "penetration-testing",
@@ -55,7 +45,6 @@ export const services: ServiceItem[] = [
     metaTitle: "Penetration Testing & Red Teaming Services | UZYNTRA Security",
     metaDescription:
       "Professional penetration testing and red team services for web applications, infrastructure, cloud, and identity systems. Vulnerability validation, privilege escalation, and adversary simulation.",
-    icon: <Crosshair className="h-5 w-5" />,
   },
   {
     slug: "backend-engineering",
@@ -73,7 +62,6 @@ export const services: ServiceItem[] = [
     metaTitle: "Secure Backend & Cloud Engineering Services | UZYNTRA Security",
     metaDescription:
       "Secure backend development using Rust, cloud-native architecture, API design, DevSecOps pipelines, and authentication systems built for production environments.",
-    icon: <ServerCog className="h-5 w-5" />,
   },
   {
     slug: "blockchain-security",
@@ -92,7 +80,6 @@ export const services: ServiceItem[] = [
       "Blockchain Security & Smart Contract Engineering | UZYNTRA Security",
     metaDescription:
       "Smart contract development, blockchain security reviews, dApp architecture, wallet integration, and Web3 security engineering for production-grade blockchain products.",
-    icon: <Blocks className="h-5 w-5" />,
   },
   {
     slug: "automation-ai",
@@ -109,7 +96,6 @@ export const services: ServiceItem[] = [
     metaTitle: "Automation & AI Workflow Systems | UZYNTRA Security",
     metaDescription:
       "n8n workflow automation, API orchestration, AI agent pipelines, and self-hosted automation systems engineered for secure, scalable business operations.",
-    icon: <BrainCircuit className="h-5 w-5" />,
   },
 ];
 

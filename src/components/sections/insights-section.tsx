@@ -63,7 +63,8 @@ export function InsightsSection() {
 
               {/* Footer */}
               <div className="mt-4 flex items-center justify-between gap-2 border-t border-slate-100 pt-4 insights-border">
-                <span className="flex items-center gap-1 text-xs text-slate-400 insights-meta">
+                {/* text-slate-500 (#64748b) passes WCAG AA 4.5:1 on white */}
+                <span className="insights-meta flex items-center gap-1 text-xs text-slate-500">
                   <BookOpen className="h-3 w-3 shrink-0" aria-hidden="true" />
                   {post.readTime}
                 </span>

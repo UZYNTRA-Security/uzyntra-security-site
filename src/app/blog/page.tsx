@@ -71,9 +71,9 @@ export default function BlogPage() {
                     {post.excerpt}
                   </p>
 
-                  {/* Meta row */}
-                  <div className="flex items-center justify-between gap-3 border-t border-slate-100 pt-4 blog-card-border">
-                    <div className="flex items-center gap-3 text-xs text-slate-400 blog-card-meta">
+                  {/* Meta row — text-slate-500 passes WCAG AA 4.5:1 on white */}
+                  <div className="blog-card-border flex items-center justify-between gap-3 border-t border-slate-100 pt-4">
+                    <div className="blog-card-meta flex items-center gap-3 text-xs text-slate-500">
                       <span className="inline-flex items-center gap-1">
                         <BookOpen className="h-3 w-3 shrink-0" aria-hidden="true" />
                         {post.readTime}
@@ -83,7 +83,7 @@ export default function BlogPage() {
                         {post.tag}
                       </span>
                     </div>
-                    <span className="text-xs text-slate-400 blog-card-meta">{post.date}</span>
+                    <span className="blog-card-meta text-xs text-slate-500">{post.date}</span>
                   </div>
 
                   {/* CTA */}

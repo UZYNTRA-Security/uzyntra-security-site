@@ -77,7 +77,6 @@ export default function AboutPage() {
             </div>
 
           </div>
-        </div>
 
           {/* Research credibility section */}
           {blogPosts.length > 0 && (
@@ -86,7 +85,7 @@ export default function AboutPage() {
                 <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
                   <div>
                     <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-red-700">
-                      Research & Insights
+                      Research &amp; Insights
                     </p>
                     <h2 className="mt-2 text-lg font-bold text-slate-950 sm:text-xl">
                       Published security research
@@ -111,13 +110,13 @@ export default function AboutPage() {
                       href={post.externalUrl}
                       target="_blank"
                       rel="noreferrer noopener"
-                      className="group flex flex-col gap-3 rounded-xl border border-slate-200 bg-slate-50 p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-red-200 hover:bg-white hover:shadow-[0_6px_20px_rgba(220,38,38,0.08)] about-research-card"
+                      className="about-research-card group flex flex-col gap-3 rounded-xl border border-slate-200 bg-slate-50 p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-red-200 hover:bg-white hover:shadow-[0_6px_20px_rgba(220,38,38,0.08)]"
                     >
                       <div className="flex items-center justify-between gap-2">
                         <span className="inline-flex items-center gap-1 rounded-full border border-red-100 bg-red-50 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-red-700">
                           {post.category}
                         </span>
-                        <span className="text-[10px] font-bold uppercase tracking-[0.1em] text-slate-400">
+                        <span className="text-[10px] font-bold uppercase tracking-[0.1em] text-slate-500">
                           {post.platform}
                         </span>
                       </div>
@@ -125,11 +124,12 @@ export default function AboutPage() {
                         {post.title}
                       </p>
                       <div className="mt-auto flex items-center justify-between gap-2">
-                        <span className="flex items-center gap-1 text-xs text-slate-400">
+                        {/* text-slate-500 meets WCAG AA contrast on white bg */}
+                        <span className="flex items-center gap-1 text-xs text-slate-500">
                           <BookOpen className="h-3 w-3 shrink-0" aria-hidden="true" />
                           {post.readTime}
                         </span>
-                        <ArrowUpRight className="h-3.5 w-3.5 shrink-0 text-slate-300 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-red-500" aria-hidden="true" />
+                        <ArrowUpRight className="h-3.5 w-3.5 shrink-0 text-slate-400 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-red-500" aria-hidden="true" />
                       </div>
                     </Link>
                   ))}

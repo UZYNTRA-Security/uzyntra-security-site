@@ -89,16 +89,16 @@ export function ProductHighlightSection() {
         </div>
       </div>
 
-      <div className="mt-4 rounded-2xl border border-red-100 bg-red-50/80 px-4 py-4">
-        <p className="text-sm font-semibold text-slate-950">
+      <div className="mt-4 rounded-2xl border border-red-100 bg-red-50/80 px-4 py-4 dark-info-card">
+        <p className="dark-info-heading text-sm font-semibold text-slate-950">
           Client → API → Firewall → Backend
         </p>
-        <p className="mt-2 text-sm leading-7 text-slate-600">
+        <p className="dark-info-body mt-2 text-sm leading-7 text-slate-600">
           Positioned as the control layer between clients and backend services.
         </p>
         <Link
           href="/products"
-          className="group mt-4 inline-flex items-center gap-2 text-sm font-semibold text-red-700 transition-all duration-200 hover:gap-3"
+          className="group dark-info-link mt-4 inline-flex items-center gap-2 text-sm font-semibold text-red-700 transition-all duration-200 hover:gap-3"
         >
           Explore products
           <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />

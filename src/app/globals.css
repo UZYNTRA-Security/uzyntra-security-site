@@ -105,6 +105,20 @@
   --surface-elevated:   222 47% 8%;
 }
 
+/* ── Font display optimization ──────────────────────── */
+/* Ensures Inter renders with system fallback immediately,
+   swaps to loaded font without layout shift (font-display:swap
+   is set in next/font, this reinforces it for any @font-face
+   injected by the browser outside Next.js control). */
+@font-face {
+  font-family: '__Inter_Fallback';
+  src: local('Arial');
+  ascent-override: 90%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+  size-adjust: 107%;
+}
+
 *,
 *::before,
 *::after {
@@ -878,6 +892,26 @@ ol {
   }
 }
 
+/* ─── Global background keyframes ───────────────────── */
+/* Moved from GlobalBackground styled-jsx to eliminate styled-jsx runtime */
+
+@keyframes uzyntraScan {
+  0%   { transform: translateY(-130%); }
+  100% { transform: translateY(430%); }
+}
+
+@keyframes uzyntraFloatA {
+  0%, 100% { transform: translateY(0px)   translateX(0px)  scale(1);    }
+  33%       { transform: translateY(-10px) translateX(6px)  scale(1.02); }
+  66%       { transform: translateY(8px)   translateX(-8px) scale(0.99); }
+}
+
+@keyframes uzyntraFloatB {
+  0%, 100% { transform: translateY(0px)  translateX(0px)   scale(1);    }
+  33%       { transform: translateY(10px) translateX(-10px) scale(1.02); }
+  66%       { transform: translateY(-8px) translateX(6px)   scale(0.99); }
+}
+
 /* ─── Scrollbar ──────────────────────────────────────── */
 /* Non-critical — does not affect above-the-fold rendering */
 
@@ -1126,6 +1160,24 @@ ol {
 }
 [data-theme="dark"] section.bg-slate-50 {
   background-color: rgba(15, 23, 42, 0.3) !important;
+}
+
+/* Product highlight info card */
+[data-theme="dark"] .dark-info-card {
+  background-color: rgba(220, 38, 38, 0.08) !important;
+  border-color: rgba(220, 38, 38, 0.20) !important;
+}
+[data-theme="dark"] .dark-info-heading {
+  color: hsl(210, 40%, 96%) !important;
+}
+[data-theme="dark"] .dark-info-body {
+  color: hsl(215, 16%, 60%) !important;
+}
+[data-theme="dark"] .dark-info-link {
+  color: rgb(248, 113, 113) !important;
+}
+[data-theme="dark"] .dark-info-link svg {
+  color: rgb(248, 113, 113) !important;
 }
 
 /* ─── 404 Not Found page ────────────────────────────── */

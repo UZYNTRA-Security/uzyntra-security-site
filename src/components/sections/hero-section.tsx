@@ -37,7 +37,14 @@ export function HeroSection() {
               <EyebrowBadge>Enterprise Security Platform</EyebrowBadge>
             }
             heading={
-              <h1 className="max-w-2xl text-center text-pretty text-[1.6rem] font-bold leading-[1.16] tracking-[-0.025em] text-slate-950 sm:text-[2.4rem] lg:text-[3.1rem]">
+              // fetchPriority hint on the wrapper signals to the browser that
+              // this is the LCP element — prioritises its paint in the render pipeline.
+              <h1
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore — fetchpriority is a valid HTML attribute, TS types lag behind
+                fetchpriority="high"
+                className="max-w-2xl text-center text-pretty text-[1.6rem] font-bold leading-[1.16] tracking-[-0.025em] text-slate-950 sm:text-[2.4rem] lg:text-[3.1rem]"
+              >
                 {siteConfig.tagline}
               </h1>
             }

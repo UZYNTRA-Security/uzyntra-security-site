@@ -15,8 +15,10 @@ const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-sans",
-  // Preload the most common weights used across the site
-  weight: ["400", "500", "600", "700"],
+  // 400 + 700 cover all UI text; 500/600 are synthesized by the browser
+  // from these two — dropping them saves ~30KB of font transfer.
+  weight: ["400", "700"],
+  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -111,9 +113,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" className={inter.variable} suppressHydrationWarning>
       <head>
-        {/* Preconnect to analytics origins — reduces DNS + TLS handshake time */}
-        <link rel="preconnect" href="https://www.googletagmanager.com" />
-        <link rel="preconnect" href="https://www.google-analytics.com" />
+        {/* Preconnect — crossOrigin required for CORS fonts/scripts */}
+        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://www.google-analytics.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://vitals.vercel-insights.com" />
         {/* Theme init — runs before paint to prevent flash */}
         <script

@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { type ReactNode } from "react";
 
 interface HeroAnimationsProps {
@@ -11,6 +10,9 @@ interface HeroAnimationsProps {
   cards: ReactNode;
 }
 
+// CSS-only animations — zero framer-motion on the critical path.
+// Each element fades+slides in via a staggered animation-delay.
+// This eliminates the framer-motion hydration cost from LCP timing.
 export function HeroAnimations({
   eyebrow,
   heading,
@@ -20,46 +22,45 @@ export function HeroAnimations({
 }: HeroAnimationsProps) {
   return (
     <>
-      {/* Eyebrow — inline-flex so it doesn't stretch full width */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.45 }}
-      >
-        {eyebrow}
-      </motion.div>
+      <style>{`
+        @keyframes heroFadeUp {
+          from { opacity: 0; transform: translateY(12px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        .hero-fade-up {
+          opacity: 0;
+          animation: heroFadeUp 0.5s ease forwards;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .hero-fade-up { animation: none; opacity: 1; }
+        }
+      `}</style>
 
-      {/* Heading — centered block, max-w constrains it */}
-      <motion.div
-        initial={{ opacity: 0, y: 14 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.55, delay: 0.06 }}
-        className="mt-4 flex w-full justify-center"
+      <div className="hero-fade-up" style={{ animationDelay: "0ms" }}>
+        {eyebrow}
+      </div>
+
+      <div
+        className="hero-fade-up mt-4 flex w-full justify-center"
+        style={{ animationDelay: "60ms" }}
       >
         {heading}
-      </motion.div>
+      </div>
 
-      {/* Paragraph — centered block */}
-      <motion.div
-        initial={{ opacity: 0, y: 14 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.55, delay: 0.12 }}
-        className="mt-3 flex w-full justify-center"
+      <div
+        className="hero-fade-up mt-3 flex w-full justify-center"
+        style={{ animationDelay: "120ms" }}
       >
         {paragraph}
-      </motion.div>
+      </div>
 
-      {/* CTA group — centered on all breakpoints */}
-      <motion.div
-        initial={{ opacity: 0, y: 14 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.55, delay: 0.18 }}
-        className="mt-5 flex w-full justify-center"
+      <div
+        className="hero-fade-up mt-5 flex w-full justify-center"
+        style={{ animationDelay: "180ms" }}
       >
         {cta}
-      </motion.div>
+      </div>
 
-      {/* Stat cards grid */}
       <div className="mt-8 grid w-full grid-cols-1 gap-3 sm:grid-cols-3">
         {cards}
       </div>

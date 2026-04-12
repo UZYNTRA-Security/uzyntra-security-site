@@ -1,18 +1,37 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { useEffect, useRef } from "react";
 
 export function SlideUp({ children }: { children: React.ReactNode }) {
-  const reduce = useReducedMotion();
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add("is-visible");
+          io.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: reduce ? 0 : 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: reduce ? 0 : 0.6, ease: "easeOut" }}
-      viewport={{ once: true }}
+    <div
+      ref={ref}
+      className="reveal-slide-up"
+      style={{ opacity: 0, transform: "translateY(32px)", transition: "opacity 0.6s ease, transform 0.6s ease" }}
     >
+      <style>{`
+        .reveal-slide-up.is-visible { opacity: 1 !important; transform: translateY(0) !important; }
+        @media (prefers-reduced-motion: reduce) { .reveal-slide-up { opacity: 1 !important; transform: none !important; } }
+      `}</style>
       {children}
-    </motion.div>
+    </div>
   );
 }

@@ -123,15 +123,29 @@ export function CustomCursor() {
 
     const handleMouseLeave = () => hideCursor();
 
-    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    hideCursor();
+
+    // Defer RAF until first mousemove — avoids running the animation loop
+    // during the LCP window when no cursor movement has occurred yet.
+    let loopStarted = false;
+    const startLoopOnce = () => {
+      if (!loopStarted) {
+        loopStarted = true;
+        rafId = requestAnimationFrame(animateFollowers);
+      }
+    };
+
+    const handleMouseMoveWithStart = (e: MouseEvent) => {
+      startLoopOnce();
+      handleMouseMove(e);
+    };
+
+    window.addEventListener("mousemove", handleMouseMoveWithStart, { passive: true });
     document.addEventListener("mouseenter", handleMouseEnter as EventListener);
     document.addEventListener("mouseleave", handleMouseLeave);
 
-    hideCursor();
-    rafId = requestAnimationFrame(animateFollowers);
-
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mousemove", handleMouseMoveWithStart);
       document.removeEventListener("mouseenter", handleMouseEnter as EventListener);
       document.removeEventListener("mouseleave", handleMouseLeave);
       cancelAnimationFrame(rafId);

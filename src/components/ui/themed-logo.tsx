@@ -11,12 +11,16 @@ type ThemedLogoProps = {
 };
 
 export function ThemedLogo({ width, height, priority = false }: ThemedLogoProps) {
-  const [dark, setDark] = useState(false);
+  // Read theme synchronously on first render — avoids the extra re-render
+  // that caused a visible logo flash on hydration.
+  const [dark, setDark] = useState(() => {
+    if (typeof document === "undefined") return false;
+    return document.documentElement.getAttribute("data-theme") === "dark";
+  });
 
   useEffect(() => {
     const check = () =>
       setDark(document.documentElement.getAttribute("data-theme") === "dark");
-    check();
     window.addEventListener("uzyntra-theme-change", check);
     return () => window.removeEventListener("uzyntra-theme-change", check);
   }, []);

@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -32,7 +31,6 @@ export function FlipInfoCard({
   const [btnHover, setBtnHover] = useState(false);
   const [dark, setDark]         = useState(false);
 
-  // Sync dark mode state
   useEffect(() => {
     const check = () =>
       setDark(document.documentElement.getAttribute("data-theme") === "dark");
@@ -43,38 +41,43 @@ export function FlipInfoCard({
 
   const showBack = flipped || hovered;
 
-  // ── Back-face button styles (stroke ↔ fill swap) ──────────────────────────
-  // Light: default = white fill + dark text | hover = transparent + white text
-  // Dark:  default = dark surface + red-400 text + red border | hover = red fill + white text
   const backBtnStyle: React.CSSProperties = dark
     ? btnHover
-      ? { background: "rgb(220,38,38)",   color: "#ffffff",              border: "2px solid rgb(220,38,38)",  transform: "translateY(-2px)" }
-      : { background: "#1e293b",           color: "rgb(248,113,113)",     border: "2px solid rgb(248,113,113)", transform: "translateY(0)" }
+      ? { background: "rgb(220,38,38)",  color: "#ffffff",          border: "2px solid rgb(220,38,38)",   transform: "translateY(-2px)" }
+      : { background: "#1e293b",          color: "rgb(248,113,113)", border: "2px solid rgb(248,113,113)", transform: "translateY(0)" }
     : btnHover
-      ? { background: "transparent",      color: "#ffffff",              border: "2px solid #ffffff",          transform: "translateY(-2px)" }
-      : { background: "#ffffff",           color: "#0f172a",              border: "2px solid #ffffff",          transform: "translateY(0)" };
+      ? { background: "transparent",     color: "#ffffff",          border: "2px solid #ffffff",          transform: "translateY(-2px)" }
+      : { background: "#ffffff",          color: "#0f172a",          border: "2px solid #ffffff",          transform: "translateY(0)" };
 
   const backBtnArrowColor = dark
     ? btnHover ? "#ffffff" : "rgb(248,113,113)"
     : btnHover ? "#ffffff" : "#0f172a";
 
-  // ── Front-face pill styles ────────────────────────────────────────────────
-  // Light: white bg + red border + red text (clear contrast)
-  // Dark:  dark surface + red-400 border + red-400 text
   const pillStyle: React.CSSProperties = dark
     ? { background: "rgba(220,38,38,0.12)", border: "1px solid rgba(248,113,113,0.5)", color: "rgb(248,113,113)" }
     : { background: "#ffffff",              border: "1px solid rgb(220,38,38)",         color: "rgb(185,28,28)" };
 
   return (
-    <motion.div
-      whileHover={{ y: -6, scale: 1.01 }}
-      transition={{ duration: 0.22, ease: "easeOut" }}
-      className={cn("cursor-pointer", className)}
+    // CSS hover lift — replaces framer-motion whileHover
+    <div
+      className={cn("cursor-pointer flip-card-wrapper", className)}
       style={{ perspective: "1200px" }}
       onClick={() => setFlipped((v) => !v)}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
+      <style>{`
+        .flip-card-wrapper {
+          transition: transform 0.22s ease;
+        }
+        .flip-card-wrapper:hover {
+          transform: translateY(-6px) scale(1.01);
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .flip-card-wrapper:hover { transform: none; }
+        }
+      `}</style>
+
       <div
         style={{
           position: "relative",
@@ -84,7 +87,7 @@ export function FlipInfoCard({
           transform: showBack ? "rotateY(180deg)" : "rotateY(0deg)",
         }}
       >
-        {/* ── FRONT ─────────────────────────────────────── */}
+        {/* FRONT */}
         <div
           style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}
           className="flip-card-front absolute inset-0 flex flex-col gap-3 rounded-[24px] border border-slate-200 bg-white p-6 shadow-sm"
@@ -101,8 +104,8 @@ export function FlipInfoCard({
             {frontDescription}
           </p>
           <div className="mt-auto pt-3">
-            {/* Pill — inline styled for guaranteed contrast in both themes */}
             <span
+              className="flip-pill-front"
               style={{
                 ...pillStyle,
                 display: "inline-flex",
@@ -121,7 +124,7 @@ export function FlipInfoCard({
           </div>
         </div>
 
-        {/* ── BACK ──────────────────────────────────────── */}
+        {/* BACK */}
         <div
           style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
           className="absolute inset-0 flex flex-col gap-3 rounded-[24px] border border-red-400 bg-gradient-to-br from-red-700 via-red-600 to-red-500 p-6 text-white shadow-[0_12px_36px_rgba(220,38,38,0.30)]"
@@ -134,9 +137,7 @@ export function FlipInfoCard({
           <h3 className="text-lg font-semibold text-white sm:text-xl">
             {backTitle ?? title}
           </h3>
-          <p className="text-sm leading-7 text-white/90">
-            {backDescription}
-          </p>
+          <p className="text-sm leading-7 text-white/90">{backDescription}</p>
           <div className="mt-auto pt-3">
             {href ? (
               <Link
@@ -178,7 +179,7 @@ export function FlipInfoCard({
           </div>
         </div>
 
-        {/* ── HEIGHT SPACER ── */}
+        {/* HEIGHT SPACER */}
         <div className="invisible flex flex-col gap-3 p-6" aria-hidden="true">
           {icon && <div className="h-11 w-11 shrink-0" />}
           <h3 className="text-lg sm:text-xl">{backTitle ?? title}</h3>
@@ -190,6 +191,6 @@ export function FlipInfoCard({
           </div>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }

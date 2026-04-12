@@ -1368,6 +1368,13 @@ ol {
   color: hsl(215, 20%, 68%) !important;
 }
 
+/* --- Insights section full-width header dark mode ------------------------- */
+
+[data-theme="dark"] .insights-header-bar {
+  background-color: #111827 !important;
+  border-color: rgba(51, 65, 85, 0.5) !important;
+}
+
 /* --- Use cases section dark mode ----------------------------------------- */
 
 [data-theme="dark"] .use-case-problem {

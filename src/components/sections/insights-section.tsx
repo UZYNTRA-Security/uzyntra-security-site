@@ -8,10 +8,10 @@ export function InsightsSection() {
 
   return (
     <section className="section-tight bg-slate-50/70">
-      <div className="container-shell">
 
-        {/* Header — surface card gives it a distinct background block */}
-        <div className="rounded-2xl border border-slate-200 bg-white px-6 py-5 shadow-sm sm:px-8">
+      {/* Header — full-width card, border touches viewport edges */}
+      <div className="insights-header-bar border-y border-slate-200 bg-white shadow-sm">
+        <div className="container-shell py-5">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-red-700">
@@ -33,8 +33,10 @@ export function InsightsSection() {
             </Link>
           </div>
         </div>
+      </div>
 
-        {/* Cards */}
+      {/* Cards */}
+      <div className="container-shell">
         <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {featuredPosts.map((post) => (
             <article
@@ -83,8 +85,8 @@ export function InsightsSection() {
             </article>
           ))}
         </div>
-
       </div>
+
     </section>
   );
 }

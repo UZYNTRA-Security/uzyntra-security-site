@@ -51,6 +51,8 @@ const methodology = [
   },
 ];
 
+const stepColors = ["text-red-500", "text-orange-500", "text-violet-500", "text-emerald-500"];
+
 export function ImpactStatsSection() {
   return (
     <>
@@ -100,9 +102,9 @@ export function ImpactStatsSection() {
           </div>
 
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {methodology.map((m) => (
+            {methodology.map((m, i) => (
               <div key={m.step} className="surface-card p-5">
-                <span className="text-3xl font-bold text-red-100">{m.step}</span>
+                <span className={`text-3xl font-bold ${stepColors[i]}`}>{m.step}</span>
                 <h3 className="mt-2 text-sm font-semibold text-slate-950">{m.title}</h3>
                 <p className="mt-2 text-sm leading-6 text-slate-500">{m.body}</p>
               </div>

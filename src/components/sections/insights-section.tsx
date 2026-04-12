@@ -7,33 +7,35 @@ export function InsightsSection() {
   if (featuredPosts.length === 0) return null;
 
   return (
-    <section className="section-tight">
+    <section className="section-tight bg-slate-50/70">
       <div className="container-shell">
 
-        {/* Header */}
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-red-700">
-              Research & Insights
-            </p>
-            <h2 className="mt-2 text-2xl font-bold text-slate-950 sm:text-3xl">
-              Latest from UZYNTRA
-            </h2>
-            <p className="mt-2 text-sm leading-7 text-slate-500">
-              Technical security research and engineering insights published by the team.
-            </p>
+        {/* Header — surface card gives it a distinct background block */}
+        <div className="rounded-2xl border border-slate-200 bg-white px-6 py-5 shadow-sm sm:px-8">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-red-700">
+                Research &amp; Insights
+              </p>
+              <h2 className="mt-2 text-2xl font-bold text-slate-950 sm:text-3xl">
+                Latest from UZYNTRA
+              </h2>
+              <p className="mt-2 text-sm leading-7 text-slate-500">
+                Technical security research and engineering insights published by the team.
+              </p>
+            </div>
+            <Link
+              href="/blog"
+              className="inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-red-700 transition-all duration-200 hover:gap-2.5"
+            >
+              View all research
+              <ArrowRight className="h-4 w-4 shrink-0" aria-hidden="true" />
+            </Link>
           </div>
-          <Link
-            href="/blog"
-            className="inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-red-700 transition-all duration-200 hover:gap-2.5"
-          >
-            View all research
-            <ArrowRight className="h-4 w-4 shrink-0" aria-hidden="true" />
-          </Link>
         </div>
 
         {/* Cards */}
-        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {featuredPosts.map((post) => (
             <article
               key={post.slug}
@@ -62,18 +64,16 @@ export function InsightsSection() {
               </p>
 
               {/* Footer */}
-              <div className="mt-4 flex items-center justify-between gap-2 border-t border-slate-100 pt-4 insights-border">
-                {/* text-slate-500 (#64748b) passes WCAG AA 4.5:1 on white */}
+              <div className="insights-border mt-4 flex items-center justify-between gap-2 border-t border-slate-100 pt-4">
                 <span className="insights-meta flex items-center gap-1 text-xs text-slate-500">
                   <BookOpen className="h-3 w-3 shrink-0" aria-hidden="true" />
                   {post.readTime}
                 </span>
-
                 <Link
                   href={post.externalUrl}
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-red-700 transition-all duration-200 hover:gap-2 insights-link"
+                  className="insights-link inline-flex items-center gap-1.5 text-xs font-semibold text-red-700 transition-all duration-200 hover:gap-2"
                   aria-label={`Read ${post.title} on ${post.platform}`}
                 >
                   Read on {post.platform}

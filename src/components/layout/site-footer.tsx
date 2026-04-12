@@ -6,7 +6,7 @@ import { FaGithub, FaLinkedinIn, FaInstagram, FaFacebookF, FaXTwitter } from "re
 import { siteConfig } from "@/config/site";
 import { footerNavigation } from "@/data/navigation";
 import { ThemedLogo } from "@/components/ui/themed-logo";
-import { blogPosts } from "@/data/blog";
+import { blogPosts, publishedPosts } from "@/data/blog";
 
 type FooterGroupProps = {
   title: string;
@@ -85,7 +85,7 @@ export function SiteFooter() {
               Research
             </h3>
             <ul className="mt-4 space-y-3">
-              {blogPosts.map((post) => (
+              {publishedPosts.map((post) => (
                 <li key={post.slug}>
                   <Link
                     href={post.externalUrl}

@@ -88,16 +88,22 @@ export default function BlogPage() {
 
                   {/* Actions */}
                   <div className="flex items-center justify-between gap-3">
-                    <Link
-                      href={post.externalUrl}
-                      target="_blank"
-                      rel="noreferrer noopener"
-                      className="blog-card-link inline-flex items-center gap-1.5 text-sm font-semibold text-red-700 transition-all duration-200 hover:gap-2"
-                      aria-label={`Read ${post.title} on ${post.platform}`}
-                    >
-                      Read on {post.platform}
-                      <ArrowUpRight className="h-4 w-4 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
-                    </Link>
+                    {post.published ? (
+                      <Link
+                        href={post.externalUrl}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        className="blog-card-link inline-flex items-center gap-1.5 text-sm font-semibold text-red-700 transition-all duration-200 hover:gap-2"
+                        aria-label={`Read ${post.title} on ${post.platform}`}
+                      >
+                        Read on {post.platform}
+                        <ArrowUpRight className="h-4 w-4 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
+                      </Link>
+                    ) : (
+                      <span className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-semibold text-slate-400">
+                        Coming Soon
+                      </span>
+                    )}
                     <Link
                       href={post.serviceLink}
                       className="inline-flex items-center gap-1 text-xs font-medium text-slate-500 transition-all duration-200 hover:text-red-700"

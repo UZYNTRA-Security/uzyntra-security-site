@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight, BookOpen } from "lucide-react";
-import { blogPosts } from "@/data/blog";
+import { blogPosts, publishedPosts } from "@/data/blog";
 
 export const metadata: Metadata = {
   title: "About",
@@ -79,7 +79,7 @@ export default function AboutPage() {
           </div>
 
           {/* Research credibility section */}
-          {blogPosts.length > 0 && (
+          {publishedPosts.length > 0 && (
             <div className="mx-auto mt-8 max-w-5xl">
               <div className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
                 <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
@@ -104,7 +104,7 @@ export default function AboutPage() {
                 </div>
 
                 <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                  {blogPosts.map((post) => (
+                  {publishedPosts.map((post) => (
                     <Link
                       key={post.slug}
                       href={post.externalUrl}

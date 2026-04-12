@@ -84,16 +84,20 @@ export function CustomCursor() {
     };
 
     const updateInteractiveState = () => {
-      ring.style.scale = isHoveringInteractive ? "1.35" : "1";
-      glow.style.scale = isHoveringInteractive ? "1.15" : "1";
-      glow.style.opacity = isHoveringInteractive ? "0.95" : "0.75";
+      // Subtle scale — large values cause the ring to visually "jump away"
+      // from the dot since they scale from different centers
+      ring.style.scale = isHoveringInteractive ? "1.12" : "1";
+      glow.style.scale = isHoveringInteractive ? "1.08" : "1";
+      glow.style.opacity = isHoveringInteractive ? "0.90" : "0.75";
     };
 
     const animateFollowers = () => {
-      ringX += (mouseX - ringX) * 0.16;
-      ringY += (mouseY - ringY) * 0.16;
-      glowX += (mouseX - glowX) * 0.08;
-      glowY += (mouseY - glowY) * 0.08;
+      // Tighter lerp — ring tracks cursor closely so scale changes
+      // don't create a visible gap between dot and ring
+      ringX += (mouseX - ringX) * 0.28;
+      ringY += (mouseY - ringY) * 0.28;
+      glowX += (mouseX - glowX) * 0.10;
+      glowY += (mouseY - glowY) * 0.10;
 
       ring.style.transform = `translate3d(${ringX - RING_SIZE / 2}px, ${ringY - RING_SIZE / 2}px, 0)`;
       glow.style.transform = `translate3d(${glowX - GLOW_SIZE / 2}px, ${glowY - GLOW_SIZE / 2}px, 0)`;
@@ -113,6 +117,8 @@ export function CustomCursor() {
     const handleMouseEnter = (e: MouseEvent) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
+      // Snap ring and glow to cursor position on entry — prevents
+      // the ring lerping in from a stale off-screen position
       ringX = e.clientX;
       ringY = e.clientY;
       glowX = e.clientX;

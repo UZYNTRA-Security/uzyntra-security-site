@@ -118,6 +118,8 @@ const faqs = [
   },
 ];
 
+const stepColors = ["text-red-500", "text-orange-500", "text-violet-500", "text-emerald-500"] as const;
+
 export default function BackendEngineeringPage() {
   return (
     <main id="main-content">
@@ -163,9 +165,9 @@ export default function BackendEngineeringPage() {
             <h2 className="mt-3 text-2xl font-bold text-slate-950 sm:text-3xl">How we deliver secure systems</h2>
           </div>
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {process.map((p) => (
+            {process.map((p, i) => (
               <div key={p.step} className="surface-card p-5">
-                <span className="text-3xl font-bold text-red-100">{p.step}</span>
+                <span className={`text-3xl font-bold ${stepColors[i]}`}>{p.step}</span>
                 <h3 className="mt-2 text-sm font-semibold text-slate-950">{p.title}</h3>
                 <p className="mt-2 text-sm leading-6 text-slate-600">{p.body}</p>
               </div>

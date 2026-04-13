@@ -118,7 +118,7 @@ const faqs = [
   },
 ];
 
-const stepColors = ["text-red-500", "text-orange-500", "text-violet-500", "text-emerald-500"] as const;
+const stepColors = ["text-red-500", "text-orange-600", "text-violet-600", "text-emerald-700"] as const;
 
 export default function BackendEngineeringPage() {
   return (

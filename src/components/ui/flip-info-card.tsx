@@ -41,6 +41,22 @@ export function FlipInfoCard({
 
   const showBack = flipped;
 
+  // Mobile tap logic:
+  // - 1st tap: flip to back (show details)
+  // - 2nd tap: navigate to href (if exists)
+  function handleClick(e: React.MouseEvent) {
+    if (hasHover) return; // desktop handles via hover + Link wrapper
+    if (!href) {
+      setFlipped((v) => !v);
+      return;
+    }
+    if (!flipped) {
+      e.preventDefault(); // block Link navigation on first tap
+      setFlipped(true);
+    }
+    // second tap: flipped === true, Link navigates naturally
+  }
+
   const pillStyle: React.CSSProperties = dark
     ? { background: "rgba(220,38,38,0.12)", border: "1px solid rgba(248,113,113,0.5)", color: "rgb(248,113,113)" }
     : { background: "#ffffff",              border: "1px solid rgb(220,38,38)",         color: "rgb(185,28,28)" };
@@ -49,7 +65,7 @@ export function FlipInfoCard({
     <div
       className={cn("flip-card-wrapper h-full cursor-pointer", className)}
       style={{ perspective: "1200px" }}
-      onClick={() => !href && setFlipped((v) => !v)}
+      onClick={handleClick}
       onMouseEnter={() => hasHover && setFlipped(true)}
       onMouseLeave={() => hasHover && setFlipped(false)}
       onKeyDown={(e) => {
@@ -117,8 +133,9 @@ export function FlipInfoCard({
           {href && (
             <div className="mt-3">
               <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-white/90">
-                View service
-                <ArrowRight className="h-3 w-3 shrink-0" />
+                {/* Desktop: click navigates via Link. Mobile: shows tap hint when flipped */}
+                {!hasHover && flipped ? "Tap again to visit →" : "View service"}
+                {(hasHover || !flipped) && <ArrowRight className="h-3 w-3 shrink-0" />}
               </span>
             </div>
           )}

@@ -29,7 +29,6 @@ export function FlipInfoCard({
   const [flipped, setFlipped] = useState(false);
   const [btnHover, setBtnHover] = useState(false);
   const [dark, setDark] = useState(false);
-  // true on devices that support hover (desktop) — false on touch-only
   const [hasHover, setHasHover] = useState(false);
 
   useEffect(() => {
@@ -37,15 +36,11 @@ export function FlipInfoCard({
       setDark(document.documentElement.getAttribute("data-theme") === "dark");
     check();
     window.addEventListener("uzyntra-theme-change", check);
-
-    // Detect hover capability once on mount
     setHasHover(window.matchMedia("(hover: hover)").matches);
-
     return () => window.removeEventListener("uzyntra-theme-change", check);
   }, []);
 
-  // Desktop: hover flips. Mobile: click flips.
-  const showBack = hasHover ? flipped : flipped;
+  const showBack = flipped;
 
   const backBtnStyle: React.CSSProperties = dark
     ? btnHover
@@ -64,23 +59,30 @@ export function FlipInfoCard({
     : { background: "#ffffff",              border: "1px solid rgb(220,38,38)",         color: "rgb(185,28,28)" };
 
   return (
+    // h-full makes this card stretch to fill the grid cell height
+    // The grid parent must use items-stretch (default) so all cells are equal
     <div
       role="button"
       tabIndex={0}
       aria-pressed={flipped}
       aria-label={`${title} — click to ${flipped ? "show front" : "show details"}`}
-      className={cn("flip-card-wrapper cursor-pointer", className)}
+      className={cn("flip-card-wrapper h-full cursor-pointer", className)}
       style={{ perspective: "1200px" }}
       onClick={() => setFlipped((v) => !v)}
       onMouseEnter={() => hasHover && setFlipped(true)}
       onMouseLeave={() => hasHover && setFlipped(false)}
       onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && setFlipped((v) => !v)}
     >
-      {/* Inner — rotates on flip */}
+      {/*
+        Inner container:
+        - position: relative so absolute faces are contained
+        - h-full so it fills the wrapper which fills the grid cell
+        - min-h ensures a sensible floor even with very short content
+      */}
       <div
+        className="relative h-full"
         style={{
-          position: "relative",
-          width: "100%",
+          minHeight: "280px",
           transformStyle: "preserve-3d",
           transition: "transform 0.52s cubic-bezier(0.4, 0.2, 0.2, 1)",
           transform: showBack ? "rotateY(180deg)" : "rotateY(0deg)",
@@ -175,29 +177,6 @@ export function FlipInfoCard({
                 UZYNTRA Enterprise Capability
               </span>
             )}
-          </div>
-        </div>
-
-        {/* ── HEIGHT SPACER ──
-            Renders both front AND back content invisibly so the card height
-            equals whichever face is taller — guarantees equal height in a grid row. */}
-        <div className="invisible flex flex-col gap-3 p-6" aria-hidden="true">
-          {icon && <div className="h-11 w-11 shrink-0" />}
-          {/* Front content */}
-          <h3 className="text-base font-semibold">{title}</h3>
-          <p className="text-sm leading-7">{frontDescription}</p>
-          <div className="pt-3">
-            <span className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold">
-              {hrefLabel}
-            </span>
-          </div>
-          {/* Back content — stacked below so spacer height = max(front, back) */}
-          <h3 className="text-base font-semibold">{backTitle ?? title}</h3>
-          <p className="text-sm leading-7">{backDescription}</p>
-          <div className="pt-3">
-            <span className="inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold">
-              View {backTitle ?? title} Services
-            </span>
           </div>
         </div>
       </div>

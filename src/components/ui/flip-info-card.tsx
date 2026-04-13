@@ -82,7 +82,7 @@ export function FlipInfoCard({
       <div
         className="relative h-full"
         style={{
-          minHeight: "280px",
+          minHeight: "320px",
           transformStyle: "preserve-3d",
           transition: "transform 0.52s cubic-bezier(0.4, 0.2, 0.2, 1)",
           transform: showBack ? "rotateY(180deg)" : "rotateY(0deg)",
@@ -91,7 +91,7 @@ export function FlipInfoCard({
         {/* ── FRONT ── */}
         <div
           style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}
-          className="flip-card-front absolute inset-0 flex flex-col gap-3 rounded-[24px] border border-slate-200 bg-white p-6 shadow-sm"
+          className="flip-card-front absolute inset-0 flex flex-col gap-3 overflow-hidden rounded-[24px] border border-slate-200 bg-white p-6 shadow-sm"
         >
           {icon && (
             <div className="flip-icon-front inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-red-50 text-red-700">
@@ -128,7 +128,7 @@ export function FlipInfoCard({
         {/* ── BACK ── */}
         <div
           style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
-          className="absolute inset-0 flex flex-col gap-3 rounded-[24px] border border-red-400 bg-gradient-to-br from-red-700 via-red-600 to-red-500 p-6 text-white shadow-[0_12px_36px_rgba(220,38,38,0.30)]"
+          className="absolute inset-0 flex flex-col gap-3 overflow-hidden rounded-[24px] border border-red-400 bg-gradient-to-br from-red-700 via-red-600 to-red-500 p-6 text-white shadow-[0_12px_36px_rgba(220,38,38,0.30)]"
         >
           {icon && (
             <div className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-white/20 text-white">

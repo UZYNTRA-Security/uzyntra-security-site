@@ -26,20 +26,26 @@ export function FlipInfoCard({
   hrefLabel = "Explore capability",
   href,
 }: FlipInfoCardProps) {
-  const [flipped, setFlipped]   = useState(false);
-  const [hovered, setHovered]   = useState(false);
+  const [flipped, setFlipped] = useState(false);
   const [btnHover, setBtnHover] = useState(false);
-  const [dark, setDark]         = useState(false);
+  const [dark, setDark] = useState(false);
+  // true on devices that support hover (desktop) — false on touch-only
+  const [hasHover, setHasHover] = useState(false);
 
   useEffect(() => {
     const check = () =>
       setDark(document.documentElement.getAttribute("data-theme") === "dark");
     check();
     window.addEventListener("uzyntra-theme-change", check);
+
+    // Detect hover capability once on mount
+    setHasHover(window.matchMedia("(hover: hover)").matches);
+
     return () => window.removeEventListener("uzyntra-theme-change", check);
   }, []);
 
-  const showBack = flipped || hovered;
+  // Desktop: hover flips. Mobile: click flips.
+  const showBack = hasHover ? flipped : flipped;
 
   const backBtnStyle: React.CSSProperties = dark
     ? btnHover
@@ -58,26 +64,19 @@ export function FlipInfoCard({
     : { background: "#ffffff",              border: "1px solid rgb(220,38,38)",         color: "rgb(185,28,28)" };
 
   return (
-    // CSS hover lift — replaces framer-motion whileHover
     <div
-      className={cn("cursor-pointer flip-card-wrapper", className)}
+      role="button"
+      tabIndex={0}
+      aria-pressed={flipped}
+      aria-label={`${title} — click to ${flipped ? "show front" : "show details"}`}
+      className={cn("flip-card-wrapper cursor-pointer", className)}
       style={{ perspective: "1200px" }}
       onClick={() => setFlipped((v) => !v)}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      onMouseEnter={() => hasHover && setFlipped(true)}
+      onMouseLeave={() => hasHover && setFlipped(false)}
+      onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && setFlipped((v) => !v)}
     >
-      <style>{`
-        .flip-card-wrapper {
-          transition: transform 0.22s ease;
-        }
-        .flip-card-wrapper:hover {
-          transform: translateY(-6px) scale(1.01);
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .flip-card-wrapper:hover { transform: none; }
-        }
-      `}</style>
-
+      {/* Inner — rotates on flip */}
       <div
         style={{
           position: "relative",
@@ -87,7 +86,7 @@ export function FlipInfoCard({
           transform: showBack ? "rotateY(180deg)" : "rotateY(0deg)",
         }}
       >
-        {/* FRONT */}
+        {/* ── FRONT ── */}
         <div
           style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}
           className="flip-card-front absolute inset-0 flex flex-col gap-3 rounded-[24px] border border-slate-200 bg-white p-6 shadow-sm"
@@ -97,7 +96,7 @@ export function FlipInfoCard({
               {icon}
             </div>
           )}
-          <h3 className="flip-title-front text-lg font-semibold text-slate-950 sm:text-xl">
+          <h3 className="flip-title-front text-base font-semibold text-slate-950">
             {title}
           </h3>
           <p className="flip-body-front text-sm leading-7 text-slate-600">
@@ -124,7 +123,7 @@ export function FlipInfoCard({
           </div>
         </div>
 
-        {/* BACK */}
+        {/* ── BACK ── */}
         <div
           style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
           className="absolute inset-0 flex flex-col gap-3 rounded-[24px] border border-red-400 bg-gradient-to-br from-red-700 via-red-600 to-red-500 p-6 text-white shadow-[0_12px_36px_rgba(220,38,38,0.30)]"
@@ -134,7 +133,7 @@ export function FlipInfoCard({
               {icon}
             </div>
           )}
-          <h3 className="text-lg font-semibold text-white sm:text-xl">
+          <h3 className="text-base font-semibold text-white">
             {backTitle ?? title}
           </h3>
           <p className="text-sm leading-7 text-white/90">{backDescription}</p>
@@ -179,13 +178,24 @@ export function FlipInfoCard({
           </div>
         </div>
 
-        {/* HEIGHT SPACER */}
+        {/* ── HEIGHT SPACER ──
+            Renders both front AND back content invisibly so the card height
+            equals whichever face is taller — guarantees equal height in a grid row. */}
         <div className="invisible flex flex-col gap-3 p-6" aria-hidden="true">
           {icon && <div className="h-11 w-11 shrink-0" />}
-          <h3 className="text-lg sm:text-xl">{backTitle ?? title}</h3>
+          {/* Front content */}
+          <h3 className="text-base font-semibold">{title}</h3>
+          <p className="text-sm leading-7">{frontDescription}</p>
+          <div className="pt-3">
+            <span className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold">
+              {hrefLabel}
+            </span>
+          </div>
+          {/* Back content — stacked below so spacer height = max(front, back) */}
+          <h3 className="text-base font-semibold">{backTitle ?? title}</h3>
           <p className="text-sm leading-7">{backDescription}</p>
-          <div className="mt-auto pt-3">
-            <span className="inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm">
+          <div className="pt-3">
+            <span className="inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold">
               View {backTitle ?? title} Services
             </span>
           </div>

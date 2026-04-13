@@ -1385,3 +1385,27 @@ ol {
   background-color: rgba(30, 41, 59, 0.8) !important;
   border-color: rgba(51, 65, 85, 0.5) !important;
 }
+
+/* --- Flip card wrapper hover lift ---------------------------------------- */
+
+.flip-card-wrapper {
+  transition: transform 0.22s ease;
+}
+@media (hover: hover) {
+  .flip-card-wrapper:hover {
+    transform: translateY(-6px) scale(1.01);
+  }
+}
+@media (hover: none) {
+  .flip-card-wrapper:active {
+    transform: scale(0.98);
+    transition-duration: 0.1s;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .flip-card-wrapper,
+  .flip-card-wrapper:hover {
+    transform: none !important;
+    transition: none !important;
+  }
+}

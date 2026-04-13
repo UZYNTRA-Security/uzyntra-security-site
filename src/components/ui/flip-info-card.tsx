@@ -27,7 +27,6 @@ export function FlipInfoCard({
   href,
 }: FlipInfoCardProps) {
   const [flipped, setFlipped] = useState(false);
-  const [btnHover, setBtnHover] = useState(false);
   const [dark, setDark] = useState(false);
   const [hasHover, setHasHover] = useState(false);
 
@@ -42,47 +41,31 @@ export function FlipInfoCard({
 
   const showBack = flipped;
 
-  const backBtnStyle: React.CSSProperties = dark
-    ? btnHover
-      ? { background: "rgb(220,38,38)",  color: "#ffffff",          border: "2px solid rgb(220,38,38)",   transform: "translateY(-2px)" }
-      : { background: "#1e293b",          color: "rgb(248,113,113)", border: "2px solid rgb(248,113,113)", transform: "translateY(0)" }
-    : btnHover
-      ? { background: "transparent",     color: "#ffffff",          border: "2px solid #ffffff",          transform: "translateY(-2px)" }
-      : { background: "#ffffff",          color: "#0f172a",          border: "2px solid #ffffff",          transform: "translateY(0)" };
-
-  const backBtnArrowColor = dark
-    ? btnHover ? "#ffffff" : "rgb(248,113,113)"
-    : btnHover ? "#ffffff" : "#0f172a";
-
   const pillStyle: React.CSSProperties = dark
     ? { background: "rgba(220,38,38,0.12)", border: "1px solid rgba(248,113,113,0.5)", color: "rgb(248,113,113)" }
     : { background: "#ffffff",              border: "1px solid rgb(220,38,38)",         color: "rgb(185,28,28)" };
 
-  return (
-    // h-full makes this card stretch to fill the grid cell height
-    // The grid parent must use items-stretch (default) so all cells are equal
+  const inner = (
     <div
-      role="button"
-      tabIndex={0}
-      aria-pressed={flipped}
-      aria-label={`${title} — click to ${flipped ? "show front" : "show details"}`}
       className={cn("flip-card-wrapper h-full cursor-pointer", className)}
       style={{ perspective: "1200px" }}
-      onClick={() => setFlipped((v) => !v)}
+      onClick={() => !href && setFlipped((v) => !v)}
       onMouseEnter={() => hasHover && setFlipped(true)}
       onMouseLeave={() => hasHover && setFlipped(false)}
-      onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && setFlipped((v) => !v)}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          setFlipped((v) => !v);
+        }
+      }}
+      role={href ? undefined : "button"}
+      tabIndex={href ? undefined : 0}
+      aria-pressed={href ? undefined : flipped}
     >
-      {/*
-        Inner container:
-        - position: relative so absolute faces are contained
-        - h-full so it fills the wrapper which fills the grid cell
-        - min-h ensures a sensible floor even with very short content
-      */}
+      {/* Rotating inner */}
       <div
         className="relative h-full"
         style={{
-          minHeight: "320px",
           transformStyle: "preserve-3d",
           transition: "transform 0.52s cubic-bezier(0.4, 0.2, 0.2, 1)",
           transform: showBack ? "rotateY(180deg)" : "rotateY(0deg)",
@@ -91,7 +74,7 @@ export function FlipInfoCard({
         {/* ── FRONT ── */}
         <div
           style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}
-          className="flip-card-front absolute inset-0 flex flex-col gap-3 overflow-hidden rounded-[24px] border border-slate-200 bg-white p-6 shadow-sm"
+          className="flip-card-front absolute inset-0 flex flex-col gap-3 rounded-[24px] border border-slate-200 bg-white p-6 shadow-sm"
         >
           {icon && (
             <div className="flip-icon-front inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-red-50 text-red-700">
@@ -104,23 +87,15 @@ export function FlipInfoCard({
           <p className="flip-body-front text-sm leading-7 text-slate-600">
             {frontDescription}
           </p>
-          <div className="mt-auto pt-3">
+          {/* Inline hint — no button, no overflow risk */}
+          <div className="mt-3">
             <span
-              className="flip-pill-front"
-              style={{
-                ...pillStyle,
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "6px",
-                borderRadius: "9999px",
-                padding: "6px 12px",
-                fontSize: "0.75rem",
-                fontWeight: 600,
-                transition: "all 0.2s ease",
-              }}
+              className="flip-pill-front inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold"
+              style={pillStyle}
+              aria-hidden="true"
             >
               {hrefLabel}
-              <ArrowRight style={{ width: "12px", height: "12px", flexShrink: 0 }} />
+              <ArrowRight className="h-3 w-3 shrink-0" />
             </span>
           </div>
         </div>
@@ -128,7 +103,7 @@ export function FlipInfoCard({
         {/* ── BACK ── */}
         <div
           style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
-          className="absolute inset-0 flex flex-col gap-3 overflow-hidden rounded-[24px] border border-red-400 bg-gradient-to-br from-red-700 via-red-600 to-red-500 p-6 text-white shadow-[0_12px_36px_rgba(220,38,38,0.30)]"
+          className="absolute inset-0 flex flex-col gap-3 rounded-[24px] border border-red-400 bg-gradient-to-br from-red-700 via-red-600 to-red-500 p-6 text-white shadow-[0_12px_36px_rgba(220,38,38,0.30)]"
         >
           {icon && (
             <div className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-white/20 text-white">
@@ -139,47 +114,49 @@ export function FlipInfoCard({
             {backTitle ?? title}
           </h3>
           <p className="text-sm leading-7 text-white/90">{backDescription}</p>
-          <div className="mt-auto pt-3">
-            {href ? (
-              <Link
-                href={href}
-                onClick={(e) => e.stopPropagation()}
-                onMouseEnter={() => setBtnHover(true)}
-                onMouseLeave={() => setBtnHover(false)}
-                style={{
-                  ...backBtnStyle,
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "8px",
-                  borderRadius: "12px",
-                  padding: "10px 16px",
-                  fontSize: "0.875rem",
-                  fontWeight: 600,
-                  textDecoration: "none",
-                  transition: "background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.15s ease",
-                  cursor: "pointer",
-                }}
-              >
-                View {title} Services
-                <ArrowRight
-                  style={{
-                    width: "16px",
-                    height: "16px",
-                    flexShrink: 0,
-                    color: backBtnArrowColor,
-                    transform: btnHover ? "translateX(4px)" : "translateX(0)",
-                    transition: "transform 0.2s ease, color 0.2s ease",
-                  }}
-                />
-              </Link>
-            ) : (
-              <span className="inline-flex rounded-full bg-white/20 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur-sm">
+          {href && (
+            <div className="mt-3">
+              <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-white/90">
+                View service
+                <ArrowRight className="h-3 w-3 shrink-0" />
+              </span>
+            </div>
+          )}
+          {!href && (
+            <div className="mt-3">
+              <span className="inline-flex rounded-full bg-white/20 px-3 py-1 text-xs font-semibold text-white">
                 UZYNTRA Enterprise Capability
               </span>
-            )}
+            </div>
+          )}
+        </div>
+
+        {/* ── HEIGHT SPACER — drives card height from the taller face ── */}
+        <div className="invisible flex flex-col gap-3 p-6" aria-hidden="true">
+          {icon && <div className="h-11 w-11 shrink-0" />}
+          <h3 className="text-base font-semibold">{title}</h3>
+          <p className="text-sm leading-7">{frontDescription}</p>
+          <div className="mt-3">
+            <span className="inline-flex items-center gap-1.5 text-xs font-semibold">{hrefLabel}</span>
+          </div>
+          <h3 className="text-base font-semibold">{backTitle ?? title}</h3>
+          <p className="text-sm leading-7">{backDescription}</p>
+          <div className="mt-3">
+            <span className="inline-flex items-center gap-1.5 text-xs font-semibold">View service</span>
           </div>
         </div>
       </div>
     </div>
   );
+
+  // If href provided, wrap the whole card in a Link — entire card is clickable
+  if (href) {
+    return (
+      <Link href={href} className="block h-full">
+        {inner}
+      </Link>
+    );
+  }
+
+  return inner;
 }

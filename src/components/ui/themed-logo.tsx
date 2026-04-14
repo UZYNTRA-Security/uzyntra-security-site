@@ -11,16 +11,17 @@ type ThemedLogoProps = {
 };
 
 export function ThemedLogo({ width, height, priority = false }: ThemedLogoProps) {
-  // Read theme synchronously on first render — avoids the extra re-render
-  // that caused a visible logo flash on hydration.
-  const [dark, setDark] = useState(() => {
-    if (typeof document === "undefined") return false;
-    return document.documentElement.getAttribute("data-theme") === "dark";
-  });
+  // Always start with false (light logo) — matches SSR output exactly.
+  // After mount, read the real theme and update. This eliminates the
+  // hydration mismatch caused by the synchronous useState initializer
+  // reading document on the client before React reconciles with SSR HTML.
+  const [dark, setDark] = useState(false);
 
   useEffect(() => {
+    // Read theme after mount — safe, no SSR/client mismatch
     const check = () =>
       setDark(document.documentElement.getAttribute("data-theme") === "dark");
+    check();
     window.addEventListener("uzyntra-theme-change", check);
     return () => window.removeEventListener("uzyntra-theme-change", check);
   }, []);

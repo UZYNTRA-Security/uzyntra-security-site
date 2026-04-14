@@ -104,6 +104,57 @@ export const technologies: TechnologyItem[] = [
     alt: "Palo Alto Networks security logo",
     category: "cybersecurity",
   },
+  // API security specific
+  {
+    name: "Postman",
+    slug: "postman",
+    image: "/images/technologies/postman.webp",
+    alt: "Postman API testing platform logo",
+    category: "cybersecurity",
+  },
+  {
+    name: "OWASP ZAP",
+    slug: "owasp-zap",
+    image: "/images/technologies/owasp-zap.webp",
+    alt: "OWASP ZAP web application scanner logo",
+    category: "cybersecurity",
+  },
+  {
+    name: "ffuf",
+    slug: "ffuf",
+    image: "/images/technologies/ffuf.webp",
+    alt: "ffuf web fuzzer logo",
+    category: "cybersecurity",
+  },
+  // Penetration testing specific
+  {
+    name: "SQLMap",
+    slug: "sqlmap",
+    image: "/images/technologies/sqlmap.webp",
+    alt: "SQLMap SQL injection tool logo",
+    category: "cybersecurity",
+  },
+  {
+    name: "Gobuster",
+    slug: "gobuster",
+    image: "/images/technologies/gobuster.webp",
+    alt: "Gobuster directory brute-force tool logo",
+    category: "cybersecurity",
+  },
+  {
+    name: "BloodHound",
+    slug: "bloodhound",
+    image: "/images/technologies/bloodhound.webp",
+    alt: "BloodHound Active Directory attack path tool logo",
+    category: "cybersecurity",
+  },
+  {
+    name: "Nuclei",
+    slug: "nuclei",
+    image: "/images/technologies/nuclei.webp",
+    alt: "Nuclei vulnerability scanner logo",
+    category: "cybersecurity",
+  },
 
   // ── Software Development ───────────────────────────────────────────────────
   {
@@ -414,6 +465,22 @@ export const technologies: TechnologyItem[] = [
     alt: "GraphQL API query language logo",
     category: "n8n",
   },
+  {
+    name: "OpenAI",
+    slug: "openai",
+    image: "/images/technologies/openai.webp",
+    alt: "OpenAI API logo",
+    category: "n8n",
+    featured: true,
+  },
+  {
+    name: "Webhook",
+    slug: "webhook",
+    image: "/images/technologies/webhook.webp",
+    alt: "Webhook event-driven integration logo",
+    category: "n8n",
+    featured: true,
+  },
 ];
 
 // ── Page-specific curated selectors ───────────────────────────────────────────
@@ -434,10 +501,36 @@ export const homeFeaturedTechnologies: TechnologyItem[] = [
   technologies.find((t) => t.slug === "langchain")!,
 ];
 
-/** Cybersecurity page — 12 high-signal security tools */
+/** Cybersecurity page — all security tools */
 export const cybersecurityTechnologies: TechnologyItem[] = technologies.filter(
   (t) => t.category === "cybersecurity"
 );
+
+/** API Security page — Burp Suite, Postman, OWASP ZAP, ffuf, Nmap, Nessus, Snyk, Wireshark */
+export const apiSecurityTechnologies: TechnologyItem[] = [
+  technologies.find((t) => t.slug === "burp-suite")!,
+  technologies.find((t) => t.slug === "postman")!,
+  technologies.find((t) => t.slug === "owasp-zap")!,
+  technologies.find((t) => t.slug === "ffuf")!,
+  technologies.find((t) => t.slug === "nmap")!,
+  technologies.find((t) => t.slug === "nessus")!,
+  technologies.find((t) => t.slug === "snyk")!,
+  technologies.find((t) => t.slug === "wireshark")!,
+];
+
+/** Penetration Testing page — Burp Suite, Metasploit, Nmap, Nessus, SQLMap, Gobuster, BloodHound, Nuclei, Wireshark */
+export const pentestTechnologies: TechnologyItem[] = [
+  technologies.find((t) => t.slug === "burp-suite")!,
+  technologies.find((t) => t.slug === "metasploit")!,
+  technologies.find((t) => t.slug === "nmap")!,
+  technologies.find((t) => t.slug === "nessus")!,
+  technologies.find((t) => t.slug === "sqlmap")!,
+  technologies.find((t) => t.slug === "gobuster")!,
+  technologies.find((t) => t.slug === "bloodhound")!,
+  technologies.find((t) => t.slug === "nuclei")!,
+  technologies.find((t) => t.slug === "wireshark")!,
+  technologies.find((t) => t.slug === "palo-alto")!,
+];
 
 /** Software development page — 12 core dev tools */
 export const softwareTechnologies: TechnologyItem[] = technologies.filter(

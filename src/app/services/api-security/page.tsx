@@ -10,7 +10,7 @@ import { ServiceCapabilityGrid } from "@/components/sections/service-capability-
 import { TechnologySlider } from "@/components/sections/technology-slider";
 import { CTASection } from "@/components/sections/cta-section";
 import { siteConfig } from "@/config/site";
-import { cybersecurityTechnologies } from "@/data/technologies";
+import { cybersecurityTechnologies, apiSecurityTechnologies } from "@/data/technologies";
 
 export const metadata: Metadata = {
   title: "API Security Testing Services | UZYNTRA Security",
@@ -184,7 +184,7 @@ export default function ApiSecurityPage() {
       <TechnologySlider
         eyebrow="TOOLING"
         title="Tools & Methodology"
-        items={cybersecurityTechnologies}
+        items={apiSecurityTechnologies}
         variant="compact"
       />
 

@@ -9,7 +9,7 @@ import { PageHero } from "@/components/sections/page-hero";
 import { ServiceCapabilityGrid } from "@/components/sections/service-capability-grid";
 import { TechnologySlider } from "@/components/sections/technology-slider";
 import { siteConfig } from "@/config/site";
-import { cybersecurityTechnologies } from "@/data/technologies";
+import { cybersecurityTechnologies, pentestTechnologies } from "@/data/technologies";
 
 export const metadata: Metadata = {
   title: "Penetration Testing & Red Teaming Services | UZYNTRA Security",
@@ -181,7 +181,7 @@ export default function PenetrationTestingPage() {
       <TechnologySlider
         eyebrow="TOOLING"
         title="Tools & Frameworks"
-        items={cybersecurityTechnologies}
+        items={pentestTechnologies}
         variant="compact"
       />
 

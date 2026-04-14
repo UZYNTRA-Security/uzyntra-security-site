@@ -1361,11 +1361,14 @@ ol {
 /* --- Social proof bar dark mode ------------------------------------------ */
 
 [data-theme="dark"] .social-proof-bar {
-  background-color: rgba(15, 23, 42, 0.5) !important;
+  background-color: rgba(15, 23, 42, 0.6) !important;
   border-color: rgba(51, 65, 85, 0.5) !important;
 }
-[data-theme="dark"] .social-proof-bar span {
+[data-theme="dark"] .social-proof-item {
   color: hsl(215, 20%, 68%) !important;
+}
+[data-theme="dark"] .social-proof-divider {
+  background-color: rgba(51, 65, 85, 0.7) !important;
 }
 
 /* --- Insights section full-width header dark mode ------------------------- */

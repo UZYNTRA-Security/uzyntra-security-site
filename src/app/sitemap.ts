@@ -1,16 +1,13 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/config/site";
-import { blogPosts } from "@/data/blog";
+import { publishedPosts } from "@/data/blog";
 
 const base = siteConfig.url;
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const blogEntries: MetadataRoute.Sitemap = blogPosts.map((post) => ({
-    url: `${base}/blog/${post.slug}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly" as const,
-    priority: 0.7,
-  }));
+  // Only include published posts that have real external URLs
+  // Blog posts are external (DEV.to) — we include /blog index but not individual slugs
+  // since those pages don't exist on this domain
 
   return [
     {
@@ -31,9 +28,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.8,
     },
-    // ── Blog posts ─────────────────────────────────────────────────────────
-    ...blogEntries,
-    // ── New service pages ──────────────────────────────────────────────────
+    // ── Service pages (canonical URLs only — no redirects) ─────────────────
     {
       url: `${base}/services/api-security`,
       lastModified: new Date(),
@@ -63,31 +58,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.8,
-    },
-    // ── Legacy redirects (kept for backlinks) ──────────────────────────────
-    {
-      url: `${base}/services/cybersecurity`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.5,
-    },
-    {
-      url: `${base}/services/software-development`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.5,
-    },
-    {
-      url: `${base}/services/blockchain`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.5,
-    },
-    {
-      url: `${base}/services/n8n-automation`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.5,
     },
     // ── Products ───────────────────────────────────────────────────────────
     {

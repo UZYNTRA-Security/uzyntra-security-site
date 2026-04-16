@@ -1,15 +1,20 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import {
   ServerCog, Shield, Cloud, KeyRound,
   Activity, GitBranch, AlertTriangle, ArrowRight, MessageSquare,
 } from "lucide-react";
 
 import { PageHero } from "@/components/sections/page-hero";
-import { ServiceCapabilityGrid } from "@/components/sections/service-capability-grid";
 import { TechnologySlider } from "@/components/sections/technology-slider";
 import { siteConfig } from "@/config/site";
 import { softwareTechnologies } from "@/data/technologies";
+
+const ServiceCapabilityGrid = dynamic(
+  () => import("@/components/sections/service-capability-grid").then((m) => m.ServiceCapabilityGrid),
+  { ssr: true }
+);
 
 export const metadata: Metadata = {
   title: "Secure Backend & Cloud Engineering Services | UZYNTRA Security",

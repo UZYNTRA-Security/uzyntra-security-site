@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowUpRight, BookOpen, Tag, ArrowRight } from "lucide-react";
 
 import { PageHero } from "@/components/sections/page-hero";
-import { blogPosts } from "@/data/blog";
+import { blogPosts, publishedPosts } from "@/data/blog";
 import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
@@ -22,8 +22,8 @@ export const metadata: Metadata = {
 const platformColors: Record<string, string> = {
   DEV:      "bg-slate-950 text-white",
   Medium:   "bg-slate-700 text-white",
-  Hashnode: "bg-blue-600 text-white",
-  Substack: "bg-orange-500 text-white",
+  Hashnode: "bg-blue-700 text-white",
+  Substack: "bg-orange-700 text-white",
   UZYNTRA:  "bg-red-600 text-white",
 };
 
@@ -39,56 +39,45 @@ export default function BlogPage() {
       <section className="section-tight">
         <div className="container-shell">
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {blogPosts.map((post) => (
-              <article
-                key={post.slug}
-                className="blog-card group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-red-200 hover:shadow-[0_12px_40px_rgba(220,38,38,0.10)]"
-              >
-                {/* Top accent bar */}
-                <div className="absolute left-0 right-0 top-0 h-[3px] origin-left scale-x-0 bg-gradient-to-r from-red-600 to-red-400 transition-transform duration-300 group-hover:scale-x-100" aria-hidden="true" />
-
-                <div className="flex flex-1 flex-col gap-4 p-6">
-
-                  {/* Category + platform */}
-                  <div className="flex items-center justify-between gap-3">
-                    <span className="blog-card-badge inline-flex items-center gap-1.5 rounded-full border border-red-100 bg-red-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-red-700">
-                      <Tag className="h-3 w-3 shrink-0" aria-hidden="true" />
-                      {post.category}
-                    </span>
-                    <span className={`inline-flex items-center rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] ${platformColors[post.platform] ?? "bg-slate-200 text-slate-700"}`}>
-                      {post.platform}
-                    </span>
-                  </div>
-
-                  {/* Title */}
-                  <h2 className="blog-card-title text-base font-bold leading-snug text-slate-950 transition-colors duration-200 group-hover:text-red-700">
-                    {post.title}
-                  </h2>
-
-                  {/* Excerpt */}
-                  <p className="blog-card-excerpt flex-1 text-sm leading-7 text-slate-500">
-                    {post.excerpt}
-                  </p>
-
-                  {/* Meta */}
-                  <div className="blog-card-border flex items-center justify-between gap-3 border-t border-slate-100 pt-4">
-                    <div className="blog-card-meta flex items-center gap-3 text-xs text-slate-500">
-                      <span className="inline-flex items-center gap-1">
-                        <BookOpen className="h-3 w-3 shrink-0" aria-hidden="true" />
-                        {post.readTime}
-                      </span>
-                      <span className="inline-flex items-center gap-1">
+          {/* Published posts — full cards */}
+          {publishedPosts.length > 0 && (
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {publishedPosts.map((post) => (
+                <article
+                  key={post.slug}
+                  className="blog-card group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-red-200 hover:shadow-[0_12px_40px_rgba(220,38,38,0.10)]"
+                >
+                  <div className="absolute left-0 right-0 top-0 h-[3px] origin-left scale-x-0 bg-gradient-to-r from-red-600 to-red-400 transition-transform duration-300 group-hover:scale-x-100" aria-hidden="true" />
+                  <div className="flex flex-1 flex-col gap-4 p-6">
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="blog-card-badge inline-flex items-center gap-1.5 rounded-full border border-red-100 bg-red-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-red-700">
                         <Tag className="h-3 w-3 shrink-0" aria-hidden="true" />
-                        {post.tag}
+                        {post.category}
+                      </span>
+                      <span className={`inline-flex items-center rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] ${platformColors[post.platform] ?? "bg-slate-200 text-slate-700"}`}>
+                        {post.platform}
                       </span>
                     </div>
-                    <span className="blog-card-meta text-xs text-slate-500">{post.date}</span>
-                  </div>
-
-                  {/* Actions */}
-                  <div className="flex items-center justify-between gap-3">
-                    {post.published ? (
+                    <h2 className="blog-card-title text-base font-bold leading-snug text-slate-950 transition-colors duration-200 group-hover:text-red-700">
+                      {post.title}
+                    </h2>
+                    <p className="blog-card-excerpt flex-1 text-sm leading-7 text-slate-500">
+                      {post.excerpt}
+                    </p>
+                    <div className="blog-card-border flex items-center justify-between gap-3 border-t border-slate-100 pt-4">
+                      <div className="blog-card-meta flex items-center gap-3 text-xs text-slate-500">
+                        <span className="inline-flex items-center gap-1">
+                          <BookOpen className="h-3 w-3 shrink-0" aria-hidden="true" />
+                          {post.readTime}
+                        </span>
+                        <span className="inline-flex items-center gap-1">
+                          <Tag className="h-3 w-3 shrink-0" aria-hidden="true" />
+                          {post.tag}
+                        </span>
+                      </div>
+                      <span className="blog-card-meta text-xs text-slate-500">{post.date}</span>
+                    </div>
+                    <div className="flex items-center justify-between gap-3">
                       <Link
                         href={post.externalUrl}
                         target="_blank"
@@ -97,26 +86,46 @@ export default function BlogPage() {
                         aria-label={`Read ${post.title} on ${post.platform}`}
                       >
                         Read on {post.platform}
-                        <ArrowUpRight className="h-4 w-4 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
+                        <ArrowUpRight className="h-4 w-4 shrink-0" aria-hidden="true" />
                       </Link>
-                    ) : (
-                      <span className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-semibold text-slate-400">
-                        Coming Soon
-                      </span>
-                    )}
-                    <Link
-                      href={post.serviceLink}
-                      className="inline-flex items-center gap-1 text-xs font-medium text-slate-500 transition-all duration-200 hover:text-red-700"
-                    >
-                      {post.cta}
-                      <ArrowRight className="h-3 w-3 shrink-0" aria-hidden="true" />
-                    </Link>
+                      <Link
+                        href={post.serviceLink}
+                        className="inline-flex items-center gap-1 text-xs font-medium text-slate-500 transition-all duration-200 hover:text-red-700"
+                      >
+                        {post.cta}
+                        <ArrowRight className="h-3 w-3 shrink-0" aria-hidden="true" />
+                      </Link>
+                    </div>
                   </div>
+                </article>
+              ))}
+            </div>
+          )}
 
-                </div>
-              </article>
-            ))}
-          </div>
+          {/* Unpublished posts — lightweight list, no excerpt, minimal DOM */}
+          {blogPosts.filter((p) => !p.published).length > 0 && (
+            <div className="mt-8">
+              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Coming Soon</p>
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                {blogPosts.filter((p) => !p.published).map((post) => (
+                  <div
+                    key={post.slug}
+                    className="flex items-center justify-between gap-3 rounded-xl border border-slate-100 bg-white px-4 py-3"
+                  >
+                    <div className="min-w-0">
+                      <span className="blog-card-badge mb-1 inline-flex items-center gap-1 rounded-full border border-red-100 bg-red-50 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-red-700">
+                        {post.category}
+                      </span>
+                      <p className="truncate text-sm font-medium text-slate-700">{post.title}</p>
+                    </div>
+                    <span className="shrink-0 rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-[10px] font-semibold text-slate-400">
+                      Soon
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           {blogPosts.length === 0 && (
             <div className="mx-auto max-w-md py-20 text-center">

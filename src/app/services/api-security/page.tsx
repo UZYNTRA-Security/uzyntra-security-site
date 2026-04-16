@@ -1,16 +1,21 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import {
   ShieldAlert, Bug, KeyRound, Layers, AlertTriangle,
   CheckCircle2, ArrowRight, MessageSquare,
 } from "lucide-react";
 
 import { PageHero } from "@/components/sections/page-hero";
-import { ServiceCapabilityGrid } from "@/components/sections/service-capability-grid";
 import { TechnologySlider } from "@/components/sections/technology-slider";
 import { CTASection } from "@/components/sections/cta-section";
 import { siteConfig } from "@/config/site";
 import { cybersecurityTechnologies, apiSecurityTechnologies } from "@/data/technologies";
+
+const ServiceCapabilityGrid = dynamic(
+  () => import("@/components/sections/service-capability-grid").then((m) => m.ServiceCapabilityGrid),
+  { ssr: true }
+);
 
 export const metadata: Metadata = {
   title: "API Security Testing Services | UZYNTRA Security",

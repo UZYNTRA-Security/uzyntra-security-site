@@ -1,15 +1,20 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import {
   Blocks, FileCode2, Shield, Wallet,
   Landmark, AlertTriangle, ArrowRight, MessageSquare, Network,
 } from "lucide-react";
 
 import { PageHero } from "@/components/sections/page-hero";
-import { ServiceCapabilityGrid } from "@/components/sections/service-capability-grid";
 import { TechnologySlider } from "@/components/sections/technology-slider";
 import { siteConfig } from "@/config/site";
 import { blockchainTechnologies } from "@/data/technologies";
+
+const ServiceCapabilityGrid = dynamic(
+  () => import("@/components/sections/service-capability-grid").then((m) => m.ServiceCapabilityGrid),
+  { ssr: true }
+);
 
 export const metadata: Metadata = {
   title: "Blockchain Security & Smart Contract Engineering | UZYNTRA Security",

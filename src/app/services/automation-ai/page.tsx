@@ -1,15 +1,21 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import {
   BrainCircuit, Workflow, Plug, Server,
   RefreshCcw, Shield, AlertTriangle, ArrowRight, MessageSquare,
 } from "lucide-react";
 
 import { PageHero } from "@/components/sections/page-hero";
-import { ServiceCapabilityGrid } from "@/components/sections/service-capability-grid";
 import { TechnologySlider } from "@/components/sections/technology-slider";
 import { siteConfig } from "@/config/site";
 import { n8nTechnologies } from "@/data/technologies";
+
+// Lazy-load the flip-card grid — defers 6 client components off the critical path
+const ServiceCapabilityGrid = dynamic(
+  () => import("@/components/sections/service-capability-grid").then((m) => m.ServiceCapabilityGrid),
+  { ssr: true }
+);
 
 export const metadata: Metadata = {
   title: "Automation & AI Workflow Systems | UZYNTRA Security",

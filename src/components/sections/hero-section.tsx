@@ -31,7 +31,7 @@ export function HeroSection() {
       <SecurityMotionBackground />
 
       <div className="container-shell relative z-10">
-        <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
+        <div className="mx-auto flex max-w-3xl flex-col items-center text-center xl:max-w-4xl">
           <HeroAnimations
             eyebrow={
               <EyebrowBadge>Enterprise Security Platform</EyebrowBadge>

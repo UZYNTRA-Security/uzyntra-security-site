@@ -59,7 +59,7 @@ export function ImpactStatsSection() {
       {/* Stats */}
       <section className="section-tight bg-slate-50/70">
         <div className="container-shell">
-          <div className="mx-auto max-w-2xl text-center">
+          <div className="mx-auto max-w-2xl text-center xl:max-w-3xl">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-red-700">
               Security Impact
             </p>
@@ -71,7 +71,7 @@ export function ImpactStatsSection() {
             </p>
           </div>
 
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4 xl:gap-6">
             {stats.map((s) => (
               <div
                 key={s.label}
@@ -101,7 +101,7 @@ export function ImpactStatsSection() {
             </h2>
           </div>
 
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4 xl:gap-6">
             {methodology.map((m, i) => (
               <div key={m.step} className="surface-card p-5">
                 <span className={`text-3xl font-bold ${stepColors[i]}`}>{m.step}</span>

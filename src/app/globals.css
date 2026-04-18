@@ -55,6 +55,7 @@
   --radius-2xl:         2rem;
 
   --container:          1280px;
+  --container-wide:     1440px;
   --header-height:      3.875rem;
   --section-padding-y:  clamp(3.5rem, 5.5vw, 6rem);
 }
@@ -278,12 +279,37 @@ ol {
   }
 }
 
+/* Wide screens — expand container and increase padding */
+@media (min-width: 1440px) {
+  .container-shell {
+    max-width: calc(var(--container-wide) + 4rem);
+    padding-inline: 3rem;
+  }
+}
+
+@media (min-width: 1920px) {
+  .container-shell {
+    max-width: 1600px;
+    padding-inline: 4rem;
+  }
+}
+
 .section-shell {
   padding-block: clamp(3.5rem, 5.5vw, 6rem);
 }
 
 .section-tight {
   padding-block: clamp(2.5rem, 4vw, 4.5rem);
+}
+
+/* Wide screens — increase section breathing room */
+@media (min-width: 1440px) {
+  .section-shell {
+    padding-block: 7rem;
+  }
+  .section-tight {
+    padding-block: 5rem;
+  }
 }
 
 .section-title-mobile {

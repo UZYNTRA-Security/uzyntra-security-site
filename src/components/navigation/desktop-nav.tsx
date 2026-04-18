@@ -73,7 +73,7 @@ export function DesktopNav({ items }: DesktopNavProps) {
             {/* Dropdown */}
             <div
               className={cn(
-                "absolute left-0 top-full z-50 mt-2 w-[440px] rounded-2xl border border-slate-200/80 bg-white/95 p-2 shadow-[0_20px_60px_rgba(15,23,42,0.14)] backdrop-blur-sm transition-all duration-200",
+                "absolute left-0 top-full z-50 mt-2 w-[440px] rounded-2xl border border-slate-200/80 bg-white/95 p-2 shadow-[0_20px_60px_rgba(15,23,42,0.14)] backdrop-blur-sm transition-all duration-200 xl:w-[500px]",
                 openMenu === item.title
                   ? "visible translate-y-0 opacity-100"
                   : "invisible translate-y-2 opacity-0"

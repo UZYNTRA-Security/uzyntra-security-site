@@ -4,7 +4,7 @@ export function PlatformSection() {
   return (
     <section className="section-tight">
       <div className="container-shell">
-        <div className="grid items-start gap-6 lg:grid-cols-[1.02fr_0.98fr] lg:gap-10">
+        <div className="grid items-start gap-6 lg:grid-cols-[1.02fr_0.98fr] lg:gap-10 xl:gap-14">
           <div className="surface-card-strong p-6 sm:p-8">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-red-700">
               Platform Ecosystem

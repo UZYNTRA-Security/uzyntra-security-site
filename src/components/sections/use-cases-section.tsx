@@ -52,7 +52,7 @@ export function UseCasesSection() {
           </p>
         </div>
 
-        <div className="mt-10 grid gap-5 md:grid-cols-2">
+        <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4 xl:gap-6">
           {useCases.map((uc) => (
             <div
               key={uc.audience}

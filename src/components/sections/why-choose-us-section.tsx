@@ -42,7 +42,7 @@ export function WhyChooseUsSection() {
           </p>
         </div>
 
-        <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-3">
+        <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-3 xl:gap-6">
           {items.map((item) => (
             <FlipInfoCard
               key={item.title}

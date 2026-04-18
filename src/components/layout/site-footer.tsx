@@ -54,7 +54,7 @@ export function SiteFooter() {
   return (
     <footer className="relative border-t border-slate-200 bg-gradient-to-b from-white to-slate-50">
       <div className="container-shell py-10 sm:py-12">
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr_0.8fr_1fr]">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[1.4fr_0.9fr_0.9fr_0.9fr_0.9fr_1.1fr]">
           <div className="max-w-sm">
             <Link href="/" className="inline-flex items-center" aria-label="UZYNTRA Security home">
               <ThemedLogo width={240} height={56} />

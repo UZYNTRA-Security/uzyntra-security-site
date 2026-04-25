@@ -353,8 +353,8 @@ export default function ApiVulnerabilitiesArticle() {
               </p>
               <div className="grid gap-3 sm:grid-cols-2">
                 {[
-                  { title: "API Security Testing Guide for SaaS Startups", href: "/blog" },
-                  { title: "Red Team vs Penetration Testing: What's the Difference?", href: "/blog" },
+                  { title: "API Security Testing Guide for SaaS Startups", href: "/blog/api-security-testing-guide-saas" },
+                  { title: "BOLA Vulnerability Explained", href: "/blog/bola-vulnerability-explained" },
                 ].map((r) => (
                   <Link
                     key={r.title}

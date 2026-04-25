@@ -41,6 +41,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.9,
     },
+    {
+      url: `${base}/blog/bola-vulnerability-explained`,
+      lastModified: new Date("2026-01-29"),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: `${base}/blog/owasp-api-top-10-2026`,
+      lastModified: new Date("2026-02-05"),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: `${base}/blog/api-authentication-security-guide`,
+      lastModified: new Date("2026-02-12"),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
     // ── Service pages (canonical URLs only — no redirects) ─────────────────
     {
       url: `${base}/services/api-security-testing`,

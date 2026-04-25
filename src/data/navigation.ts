@@ -20,7 +20,7 @@ export const mainNavigation: NavItem[] = [
     children: [
       {
         title: "API & SaaS Security Testing",
-        href: "/services/api-security",
+        href: "/services/api-security-testing",
         description:
           "Offensive testing for APIs, SaaS platforms, authentication systems, and cloud services.",
       },
@@ -87,7 +87,7 @@ export const footerNavigation = {
     { title: "Download", href: "/download" },
   ],
   services: [
-    { title: "API & SaaS Security Testing", href: "/services/api-security" },
+    { title: "API & SaaS Security Testing", href: "/services/api-security-testing" },
     { title: "Penetration Testing & Red Teaming", href: "/services/penetration-testing" },
     { title: "Secure Backend & Cloud Engineering", href: "/services/backend-engineering" },
     { title: "Blockchain Security & Smart Contract Engineering", href: "/services/blockchain-security" },

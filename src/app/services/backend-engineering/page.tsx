@@ -194,7 +194,7 @@ export default function BackendEngineeringPage() {
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-red-700">Related</p>
             <h2 className="mt-3 text-xl font-bold text-slate-950">Validate what you build</h2>
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
-              <Link href="/services/api-security" className="surface-card group flex items-center justify-between p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-red-200">
+              <Link href="/services/api-security-testing" className="surface-card group flex items-center justify-between p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-red-200">
                 <div>
                   <p className="text-sm font-semibold text-slate-950 group-hover:text-red-700">API & SaaS Security Testing</p>
                   <p className="mt-1 text-xs text-slate-500">Test the APIs you build for exploitable vulnerabilities.</p>
@@ -243,7 +243,7 @@ export default function BackendEngineeringPage() {
                 <MessageSquare className="h-4 w-4 shrink-0" aria-hidden="true" />
                 Build Secure Infrastructure
               </Link>
-              <Link href="/services/api-security" className="btn-stroke inline-flex h-12 items-center gap-2 rounded-xl px-7 text-sm">
+              <Link href="/services/api-security-testing" className="btn-stroke inline-flex h-12 items-center gap-2 rounded-xl px-7 text-sm">
                 View API Security Testing
               </Link>
             </div>

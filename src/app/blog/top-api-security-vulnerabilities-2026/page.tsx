@@ -338,7 +338,7 @@ export default function ApiVulnerabilitiesArticle() {
                 </p>
               </div>
               <Link
-                href="/services/api-security"
+                href="/services/api-security-testing"
                 className="btn-solid inline-flex shrink-0 items-center gap-2 rounded-xl px-5 py-2.5 text-sm"
               >
                 Request API Security Audit

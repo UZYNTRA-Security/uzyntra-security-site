@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 const services = [
   {
     title: "API & SaaS Security Testing",
-    href: "/services/api-security",
+    href: "/services/api-security-testing",
     icon: <ShieldAlert className="h-6 w-6 text-red-600" aria-hidden="true" />,
     eyebrow: "Offensive Security",
     description:

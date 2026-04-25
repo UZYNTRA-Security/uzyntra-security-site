@@ -21,12 +21,12 @@ export const metadata: Metadata = {
   title: "API Security Testing Services | UZYNTRA Security",
   description:
     "Offensive API security testing for SaaS platforms, authentication systems, and cloud-connected APIs. OWASP API Top 10 coverage, token abuse, BOLA, and business-logic testing.",
-  alternates: { canonical: `${siteConfig.url}/services/api-security` },
+  alternates: { canonical: `${siteConfig.url}/services/api-security-testing` },
   openGraph: {
     title: "API Security Testing Services | UZYNTRA Security",
     description:
       "Offensive API security testing for SaaS, authentication systems, and cloud-connected platforms. OWASP API Top 10, BOLA, token abuse, and business-logic abuse scenarios.",
-    url: `${siteConfig.url}/services/api-security`,
+    url: `${siteConfig.url}/services/api-security-testing`,
   },
 };
 
@@ -141,7 +141,7 @@ export default function ApiSecurityPage() {
     description:
       "Professional API security testing covering OWASP API Top 10 vulnerabilities, authentication flaws, BOLA, business logic abuse, and SaaS attack surface review.",
     serviceType: "Cybersecurity",
-    url: `${siteConfig.url}/services/api-security`,
+    url: `${siteConfig.url}/services/api-security-testing`,
     offers: {
       "@type": "Offer",
       availability: "https://schema.org/InStock",

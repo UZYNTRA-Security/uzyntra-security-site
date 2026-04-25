@@ -80,7 +80,7 @@ export const siteConfig = {
   nav: {
     home: "/",
     services: "/services",
-    apiSecurity: "/services/api-security",
+    apiSecurity: "/services/api-security-testing",
     penetrationTesting: "/services/penetration-testing",
     backendEngineering: "/services/backend-engineering",
     blockchainSecurity: "/services/blockchain-security",

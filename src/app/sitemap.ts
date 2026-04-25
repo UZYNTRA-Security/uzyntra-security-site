@@ -35,9 +35,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.9,
     },
+    {
+      url: `${base}/blog/api-security-testing-guide-saas`,
+      lastModified: new Date("2026-01-22"),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
     // ── Service pages (canonical URLs only — no redirects) ─────────────────
     {
-      url: `${base}/services/api-security`,
+      url: `${base}/services/api-security-testing`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.9,

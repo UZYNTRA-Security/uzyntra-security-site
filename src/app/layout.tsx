@@ -123,6 +123,31 @@ export default function RootLayout({ children }: RootLayoutProps) {
             __html: `(function(){var t=localStorage.getItem('uzyntra-theme');var p=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t||p);})();`,
           }}
         />
+        {/* Organization JSON-LD — sitewide authority signal for Google */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "UZYNTRA Security",
+              url: "https://uzyntra.com",
+              logo: "https://uzyntra.com/logos/uzyntra-logo-main.svg",
+              description: "Enterprise cybersecurity, API security testing, penetration testing, blockchain security, and secure engineering services.",
+              sameAs: [
+                "https://www.linkedin.com/company/uzyntra",
+                "https://x.com/uzyntra",
+                "https://github.com/UZYNTRA-Security",
+              ],
+              contactPoint: {
+                "@type": "ContactPoint",
+                email: "uzyntra@gmail.com",
+                contactType: "customer service",
+                availableLanguage: "English",
+              },
+            }),
+          }}
+        />
       </head>
       <body
         className="min-h-screen bg-white text-slate-950 antialiased"

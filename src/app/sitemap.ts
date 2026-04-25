@@ -28,6 +28,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.8,
     },
+    // ── Blog posts (native pages — canonical on this domain) ───────────────
+    {
+      url: `${base}/blog/top-api-security-vulnerabilities-2026`,
+      lastModified: new Date("2026-01-15"),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
     // ── Service pages (canonical URLs only — no redirects) ─────────────────
     {
       url: `${base}/services/api-security`,

@@ -127,8 +127,34 @@ const faqs = [
 const stepColors = ["text-red-500", "text-orange-600", "text-violet-600", "text-emerald-700"] as const;
 
 export default function ApiSecurityPage() {
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "API Security Testing",
+    alternateName: "API Security Audit",
+    provider: {
+      "@type": "Organization",
+      name: "UZYNTRA Security",
+      url: siteConfig.url,
+    },
+    areaServed: "Global",
+    description:
+      "Professional API security testing covering OWASP API Top 10 vulnerabilities, authentication flaws, BOLA, business logic abuse, and SaaS attack surface review.",
+    serviceType: "Cybersecurity",
+    url: `${siteConfig.url}/services/api-security`,
+    offers: {
+      "@type": "Offer",
+      availability: "https://schema.org/InStock",
+      url: `${siteConfig.url}/contact`,
+    },
+  };
+
   return (
     <main id="main-content">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
       <PageHero
         eyebrow="API & SaaS Security Testing"
         title="API Security Testing for SaaS Platforms That Can't Afford Breaches"

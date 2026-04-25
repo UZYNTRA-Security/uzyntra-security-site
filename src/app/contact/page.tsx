@@ -53,10 +53,10 @@ export default function ContactPage() {
                   <p>
                     <span className="font-semibold text-slate-800">Email:</span>{" "}
                     <a
-                      href="mailto:uzyntra@gmail.com"
+                      href="mailto:contact@uzyntra.com"
                       className="text-slate-500 transition-colors hover:text-red-700"
                     >
-                      uzyntra@gmail.com
+                      contact@uzyntra.com
                     </a>
                   </p>
                   <p>

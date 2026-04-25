@@ -141,7 +141,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
               ],
               contactPoint: {
                 "@type": "ContactPoint",
-                email: "uzyntra@gmail.com",
+                email: "contact@uzyntra.com",
                 contactType: "customer service",
                 availableLanguage: "English",
               },

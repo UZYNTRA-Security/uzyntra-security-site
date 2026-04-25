@@ -1,9 +1,18 @@
+import type { Metadata } from "next";
 import { ShieldCheck, Radar, Cloud, LockKeyhole, Activity, Bug } from "lucide-react";
 
 import { PageHero } from "@/components/sections/page-hero";
 import { ServiceCapabilityGrid } from "@/components/sections/service-capability-grid";
 import { TechnologySlider } from "@/components/sections/technology-slider";
 import { cybersecurityTechnologies } from "@/data/technologies";
+
+// This page is a legacy URL — canonical points to the new slug.
+// The 301 redirect in next.config.ts handles inbound traffic.
+// The canonical tag tells Google which URL to index.
+export const metadata: Metadata = {
+  alternates: { canonical: "/services/penetration-testing" },
+  robots: { index: false, follow: true },
+};
 
 const items = [
   {

@@ -1,9 +1,15 @@
+import type { Metadata } from "next";
 import { Blocks, FileCode2, Wallet, Landmark, Network, Shield } from "lucide-react";
 
 import { PageHero } from "@/components/sections/page-hero";
 import { ServiceCapabilityGrid } from "@/components/sections/service-capability-grid";
 import { TechnologySlider } from "@/components/sections/technology-slider";
 import { blockchainTechnologies } from "@/data/technologies";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/services/blockchain-security" },
+  robots: { index: false, follow: true },
+};
 
 const items = [
   {

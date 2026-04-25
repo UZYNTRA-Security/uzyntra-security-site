@@ -82,7 +82,13 @@ export function FlipInfoCard({
   };
 
   // Fix 1: identical front card base — no card looks "more active" than others
-  const frontBorderColor = dark ? "rgba(51,65,85,0.6)" : "rgba(203,213,225,0.8)";
+  // Fix 7 dark mode: bg-slate-950/70 border-white/10 hover:border-red-500/40
+  const frontBg          = dark ? "rgba(15,23,42,0.85)"    : "#ffffff";
+  const frontBorderColor = dark ? "rgba(255,255,255,0.10)" : "rgba(203,213,225,0.8)";
+  const frontHoverShadow = dark
+    ? "0 0 0 1.5px rgba(239,68,68,0.40), 0 20px 48px rgba(220,38,38,0.14), 0 4px 16px rgba(0,0,0,0.20)"
+    : "0 0 0 1.5px rgba(220,38,38,0.30), 0 20px 48px rgba(220,38,38,0.12), 0 4px 16px rgba(0,0,0,0.06)";
+  const frontDefaultShadow = dark ? "0 1px 4px rgba(0,0,0,0.30)" : "0 1px 4px rgba(0,0,0,0.05)";
 
   const inner = (
     <motion.div
@@ -120,14 +126,12 @@ export function FlipInfoCard({
           style={{
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
+            background: frontBg,
             borderColor: frontBorderColor,
-            // Fix 6: glow on hover via box-shadow — NOT color takeover
-            boxShadow: hovered && !showBack
-              ? "0 0 0 1.5px rgba(220,38,38,0.30), 0 20px 48px rgba(220,38,38,0.12), 0 4px 16px rgba(0,0,0,0.06)"
-              : "0 1px 4px rgba(0,0,0,0.05)",
+            boxShadow: hovered && !showBack ? frontHoverShadow : frontDefaultShadow,
             transition: "box-shadow 0.3s ease, border-color 0.3s ease",
           }}
-          className="flip-card-front absolute inset-0 flex flex-col gap-3 rounded-[22px] border bg-white p-6"
+          className="flip-card-front absolute inset-0 flex flex-col gap-3 rounded-[22px] border p-6"
         >
           {/* Fix 7: icon with ring glow */}
           {icon && (
@@ -135,10 +139,10 @@ export function FlipInfoCard({
               {icon}
             </div>
           )}
-          <h3 className="flip-title-front text-base font-semibold text-slate-950">
+          <h3 className="flip-title-front text-base font-semibold" style={{ color: dark ? "hsl(210,40%,96%)" : "#0f172a" }}>
             {title}
           </h3>
-          <p className="flip-body-front text-sm leading-7 text-slate-600">
+          <p className="flip-body-front text-sm leading-7" style={{ color: dark ? "hsl(215,16%,65%)" : "#475569" }}>
             {frontDescription}
           </p>
           <div className="mt-auto pt-3">

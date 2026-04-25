@@ -9,7 +9,7 @@ import { FlipInfoCard } from "@/components/ui/flip-info-card";
 const items = [
   {
     title: "API & SaaS Security Testing",
-    href: "/services/cybersecurity",
+    href: "/services/api-security",
     icon: <ShieldAlert className="h-5 w-5" />,
     frontDescription: "OWASP API Top 10, BOLA, token abuse, auth bypass, and SaaS attack surface testing.",
     backDescription: "Offensive API security testing for SaaS platforms, authentication systems, and cloud-connected APIs.",
@@ -23,7 +23,7 @@ const items = [
   },
   {
     title: "Penetration Testing & Red Teaming",
-    href: "/services/cybersecurity",
+    href: "/services/penetration-testing",
     icon: <Crosshair className="h-5 w-5" />,
     frontDescription: "Web app, infrastructure, cloud, and identity attack simulations with real adversary TTPs.",
     backDescription: "Structured penetration tests and red team operations exposing exploitable weaknesses.",
@@ -37,7 +37,7 @@ const items = [
   },
   {
     title: "Blockchain Security & Smart Contracts",
-    href: "/services/blockchain",
+    href: "/services/blockchain-security",
     icon: <Blocks className="h-5 w-5" />,
     frontDescription: "Smart contract development, security reviews, dApp architecture, and Web3 engineering.",
     backDescription: "Security-first blockchain engineering covering smart contracts, token systems, and dApp architecture.",

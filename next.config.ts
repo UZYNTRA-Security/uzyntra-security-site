@@ -122,7 +122,10 @@ const nextConfig: NextConfig = {
 
   async redirects() {
     return [
-      // 301 redirects from old service slugs to new repositioned pages
+      // Legacy URL aliases — kept for backward compatibility with any
+      // external links, but canonical pages now live at the new slugs.
+      // Old pages still exist so Google sees 200 at both; these redirects
+      // ensure any inbound links consolidate PageRank to the canonical URL.
       { source: "/services/cybersecurity",       destination: "/services/penetration-testing", permanent: true },
       { source: "/services/software-development", destination: "/services/backend-engineering",  permanent: true },
       { source: "/services/blockchain",           destination: "/services/blockchain-security",  permanent: true },

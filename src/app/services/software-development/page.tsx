@@ -1,9 +1,15 @@
+import type { Metadata } from "next";
 import { ServerCog, Globe, Smartphone, Workflow, BrainCircuit, Database } from "lucide-react";
 
 import { PageHero } from "@/components/sections/page-hero";
 import { ServiceCapabilityGrid } from "@/components/sections/service-capability-grid";
 import { TechnologySlider } from "@/components/sections/technology-slider";
 import { softwareTechnologies } from "@/data/technologies";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/services/backend-engineering" },
+  robots: { index: false, follow: true },
+};
 
 const items = [
   {

@@ -24,12 +24,13 @@ export const metadata: Metadata = {
   title: "n8n Automation & Workflow Engineering",
   description:
     "UZYNTRA Security delivers custom n8n workflow automation, API orchestration, AI agent pipelines, and self-hosted deployment services for modern business operations.",
-  alternates: { canonical: "/services/n8n-automation" },
+  alternates: { canonical: "/services/automation-ai" },
+  robots: { index: false, follow: true },
   openGraph: {
     title: "n8n Automation & Workflow Engineering | UZYNTRA Security",
     description:
       "Custom workflow automation, cross-platform integrations, AI agent pipelines, and self-hosted n8n deployment for enterprise and operational environments.",
-    url: `${siteConfig.url}/services/n8n-automation`,
+    url: `${siteConfig.url}/services/automation-ai`,
   },
 };
 

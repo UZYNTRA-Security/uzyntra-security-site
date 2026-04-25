@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
-import { ShieldAlert, Crosshair, Blocks } from "lucide-react";
+import { ShieldAlert, Crosshair, Blocks, ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 
 import { FlipInfoCard } from "@/components/ui/flip-info-card";
 
@@ -48,13 +51,22 @@ const items = [
   },
 ];
 
+const stagger = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.12 } },
+};
+
+const cardIn = {
+  hidden: { opacity: 0, y: 28 },
+  show:   { opacity: 1, y: 0, transition: { duration: 0.48, ease: "easeOut" as const } },
+};
+
 export function ServicesPreviewSection() {
   return (
-    // Fix 8: py-20 section padding
     <section className="section-tight py-20">
-      <div className="container-shell">
+      {/* Fix 3: max-w-6xl tighter container */}
+      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
 
-        {/* Fix 9: larger subtitle */}
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-red-700">
             Services
@@ -67,32 +79,41 @@ export function ServicesPreviewSection() {
           </p>
         </div>
 
-        {/* Fix 3 + 8: items-stretch, gap-8 */}
-        <div className="mt-10 grid grid-cols-1 items-stretch gap-8 md:grid-cols-3">
+        {/* Staggered card entrance */}
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.15 }}
+          className="mt-10 grid grid-cols-1 items-stretch gap-8 md:grid-cols-3"
+        >
           {items.map((item) => (
-            <FlipInfoCard
-              key={item.title}
-              title={item.title}
-              icon={item.icon}
-              frontDescription={item.frontDescription}
-              backDescription={item.backDescription}
-              backBullets={item.backBullets}
-              href={item.href}
-              hrefLabel={item.hrefLabel}
-            />
+            <motion.div key={item.title} variants={cardIn} className="h-full">
+              <FlipInfoCard
+                title={item.title}
+                icon={item.icon}
+                frontDescription={item.frontDescription}
+                backDescription={item.backDescription}
+                backBullets={item.backBullets}
+                href={item.href}
+                hrefLabel={item.hrefLabel}
+              />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-        {/* Fix 10: trust line + stronger bottom CTA */}
-        <div className="mt-10 flex flex-col items-center gap-3 text-center">
-          <p className="text-xs text-slate-400">
-            Used by startups, fintech teams, and high-risk platforms.
+        {/* Fix 8: mt-16 | Fix 9: updated microcopy | Fix 5: primary CTA hierarchy */}
+        <div className="mt-16 flex flex-col items-center gap-4 text-center">
+          <p className="text-sm text-slate-400">
+            Trusted by SaaS, fintech, and high-risk platforms handling real-world threats.
           </p>
+          {/* Fix 5: ONE primary action, clearly dominant */}
           <Link
             href="/services"
-            className="btn-stroke inline-flex h-11 items-center gap-2 rounded-xl px-6 text-sm"
+            className="btn-solid inline-flex h-11 items-center gap-2 rounded-xl px-7 text-sm"
           >
             Explore All Capabilities
+            <ArrowRight className="h-4 w-4 shrink-0" />
           </Link>
         </div>
 

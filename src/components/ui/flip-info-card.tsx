@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -32,6 +33,11 @@ export function FlipInfoCard({
   const [hovered, setHovered]   = useState(false);
   const [dark, setDark]         = useState(false);
   const [hasHover, setHasHover] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  // Subtle tilt on mouse move
+  const rotateX = useSpring(useMotionValue(0), { stiffness: 200, damping: 20 });
+  const rotateY = useSpring(useMotionValue(0), { stiffness: 200, damping: 20 });
 
   useEffect(() => {
     const check = () =>
@@ -44,29 +50,56 @@ export function FlipInfoCard({
 
   const showBack = hasHover ? hovered : flipped;
 
+  function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
+    if (!hasHover || !cardRef.current || showBack) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width  - 0.5;
+    const y = (e.clientY - rect.top)  / rect.height - 0.5;
+    rotateX.set(-y * 6);
+    rotateY.set( x * 6);
+  }
+
+  function handleMouseLeave() {
+    rotateX.set(0);
+    rotateY.set(0);
+    if (hasHover) setHovered(false);
+  }
+
   function handleClick(e: React.MouseEvent) {
     if (hasHover) return;
     if (!href) { setFlipped((v) => !v); return; }
     if (!flipped) { e.preventDefault(); setFlipped(true); }
   }
 
-  // Front pill — white bg + red border + red text (clear contrast)
+  // Fix 10: improved light mode contrast
   const pillStyle: React.CSSProperties = dark
     ? { background: "rgba(220,38,38,0.12)", border: "1px solid rgba(248,113,113,0.4)", color: "rgb(248,113,113)" }
-    : { background: "#fff5f5",              border: "1px solid rgba(220,38,38,0.35)",   color: "rgb(185,28,28)" };
+    : { background: "#fff0f0",              border: "1px solid rgba(185,28,28,0.40)",   color: "rgb(153,27,27)" };
 
-  // Back face — premium dark surface instead of aggressive red
-  const backFaceStyle: React.CSSProperties = dark
-    ? { background: "#0f172a", borderColor: "rgba(220,38,38,0.30)" }
-    : { background: "#0f172a", borderColor: "rgba(220,38,38,0.40)" };
+  const backFaceStyle: React.CSSProperties = {
+    background: "#0f172a",
+    borderColor: "rgba(220,38,38,0.35)",
+  };
+
+  // Fix 1: identical front card base — no card looks "more active" than others
+  const frontBorderColor = dark ? "rgba(51,65,85,0.6)" : "rgba(203,213,225,0.8)";
 
   const inner = (
-    <div
+    <motion.div
+      ref={cardRef}
       className={cn("flip-card-wrapper h-full cursor-pointer", className)}
-      style={{ perspective: "1200px" }}
+      style={{
+        perspective: "1200px",
+        rotateX: showBack ? 0 : rotateX,
+        rotateY: showBack ? 0 : rotateY,
+      }}
+      // Fix 6: premium hover — lift + shadow-2xl + border glow
+      whileHover={showBack ? {} : { y: -8, scale: 1.02 }}
+      transition={{ duration: 0.25, ease: "easeOut" as const }}
       onClick={handleClick}
       onMouseEnter={() => { if (hasHover) setHovered(true); }}
-      onMouseLeave={() => { if (hasHover) setHovered(false); }}
+      onMouseLeave={handleMouseLeave}
+      onMouseMove={handleMouseMove}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setFlipped((v) => !v); }
       }}
@@ -84,20 +117,21 @@ export function FlipInfoCard({
       >
         {/* ── FRONT ── */}
         <div
-          style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}
-          className="flip-card-front absolute inset-0 flex flex-col gap-3 rounded-[22px] border border-slate-200 bg-white p-6 shadow-sm transition-shadow duration-300"
-          // Fix 1 & 2: subtle glow on hover, NOT full red takeover
-          onMouseEnter={(e) => {
-            if (!hasHover) return;
-            (e.currentTarget as HTMLElement).style.boxShadow =
-              "0 0 0 1.5px rgba(220,38,38,0.35), 0 8px_32px rgba(220,38,38,0.12)";
+          style={{
+            backfaceVisibility: "hidden",
+            WebkitBackfaceVisibility: "hidden",
+            borderColor: frontBorderColor,
+            // Fix 6: glow on hover via box-shadow — NOT color takeover
+            boxShadow: hovered && !showBack
+              ? "0 0 0 1.5px rgba(220,38,38,0.30), 0 20px 48px rgba(220,38,38,0.12), 0 4px 16px rgba(0,0,0,0.06)"
+              : "0 1px 4px rgba(0,0,0,0.05)",
+            transition: "box-shadow 0.3s ease, border-color 0.3s ease",
           }}
-          onMouseLeave={(e) => {
-            (e.currentTarget as HTMLElement).style.boxShadow = "";
-          }}
+          className="flip-card-front absolute inset-0 flex flex-col gap-3 rounded-[22px] border bg-white p-6"
         >
+          {/* Fix 7: icon with ring glow */}
           {icon && (
-            <div className="flip-icon-front inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-red-50 text-red-700 transition-all duration-200">
+            <div className="flip-icon-front inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-red-50 text-red-700 ring-1 ring-red-500/20 transition-all duration-200">
               {icon}
             </div>
           )}
@@ -119,7 +153,7 @@ export function FlipInfoCard({
           </div>
         </div>
 
-        {/* ── BACK — premium dark surface, NOT aggressive red ── */}
+        {/* ── BACK — premium dark surface ── */}
         <div
           style={{
             backfaceVisibility: "hidden",
@@ -127,10 +161,10 @@ export function FlipInfoCard({
             transform: "rotateY(180deg)",
             ...backFaceStyle,
           }}
-          className="absolute inset-0 flex flex-col gap-3 rounded-[22px] border p-6 shadow-[0_12px_40px_rgba(0,0,0,0.22)]"
+          className="absolute inset-0 flex flex-col gap-3 rounded-[22px] border p-6 shadow-[0_16px_48px_rgba(0,0,0,0.28)]"
         >
           {icon && (
-            <div className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-red-600/20 text-red-400">
+            <div className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-red-600/20 text-red-400 ring-1 ring-red-500/20">
               {icon}
             </div>
           )}
@@ -138,21 +172,20 @@ export function FlipInfoCard({
             {backTitle ?? title}
           </h3>
 
-          {/* Fix 4: bullet points instead of paragraph */}
+          {/* Fix 2: text-sm, space-y-2, text-white/90 */}
           {backBullets && backBullets.length > 0 ? (
-            <ul className="space-y-1.5">
+            <ul className="space-y-2">
               {backBullets.map((b) => (
-                <li key={b} className="flex items-start gap-2 text-xs leading-5 text-slate-300">
-                  <span className="mt-[5px] h-1.5 w-1.5 shrink-0 rounded-full bg-red-500" />
+                <li key={b} className="flex items-start gap-2 text-sm leading-6 text-white/90">
+                  <span className="mt-[6px] h-1.5 w-1.5 shrink-0 rounded-full bg-red-500" />
                   {b}
                 </li>
               ))}
             </ul>
           ) : (
-            <p className="text-sm leading-7 text-slate-300">{backDescription}</p>
+            <p className="text-sm leading-7 text-white/90">{backDescription}</p>
           )}
 
-          {/* Fix 5: outcome-driven CTA */}
           {href && (
             <div className="mt-auto pt-3">
               <span className="inline-flex items-center gap-1.5 rounded-lg border border-red-500/40 bg-red-600/15 px-3 py-1.5 text-xs font-semibold text-red-400 transition-all duration-200 hover:bg-red-600 hover:text-white hover:border-red-600">
@@ -163,7 +196,7 @@ export function FlipInfoCard({
           )}
           {!href && (
             <div className="mt-auto pt-3">
-              <span className="inline-flex rounded-full border border-white/10 bg-white/8 px-3 py-1 text-xs font-semibold text-slate-400">
+              <span className="inline-flex rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold text-slate-400">
                 UZYNTRA Enterprise Capability
               </span>
             </div>
@@ -180,7 +213,7 @@ export function FlipInfoCard({
           </div>
           <h3 className="text-base font-semibold">{backTitle ?? title}</h3>
           {backBullets
-            ? backBullets.map((b) => <p key={b} className="text-xs leading-5">{b}</p>)
+            ? backBullets.map((b) => <p key={b} className="text-sm leading-6">{b}</p>)
             : <p className="text-sm leading-7">{backDescription}</p>
           }
           <div className="mt-auto pt-3">
@@ -188,7 +221,7 @@ export function FlipInfoCard({
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 
   if (href) {

@@ -263,35 +263,30 @@ export default function ApiSecurityPage() {
         </div>
       </section>
 
-      {/* CTA — premium gradient, not aggressive solid red */}
-      <section className="relative overflow-hidden mb-16 md:mb-20">
-        {/* Gradient background: dark base + red accent — premium, not warning */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950" />
-        <div className="absolute inset-0 bg-gradient-to-br from-red-600/20 via-red-500/10 to-transparent" />
-        <div className="absolute inset-0 border-y border-red-500/10" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(220,38,38,0.12),transparent_40%)]" aria-hidden="true" />
-        <div className="absolute inset-0 opacity-[0.04] [background-image:linear-gradient(to_right,rgba(255,255,255,0.4)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.4)_1px,transparent_1px)] [background-size:32px_32px]" aria-hidden="true" />
-
-        <div className="relative z-10 container-shell py-16 sm:py-20">
+      {/* CTA */}
+      <section className="cta-section relative overflow-hidden bg-gradient-to-br from-red-800 via-red-700 to-red-600 py-14 text-white sm:py-16 mb-16 md:mb-20">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.10),transparent_22%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.06),transparent_22%)]" aria-hidden="true" />
+        <div className="absolute inset-0 opacity-[0.06] [background-image:linear-gradient(to_right,rgba(255,255,255,0.5)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.5)_1px,transparent_1px)] [background-size:32px_32px]" aria-hidden="true" />
+        <div className="relative z-10 container-shell">
           <div className="mx-auto flex max-w-2xl flex-col items-center text-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-red-500/20 bg-red-500/10 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-red-400">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-white">
               <MessageSquare className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
               API Security Audit
             </div>
             <h2 className="mt-5 text-2xl font-bold text-white sm:text-3xl">
               Start API Security Audit
             </h2>
-            <p className="mt-4 text-base leading-7 text-slate-300">
+            <p className="mt-4 text-base leading-7 text-white/90">
               See real vulnerabilities in your APIs within days — not guesses.
             </p>
-            <div className="mt-8 flex flex-col gap-4 sm:flex-row md:mt-8">
-              <Link href="/contact" className="btn-solid inline-flex h-12 items-center gap-2 rounded-xl px-7 text-sm">
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+              <Link href="/contact" className="btn-neutral inline-flex h-12 items-center gap-2 rounded-xl px-7 text-sm">
                 <MessageSquare className="h-4 w-4 shrink-0" aria-hidden="true" />
                 Start API Security Audit
               </Link>
               <Link
                 href="/blog/api-security-testing-guide-saas"
-                className="inline-flex h-12 items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-7 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-white/25 hover:bg-white/10"
+                className="inline-flex h-12 items-center gap-2 rounded-xl border-2 border-white/70 bg-transparent px-7 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-white hover:text-slate-950 active:translate-y-0"
               >
                 See How We Test APIs
                 <ArrowRight className="h-4 w-4 shrink-0" aria-hidden="true" />

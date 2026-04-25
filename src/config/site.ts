@@ -9,7 +9,7 @@ export const siteConfig = {
   domain: "uzyntra.com",
   locale: "en_US",
   type: "website",
-  email: "uzyntra@gmail.com",
+  email: "security@uzyntra.com",
 
   tagline: "Cybersecurity, Blockchain, and Secure Software Engineering",
 
@@ -39,7 +39,7 @@ export const siteConfig = {
     x: "https://x.com/uzyntra",
     instagram: "https://www.instagram.com/uzyntra",
     facebook: "https://www.facebook.com/uzyntra",
-    email: "mailto:uzyntra@gmail.com",
+    email: "mailto:security@uzyntra.com",
   },
 
   company: {

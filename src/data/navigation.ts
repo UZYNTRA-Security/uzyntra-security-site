@@ -108,6 +108,6 @@ export const footerNavigation = {
     { title: "X", href: "https://x.com" },
     { title: "Instagram", href: "https://www.instagram.com" },
     { title: "Facebook", href: "https://www.facebook.com" },
-    { title: "Email", href: "mailto:uzyntra@gmail.com" },
+    { title: "Email", href: "mailto:security@uzyntra.com" },
   ],
 } as const;

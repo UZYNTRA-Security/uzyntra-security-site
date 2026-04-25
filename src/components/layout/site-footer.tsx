@@ -76,17 +76,15 @@ export function SiteFooter() {
               <ArrowUpRight className="h-3 w-3 opacity-0 transition-all duration-200 group-hover:opacity-100" aria-hidden="true" />
             </Link>
 
-            {/* Contact link — no email shown publicly */}
-            <div className="mt-5">
-              <Link
-                href="/contact"
-                className="group inline-flex items-center gap-1.5 text-sm font-semibold text-red-700 transition-all duration-200 hover:gap-2"
+            {/* Domain email */}
+            <p className="mt-5 text-sm font-medium text-slate-950">
+              <a
+                href="mailto:contact@uzyntra.com"
+                className="transition-colors hover:text-red-700"
               >
-                Contact via secure form
-                <ArrowUpRight className="h-3.5 w-3.5 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
-              </Link>
-              <p className="mt-1 text-xs text-slate-400">We typically respond within 24 hours.</p>
-            </div>
+                contact@uzyntra.com
+              </a>
+            </p>
           </div>
 
           <FooterGroup title="Company"  links={footerNavigation.company}  />

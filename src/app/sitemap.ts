@@ -90,6 +90,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+    // ── Courses ────────────────────────────────────────────────────────────
+    {
+      url: `${base}/courses`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    ...[
+      "artificial-intelligence", "cybersecurity", "cloud-computing", "devsecops",
+      "python-programming", "web-development", "mobile-app-development", "data-science",
+      "blockchain-web3", "automation", "prompt-engineering", "ai-agent-development",
+      "ethical-hacking", "penetration-testing", "api-security", "secure-coding",
+      "linux-administration", "docker-kubernetes", "aws-azure-gcp", "networking-ccna",
+      "soc-analyst", "digital-forensics",
+    ].map((slug) => ({
+      url: `${base}/courses/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
     // ── Products ───────────────────────────────────────────────────────────
     {
       url: `${base}/products`,

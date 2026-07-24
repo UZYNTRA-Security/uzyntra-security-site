@@ -79,6 +79,7 @@ export const siteConfig = {
 
   nav: {
     home: "/",
+    courses: "/courses",
     services: "/services",
     apiSecurity: "/services/api-security-testing",
     penetrationTesting: "/services/penetration-testing",

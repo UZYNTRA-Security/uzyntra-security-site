@@ -66,6 +66,66 @@ export const mainNavigation: NavItem[] = [
     ],
   },
   {
+    title: "Courses",
+    children: [
+      {
+        title: "Artificial Intelligence",
+        href: "/courses/artificial-intelligence",
+        description: "ML, deep learning, LLMs, and AI deployment for production.",
+      },
+      {
+        title: "Cyber Security",
+        href: "/courses/cybersecurity",
+        description: "Threats, defenses, NIST framework, and incident response.",
+      },
+      {
+        title: "Cloud Computing",
+        href: "/courses/cloud-computing",
+        description: "AWS, Azure, and GCP from fundamentals to advanced architecture.",
+      },
+      {
+        title: "DevOps & DevSecOps",
+        href: "/courses/devsecops",
+        description: "CI/CD pipelines, IaC, and security integrated into delivery.",
+      },
+      {
+        title: "Ethical Hacking",
+        href: "/courses/ethical-hacking",
+        description: "Hands-on offensive security from recon to post-exploitation.",
+      },
+      {
+        title: "Penetration Testing",
+        href: "/courses/penetration-testing",
+        description: "Professional pentest methodology, CVSS scoring, and reporting.",
+      },
+      {
+        title: "API Security",
+        href: "/courses/api-security",
+        description: "OWASP API Top 10, BOLA, auth attacks, and API hardening.",
+      },
+      {
+        title: "AI Agent Development",
+        href: "/courses/ai-agent-development",
+        description: "Build autonomous AI agents with LangChain and multi-agent frameworks.",
+      },
+      {
+        title: "SOC Analyst",
+        href: "/courses/soc-analyst",
+        description: "SIEM, threat detection, MITRE ATT&CK, and incident response.",
+      },
+      {
+        title: "Docker & Kubernetes",
+        href: "/courses/docker-kubernetes",
+        description: "Containerization and orchestration for production deployments.",
+      },
+      {
+        title: "View All Courses",
+        href: "/courses",
+        description: "Browse all 22 courses across security, AI, cloud, and engineering.",
+      },
+    ],
+  },
+  {
     title: "About",
     href: "/about",
   },
@@ -80,6 +140,15 @@ export const mainNavigation: NavItem[] = [
 ];
 
 export const footerNavigation = {
+  courses: [
+    { title: "Artificial Intelligence", href: "/courses/artificial-intelligence" },
+    { title: "Cyber Security", href: "/courses/cybersecurity" },
+    { title: "Ethical Hacking", href: "/courses/ethical-hacking" },
+    { title: "Penetration Testing", href: "/courses/penetration-testing" },
+    { title: "API Security", href: "/courses/api-security" },
+    { title: "SOC Analyst", href: "/courses/soc-analyst" },
+    { title: "View All Courses", href: "/courses" },
+  ],
   company: [
     { title: "About", href: "/about" },
     { title: "Blog", href: "/blog" },

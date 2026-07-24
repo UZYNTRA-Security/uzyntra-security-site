@@ -345,9 +345,9 @@ export function MobileNav({ items }: MobileNavProps) {
                   <div
                     style={{
                       overflow: "hidden",
-                      maxHeight: isExpanded ? "600px" : "0px",
+                      maxHeight: isExpanded ? (item.title === "Courses" ? "1200px" : "600px") : "0px",
                       opacity: isExpanded ? 1 : 0,
-                      transition: "max-height 0.28s ease, opacity 0.2s ease",
+                      transition: "max-height 0.3s ease, opacity 0.2s ease",
                     }}
                   >
                     <ul
@@ -362,48 +362,109 @@ export function MobileNav({ items }: MobileNavProps) {
                     >
                       {item.children?.map((child) => {
                         const childActive = isActiveLink(child.href);
+                        const isCourseItem = item.title === "Courses";
+                        // icon map for courses
+                        const iconMap: Record<string, string> = {
+                          "Artificial Intelligence": "🧠", "AI Agent Development": "🤖",
+                          "Prompt Engineering": "💬", "Data Science & Analytics": "📊",
+                          "Cyber Security": "🛡️", "Ethical Hacking": "🎯",
+                          "Penetration Testing": "🔍", "API Security": "🔐",
+                          "SOC Analyst": "👁️", "Digital Forensics": "🔬",
+                          "Secure Coding": "🧱", "Cloud Computing": "☁️",
+                          "DevOps & DevSecOps": "⚙️", "Docker & Kubernetes": "🐳",
+                          "AWS / Azure / GCP": "🖥️", "Linux Administration": "🐧",
+                          "Python Programming": "🐍", "Web Development": "🌐",
+                          "Mobile App Development": "📱", "Blockchain & Web3": "⛓️",
+                          "Automation": "⚡", "Networking (CCNA)": "📡",
+                          "View All Courses": "🎓",
+                        };
                         return (
                           <li key={child.title} style={{ marginBottom: "1px" }}>
                             <Link
                               href={child.href}
                               onClick={close}
                               style={{
-                                display: "block",
-                                padding: "9px 10px",
+                                display: "flex",
+                                alignItems: isCourseItem ? "center" : "flex-start",
+                                gap: isCourseItem ? "10px" : "0",
+                                minHeight: "48px",
+                                padding: isCourseItem ? "8px 10px" : "9px 10px",
                                 borderRadius: "7px",
                                 textDecoration: "none",
                                 backgroundColor: childActive ? colors.childActiveBg : "transparent",
                                 transition: "background-color 0.15s ease",
                               }}
                             >
-                              <span
-                                style={{
-                                  display: "block",
-                                  fontSize: "0.8125rem",
-                                  fontWeight: childActive ? 600 : 500,
-                                  color: childActive ? colors.textAccent : colors.textPrimary,
-                                  lineHeight: 1.3,
-                                }}
-                              >
-                                {child.title}
-                              </span>
-                              {child.description && (
+                              {isCourseItem && (
+                                <span style={{
+                                  flexShrink: 0,
+                                  width: "30px",
+                                  height: "30px",
+                                  borderRadius: "8px",
+                                  background: childActive ? "#fee2e2" : "#fef2f2",
+                                  display: "flex",
+                                  alignItems: "center",
+                                  justifyContent: "center",
+                                  fontSize: "14px",
+                                }}>
+                                  {iconMap[child.title] ?? "📚"}
+                                </span>
+                              )}
+                              <span style={{ flex: 1, minWidth: 0 }}>
                                 <span
                                   style={{
                                     display: "block",
-                                    marginTop: "2px",
-                                    fontSize: "0.75rem",
-                                    lineHeight: 1.5,
-                                    color: colors.textMuted,
+                                    fontSize: "0.8125rem",
+                                    fontWeight: childActive ? 600 : 500,
+                                    color: childActive ? colors.textAccent : colors.textPrimary,
+                                    lineHeight: 1.3,
                                   }}
                                 >
-                                  {child.description}
+                                  {child.title}
                                 </span>
-                              )}
+                                {child.description && !isCourseItem && (
+                                  <span
+                                    style={{
+                                      display: "block",
+                                      marginTop: "2px",
+                                      fontSize: "0.75rem",
+                                      lineHeight: 1.5,
+                                      color: colors.textMuted,
+                                    }}
+                                  >
+                                    {child.description}
+                                  </span>
+                                )}
+                              </span>
                             </Link>
                           </li>
                         );
                       })}
+
+                      {/* Cert badge — only for Courses accordion */}
+                      {item.title === "Courses" && (
+                        <li style={{ marginTop: "6px" }}>
+                          <div style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "10px",
+                            padding: "10px",
+                            borderRadius: "8px",
+                            background: dark ? "rgba(220,38,38,0.10)" : "#fff1f2",
+                            border: `1px solid ${dark ? "rgba(220,38,38,0.25)" : "#fecaca"}`,
+                          }}>
+                            <span style={{ fontSize: "18px", flexShrink: 0 }}>🎓</span>
+                            <div>
+                              <div style={{ fontSize: "11.5px", fontWeight: 700, color: colors.textAccent, marginBottom: "2px" }}>
+                                Cert Exam Prep Included
+                              </div>
+                              <div style={{ fontSize: "10.5px", color: colors.textMuted, lineHeight: 1.4 }}>
+                                OSCP · CEH · AWS SAA · CCNA · AZ-900
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                      )}
                     </ul>
                   </div>
                 </li>

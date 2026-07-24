@@ -2,51 +2,69 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowRight, GraduationCap } from "lucide-react";
-import { cn } from "@/lib/utils";
+import {
+  ArrowRight, GraduationCap,
+  BrainCircuit, Bot, MessageSquare, BarChart3,
+  Shield, Crosshair, ScanSearch, Lock, Eye, Microscope, Code2,
+  Cloud, GitMerge, Container, Server, Terminal,
+  FileCode2, Globe, Smartphone, Blocks, Zap, Network,
+} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
-// ── Course data with icons & groups ──────────────────────────────────────────
-const courseGroups = [
+// ── Course data with Lucide icons & groups ────────────────────────────────────
+type CourseItem = {
+  title: string;
+  href: string;
+  icon: LucideIcon;
+  desc: string;
+};
+
+type CourseGroup = {
+  label: string;
+  items: CourseItem[];
+};
+
+const courseGroups: CourseGroup[] = [
   {
     label: "AI & Engineering",
     items: [
-      { title: "Artificial Intelligence",  href: "/courses/artificial-intelligence",  icon: "🧠", desc: "ML, LLMs, and AI deployment for production." },
-      { title: "AI Agent Development",     href: "/courses/ai-agent-development",     icon: "🤖", desc: "Autonomous agents with LangChain & multi-agent frameworks." },
-      { title: "Prompt Engineering",       href: "/courses/prompt-engineering",       icon: "💬", desc: "Master LLM prompting, RAG systems, and fine-tuning." },
-      { title: "Data Science & Analytics", href: "/courses/data-science",             icon: "📊", desc: "Pandas, ML pipelines, and data-driven insights." },
+      { title: "Artificial Intelligence",  href: "/courses/artificial-intelligence",  icon: BrainCircuit,  desc: "ML, LLMs, and AI deployment for production." },
+      { title: "AI Agent Development",     href: "/courses/ai-agent-development",     icon: Bot,           desc: "Autonomous agents with LangChain & multi-agent frameworks." },
+      { title: "Prompt Engineering",       href: "/courses/prompt-engineering",       icon: MessageSquare, desc: "Master LLM prompting, RAG systems, and fine-tuning." },
+      { title: "Data Science & Analytics", href: "/courses/data-science",             icon: BarChart3,     desc: "Pandas, ML pipelines, and data-driven insights." },
     ],
   },
   {
     label: "Security",
     items: [
-      { title: "Cyber Security",     href: "/courses/cybersecurity",       icon: "🛡️", desc: "Threats, defenses, NIST framework, and incident response." },
-      { title: "Ethical Hacking",    href: "/courses/ethical-hacking",     icon: "🎯", desc: "Hands-on offensive security from recon to post-exploitation." },
-      { title: "Penetration Testing",href: "/courses/penetration-testing", icon: "🔍", desc: "Professional pentest methodology, CVSS scoring, and reporting." },
-      { title: "API Security",       href: "/courses/api-security",        icon: "🔐", desc: "OWASP API Top 10, BOLA, auth attacks, and API hardening." },
-      { title: "SOC Analyst",        href: "/courses/soc-analyst",         icon: "👁️", desc: "SIEM, threat detection, MITRE ATT&CK, and incident response." },
-      { title: "Digital Forensics",  href: "/courses/digital-forensics",   icon: "🔬", desc: "Disk, memory, and malware analysis with chain of custody." },
-      { title: "Secure Coding",      href: "/courses/secure-coding",       icon: "🧱", desc: "Write secure code — OWASP Top 10 and secure SDLC." },
+      { title: "Cyber Security",      href: "/courses/cybersecurity",       icon: Shield,      desc: "Threats, defenses, NIST framework, and incident response." },
+      { title: "Ethical Hacking",     href: "/courses/ethical-hacking",     icon: Crosshair,   desc: "Hands-on offensive security from recon to post-exploitation." },
+      { title: "Penetration Testing", href: "/courses/penetration-testing", icon: ScanSearch,  desc: "Professional pentest methodology, CVSS scoring, and reporting." },
+      { title: "API Security",        href: "/courses/api-security",        icon: Lock,        desc: "OWASP API Top 10, BOLA, auth attacks, and API hardening." },
+      { title: "SOC Analyst",         href: "/courses/soc-analyst",         icon: Eye,         desc: "SIEM, threat detection, MITRE ATT&CK, and incident response." },
+      { title: "Digital Forensics",   href: "/courses/digital-forensics",   icon: Microscope,  desc: "Disk, memory, and malware analysis with chain of custody." },
+      { title: "Secure Coding",       href: "/courses/secure-coding",       icon: Code2,       desc: "Write secure code — OWASP Top 10 and secure SDLC." },
     ],
   },
   {
     label: "Cloud & DevOps",
     items: [
-      { title: "Cloud Computing",    href: "/courses/cloud-computing",     icon: "☁️", desc: "AWS, Azure, and GCP from fundamentals to advanced architecture." },
-      { title: "DevOps & DevSecOps", href: "/courses/devsecops",           icon: "⚙️", desc: "CI/CD pipelines, IaC, and security integrated into delivery." },
-      { title: "Docker & Kubernetes",href: "/courses/docker-kubernetes",   icon: "🐳", desc: "Containerization and orchestration for production deployments." },
-      { title: "AWS / Azure / GCP",  href: "/courses/aws-azure-gcp",       icon: "🖥️", desc: "Hands-on multi-cloud with certification-aligned labs." },
-      { title: "Linux Administration",href: "/courses/linux-administration",icon: "🐧", desc: "Shell scripting, hardening, and server management." },
+      { title: "Cloud Computing",     href: "/courses/cloud-computing",      icon: Cloud,     desc: "AWS, Azure, and GCP from fundamentals to advanced architecture." },
+      { title: "DevOps & DevSecOps",  href: "/courses/devsecops",            icon: GitMerge,  desc: "CI/CD pipelines, IaC, and security integrated into delivery." },
+      { title: "Docker & Kubernetes", href: "/courses/docker-kubernetes",    icon: Container, desc: "Containerization and orchestration for production deployments." },
+      { title: "AWS / Azure / GCP",   href: "/courses/aws-azure-gcp",        icon: Server,    desc: "Hands-on multi-cloud with certification-aligned labs." },
+      { title: "Linux Administration",href: "/courses/linux-administration",  icon: Terminal,  desc: "Shell scripting, hardening, and server management." },
     ],
   },
   {
     label: "Development",
     items: [
-      { title: "Python Programming",     href: "/courses/python-programming",     icon: "🐍", desc: "From basics to security tooling and automation." },
-      { title: "Web Development",        href: "/courses/web-development",        icon: "🌐", desc: "Full-stack React, Next.js, and Node.js with secure coding." },
-      { title: "Mobile App Development", href: "/courses/mobile-app-development", icon: "📱", desc: "React Native and Flutter with mobile security." },
-      { title: "Blockchain & Web3",      href: "/courses/blockchain-web3",        icon: "⛓️", desc: "Solidity, smart contracts, DeFi, and Web3 security." },
-      { title: "Automation",             href: "/courses/automation",             icon: "⚡", desc: "n8n, Make, and Zapier for business and security workflows." },
-      { title: "Networking (CCNA)",      href: "/courses/networking-ccna",        icon: "🌐", desc: "TCP/IP, routing, switching, and CCNA certification prep." },
+      { title: "Python Programming",      href: "/courses/python-programming",     icon: FileCode2,   desc: "From basics to security tooling and automation." },
+      { title: "Web Development",         href: "/courses/web-development",        icon: Globe,       desc: "Full-stack React, Next.js, and Node.js with secure coding." },
+      { title: "Mobile App Development",  href: "/courses/mobile-app-development", icon: Smartphone,  desc: "React Native and Flutter with mobile security." },
+      { title: "Blockchain & Web3",       href: "/courses/blockchain-web3",        icon: Blocks,      desc: "Solidity, smart contracts, DeFi, and Web3 security." },
+      { title: "Automation",              href: "/courses/automation",             icon: Zap,         desc: "n8n, Make, and Zapier for business and security workflows." },
+      { title: "Networking (CCNA)",       href: "/courses/networking-ccna",        icon: Network,     desc: "TCP/IP, routing, switching, and CCNA certification prep." },
     ],
   },
 ];
@@ -116,6 +134,7 @@ export function CoursesDropdown({ open }: CoursesDropdownProps) {
             {/* Items */}
             {group.items.map((course) => {
               const isActive = pathname === course.href || pathname.startsWith(course.href + "/");
+              const Icon = course.icon;
               return (
                 <Link
                   key={course.href}
@@ -125,7 +144,7 @@ export function CoursesDropdown({ open }: CoursesDropdownProps) {
                     display: "flex",
                     alignItems: "center",
                     gap: "12px",
-                    padding: "10px 12px",
+                    padding: "9px 12px",
                     borderRadius: "12px",
                     textDecoration: "none",
                     border: isActive ? "1px solid #fecaca" : "1px solid transparent",
@@ -136,16 +155,22 @@ export function CoursesDropdown({ open }: CoursesDropdownProps) {
                   }}
                   onMouseEnter={(e) => {
                     if (!isActive) {
-                      (e.currentTarget as HTMLElement).style.background = "#fff5f5";
-                      (e.currentTarget as HTMLElement).style.borderColor = "#fecaca";
-                      (e.currentTarget as HTMLElement).style.transform = "translateX(3px)";
+                      const el = e.currentTarget as HTMLElement;
+                      el.style.background = "#fff5f5";
+                      el.style.borderColor = "#fecaca";
+                      el.style.transform = "translateX(3px)";
+                      const iconEl = el.querySelector<HTMLElement>("[data-icon-wrap]");
+                      if (iconEl) iconEl.style.transform = "scale(1.05)";
                     }
                   }}
                   onMouseLeave={(e) => {
                     if (!isActive) {
-                      (e.currentTarget as HTMLElement).style.background = "transparent";
-                      (e.currentTarget as HTMLElement).style.borderColor = "transparent";
-                      (e.currentTarget as HTMLElement).style.transform = "translateX(0)";
+                      const el = e.currentTarget as HTMLElement;
+                      el.style.background = "transparent";
+                      el.style.borderColor = "transparent";
+                      el.style.transform = "translateX(0)";
+                      const iconEl = el.querySelector<HTMLElement>("[data-icon-wrap]");
+                      if (iconEl) iconEl.style.transform = "scale(1)";
                     }
                   }}
                 >
@@ -163,20 +188,28 @@ export function CoursesDropdown({ open }: CoursesDropdownProps) {
                   )}
 
                   {/* Icon circle */}
-                  <span style={{
-                    flexShrink: 0,
-                    width: "34px",
-                    height: "34px",
-                    borderRadius: "9px",
-                    background: isActive ? "#fee2e2" : "#fef2f2",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: "16px",
-                    lineHeight: 1,
-                    transition: "transform 180ms ease, background 180ms ease",
-                  }}>
-                    {course.icon}
+                  <span
+                    data-icon-wrap
+                    style={{
+                      flexShrink: 0,
+                      width: "34px",
+                      height: "34px",
+                      borderRadius: "9px",
+                      background: isActive ? "#fee2e2" : "#fef2f2",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      transition: "transform 180ms ease, background 180ms ease",
+                    }}
+                  >
+                    <Icon
+                      style={{
+                        width: "15px",
+                        height: "15px",
+                        color: isActive ? "#dc2626" : "#ef4444",
+                        flexShrink: 0,
+                      }}
+                    />
                   </span>
 
                   {/* Text */}
@@ -191,7 +224,7 @@ export function CoursesDropdown({ open }: CoursesDropdownProps) {
                       {course.title}
                     </div>
                     <div style={{
-                      fontSize: "12px",
+                      fontSize: "11.5px",
                       color: "#6b7280",
                       lineHeight: 1.45,
                       whiteSpace: "nowrap",
@@ -219,7 +252,7 @@ export function CoursesDropdown({ open }: CoursesDropdownProps) {
         {/* ── Cert highlight banner ─────────────────────────────────────── */}
         <div style={{
           margin: "8px 4px 4px",
-          padding: "12px 14px",
+          padding: "11px 14px",
           borderRadius: "12px",
           background: "linear-gradient(135deg, #fff1f2 0%, #fef9f9 100%)",
           border: "1px solid #fecaca",
@@ -236,15 +269,14 @@ export function CoursesDropdown({ open }: CoursesDropdownProps) {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            fontSize: "16px",
           }}>
-            🎓
+            <GraduationCap style={{ width: "16px", height: "16px", color: "#dc2626" }} />
           </span>
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ fontSize: "12.5px", fontWeight: 700, color: "#b91c1c", marginBottom: "2px" }}>
               Certification Exam Prep Included
             </div>
-            <div style={{ fontSize: "11.5px", color: "#6b7280", lineHeight: 1.4 }}>
+            <div style={{ fontSize: "11px", color: "#6b7280", lineHeight: 1.4 }}>
               OSCP · CEH · AWS SAA · CCNA · AZ-900 · CKA and more
             </div>
           </div>

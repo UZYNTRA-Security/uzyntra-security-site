@@ -363,20 +363,20 @@ export function MobileNav({ items }: MobileNavProps) {
                       {item.children?.map((child) => {
                         const childActive = isActiveLink(child.href);
                         const isCourseItem = item.title === "Courses";
-                        // icon map for courses
+                        // short label map for courses (2-char abbrev shown in icon circle)
                         const iconMap: Record<string, string> = {
-                          "Artificial Intelligence": "🧠", "AI Agent Development": "🤖",
-                          "Prompt Engineering": "💬", "Data Science & Analytics": "📊",
-                          "Cyber Security": "🛡️", "Ethical Hacking": "🎯",
-                          "Penetration Testing": "🔍", "API Security": "🔐",
-                          "SOC Analyst": "👁️", "Digital Forensics": "🔬",
-                          "Secure Coding": "🧱", "Cloud Computing": "☁️",
-                          "DevOps & DevSecOps": "⚙️", "Docker & Kubernetes": "🐳",
-                          "AWS / Azure / GCP": "🖥️", "Linux Administration": "🐧",
-                          "Python Programming": "🐍", "Web Development": "🌐",
-                          "Mobile App Development": "📱", "Blockchain & Web3": "⛓️",
-                          "Automation": "⚡", "Networking (CCNA)": "📡",
-                          "View All Courses": "🎓",
+                          "Artificial Intelligence": "AI", "AI Agent Development": "AG",
+                          "Prompt Engineering": "PE", "Data Science & Analytics": "DS",
+                          "Cyber Security": "CS", "Ethical Hacking": "EH",
+                          "Penetration Testing": "PT", "API Security": "AS",
+                          "SOC Analyst": "SC", "Digital Forensics": "DF",
+                          "Secure Coding": "SC", "Cloud Computing": "CC",
+                          "DevOps & DevSecOps": "DO", "Docker & Kubernetes": "DK",
+                          "AWS / Azure / GCP": "CL", "Linux Administration": "LX",
+                          "Python Programming": "PY", "Web Development": "WD",
+                          "Mobile App Development": "MB", "Blockchain & Web3": "BC",
+                          "Automation": "AU", "Networking (CCNA)": "NW",
+                          "View All Courses": "→",
                         };
                         return (
                           <li key={child.title} style={{ marginBottom: "1px" }}>
@@ -405,9 +405,13 @@ export function MobileNav({ items }: MobileNavProps) {
                                   display: "flex",
                                   alignItems: "center",
                                   justifyContent: "center",
-                                  fontSize: "14px",
+                                  fontSize: "10px",
+                                  fontWeight: 700,
+                                  color: childActive ? "#dc2626" : "#ef4444",
+                                  letterSpacing: "-0.02em",
+                                  fontFamily: "monospace",
                                 }}>
-                                  {iconMap[child.title] ?? "📚"}
+                                  {iconMap[child.title] ?? "--"}
                                 </span>
                               )}
                               <span style={{ flex: 1, minWidth: 0 }}>
@@ -453,7 +457,21 @@ export function MobileNav({ items }: MobileNavProps) {
                             background: dark ? "rgba(220,38,38,0.10)" : "#fff1f2",
                             border: `1px solid ${dark ? "rgba(220,38,38,0.25)" : "#fecaca"}`,
                           }}>
-                            <span style={{ fontSize: "18px", flexShrink: 0 }}>🎓</span>
+                            <span style={{
+                              flexShrink: 0,
+                              width: "30px",
+                              height: "30px",
+                              borderRadius: "8px",
+                              background: dark ? "rgba(220,38,38,0.2)" : "#fee2e2",
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              fontSize: "11px",
+                              fontWeight: 700,
+                              color: "#dc2626",
+                            }}>
+                              ✓
+                            </span>
                             <div>
                               <div style={{ fontSize: "11.5px", fontWeight: 700, color: colors.textAccent, marginBottom: "2px" }}>
                                 Cert Exam Prep Included

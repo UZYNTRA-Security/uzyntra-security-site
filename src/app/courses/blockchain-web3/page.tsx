@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CheckCircle2, ArrowRight, MessageSquare } from "lucide-react";
 import { PageHero } from "@/components/sections/page-hero";
+import { CourseHeroImage } from "@/components/sections/course-hero-image";
 import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
@@ -31,6 +32,7 @@ const stepColors = ["text-red-500", "text-orange-600", "text-violet-600", "text-
 export default function BlockchainCourse() {
   return (
     <main id="main-content">
+      <CourseHeroImage src="/images/courses/blockchain-web3.webp" alt="Blockchain and Web3 Course" />
       <PageHero
         eyebrow="Course — Blockchain & Web3"
         title="Blockchain & Web3: Smart Contracts to Secure dApps"

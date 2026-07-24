@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CheckCircle2, ArrowRight, MessageSquare } from "lucide-react";
 import { PageHero } from "@/components/sections/page-hero";
+import { CourseHeroImage } from "@/components/sections/course-hero-image";
 import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
@@ -31,6 +32,7 @@ const stepColors = ["text-red-500", "text-orange-600", "text-violet-600", "text-
 export default function PythonCourse() {
   return (
     <main id="main-content">
+      <CourseHeroImage src="/images/courses/python-programming.webp" alt="Python Programming Course" />
       <PageHero
         eyebrow="Course — Python Programming"
         title="Python Programming: From Basics to Security Tooling"

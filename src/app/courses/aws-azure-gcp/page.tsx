@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CheckCircle2, ArrowRight, MessageSquare } from "lucide-react";
 import { PageHero } from "@/components/sections/page-hero";
+import { CourseHeroImage } from "@/components/sections/course-hero-image";
 import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
@@ -31,6 +32,7 @@ const stepColors = ["text-red-500", "text-orange-600", "text-violet-600", "text-
 export default function AWSAzureGCPCourse() {
   return (
     <main id="main-content">
+      <CourseHeroImage src="/images/courses/aws-azure-gcp.webp" alt="AWS Azure GCP Course" />
       <PageHero
         eyebrow="Course — AWS / Azure / GCP"
         title="AWS, Azure & GCP: Multi-Cloud Mastery"

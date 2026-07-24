@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import {
   BrainCircuit, Shield, Cloud, GitMerge, Code2, Globe, Smartphone,
   BarChart3, Blocks, Zap, MessageSquare, Bot, Crosshair, ShieldAlert,
@@ -26,6 +27,7 @@ const courses = [
   {
     title: "Artificial Intelligence",
     href: "/courses/artificial-intelligence",
+    image: "/images/courses/artificial-intelligence.webp",
     icon: <BrainCircuit className="h-6 w-6 text-red-600" aria-hidden="true" />,
     eyebrow: "⭐⭐⭐⭐⭐ Demand",
     description: "Machine learning, deep learning, neural networks, and real-world AI application development.",
@@ -34,6 +36,7 @@ const courses = [
   {
     title: "Cyber Security",
     href: "/courses/cybersecurity",
+    image: "/images/courses/cybersecurity.webp",
     icon: <Shield className="h-6 w-6 text-red-600" aria-hidden="true" />,
     eyebrow: "⭐⭐⭐⭐⭐ Demand",
     description: "Comprehensive cybersecurity training covering threats, defenses, and industry frameworks.",
@@ -42,6 +45,7 @@ const courses = [
   {
     title: "Cloud Computing",
     href: "/courses/cloud-computing",
+    image: "/images/courses/cloud-computing.webp",
     icon: <Cloud className="h-6 w-6 text-red-600" aria-hidden="true" />,
     eyebrow: "⭐⭐⭐⭐⭐ Demand",
     description: "AWS, Azure, and GCP fundamentals through advanced cloud architecture and security.",
@@ -50,6 +54,7 @@ const courses = [
   {
     title: "DevOps & DevSecOps",
     href: "/courses/devsecops",
+    image: "/images/courses/devsecops.webp",
     icon: <GitMerge className="h-6 w-6 text-red-600" aria-hidden="true" />,
     eyebrow: "⭐⭐⭐⭐⭐ Demand",
     description: "CI/CD pipelines, infrastructure as code, and security integrated into every stage of delivery.",
@@ -58,6 +63,7 @@ const courses = [
   {
     title: "Python Programming",
     href: "/courses/python-programming",
+    image: "/images/courses/python-programming.webp",
     icon: <Code2 className="h-6 w-6 text-red-600" aria-hidden="true" />,
     eyebrow: "⭐⭐⭐⭐⭐ Demand",
     description: "Python from fundamentals to advanced scripting, automation, and security tooling.",
@@ -66,6 +72,7 @@ const courses = [
   {
     title: "Web Development",
     href: "/courses/web-development",
+    image: "/images/courses/web-development.webp",
     icon: <Globe className="h-6 w-6 text-red-600" aria-hidden="true" />,
     eyebrow: "⭐⭐⭐⭐ Demand",
     description: "Full-stack web development with modern frameworks, secure coding practices, and deployment.",
@@ -74,6 +81,7 @@ const courses = [
   {
     title: "Mobile App Development",
     href: "/courses/mobile-app-development",
+    image: "/images/courses/mobile-app-development.webp",
     icon: <Smartphone className="h-6 w-6 text-red-600" aria-hidden="true" />,
     eyebrow: "⭐⭐⭐⭐ Demand",
     description: "Build production-ready mobile apps for iOS and Android with security-first architecture.",
@@ -82,6 +90,7 @@ const courses = [
   {
     title: "Data Science & Analytics",
     href: "/courses/data-science",
+    image: "/images/courses/data-science.webp",
     icon: <BarChart3 className="h-6 w-6 text-red-600" aria-hidden="true" />,
     eyebrow: "⭐⭐⭐⭐ Demand",
     description: "Data analysis, visualization, statistical modeling, and machine learning pipelines.",
@@ -90,6 +99,7 @@ const courses = [
   {
     title: "Blockchain & Web3",
     href: "/courses/blockchain-web3",
+    image: "/images/courses/blockchain-web3.webp",
     icon: <Blocks className="h-6 w-6 text-red-600" aria-hidden="true" />,
     eyebrow: "⭐⭐⭐⭐ Demand",
     description: "Smart contract development, DeFi protocols, dApp engineering, and Web3 security.",
@@ -98,6 +108,7 @@ const courses = [
   {
     title: "Automation (n8n, Make, Zapier)",
     href: "/courses/automation",
+    image: "/images/courses/automation.webp",
     icon: <Zap className="h-6 w-6 text-red-600" aria-hidden="true" />,
     eyebrow: "⭐⭐⭐⭐⭐ Demand",
     description: "No-code and low-code automation workflows using n8n, Make, and Zapier for business operations.",
@@ -106,6 +117,7 @@ const courses = [
   {
     title: "Prompt Engineering",
     href: "/courses/prompt-engineering",
+    image: "/images/courses/prompt-engineering.webp",
     icon: <MessageSquare className="h-6 w-6 text-red-600" aria-hidden="true" />,
     eyebrow: "⭐⭐⭐⭐ Demand",
     description: "Master prompt design, chain-of-thought reasoning, and LLM optimization for production use.",
@@ -114,6 +126,7 @@ const courses = [
   {
     title: "AI Agent Development",
     href: "/courses/ai-agent-development",
+    image: "/images/courses/ai-agent-development.webp",
     icon: <Bot className="h-6 w-6 text-red-600" aria-hidden="true" />,
     eyebrow: "⭐⭐⭐⭐⭐ Demand",
     description: "Build autonomous AI agents using LangChain, LlamaIndex, and multi-agent orchestration frameworks.",
@@ -122,6 +135,7 @@ const courses = [
   {
     title: "Ethical Hacking",
     href: "/courses/ethical-hacking",
+    image: "/images/courses/ethical-hacking.webp",
     icon: <Crosshair className="h-6 w-6 text-red-600" aria-hidden="true" />,
     eyebrow: "⭐⭐⭐⭐⭐ Demand",
     description: "Hands-on ethical hacking techniques covering reconnaissance, exploitation, and post-exploitation.",
@@ -130,6 +144,7 @@ const courses = [
   {
     title: "Penetration Testing",
     href: "/courses/penetration-testing",
+    image: "/images/courses/penetration-testing.webp",
     icon: <ShieldAlert className="h-6 w-6 text-red-600" aria-hidden="true" />,
     eyebrow: "⭐⭐⭐⭐⭐ Demand",
     description: "Structured penetration testing methodology for web apps, networks, and cloud environments.",
@@ -138,6 +153,7 @@ const courses = [
   {
     title: "API Security",
     href: "/courses/api-security",
+    image: "/images/courses/api-security.webp",
     icon: <Lock className="h-6 w-6 text-red-600" aria-hidden="true" />,
     eyebrow: "⭐⭐⭐⭐⭐ Demand",
     description: "OWASP API Top 10, authentication attacks, BOLA, and API security testing methodology.",
@@ -146,6 +162,7 @@ const courses = [
   {
     title: "Secure Coding",
     href: "/courses/secure-coding",
+    image: "/images/courses/secure-coding.webp",
     icon: <Code2 className="h-6 w-6 text-red-600" aria-hidden="true" />,
     eyebrow: "⭐⭐⭐⭐⭐ Demand",
     description: "Write secure code from day one — input validation, OWASP Top 10, and secure SDLC practices.",
@@ -154,6 +171,7 @@ const courses = [
   {
     title: "Linux Administration",
     href: "/courses/linux-administration",
+    image: "/images/courses/linux-administration.webp",
     icon: <Terminal className="h-6 w-6 text-red-600" aria-hidden="true" />,
     eyebrow: "⭐⭐⭐⭐ Demand",
     description: "Linux system administration, shell scripting, hardening, and server management.",
@@ -162,6 +180,7 @@ const courses = [
   {
     title: "Docker & Kubernetes",
     href: "/courses/docker-kubernetes",
+    image: "/images/courses/docker-kubernetes.webp",
     icon: <Container className="h-6 w-6 text-red-600" aria-hidden="true" />,
     eyebrow: "⭐⭐⭐⭐⭐ Demand",
     description: "Containerization with Docker and orchestration with Kubernetes for production deployments.",
@@ -170,6 +189,7 @@ const courses = [
   {
     title: "AWS / Azure / GCP",
     href: "/courses/aws-azure-gcp",
+    image: "/images/courses/aws-azure-gcp.webp",
     icon: <Server className="h-6 w-6 text-red-600" aria-hidden="true" />,
     eyebrow: "⭐⭐⭐⭐⭐ Demand",
     description: "Deep-dive into the three major cloud platforms with hands-on labs and certification prep.",
@@ -178,6 +198,7 @@ const courses = [
   {
     title: "Networking (CCNA)",
     href: "/courses/networking-ccna",
+    image: "/images/courses/networking-ccna.webp",
     icon: <Network className="h-6 w-6 text-red-600" aria-hidden="true" />,
     eyebrow: "⭐⭐⭐⭐ Demand",
     description: "Networking fundamentals, routing, switching, and CCNA certification preparation.",
@@ -186,6 +207,7 @@ const courses = [
   {
     title: "SOC Analyst",
     href: "/courses/soc-analyst",
+    image: "/images/courses/soc-analyst.webp",
     icon: <Eye className="h-6 w-6 text-red-600" aria-hidden="true" />,
     eyebrow: "⭐⭐⭐⭐⭐ Demand",
     description: "Security Operations Center analyst training — SIEM, threat detection, and incident response.",
@@ -194,6 +216,7 @@ const courses = [
   {
     title: "Digital Forensics",
     href: "/courses/digital-forensics",
+    image: "/images/courses/digital-forensics.webp",
     icon: <Search className="h-6 w-6 text-red-600" aria-hidden="true" />,
     eyebrow: "⭐⭐⭐⭐ Demand",
     description: "Digital forensics investigation, evidence collection, malware analysis, and chain of custody.",
@@ -216,23 +239,34 @@ export default function CoursesPage() {
             {courses.map((course) => (
               <div
                 key={course.title}
-                className="surface-card-strong group flex flex-col gap-5 p-6 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(220,38,38,0.10)]"
+                className="surface-card-strong group flex flex-col overflow-hidden transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(220,38,38,0.10)]"
               >
-                <div className="flex items-start gap-4">
-                  <div className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-red-50">
-                    {course.icon}
-                  </div>
-                  <div>
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-red-700">
-                      {course.eyebrow}
-                    </p>
-                    <h2 className="mt-1 text-base font-semibold leading-snug text-slate-950">
+                {/* Course image */}
+                <div className="relative h-44 w-full overflow-hidden bg-slate-100">
+                  <Image
+                    src={course.image}
+                    alt={`${course.title} course`}
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                  />
+                  {/* Eyebrow badge over image */}
+                  <span className="absolute left-3 top-3 rounded-full bg-white/90 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-red-700 backdrop-blur-sm">
+                    {course.eyebrow}
+                  </span>
+                </div>
+
+                <div className="flex flex-col gap-4 p-5">
+                  <div className="flex items-center gap-3">
+                    <div className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-red-50">
+                      {course.icon}
+                    </div>
+                    <h2 className="text-base font-semibold leading-snug text-slate-950">
                       {course.title}
                     </h2>
                   </div>
-                </div>
 
-                <p className="text-sm leading-7 text-slate-600">{course.description}</p>
+                  <p className="text-sm leading-6 text-slate-600">{course.description}</p>
 
                 <ul className="grid grid-cols-2 gap-1.5">
                   {course.highlights.map((h) => (
@@ -243,14 +277,15 @@ export default function CoursesPage() {
                   ))}
                 </ul>
 
-                <div className="mt-auto">
-                  <Link
-                    href={course.href}
-                    className="group/link inline-flex items-center gap-2 text-sm font-semibold text-red-700 transition-all duration-200 hover:gap-3"
-                  >
-                    View Course
-                    <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover/link:translate-x-1" aria-hidden="true" />
-                  </Link>
+                  <div className="mt-auto">
+                    <Link
+                      href={course.href}
+                      className="group/link inline-flex items-center gap-2 text-sm font-semibold text-red-700 transition-all duration-200 hover:gap-3"
+                    >
+                      View Course
+                      <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover/link:translate-x-1" aria-hidden="true" />
+                    </Link>
+                  </div>
                 </div>
               </div>
             ))}

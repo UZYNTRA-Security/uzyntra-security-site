@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Mail, Github, GraduationCap, Shield, ArrowRight } from "lucide-react";
+import { Mail, ExternalLink, GraduationCap, Shield, ArrowRight } from "lucide-react";
 import { ContactForm } from "@/components/forms/contact-form";
 import { siteConfig } from "@/config/site";
 
@@ -24,7 +24,7 @@ const contactLinks = [
     href: "mailto:contact@uzyntra.com",
   },
   {
-    icon: Github,
+    icon: ExternalLink,
     label: "GitHub",
     value: "github.com/UsamaMatrix",
     href: siteConfig.founderLinks.github,

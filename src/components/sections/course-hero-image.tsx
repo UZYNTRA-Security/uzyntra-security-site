@@ -15,19 +15,23 @@ export function CourseHeroImage({ src, alt, eyebrow, title, description }: Cours
       className="course-hero relative w-full overflow-hidden"
       style={{ height: "clamp(420px, 52vw, 560px)" }}
     >
-      {/* Full-bleed image */}
+      {/* Full-bleed image — brightness(0.5) normalizes light & dark images */}
       <Image
         src={src}
         alt={alt}
         fill
         priority
-        className="object-cover"
+        className="object-cover brightness-50"
         sizes="100vw"
       />
 
-      {/* Top-down dark scrim — keeps text legible on both themes */}
+      {/* Base dark normalizer — flattens remaining brightness variance */}
+      <div className="absolute inset-0 bg-black/40" />
+
+      {/* Scrim — deepens bottom for text legibility */}
       <div className="course-hero-scrim absolute inset-0" />
-      {/* Bottom fade — blends into the page background color per theme */}
+
+      {/* Bottom fade — dissolves into page background color per theme */}
       <div className="course-hero-fade absolute inset-x-0 bottom-0 h-48" />
 
       {/* Text — pinned to bottom of image */}

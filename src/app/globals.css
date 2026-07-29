@@ -325,24 +325,25 @@ ol {
 
 /* ─── Course hero image ─────────────────────────────── */
 
-.course-hero-overlay {
+/* Dark scrim from top — ensures eyebrow/title/desc are always readable */
+.course-hero-scrim {
   background: linear-gradient(
-    to top,
-    rgba(2, 6, 23, 0.93) 0%,
-    rgba(2, 6, 23, 0.70) 32%,
-    rgba(2, 6, 23, 0.28) 58%,
-    rgba(2, 6, 23, 0.06) 100%
+    to bottom,
+    rgba(0, 0, 0, 0.18) 0%,
+    rgba(0, 0, 0, 0.10) 40%,
+    rgba(0, 0, 0, 0.42) 70%,
+    rgba(0, 0, 0, 0.78) 100%
   );
 }
 
-[data-theme="dark"] .course-hero-overlay {
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.97) 0%,
-    rgba(0, 0, 0, 0.80) 32%,
-    rgba(0, 0, 0, 0.38) 58%,
-    rgba(0, 0, 0, 0.12) 100%
-  );
+/* Bottom fade — light theme fades into white page */
+.course-hero-fade {
+  background: linear-gradient(to bottom, transparent, #ffffff);
+}
+
+/* Bottom fade — dark theme fades into dark page */
+[data-theme="dark"] .course-hero-fade {
+  background: linear-gradient(to bottom, transparent, #0a0f1a);
 }
 
 /* ─── Page hero ──────────────────────────────────────── */

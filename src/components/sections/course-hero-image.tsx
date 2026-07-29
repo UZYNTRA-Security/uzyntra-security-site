@@ -25,8 +25,10 @@ export function CourseHeroImage({ src, alt, eyebrow, title, description }: Cours
         sizes="100vw"
       />
 
-      {/* Gradient overlay — CSS vars handle light vs dark automatically */}
-      <div className="course-hero-overlay absolute inset-0" />
+      {/* Top-down dark scrim — keeps text legible on both themes */}
+      <div className="course-hero-scrim absolute inset-0" />
+      {/* Bottom fade — blends into the page background color per theme */}
+      <div className="course-hero-fade absolute inset-x-0 bottom-0 h-48" />
 
       {/* Text — pinned to bottom of image */}
       <div className="absolute inset-x-0 bottom-0 container-shell pb-10 sm:pb-14">

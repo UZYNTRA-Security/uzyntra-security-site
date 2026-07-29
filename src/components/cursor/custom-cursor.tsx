@@ -54,9 +54,9 @@ export function CustomCursor() {
     let isVisible = false;
     let isHoveringInteractive = false;
 
-    const DOT_SIZE = 10;
-    const RING_SIZE = 38;
-    const GLOW_SIZE = 140;
+    const DOT_SIZE = 8;
+    const RING_SIZE = 34;
+    const GLOW_SIZE = 120;
 
     const isInteractiveElement = (target: EventTarget | null) => {
       if (!(target instanceof HTMLElement)) return false;
@@ -65,9 +65,9 @@ export function CustomCursor() {
 
     const showCursor = () => {
       if (!isVisible) {
-        dot.style.opacity = "1";
-        ring.style.opacity = "1";
-        glow.style.opacity = "1";
+        dot.style.opacity = "0.85";
+        ring.style.opacity = "0.55";
+        glow.style.opacity = "0.5";
         isVisible = true;
       }
     };
@@ -84,11 +84,10 @@ export function CustomCursor() {
     };
 
     const updateInteractiveState = () => {
-      // Subtle scale — large values cause the ring to visually "jump away"
-      // from the dot since they scale from different centers
-      ring.style.scale = isHoveringInteractive ? "1.12" : "1";
-      glow.style.scale = isHoveringInteractive ? "1.08" : "1";
-      glow.style.opacity = isHoveringInteractive ? "0.90" : "0.75";
+      ring.style.scale = isHoveringInteractive ? "1.5" : "1";
+      ring.style.opacity = isHoveringInteractive ? "0.75" : "0.55";
+      glow.style.scale = isHoveringInteractive ? "1.2" : "1";
+      glow.style.opacity = isHoveringInteractive ? "0.70" : "0.50";
     };
 
     const animateFollowers = () => {
@@ -165,17 +164,17 @@ export function CustomCursor() {
       <div
         ref={glowRef}
         aria-hidden="true"
-        className="pointer-events-none fixed left-0 top-0 z-[9996] h-[140px] w-[140px] rounded-full bg-[radial-gradient(circle,rgba(239,68,68,0.18)_0%,rgba(239,68,68,0.08)_35%,rgba(239,68,68,0.00)_70%)] opacity-0 blur-2xl transition-[opacity,scale] duration-300 will-change-transform"
+        className="pointer-events-none fixed left-0 top-0 z-[9996] h-[120px] w-[120px] rounded-full bg-[radial-gradient(circle,rgba(239,68,68,0.14)_0%,rgba(239,68,68,0.06)_40%,rgba(239,68,68,0.00)_70%)] opacity-0 blur-2xl transition-[opacity,scale] duration-300 will-change-transform"
       />
       <div
         ref={ringRef}
         aria-hidden="true"
-        className="pointer-events-none fixed left-0 top-0 z-[9998] h-10 w-10 rounded-full border border-red-500/80 opacity-0 shadow-[0_0_24px_rgba(239,68,68,0.22)] transition-[opacity,scale] duration-200 will-change-transform"
+        className="pointer-events-none fixed left-0 top-0 z-[9998] h-[34px] w-[34px] rounded-full border border-red-500/60 opacity-0 shadow-[0_0_12px_rgba(239,68,68,0.15)] transition-[opacity,scale] duration-200 will-change-transform"
       />
       <div
         ref={dotRef}
         aria-hidden="true"
-        className="pointer-events-none fixed left-0 top-0 z-[9999] h-2.5 w-2.5 rounded-full bg-red-600 opacity-0 shadow-[0_0_16px_rgba(220,38,38,0.95)] transition-opacity duration-200 will-change-transform"
+        className="pointer-events-none fixed left-0 top-0 z-[9999] h-2 w-2 rounded-full bg-red-500 opacity-0 shadow-[0_0_8px_rgba(220,38,38,0.7)] transition-opacity duration-200 will-change-transform"
       />
     </>
   );

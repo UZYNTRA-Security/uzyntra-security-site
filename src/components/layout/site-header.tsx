@@ -10,7 +10,7 @@ import { ThemedLogo } from "@/components/ui/themed-logo";
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200/70 bg-white/95 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-slate-200/70 bg-white/98 backdrop-blur-md [data-theme='dark']_&:bg-transparent">
       <div className="container-shell">
         <div className="flex items-center justify-between gap-2 sm:gap-4" style={{ height: "56px" }}>
 
@@ -37,7 +37,7 @@ export function SiteHeader() {
             <ThemeToggle />
             <Link
               href="/download"
-              className="btn-solid hidden h-9 items-center gap-1.5 rounded-lg px-4 text-sm active:translate-y-0 lg:inline-flex"
+              className="btn-stroke hidden h-9 items-center gap-1.5 rounded-lg px-4 text-sm active:translate-y-0 lg:inline-flex"
             >
               Download
             </Link>

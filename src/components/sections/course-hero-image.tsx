@@ -32,10 +32,10 @@ export function CourseHeroImage({ src, alt, eyebrow, title, description }: Cours
         style={{ background: "linear-gradient(to top, rgba(0,0,0,0.55), transparent)" }}
       />
 
-      {/* Centered content */}
-      <div className="absolute inset-0 flex items-center">
+      {/* Content — pushed down from navbar, not centered, so it sits upper-mid */}
+      <div className="absolute inset-0 flex items-start" style={{ paddingTop: "calc(var(--header-height) + 3rem)" }}>
         <div className="container-shell w-full">
-          <div className="mx-auto max-w-3xl">
+          <div className="mx-auto max-w-4xl">
 
             {/* Eyebrow badge */}
             <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/90 backdrop-blur-sm">
@@ -53,14 +53,14 @@ export function CourseHeroImage({ src, alt, eyebrow, title, description }: Cours
 
             {/* Description */}
             <p
-              className="mt-4 max-w-2xl text-base text-white/90 sm:text-lg"
-              style={{ lineHeight: 1.65, textShadow: "0 1px 12px rgba(0,0,0,0.6)" }}
+              className="mt-4 text-base text-white/90 sm:text-lg"
+              style={{ lineHeight: 1.65, textShadow: "0 1px 12px rgba(0,0,0,0.6)", maxWidth: "640px" }}
             >
               {description}
             </p>
 
             {/* CTA buttons */}
-            <div className="mt-7 flex flex-wrap gap-3">
+            <div className="mt-7 flex flex-wrap gap-4">
               <Link
                 href="/contact"
                 className="inline-flex h-11 items-center gap-2 rounded-xl bg-red-600 px-6 text-sm font-semibold text-white shadow-lg transition-all duration-200 hover:bg-red-500 hover:-translate-y-0.5 hover:shadow-red-600/40"

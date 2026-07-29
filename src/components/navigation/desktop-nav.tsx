@@ -60,7 +60,7 @@ export function DesktopNav({ items }: DesktopNavProps) {
                 "relative rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200",
                 "hover:bg-red-50 hover:text-red-700",
                 isActive
-                  ? "text-red-700 after:absolute after:bottom-0 after:left-3 after:right-3 after:h-[2px] after:rounded-full after:bg-red-600 after:content-['']"
+                  ? "text-red-700 after:absolute after:bottom-0 after:left-3 after:right-3 after:h-[3px] after:rounded-full after:bg-red-600 after:shadow-[0_0_6px_rgba(220,38,38,0.5)] after:content-['']"
                   : "text-slate-700"
               )}
             >
@@ -88,7 +88,7 @@ export function DesktopNav({ items }: DesktopNavProps) {
                 "hover:bg-red-50 hover:text-red-700",
                 isOpen && "bg-red-50 text-red-700",
                 isActive && !isOpen &&
-                  "text-red-700 after:absolute after:bottom-0 after:left-3 after:right-3 after:h-[2px] after:rounded-full after:bg-red-600 after:content-['']"
+                  "text-red-700 after:absolute after:bottom-0 after:left-3 after:right-3 after:h-[3px] after:rounded-full after:bg-red-600 after:shadow-[0_0_6px_rgba(220,38,38,0.5)] after:content-['']"
               )}
             >
               {item.title}

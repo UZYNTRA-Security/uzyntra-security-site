@@ -1011,8 +1011,10 @@ ol {
 
 /* Header */
 [data-theme="dark"] header {
-  background: rgba(10, 15, 26, 0.95);
+  background: rgba(10, 15, 26, 0.88);
   border-bottom-color: rgba(51, 65, 85, 0.5);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 /* Footer */
@@ -1076,7 +1078,7 @@ ol {
 [data-theme="dark"] .text-slate-900 { color: hsl(210, 40%, 92%) !important; }
 [data-theme="dark"] .text-slate-800 { color: hsl(210, 40%, 85%) !important; }
 [data-theme="dark"] .text-slate-700 { color: hsl(215, 20%, 75%) !important; }
-[data-theme="dark"] .text-slate-600 { color: hsl(215, 16%, 60%) !important; }
+[data-theme="dark"] .text-slate-600 { color: hsl(215, 20%, 68%) !important; }
 [data-theme="dark"] .text-slate-500 { color: hsl(215, 16%, 62%) !important; } /* was 50% — WCAG AA fix */
 
 /* Border overrides */

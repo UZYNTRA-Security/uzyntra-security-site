@@ -161,7 +161,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         >
           Skip to content
         </a>
-        <div className="relative flex min-h-screen flex-col page-bg" style={{ overflowX: "clip", zIndex: 1 }}>
+        <div className="relative flex min-h-screen flex-col" style={{ overflowX: "clip", zIndex: 1 }}>
           <SiteHeader />
           <div className="flex flex-1 flex-col">{children}</div>
           <SiteFooter />

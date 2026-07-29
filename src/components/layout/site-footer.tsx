@@ -85,6 +85,14 @@ export function SiteFooter() {
                 contact@uzyntra.com
               </a>
             </p>
+            <p className="mt-1.5 text-sm font-medium text-slate-950">
+              <a
+                href="tel:+923335545728"
+                className="transition-colors hover:text-red-700"
+              >
+                +92 333 5545728
+              </a>
+            </p>
           </div>
 
           <FooterGroup title="Company"  links={footerNavigation.company}  />

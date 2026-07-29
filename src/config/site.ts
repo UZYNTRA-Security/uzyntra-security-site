@@ -10,6 +10,7 @@ export const siteConfig = {
   locale: "en_US",
   type: "website",
   email: "security@uzyntra.com",
+  phone: "+92 333 5545728",
 
   tagline: "Cybersecurity, Blockchain, and Secure Software Engineering",
 

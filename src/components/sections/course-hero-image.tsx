@@ -25,21 +25,22 @@ export function CourseHeroImage({ src, alt, eyebrow, title, description }: Cours
         sizes="100vw"
       />
 
-      {/* Primary overlay — stronger gradient for text contrast on both themes */}
+      {/* Diagonal overlay — left side darker (text area), right side lighter (image shows) */}
       <div
         className="absolute inset-0"
         style={{
-          background: "linear-gradient(rgba(5,8,15,0.68), rgba(5,8,15,0.62))",
+          background:
+            "linear-gradient(90deg, rgba(4,8,16,0.72) 0%, rgba(4,8,16,0.55) 55%, rgba(4,8,16,0.35) 100%)",
         }}
       />
 
-      {/* Bottom vignette — subtle depth */}
+      {/* Bottom vignette */}
       <div
         className="absolute inset-x-0 bottom-0 h-40"
-        style={{ background: "linear-gradient(to top, rgba(0,0,0,0.60), transparent)" }}
+        style={{ background: "linear-gradient(to top, rgba(0,0,0,0.55), transparent)" }}
       />
 
-      {/* Content — sits just below navbar, ~40px tighter than before */}
+      {/* Content */}
       <div
         className="absolute inset-0 flex items-start"
         style={{ paddingTop: "calc(var(--header-height) + 2rem)" }}
@@ -47,30 +48,36 @@ export function CourseHeroImage({ src, alt, eyebrow, title, description }: Cours
         <div className="container-shell w-full">
           <div className="mx-auto max-w-[760px]">
 
-            {/* Eyebrow badge — slightly more opaque bg */}
-            <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/[0.18] px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/95 backdrop-blur-sm">
+            {/* Eyebrow badge */}
+            <div
+              className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/25 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] backdrop-blur-sm"
+              style={{ background: "rgba(255,255,255,0.12)", color: "#f8fafc" }}
+            >
               <ShieldCheck className="h-3.5 w-3.5 shrink-0 text-red-400" />
               {eyebrow}
             </div>
 
-            {/* Title — stronger shadow for light theme readability */}
+            {/* Title — explicit #f8fafc, never inherits dark theme overrides */}
             <h1
-              className="text-balance text-3xl font-extrabold text-white sm:text-4xl lg:text-5xl"
+              className="text-balance text-3xl font-extrabold sm:text-4xl lg:text-5xl"
               style={{
-                textShadow: "0 2px 12px rgba(0,0,0,0.55), 0 4px 32px rgba(0,0,0,0.45)",
-                lineHeight: 1.12,
+                color: "#f8fafc",
+                textShadow: "0 2px 16px rgba(0,0,0,0.45)",
+                lineHeight: 1.05,
+                maxWidth: "760px",
               }}
             >
               {title}
             </h1>
 
-            {/* Description — brighter, more readable */}
+            {/* Description — explicit color, normal weight */}
             <p
               className="mt-4 text-base sm:text-lg"
               style={{
-                color: "rgba(255,255,255,0.88)",
+                color: "rgba(255,255,255,0.82)",
+                fontWeight: 400,
                 lineHeight: 1.65,
-                textShadow: "0 1px 10px rgba(0,0,0,0.5)",
+                textShadow: "0 1px 10px rgba(0,0,0,0.4)",
                 maxWidth: "640px",
               }}
             >
@@ -88,8 +95,12 @@ export function CourseHeroImage({ src, alt, eyebrow, title, description }: Cours
               </Link>
               <a
                 href="#curriculum"
-                className="inline-flex h-11 items-center gap-2 rounded-xl px-6 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-white hover:text-slate-950"
-                style={{ border: "1px solid rgba(255,255,255,0.38)", background: "rgba(255,255,255,0.10)" }}
+                className="inline-flex h-11 items-center gap-2 rounded-xl px-6 text-sm font-semibold backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-white hover:text-slate-950"
+                style={{
+                  color: "#f8fafc",
+                  border: "1px solid rgba(255,255,255,0.45)",
+                  background: "rgba(255,255,255,0.10)",
+                }}
               >
                 <BookOpen className="h-4 w-4 shrink-0" />
                 View Curriculum

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Mail, ExternalLink, GraduationCap, Shield, ArrowRight } from "lucide-react";
+import { Mail, ExternalLink, GraduationCap, Shield, ArrowRight, Phone } from "lucide-react";
 import { ContactForm } from "@/components/forms/contact-form";
 import { siteConfig } from "@/config/site";
 
@@ -22,6 +22,12 @@ const contactLinks = [
     label: "Email",
     value: "contact@uzyntra.com",
     href: "mailto:contact@uzyntra.com",
+  },
+  {
+    icon: Phone,
+    label: "Phone / WhatsApp",
+    value: "+92 333 5545728",
+    href: "tel:+923335545728",
   },
   {
     icon: ExternalLink,

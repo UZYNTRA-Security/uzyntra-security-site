@@ -1015,6 +1015,7 @@ ol {
   border-bottom-color: rgba(51, 65, 85, 0.5);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
+  box-shadow: none;
 }
 
 /* Footer */

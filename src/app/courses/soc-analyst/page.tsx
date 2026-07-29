@@ -1,7 +1,6 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { CheckCircle2, ArrowRight, MessageSquare } from "lucide-react";
-import { PageHero } from "@/components/sections/page-hero";
 import { CourseHeroImage } from "@/components/sections/course-hero-image";
 import { siteConfig } from "@/config/site";
 
@@ -32,8 +31,9 @@ const stepColors = ["text-red-500", "text-orange-600", "text-violet-600", "text-
 export default function SOCAnalystCourse() {
   return (
     <main id="main-content">
-      <CourseHeroImage src="/images/courses/soc-analyst.webp" alt="SOC Analyst Course" />
-      <PageHero
+      <CourseHeroImage
+        src="/images/courses/soc-analyst.webp"
+        alt="SOC Analyst Course"
         eyebrow="Course — SOC Analyst"
         title="SOC Analyst: Threat Detection & Incident Response"
         description="Train as a Security Operations Center analyst — mastering SIEM tools, threat detection, MITRE ATT&CK mapping, and incident response playbooks."

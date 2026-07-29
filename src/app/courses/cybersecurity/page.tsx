@@ -1,7 +1,6 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { CheckCircle2, ArrowRight, MessageSquare } from "lucide-react";
-import { PageHero } from "@/components/sections/page-hero";
 import { CourseHeroImage } from "@/components/sections/course-hero-image";
 import { siteConfig } from "@/config/site";
 
@@ -32,8 +31,9 @@ const stepColors = ["text-red-500", "text-orange-600", "text-violet-600", "text-
 export default function CybersecurityCourse() {
   return (
     <main id="main-content">
-      <CourseHeroImage src="/images/courses/cybersecurity.webp" alt="Cyber Security Course" />
-      <PageHero
+      <CourseHeroImage
+        src="/images/courses/cybersecurity.webp"
+        alt="Cyber Security Course"
         eyebrow="Course — Cyber Security"
         title="Cyber Security: Threats, Defenses, and Frameworks"
         description="Build a solid foundation in cybersecurity — from threat modeling and network defense to incident response and industry compliance frameworks."

@@ -1,7 +1,6 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { CheckCircle2, ArrowRight, MessageSquare } from "lucide-react";
-import { PageHero } from "@/components/sections/page-hero";
 import { CourseHeroImage } from "@/components/sections/course-hero-image";
 import { siteConfig } from "@/config/site";
 
@@ -32,8 +31,9 @@ const stepColors = ["text-red-500", "text-orange-600", "text-violet-600", "text-
 export default function DataScienceCourse() {
   return (
     <main id="main-content">
-      <CourseHeroImage src="/images/courses/data-science.webp" alt="Data Science and Analytics Course" />
-      <PageHero
+      <CourseHeroImage
+        src="/images/courses/data-science.webp"
+        alt="Data Science and Analytics Course"
         eyebrow="Course — Data Science & Analytics"
         title="Data Science & Analytics: From Raw Data to Insights"
         description="Master data analysis, visualization, statistical modeling, and machine learning pipelines using Python — applied to real-world and security datasets."

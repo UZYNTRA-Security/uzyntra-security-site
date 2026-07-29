@@ -1,7 +1,6 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { CheckCircle2, ArrowRight, MessageSquare } from "lucide-react";
-import { PageHero } from "@/components/sections/page-hero";
 import { CourseHeroImage } from "@/components/sections/course-hero-image";
 import { siteConfig } from "@/config/site";
 
@@ -32,8 +31,9 @@ const stepColors = ["text-red-500", "text-orange-600", "text-violet-600", "text-
 export default function MobileDevCourse() {
   return (
     <main id="main-content">
-      <CourseHeroImage src="/images/courses/mobile-app-development.webp" alt="Mobile App Development Course" />
-      <PageHero
+      <CourseHeroImage
+        src="/images/courses/mobile-app-development.webp"
+        alt="Mobile App Development Course"
         eyebrow="Course — Mobile App Development"
         title="Mobile App Development: iOS & Android with Security"
         description="Build cross-platform mobile applications using React Native and Flutter — with mobile security best practices and production deployment from day one."

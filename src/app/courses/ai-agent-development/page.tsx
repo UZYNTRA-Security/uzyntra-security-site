@@ -1,7 +1,6 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { CheckCircle2, ArrowRight, MessageSquare } from "lucide-react";
-import { PageHero } from "@/components/sections/page-hero";
 import { CourseHeroImage } from "@/components/sections/course-hero-image";
 import { siteConfig } from "@/config/site";
 
@@ -32,8 +31,9 @@ const stepColors = ["text-red-500", "text-orange-600", "text-violet-600", "text-
 export default function AIAgentCourse() {
   return (
     <main id="main-content">
-      <CourseHeroImage src="/images/courses/ai-agent-development.webp" alt="AI Agent Development Course" />
-      <PageHero
+      <CourseHeroImage
+        src="/images/courses/ai-agent-development.webp"
+        alt="AI Agent Development Course"
         eyebrow="Course — AI Agent Development"
         title="AI Agent Development: Build Autonomous AI Systems"
         description="Learn to build, orchestrate, and deploy autonomous AI agents using LangChain, LlamaIndex, and multi-agent frameworks — for real-world production use."

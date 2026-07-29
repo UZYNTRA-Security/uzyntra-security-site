@@ -1,7 +1,6 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { CheckCircle2, ArrowRight, MessageSquare } from "lucide-react";
-import { PageHero } from "@/components/sections/page-hero";
 import { CourseHeroImage } from "@/components/sections/course-hero-image";
 import { siteConfig } from "@/config/site";
 
@@ -32,8 +31,9 @@ const stepColors = ["text-red-500", "text-orange-600", "text-violet-600", "text-
 export default function AWSAzureGCPCourse() {
   return (
     <main id="main-content">
-      <CourseHeroImage src="/images/courses/aws-azure-gcp.webp" alt="AWS Azure GCP Course" />
-      <PageHero
+      <CourseHeroImage
+        src="/images/courses/aws-azure-gcp.webp"
+        alt="AWS Azure GCP Course"
         eyebrow="Course — AWS / Azure / GCP"
         title="AWS, Azure & GCP: Multi-Cloud Mastery"
         description="Get hands-on with all three major cloud platforms — AWS, Azure, and GCP — with certification-aligned labs and real-world architecture projects."

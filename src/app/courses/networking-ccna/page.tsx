@@ -1,7 +1,6 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { CheckCircle2, ArrowRight, MessageSquare } from "lucide-react";
-import { PageHero } from "@/components/sections/page-hero";
 import { CourseHeroImage } from "@/components/sections/course-hero-image";
 import { siteConfig } from "@/config/site";
 
@@ -32,8 +31,9 @@ const stepColors = ["text-red-500", "text-orange-600", "text-violet-600", "text-
 export default function NetworkingCourse() {
   return (
     <main id="main-content">
-      <CourseHeroImage src="/images/courses/networking-ccna.webp" alt="Networking CCNA Course" />
-      <PageHero
+      <CourseHeroImage
+        src="/images/courses/networking-ccna.webp"
+        alt="Networking CCNA Course"
         eyebrow="Course — Networking (CCNA)"
         title="Networking: From TCP/IP to CCNA Certification"
         description="Build a solid networking foundation — routing, switching, VLANs, VPNs, and network security — with full CCNA 200-301 certification preparation."

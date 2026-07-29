@@ -1,7 +1,6 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { CheckCircle2, ArrowRight, MessageSquare } from "lucide-react";
-import { PageHero } from "@/components/sections/page-hero";
 import { CourseHeroImage } from "@/components/sections/course-hero-image";
 import { siteConfig } from "@/config/site";
 
@@ -32,8 +31,9 @@ const stepColors = ["text-red-500", "text-orange-600", "text-violet-600", "text-
 export default function APISecurityCourse() {
   return (
     <main id="main-content">
-      <CourseHeroImage src="/images/courses/api-security.webp" alt="API Security Course" />
-      <PageHero
+      <CourseHeroImage
+        src="/images/courses/api-security.webp"
+        alt="API Security Course"
         eyebrow="Course — API Security"
         title="API Security: OWASP API Top 10 & Testing Methodology"
         description="Master API security testing — from BOLA and authentication attacks to API fuzzing and hardening. Built around the OWASP API Top 10 and real-world testing techniques."

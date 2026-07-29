@@ -1,25 +1,54 @@
 import Image from "next/image";
+import { ShieldCheck } from "lucide-react";
 
 interface CourseHeroImageProps {
   src: string;
   alt: string;
+  eyebrow: string;
+  title: string;
+  description: string;
 }
 
-export function CourseHeroImage({ src, alt }: CourseHeroImageProps) {
+export function CourseHeroImage({ src, alt, eyebrow, title, description }: CourseHeroImageProps) {
   return (
-    <div className="relative w-full overflow-hidden bg-slate-900" style={{ height: "340px" }}>
+    <section
+      className="course-hero relative w-full overflow-hidden"
+      style={{ height: "clamp(420px, 52vw, 560px)" }}
+    >
+      {/* Full-bleed image */}
       <Image
         src={src}
         alt={alt}
         fill
         priority
-        className="object-cover opacity-85 transition-transform duration-700 hover:scale-[1.02]"
+        className="object-cover"
         sizes="100vw"
       />
-      {/* Gradient overlay — fades into page background */}
-      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/10 to-transparent" />
-      {/* Bottom fade into white page */}
-      <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-white to-transparent" />
-    </div>
+
+      {/* Gradient overlay — CSS vars handle light vs dark automatically */}
+      <div className="course-hero-overlay absolute inset-0" />
+
+      {/* Text — pinned to bottom of image */}
+      <div className="absolute inset-x-0 bottom-0 container-shell pb-10 sm:pb-14">
+        <div className="mx-auto max-w-3xl">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/30 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-white backdrop-blur-sm">
+            <ShieldCheck className="h-3.5 w-3.5 shrink-0" />
+            {eyebrow}
+          </div>
+          <h1
+            className="text-balance text-3xl font-bold text-white sm:text-4xl lg:text-5xl"
+            style={{ textShadow: "0 2px 20px rgba(0,0,0,0.6)" }}
+          >
+            {title}
+          </h1>
+          <p
+            className="mt-4 max-w-2xl text-base leading-7 text-white/80 sm:text-lg sm:leading-8"
+            style={{ textShadow: "0 1px 10px rgba(0,0,0,0.5)" }}
+          >
+            {description}
+          </p>
+        </div>
+      </div>
+    </section>
   );
 }

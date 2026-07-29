@@ -1,7 +1,6 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { CheckCircle2, ArrowRight, MessageSquare } from "lucide-react";
-import { PageHero } from "@/components/sections/page-hero";
 import { CourseHeroImage } from "@/components/sections/course-hero-image";
 import { siteConfig } from "@/config/site";
 
@@ -32,8 +31,9 @@ const stepColors = ["text-red-500", "text-orange-600", "text-violet-600", "text-
 export default function LinuxCourse() {
   return (
     <main id="main-content">
-      <CourseHeroImage src="/images/courses/linux-administration.webp" alt="Linux Administration Course" />
-      <PageHero
+      <CourseHeroImage
+        src="/images/courses/linux-administration.webp"
+        alt="Linux Administration Course"
         eyebrow="Course — Linux Administration"
         title="Linux Administration: Command Line to Hardened Servers"
         description="Master Linux system administration — from the command line and shell scripting to server hardening and security configuration for production environments."

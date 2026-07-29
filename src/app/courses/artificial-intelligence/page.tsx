@@ -1,7 +1,6 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { BrainCircuit, AlertTriangle, CheckCircle2, ArrowRight, MessageSquare } from "lucide-react";
-import { PageHero } from "@/components/sections/page-hero";
 import { CourseHeroImage } from "@/components/sections/course-hero-image";
 import { siteConfig } from "@/config/site";
 
@@ -32,8 +31,9 @@ const stepColors = ["text-red-500", "text-orange-600", "text-violet-600", "text-
 export default function AICourse() {
   return (
     <main id="main-content">
-      <CourseHeroImage src="/images/courses/artificial-intelligence.webp" alt="Artificial Intelligence Course" />
-      <PageHero
+      <CourseHeroImage
+        src="/images/courses/artificial-intelligence.webp"
+        alt="Artificial Intelligence Course"
         eyebrow="Course — Artificial Intelligence"
         title="Artificial Intelligence: From Fundamentals to Production"
         description="Master machine learning, deep learning, LLMs, and AI deployment. Build real AI systems with Python, PyTorch, and modern AI frameworks used in industry."

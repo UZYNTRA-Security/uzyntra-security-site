@@ -1,7 +1,6 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { CheckCircle2, ArrowRight, MessageSquare } from "lucide-react";
-import { PageHero } from "@/components/sections/page-hero";
 import { CourseHeroImage } from "@/components/sections/course-hero-image";
 import { siteConfig } from "@/config/site";
 
@@ -32,8 +31,9 @@ const stepColors = ["text-red-500", "text-orange-600", "text-violet-600", "text-
 export default function SecureCodingCourse() {
   return (
     <main id="main-content">
-      <CourseHeroImage src="/images/courses/secure-coding.webp" alt="Secure Coding Course" />
-      <PageHero
+      <CourseHeroImage
+        src="/images/courses/secure-coding.webp"
+        alt="Secure Coding Course"
         eyebrow="Course — Secure Coding"
         title="Secure Coding: Build Security Into Every Line"
         description="Learn to write secure code from the ground up — preventing OWASP Top 10 vulnerabilities, implementing secure authentication, and integrating security into your development workflow."

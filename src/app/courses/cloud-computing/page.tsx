@@ -1,7 +1,6 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { CheckCircle2, ArrowRight, MessageSquare } from "lucide-react";
-import { PageHero } from "@/components/sections/page-hero";
 import { CourseHeroImage } from "@/components/sections/course-hero-image";
 import { siteConfig } from "@/config/site";
 
@@ -32,8 +31,9 @@ const stepColors = ["text-red-500", "text-orange-600", "text-violet-600", "text-
 export default function CloudComputingCourse() {
   return (
     <main id="main-content">
-      <CourseHeroImage src="/images/courses/cloud-computing.webp" alt="Cloud Computing Course" />
-      <PageHero
+      <CourseHeroImage
+        src="/images/courses/cloud-computing.webp"
+        alt="Cloud Computing Course"
         eyebrow="Course — Cloud Computing"
         title="Cloud Computing: AWS, Azure, and GCP Mastery"
         description="From cloud fundamentals to advanced architecture — learn to deploy, secure, and optimize workloads across the three major cloud platforms with hands-on labs."

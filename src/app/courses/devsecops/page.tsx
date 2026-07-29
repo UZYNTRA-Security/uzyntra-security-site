@@ -1,7 +1,6 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { CheckCircle2, ArrowRight, MessageSquare } from "lucide-react";
-import { PageHero } from "@/components/sections/page-hero";
 import { CourseHeroImage } from "@/components/sections/course-hero-image";
 import { siteConfig } from "@/config/site";
 
@@ -32,8 +31,9 @@ const stepColors = ["text-red-500", "text-orange-600", "text-violet-600", "text-
 export default function DevSecOpsCourse() {
   return (
     <main id="main-content">
-      <CourseHeroImage src="/images/courses/devsecops.webp" alt="DevOps and DevSecOps Course" />
-      <PageHero
+      <CourseHeroImage
+        src="/images/courses/devsecops.webp"
+        alt="DevOps and DevSecOps Course"
         eyebrow="Course — DevOps & DevSecOps"
         title="DevOps & DevSecOps: Secure Delivery at Speed"
         description="Learn to build CI/CD pipelines, automate infrastructure, and embed security into every stage of software delivery — from commit to production."

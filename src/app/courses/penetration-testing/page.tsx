@@ -1,7 +1,6 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { CheckCircle2, ArrowRight, MessageSquare } from "lucide-react";
-import { PageHero } from "@/components/sections/page-hero";
 import { CourseHeroImage } from "@/components/sections/course-hero-image";
 import { siteConfig } from "@/config/site";
 
@@ -32,8 +31,9 @@ const stepColors = ["text-red-500", "text-orange-600", "text-violet-600", "text-
 export default function PentestCourse() {
   return (
     <main id="main-content">
-      <CourseHeroImage src="/images/courses/penetration-testing.webp" alt="Penetration Testing Course" />
-      <PageHero
+      <CourseHeroImage
+        src="/images/courses/penetration-testing.webp"
+        alt="Penetration Testing Course"
         eyebrow="Course — Penetration Testing"
         title="Penetration Testing: Professional Methodology & Reporting"
         description="Learn structured penetration testing methodology for web applications, networks, and cloud environments — with professional reporting and certification preparation."

@@ -1,7 +1,6 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { CheckCircle2, ArrowRight, MessageSquare } from "lucide-react";
-import { PageHero } from "@/components/sections/page-hero";
 import { CourseHeroImage } from "@/components/sections/course-hero-image";
 import { siteConfig } from "@/config/site";
 
@@ -32,8 +31,9 @@ const stepColors = ["text-red-500", "text-orange-600", "text-violet-600", "text-
 export default function DockerKubernetesCourse() {
   return (
     <main id="main-content">
-      <CourseHeroImage src="/images/courses/docker-kubernetes.webp" alt="Docker and Kubernetes Course" />
-      <PageHero
+      <CourseHeroImage
+        src="/images/courses/docker-kubernetes.webp"
+        alt="Docker and Kubernetes Course"
         eyebrow="Course — Docker & Kubernetes"
         title="Docker & Kubernetes: Containers to Production Clusters"
         description="Master containerization with Docker and orchestration with Kubernetes — from building images to securing and scaling production workloads."

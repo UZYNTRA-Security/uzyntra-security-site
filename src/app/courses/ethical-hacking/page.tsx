@@ -1,7 +1,6 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { CheckCircle2, ArrowRight, MessageSquare } from "lucide-react";
-import { PageHero } from "@/components/sections/page-hero";
 import { CourseHeroImage } from "@/components/sections/course-hero-image";
 import { siteConfig } from "@/config/site";
 
@@ -32,8 +31,9 @@ const stepColors = ["text-red-500", "text-orange-600", "text-violet-600", "text-
 export default function EthicalHackingCourse() {
   return (
     <main id="main-content">
-      <CourseHeroImage src="/images/courses/ethical-hacking.webp" alt="Ethical Hacking Course" />
-      <PageHero
+      <CourseHeroImage
+        src="/images/courses/ethical-hacking.webp"
+        alt="Ethical Hacking Course"
         eyebrow="Course — Ethical Hacking"
         title="Ethical Hacking: Hands-On Offensive Security"
         description="Learn ethical hacking from reconnaissance to post-exploitation — using real tools and techniques that professional penetration testers use every day."

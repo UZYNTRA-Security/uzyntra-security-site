@@ -1,7 +1,6 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { CheckCircle2, ArrowRight, MessageSquare } from "lucide-react";
-import { PageHero } from "@/components/sections/page-hero";
 import { CourseHeroImage } from "@/components/sections/course-hero-image";
 import { siteConfig } from "@/config/site";
 
@@ -32,8 +31,9 @@ const stepColors = ["text-red-500", "text-orange-600", "text-violet-600", "text-
 export default function BlockchainCourse() {
   return (
     <main id="main-content">
-      <CourseHeroImage src="/images/courses/blockchain-web3.webp" alt="Blockchain and Web3 Course" />
-      <PageHero
+      <CourseHeroImage
+        src="/images/courses/blockchain-web3.webp"
+        alt="Blockchain and Web3 Course"
         eyebrow="Course — Blockchain & Web3"
         title="Blockchain & Web3: Smart Contracts to Secure dApps"
         description="Build on-chain applications with Solidity, understand DeFi protocols, and learn to audit smart contracts for security vulnerabilities."

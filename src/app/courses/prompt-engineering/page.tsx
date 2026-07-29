@@ -1,7 +1,6 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { CheckCircle2, ArrowRight, MessageSquare } from "lucide-react";
-import { PageHero } from "@/components/sections/page-hero";
 import { CourseHeroImage } from "@/components/sections/course-hero-image";
 import { siteConfig } from "@/config/site";
 
@@ -32,8 +31,9 @@ const stepColors = ["text-red-500", "text-orange-600", "text-violet-600", "text-
 export default function PromptEngineeringCourse() {
   return (
     <main id="main-content">
-      <CourseHeroImage src="/images/courses/prompt-engineering.webp" alt="Prompt Engineering Course" />
-      <PageHero
+      <CourseHeroImage
+        src="/images/courses/prompt-engineering.webp"
+        alt="Prompt Engineering Course"
         eyebrow="Course — Prompt Engineering"
         title="Prompt Engineering: Master LLMs for Production"
         description="Learn to design, optimize, and secure prompts for large language models — from basic techniques to advanced RAG systems and production deployment."

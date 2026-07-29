@@ -1,7 +1,6 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { CheckCircle2, ArrowRight, MessageSquare } from "lucide-react";
-import { PageHero } from "@/components/sections/page-hero";
 import { CourseHeroImage } from "@/components/sections/course-hero-image";
 import { siteConfig } from "@/config/site";
 
@@ -32,8 +31,9 @@ const stepColors = ["text-red-500", "text-orange-600", "text-violet-600", "text-
 export default function AutomationCourse() {
   return (
     <main id="main-content">
-      <CourseHeroImage src="/images/courses/automation.webp" alt="Automation Course" />
-      <PageHero
+      <CourseHeroImage
+        src="/images/courses/automation.webp"
+        alt="Automation Course"
         eyebrow="Course — Automation"
         title="Automation: n8n, Make & Zapier for Business & Security"
         description="Build powerful automation workflows using n8n, Make, and Zapier — from simple task automation to AI-powered business process pipelines."

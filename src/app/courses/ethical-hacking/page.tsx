@@ -38,7 +38,7 @@ export default function EthicalHackingCourse() {
         title="Ethical Hacking: Hands-On Offensive Security"
         description="Learn ethical hacking from reconnaissance to post-exploitation — using real tools and techniques that professional penetration testers use every day."
       />
-      <section className="section-tight bg-slate-50/70">
+      <section id="curriculum" className="section-tight bg-slate-50/70">
         <div className="container-shell">
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-red-700">Curriculum</p>

@@ -38,7 +38,7 @@ export default function DigitalForensicsCourse() {
         title="Digital Forensics: Investigate, Analyze, Report"
         description="Learn digital forensics investigation techniques — disk and memory analysis, malware analysis, network forensics, and professional evidence handling."
       />
-      <section className="section-tight bg-slate-50/70">
+      <section id="curriculum" className="section-tight bg-slate-50/70">
         <div className="container-shell">
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-red-700">Curriculum</p>

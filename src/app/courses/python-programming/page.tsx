@@ -39,7 +39,7 @@ export default function PythonCourse() {
         description="Master Python from the ground up — scripting, automation, API development, and building real-world security tools used by professionals."
       />
 
-      <section className="section-tight bg-slate-50/70">
+      <section id="curriculum" className="section-tight bg-slate-50/70">
         <div className="container-shell">
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-red-700">Curriculum</p>

@@ -38,7 +38,7 @@ export default function LinuxCourse() {
         title="Linux Administration: Command Line to Hardened Servers"
         description="Master Linux system administration — from the command line and shell scripting to server hardening and security configuration for production environments."
       />
-      <section className="section-tight bg-slate-50/70">
+      <section id="curriculum" className="section-tight bg-slate-50/70">
         <div className="container-shell">
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-red-700">Curriculum</p>

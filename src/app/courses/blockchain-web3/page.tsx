@@ -38,7 +38,7 @@ export default function BlockchainCourse() {
         title="Blockchain & Web3: Smart Contracts to Secure dApps"
         description="Build on-chain applications with Solidity, understand DeFi protocols, and learn to audit smart contracts for security vulnerabilities."
       />
-      <section className="section-tight bg-slate-50/70">
+      <section id="curriculum" className="section-tight bg-slate-50/70">
         <div className="container-shell">
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-red-700">Curriculum</p>

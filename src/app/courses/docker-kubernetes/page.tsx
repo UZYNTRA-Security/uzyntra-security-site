@@ -38,7 +38,7 @@ export default function DockerKubernetesCourse() {
         title="Docker & Kubernetes: Containers to Production Clusters"
         description="Master containerization with Docker and orchestration with Kubernetes — from building images to securing and scaling production workloads."
       />
-      <section className="section-tight bg-slate-50/70">
+      <section id="curriculum" className="section-tight bg-slate-50/70">
         <div className="container-shell">
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-red-700">Curriculum</p>

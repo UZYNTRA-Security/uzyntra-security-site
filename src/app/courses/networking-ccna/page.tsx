@@ -38,7 +38,7 @@ export default function NetworkingCourse() {
         title="Networking: From TCP/IP to CCNA Certification"
         description="Build a solid networking foundation — routing, switching, VLANs, VPNs, and network security — with full CCNA 200-301 certification preparation."
       />
-      <section className="section-tight bg-slate-50/70">
+      <section id="curriculum" className="section-tight bg-slate-50/70">
         <div className="container-shell">
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-red-700">Curriculum</p>

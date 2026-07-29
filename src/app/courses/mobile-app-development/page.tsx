@@ -38,7 +38,7 @@ export default function MobileDevCourse() {
         title="Mobile App Development: iOS & Android with Security"
         description="Build cross-platform mobile applications using React Native and Flutter — with mobile security best practices and production deployment from day one."
       />
-      <section className="section-tight bg-slate-50/70">
+      <section id="curriculum" className="section-tight bg-slate-50/70">
         <div className="container-shell">
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-red-700">Curriculum</p>

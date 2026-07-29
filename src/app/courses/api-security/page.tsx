@@ -38,7 +38,7 @@ export default function APISecurityCourse() {
         title="API Security: OWASP API Top 10 & Testing Methodology"
         description="Master API security testing — from BOLA and authentication attacks to API fuzzing and hardening. Built around the OWASP API Top 10 and real-world testing techniques."
       />
-      <section className="section-tight bg-slate-50/70">
+      <section id="curriculum" className="section-tight bg-slate-50/70">
         <div className="container-shell">
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-red-700">Curriculum</p>

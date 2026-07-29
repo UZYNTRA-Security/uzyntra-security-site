@@ -38,7 +38,7 @@ export default function SecureCodingCourse() {
         title="Secure Coding: Build Security Into Every Line"
         description="Learn to write secure code from the ground up — preventing OWASP Top 10 vulnerabilities, implementing secure authentication, and integrating security into your development workflow."
       />
-      <section className="section-tight bg-slate-50/70">
+      <section id="curriculum" className="section-tight bg-slate-50/70">
         <div className="container-shell">
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-red-700">Curriculum</p>

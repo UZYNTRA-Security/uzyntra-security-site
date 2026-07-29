@@ -1,4 +1,4 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
 
 :root {
   /* ── Light theme tokens ── */
@@ -325,26 +325,7 @@ ol {
 
 /* ─── Course hero image ─────────────────────────────── */
 
-/* Dark scrim from top — ensures eyebrow/title/desc are always readable */
-.course-hero-scrim {
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.0) 0%,
-    rgba(0, 0, 0, 0.0) 40%,
-    rgba(0, 0, 0, 0.35) 70%,
-    rgba(0, 0, 0, 0.65) 100%
-  );
-}
-
-/* Bottom fade — light theme fades into white page */
-.course-hero-fade {
-  background: linear-gradient(to bottom, transparent, #ffffff);
-}
-
-/* Bottom fade — dark theme fades into dark page */
-[data-theme="dark"] .course-hero-fade {
-  background: linear-gradient(to bottom, transparent, #0a0f1a);
-}
+/* Overlay and vignette are inlined in the component â€” no extra CSS needed */
 
 /* ─── Page hero ──────────────────────────────────────── */
 

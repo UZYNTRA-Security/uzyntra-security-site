@@ -38,7 +38,7 @@ export default function PromptEngineeringCourse() {
         title="Prompt Engineering: Master LLMs for Production"
         description="Learn to design, optimize, and secure prompts for large language models — from basic techniques to advanced RAG systems and production deployment."
       />
-      <section className="section-tight bg-slate-50/70">
+      <section id="curriculum" className="section-tight bg-slate-50/70">
         <div className="container-shell">
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-red-700">Curriculum</p>

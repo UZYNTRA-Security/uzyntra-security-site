@@ -38,7 +38,7 @@ export default function SOCAnalystCourse() {
         title="SOC Analyst: Threat Detection & Incident Response"
         description="Train as a Security Operations Center analyst — mastering SIEM tools, threat detection, MITRE ATT&CK mapping, and incident response playbooks."
       />
-      <section className="section-tight bg-slate-50/70">
+      <section id="curriculum" className="section-tight bg-slate-50/70">
         <div className="container-shell">
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-red-700">Curriculum</p>

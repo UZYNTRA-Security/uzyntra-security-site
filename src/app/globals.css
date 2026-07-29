@@ -335,6 +335,21 @@ ol {
   line-height: 1.9;
 }
 
+
+/* --- Home hero --- theme-scoped tokens ---------------------------------- */
+/* Light: dark heading on white bg */
+.home-hero {
+  --hero-title: #0f172a;
+  --hero-desc:  #64748b;
+}
+/* Dark: light heading on dark bg */
+[data-theme="dark"] .home-hero {
+  --hero-title: #f1f5f9;
+  --hero-desc:  #94a3b8;
+}
+.home-hero__title { color: var(--hero-title); }
+.home-hero__desc  { color: var(--hero-desc);  }
+
 /* ─── Course hero image ─────────────────────────────── */
 
 /* Overlay and vignette are inlined in the component â€” no extra CSS needed */

@@ -27,7 +27,7 @@ const STAT_CARDS = [
 
 export function HeroSection() {
   return (
-    <section className="relative pt-10 pb-8 sm:py-14 lg:py-20">
+    <section className="home-hero relative pt-10 pb-8 sm:py-14 lg:py-20">
       <SecurityMotionBackground />
 
       <div className="container-shell relative z-10">
@@ -37,12 +37,12 @@ export function HeroSection() {
               <EyebrowBadge>Enterprise Security Platform</EyebrowBadge>
             }
             heading={
-              <h1 className="max-w-2xl text-center text-pretty text-[1.6rem] font-bold leading-[1.16] tracking-[-0.025em] text-slate-950 sm:text-[2.4rem] lg:text-[3.1rem]">
+              <h1 className="home-hero__title max-w-2xl text-center text-pretty text-[1.6rem] font-extrabold leading-[1.12] tracking-[-0.025em] sm:text-[2.4rem] lg:text-[3.1rem]">
                 {siteConfig.tagline}
               </h1>
             }
             paragraph={
-              <p className="max-w-[30ch] text-center text-pretty text-[0.875rem] leading-[1.72] text-slate-500 sm:max-w-lg sm:text-[0.9375rem] sm:leading-[1.75]">
+              <p className="home-hero__desc max-w-[30ch] text-center text-pretty text-[0.875rem] leading-[1.72] sm:max-w-lg sm:text-[0.9375rem] sm:leading-[1.75]">
                 {siteConfig.description}
               </p>
             }

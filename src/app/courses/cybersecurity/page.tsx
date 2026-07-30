@@ -35,10 +35,10 @@ const months = [
     badgeBg: "bg-red-600",
     topicBg: "bg-red-50 text-red-700 border border-red-200",
     modules: [
-      { num: "01", title: "Cyber Security Fundamentals", topics: ["CIA Triad","Types of Hackers","Cyber Kill Chain","Common Threats","Malware Analysis Basics","Security Principles"], tools: [] },
-      { num: "02", title: "Networking for Security", topics: ["TCP/IP","OSI Model","DNS","DHCP","HTTP/HTTPS","VPN","Firewalls","Packet Analysis"], tools: ["Wireshark","TCPDump","Nmap"] },
-      { num: "03", title: "Linux & Windows Security", topics: ["Linux Commands","Windows Security","User Management","File Permissions","Services","Logs","Process Monitoring","PowerShell Basics"], tools: [] },
-      { num: "04", title: "Security Hardening", topics: ["Password Policies","MFA","Endpoint Security","Disk Encryption","Patch Management","Backup Strategy"], tools: [] },
+      { num: "01", title: "Cyber Security Fundamentals", summary: "Build a strong baseline in security principles, threats, and governance before moving into practice.", topics: ["CIA Triad","Types of Hackers","Cyber Kill Chain","Common Threats","Malware Analysis Basics","Security Principles"], tools: [] },
+      { num: "02", title: "Networking for Security", summary: "Learn how networks communicate and how to inspect traffic, protocols, and common attack paths.", topics: ["TCP/IP","OSI Model","DNS","DHCP","HTTP/HTTPS","VPN","Firewalls","Packet Analysis"], tools: ["Wireshark","TCPDump","Nmap"] },
+      { num: "03", title: "Linux & Windows Security", summary: "Explore core operating system security concepts, permissions, services, logs, and hardening basics.", topics: ["Linux Commands","Windows Security","User Management","File Permissions","Services","Logs","Process Monitoring","PowerShell Basics"], tools: [] },
+      { num: "04", title: "Security Hardening", summary: "Apply defensive controls such as patching, MFA, backup practices, and endpoint protection.", topics: ["Password Policies","MFA","Endpoint Security","Disk Encryption","Patch Management","Backup Strategy"], tools: [] },
     ],
   },
   {
@@ -55,10 +55,10 @@ const months = [
     badgeBg: "bg-orange-600",
     topicBg: "bg-orange-50 text-orange-700 border border-orange-200",
     modules: [
-      { num: "05", title: "Reconnaissance", topics: ["Google Dorking","OSINT","WHOIS","DNS Enumeration","Subdomain Enumeration","Technology Fingerprinting"], tools: ["theHarvester","Amass","Subfinder","Shodan","Censys"] },
-      { num: "06", title: "Vulnerability Assessment", topics: ["Vulnerability Scanning","CVE","CVSS","Risk Assessment","Misconfiguration Detection"], tools: ["Nessus Essentials","OpenVAS","Nmap NSE"] },
-      { num: "07", title: "Web Security Basics", topics: ["SQL Injection","XSS","CSRF","File Upload","Authentication Issues","Session Management"], tools: ["Burp Suite Community","OWASP ZAP"] },
-      { num: "08", title: "Password Security", topics: ["Password Attacks","Hashes","Dictionary Attack","Brute Force","Password Policies"], tools: ["Hashcat","John the Ripper"] },
+      { num: "05", title: "Reconnaissance", summary: "Gather intelligence using passive and active techniques while staying within legal and ethical boundaries.", topics: ["Google Dorking","OSINT","WHOIS","DNS Enumeration","Subdomain Enumeration","Technology Fingerprinting"], tools: ["theHarvester","Amass","Subfinder","Shodan","Censys"] },
+      { num: "06", title: "Vulnerability Assessment", summary: "Learn how to identify weaknesses, assess severity, verify patch status, and prioritize remediation.", topics: ["Vulnerability Scanning","CVE","CVSS","Risk Assessment","Misconfiguration Detection"], tools: ["Nessus Essentials","OpenVAS","Nmap NSE"] },
+      { num: "07", title: "Web Security Basics", summary: "Explore common application-layer flaws and the security controls needed to reduce exploitation risk.", topics: ["SQL Injection","XSS","CSRF","File Upload","Authentication Issues","Session Management"], tools: ["Burp Suite Community","OWASP ZAP"] },
+      { num: "08", title: "Password Security", summary: "Understand how weak credentials are attacked and how strong authentication practices improve resilience.", topics: ["Password Attacks","Hashes","Dictionary Attack","Brute Force","Password Policies"], tools: ["Hashcat","John the Ripper"] },
     ],
   },
   {
@@ -75,10 +75,10 @@ const months = [
     badgeBg: "bg-emerald-600",
     topicBg: "bg-emerald-50 text-emerald-700 border border-emerald-200",
     modules: [
-      { num: "09", title: "Incident Response", topics: ["Detection","Containment","Eradication","Recovery","Lessons Learned"], tools: [] },
-      { num: "10", title: "Digital Forensics Basics", topics: ["Evidence Collection","Disk Imaging","Log Analysis","Memory Basics"], tools: ["Autopsy","FTK Imager"] },
-      { num: "11", title: "Security Monitoring", topics: ["Log Monitoring","Threat Hunting","SIEM Basics","Alerts","IOC Detection"], tools: ["Wazuh","Splunk (Basic)","ELK Stack Overview"] },
-      { num: "12", title: "Career Preparation", topics: ["Report Writing","Documentation","Resume Building","LinkedIn Profile","Bug Bounty Introduction","Freelancing Roadmap","Interview Preparation"], tools: [] },
+      { num: "09", title: "Incident Response", summary: "Practice the full response lifecycle from detection to recovery and learn how to report clearly.", topics: ["Detection","Containment","Eradication","Recovery","Lessons Learned"], tools: [] },
+      { num: "10", title: "Digital Forensics Basics", summary: "Learn the essentials of evidence handling, log correlation, and preservation of digital artifacts.", topics: ["Evidence Collection","Disk Imaging","Log Analysis","Memory Basics"], tools: ["Autopsy","FTK Imager"] },
+      { num: "11", title: "Security Monitoring", summary: "Understand how defenders monitor systems, triage alerts, and spot indicators of compromise.", topics: ["Log Monitoring","Threat Hunting","SIEM Basics","Alerts","IOC Detection"], tools: ["Wazuh","Splunk (Basic)","ELK Stack Overview"] },
+      { num: "12", title: "Career Preparation", summary: "Build portfolio-ready documentation, interview confidence, and a roadmap for the next learning step.", topics: ["Report Writing","Documentation","Resume Building","LinkedIn Profile","Bug Bounty Introduction","Freelancing Roadmap","Interview Preparation"], tools: [] },
     ],
   },
 ];
@@ -132,7 +132,7 @@ export default function CybersecurityCourse() {
       />
 
       {/* ── Pricing + CTA ── */}
-      <section className="border-b border-slate-200 bg-white py-8 dark:border-slate-800 dark:bg-slate-900">
+      <section className="course-panel border-b py-8">
         <div className="container-shell">
           <div className="mx-auto max-w-5xl">
 
@@ -142,10 +142,10 @@ export default function CybersecurityCourse() {
               {/* Pricing */}
               <div className="flex flex-wrap gap-3">
                 {[
-                  { label: "Duration",      value: "3 Months",   highlight: false },
-                  { label: "Per Month",     value: "PKR 15,000", highlight: true  },
-                  { label: "Total",         value: "PKR 45,000", highlight: true  },
-                  { label: "International", value: "$199 USD",   highlight: true  },
+                  { label: "Duration", value: "3 Months", highlight: false },
+                  { label: "Per Month", value: "PKR 15,000", highlight: true },
+                  { label: "Total", value: "PKR 45,000", highlight: true },
+                  { label: "International", value: "$199 USD", highlight: true },
                 ].map((p) => (
                   <div
                     key={p.label}
@@ -177,14 +177,12 @@ export default function CybersecurityCourse() {
             </div>
 
             {/* Schedule strip */}
-            <div className="mt-6 grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6">
+            <div className="mt-6 grid grid-cols-2 gap-2 sm:grid-cols-4">
               {[
-                { icon: Calendar, label: "Duration",       value: "3 Months" },
-                { icon: Clock,    label: "Classes",         value: "5 Days/Week" },
-                { icon: Clock,    label: "Class Time",      value: "2 Hrs/Day" },
-                { icon: BookOpen, label: "Self Practice",   value: "1–2 Hrs/Day" },
-                { icon: Users,    label: "Instructor Hrs",  value: "~120 Hours" },
-                { icon: Globe,    label: "Total Learning",  value: "~180–220 Hrs" },
+                { icon: Calendar, label: "Teaching Weeks", value: "12 Weeks" },
+                { icon: Clock, label: "Classes", value: "5 Days/Week" },
+                { icon: BookOpen, label: "Class Time", value: "2 Hrs/Day" },
+                { icon: Users, label: "Self Practice", value: "1–2 Hrs/Day" },
               ].map((s) => (
                 <div
                   key={s.label}
@@ -203,8 +201,59 @@ export default function CybersecurityCourse() {
         </div>
       </section>
 
+      {/* ── Course Overview ── */}
+      <section className="section-shell course-panel-muted">
+        <div className="container-shell">
+          <div className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-[1.15fr_0.85fr]">
+            <div className="surface-card p-8 sm:p-10">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-red-600">Course Overview</p>
+              <h2 className="mt-3 text-2xl font-extrabold text-slate-950 sm:text-3xl">
+                Cyber Security Professional Course — 3 Months
+              </h2>
+              <p className="mt-4 text-sm leading-7 text-slate-600">
+                This three-month programme introduces students to the practical foundations of defensive and offensive security. Learners build core knowledge of networking, systems, threats, vulnerabilities, monitoring, and incident handling through guided labs, reports, and real-world scenarios.
+              </p>
+              <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                {[
+                  "Hands-on labs with industry tools",
+                  "Security foundations for beginners and IT professionals",
+                  "Practical reporting and incident response skills",
+                  "Career-ready preparation for entry-level security roles",
+                ].map((item) => (
+                  <div key={item} className="course-soft-pill flex items-start gap-2 rounded-lg px-3 py-2.5 text-sm">
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-red-600" aria-hidden="true" />
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <div className="surface-card p-6">
+                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-red-600">Learning Objectives</p>
+                <ul className="mt-4 space-y-2 text-sm leading-6 text-slate-600">
+                  <li>• Understand security principles, threats, and the attacker–defender mindset.</li>
+                  <li>• Secure Windows and Linux systems through hardening and monitoring.</li>
+                  <li>• Perform reconnaissance, scanning, vulnerability assessment, and web security testing.</li>
+                  <li>• Respond to incidents, document findings, and prepare professional reports.</li>
+                </ul>
+              </div>
+              <div className="surface-card p-6">
+                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-red-600">Who Should Enroll</p>
+                <ul className="mt-4 space-y-2 text-sm leading-6 text-slate-600">
+                  <li>• Beginners interested in cybersecurity.</li>
+                  <li>• Students, IT professionals, and administrators.</li>
+                  <li>• Developers seeking secure engineering foundations.</li>
+                  <li>• Anyone preparing for SOC, analyst, or ethical hacking paths.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── Curriculum — Timeline ── */}
-      <section id="curriculum" className="section-shell bg-slate-50/60">
+      <section id="curriculum" className="section-shell course-panel-muted">
         <div className="container-shell">
 
           {/* Section heading */}
@@ -270,6 +319,9 @@ export default function CybersecurityCourse() {
 
                         {/* Topics */}
                         <div className="p-4">
+                          <p className="mb-3 text-[11px] leading-6 text-slate-600">
+                            {mod.summary}
+                          </p>
                           <div className="flex flex-wrap gap-1.5">
                             {mod.topics.map((t) => (
                               <span
@@ -325,17 +377,17 @@ export default function CybersecurityCourse() {
                 <p className="mt-4 text-sm leading-7 text-slate-500">
                   Students spend the majority of class time inside real lab environments — not just watching slides.
                 </p>
-                <div className="mt-6 rounded-xl border border-amber-200 bg-amber-50 p-5">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-amber-700">
+                <div className="course-note-card mt-6 rounded-xl p-5">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-red-600">
                     Pro Tip
                   </p>
-                  <p className="mt-2 text-sm leading-6 text-amber-900">
+                  <p className="mt-2 text-sm leading-6 text-[color:var(--course-muted)]">
                     Students who add{" "}
                     <strong>1–2 hours of self-study daily</strong> progress
                     significantly faster than those who only attend classes.
                   </p>
                 </div>
-                <div className="mt-5 flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 p-4">
+                <div className="course-note-card mt-5 flex items-center gap-3 rounded-xl p-4">
                   <Terminal className="h-5 w-5 shrink-0 text-red-600" aria-hidden="true" />
                   <div>
                     <p className="text-xs font-bold text-slate-800">10 Lab Exercises</p>
@@ -364,15 +416,15 @@ export default function CybersecurityCourse() {
       </section>
 
       {/* ── Tools ── */}
-      <section className="section-shell bg-slate-950">
+      <section className="section-shell course-toolset-section">
         <div className="container-shell">
           <div className="mx-auto max-w-4xl">
             <div className="mb-10 text-center">
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-red-500">Toolset</p>
-              <h2 className="mt-2 text-2xl font-extrabold text-white sm:text-3xl">
+              <h2 className="mt-2 text-2xl font-extrabold text-[color:var(--course-text)] sm:text-3xl">
                 20 Industry-Standard Tools
               </h2>
-              <p className="mt-3 text-sm leading-7 text-slate-400">
+              <p className="mt-3 text-sm leading-7 text-[color:var(--course-muted)]">
                 The same tools used by professional security teams worldwide.
               </p>
             </div>
@@ -380,7 +432,7 @@ export default function CybersecurityCourse() {
               {allTools.map((t) => (
                 <span
                   key={t}
-                  className="inline-flex items-center gap-2 rounded-lg border border-slate-700 bg-slate-800 px-3.5 py-2 text-xs font-semibold text-slate-200 transition-all duration-150 hover:border-red-500/60 hover:bg-slate-700 hover:text-white"
+                  className="course-tool-chip inline-flex items-center gap-2 rounded-lg px-3.5 py-2 text-xs font-semibold transition-all duration-150 hover:border-red-500/60 hover:bg-red-50/80 hover:text-red-700"
                 >
                   <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-red-500" aria-hidden="true" />
                   {t}
@@ -449,6 +501,38 @@ export default function CybersecurityCourse() {
                   </strong>{" "}
                   will progress much faster than those who only attend the classes.
                 </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Assessment & Certification ── */}
+      <section className="section-tight course-panel-muted">
+        <div className="container-shell">
+          <div className="mx-auto max-w-5xl">
+            <div className="surface-card overflow-hidden">
+              <div className="border-b border-slate-100 bg-slate-50/80 px-6 py-5">
+                <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-red-600">Assessment & Certification</p>
+                <h3 className="mt-1 text-xl font-extrabold text-slate-950">Official assessment policy and certification path</h3>
+              </div>
+              <div className="grid gap-6 p-6 lg:grid-cols-2">
+                <div>
+                  <p className="text-sm font-semibold text-slate-800">Final Examination</p>
+                  <ul className="mt-3 space-y-2 text-sm leading-7 text-slate-600">
+                    <li>• Practical lab assessment in a controlled environment.</li>
+                    <li>• Theory exam covering the full course curriculum.</li>
+                    <li>• Both assessments are mandatory for certification.</li>
+                  </ul>
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-slate-800">Passing & Reattempts</p>
+                  <ul className="mt-3 space-y-2 text-sm leading-7 text-slate-600">
+                    <li>• Students must complete labs, assignments, and both exams.</li>
+                    <li>• First attempt is included in the course fee.</li>
+                    <li>• One free re-attempt is available; additional attempts may be charged.</li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>

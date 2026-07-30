@@ -17,6 +17,14 @@
   --text-muted:         hsl(215, 20%, 55%);
   --text-accent:        rgb(185, 28, 28);
 
+  --course-surface:     #ffffff;
+  --course-surface-muted: #f8fafc;
+  --course-surface-strong: #ffffff;
+  --course-border:      rgba(203, 213, 225, 0.7);
+  --course-border-strong: rgba(220, 38, 38, 0.14);
+  --course-text:        hsl(222, 47%, 11%);
+  --course-muted:       hsl(215, 16%, 32%);
+
   --particle-node:      185, 28, 28;   /* rgb values for canvas rgba() */
   --particle-line:      220, 38, 38;
   --particle-grab:      153, 27, 27;
@@ -76,6 +84,14 @@
   --text-body:          hsl(215, 20%, 75%);
   --text-muted:         hsl(215, 16%, 62%);  /* was 50% — bumped for WCAG AA on dark bg */
   --text-accent:        rgb(248, 113, 113);
+
+  --course-surface:     rgba(17, 24, 39, 0.96);
+  --course-surface-muted: rgba(15, 23, 42, 0.72);
+  --course-surface-strong: rgba(15, 23, 42, 0.95);
+  --course-border:      rgba(51, 65, 85, 0.65);
+  --course-border-strong: rgba(220, 38, 38, 0.2);
+  --course-text:        hsl(210, 40%, 96%);
+  --course-muted:       hsl(215, 20%, 75%);
 
   --particle-node:      248, 113, 113;  /* red-400 — softer on dark */
   --particle-line:      239, 68,  68;
@@ -397,19 +413,147 @@ html[data-theme="dark"] .home-hero {
 /* ─── Surface cards ──────────────────────────────────── */
 
 .surface-card {
-  border: 1px solid rgba(203, 213, 225, 0.7);
-  background: #ffffff;
+  border: 1px solid var(--course-border);
+  background: var(--course-surface);
+  color: var(--course-text);
   box-shadow: 0 2px 12px rgba(15, 23, 42, 0.06);
   border-radius: 1.25rem;
   overflow: hidden;
 }
 
+.course-soft-pill {
+  border: 1px solid var(--course-border-strong);
+  background: rgba(220, 38, 38, 0.08);
+  color: var(--course-text);
+}
+
+.course-note-card {
+  border: 1px solid var(--course-border-strong);
+  background: rgba(220, 38, 38, 0.08);
+  color: var(--course-text);
+}
+
+.course-toolset-section {
+  border-top: 1px solid var(--course-border);
+  border-bottom: 1px solid var(--course-border);
+  background:
+    radial-gradient(circle at top left, rgba(220, 38, 38, 0.10), transparent 36%),
+    linear-gradient(135deg, var(--course-surface-strong), var(--course-surface-muted));
+}
+
+.course-tool-chip {
+  border: 1px solid var(--course-border);
+  background: var(--course-surface);
+  color: var(--course-text);
+}
+
 .surface-card-strong {
-  border: 1px solid rgba(220, 38, 38, 0.07);
-  background: linear-gradient(to bottom, #ffffff, rgba(254, 250, 250, 0.96));
+  border: 1px solid var(--course-border-strong);
+  background: linear-gradient(to bottom, var(--course-surface), var(--course-surface-muted));
+  color: var(--course-text);
   box-shadow: 0 4px 24px rgba(15, 23, 42, 0.07);
   border-radius: 1.5rem;
   overflow: hidden;
+}
+
+.course-panel {
+  border: 1px solid var(--course-border);
+  background: var(--course-surface);
+  color: var(--course-text);
+  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.06);
+}
+
+.course-panel-muted {
+  border: 1px solid var(--course-border);
+  background: var(--course-surface-muted);
+  color: var(--course-text);
+  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.05);
+}
+
+.course-panel-strong {
+  border: 1px solid var(--course-border-strong);
+  background: linear-gradient(to bottom, var(--course-surface), var(--course-surface-strong));
+  color: var(--course-text);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+[data-theme="dark"] .surface-card {
+  border-color: rgba(51, 65, 85, 0.7);
+  background: linear-gradient(145deg, rgba(17, 24, 39, 0.96), rgba(15, 23, 42, 0.94));
+  box-shadow: 0 2px 18px rgba(2, 6, 23, 0.32);
+}
+
+[data-theme="dark"] .surface-card-strong {
+  border-color: rgba(220, 38, 38, 0.2);
+  background: linear-gradient(145deg, rgba(17, 24, 39, 0.98), rgba(15, 23, 42, 0.96));
+  box-shadow: 0 8px 24px rgba(2, 6, 23, 0.28);
+}
+
+[data-theme="dark"] .course-soft-pill,
+[data-theme="dark"] .course-note-card {
+  border-color: rgba(248, 113, 113, 0.22);
+  background: rgba(248, 113, 113, 0.13);
+}
+
+[data-theme="dark"] .course-toolset-section {
+  background:
+    radial-gradient(circle at top left, rgba(248, 113, 113, 0.12), transparent 36%),
+    linear-gradient(135deg, rgba(17, 24, 39, 0.98), rgba(15, 23, 42, 0.96));
+}
+
+[data-theme="dark"] .course-tool-chip {
+  border-color: rgba(51, 65, 85, 0.7);
+  background: rgba(17, 24, 39, 0.9);
+  color: hsl(210, 40%, 90%);
+}
+
+html[data-theme="dark"] .text-slate-950,
+html[data-theme="dark"] .text-slate-900,
+html[data-theme="dark"] .text-slate-800 {
+  color: var(--text-heading) !important;
+}
+
+html[data-theme="dark"] .text-slate-700 {
+  color: var(--text-body) !important;
+}
+
+html[data-theme="dark"] .text-slate-600,
+html[data-theme="dark"] .text-slate-500,
+html[data-theme="dark"] .text-slate-400 {
+  color: var(--text-muted) !important;
+}
+
+html[data-theme="dark"] .bg-slate-50\/60,
+html[data-theme="dark"] .bg-slate-50\/80 {
+  background-color: rgba(15, 23, 42, 0.62) !important;
+}
+
+html[data-theme="dark"] .bg-slate-100 {
+  background-color: rgba(30, 41, 59, 0.7) !important;
+}
+
+html[data-theme="dark"] .bg-slate-950 {
+  background-color: rgba(2, 6, 23, 0.96) !important;
+}
+
+html[data-theme="dark"] .border-slate-100 {
+  border-color: rgba(51, 65, 85, 0.6) !important;
+}
+
+html[data-theme="dark"] .border-slate-200 {
+  border-color: rgba(51, 65, 85, 0.7) !important;
+}
+
+html[data-theme="dark"] .border-slate-700 {
+  border-color: rgba(51, 65, 85, 0.75) !important;
+}
+
+.course-shell-muted {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(248, 250, 252, 0.92));
+}
+
+html[data-theme="dark"] .course-shell-muted {
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.74), rgba(2, 6, 23, 0.9));
 }
 
 /* ─── Glass + premium ring ───────────────────────────── */

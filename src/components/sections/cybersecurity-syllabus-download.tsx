@@ -1,296 +1,395 @@
 "use client";
 
+import { jsPDF } from "jspdf";
+
 const ENROLL_URL = "https://forms.gle/3kRrPLjzp37dK8eh8";
 
-const months = [
+const courseModules = [
   {
-    label: "Month 01", title: "Foundations & Defensive Security",
-    stripe: "#dc2626",
+    month: "Month 1: Security Foundations and System Defense",
     modules: [
-      { num: "01", title: "Cyber Security Fundamentals", topics: ["CIA Triad","Types of Hackers","Cyber Kill Chain","Common Threats","Malware Analysis Basics","Security Principles"], tools: [] },
-      { num: "02", title: "Networking for Security", topics: ["TCP/IP","OSI Model","DNS","DHCP","HTTP/HTTPS","VPN","Firewalls","Packet Analysis"], tools: ["Wireshark","TCPDump","Nmap"] },
-      { num: "03", title: "Linux & Windows Security", topics: ["Linux Commands","Windows Security","User Management","File Permissions","Services","Logs","Process Monitoring","PowerShell Basics"], tools: [] },
-      { num: "04", title: "Security Hardening", topics: ["Password Policies","MFA","Endpoint Security","Disk Encryption","Patch Management","Backup Strategy"], tools: [] },
+      {
+        title: "Module 1: Introduction to Cyber Security",
+        summary: "Introduces the meaning and importance of cybersecurity, common threat actors, security domains, the CIA triad, authentication, authorization, attack surfaces, and legal ethics.",
+        topics: ["Cybersecurity domains", "Types of hackers", "CIA triad", "Authentication and authorization", "Security policies and controls", "Attack vectors and legal responsibilities"],
+        tools: [],
+      },
+      {
+        title: "Module 2: Networking for Cyber Security",
+        summary: "Builds a practical understanding of OSI and TCP/IP, IP addressing, MAC addresses, ports and protocols, DNS, DHCP, FTP, SSH, HTTP, HTTPS, VPNs, firewalls, and network traffic analysis.",
+        topics: ["OSI and TCP/IP", "IP addressing and subnetting", "Ports and protocols", "TCP and UDP", "DNS, DHCP, FTP, SSH, HTTP and HTTPS", "Routers, switches, firewalls, VPNs and proxies"],
+        tools: ["Wireshark", "TCPDump", "Nmap", "Netcat"],
+      },
+      {
+        title: "Module 3: Linux Fundamentals for Security",
+        summary: "Covers Linux installation, system navigation, files and directories, users and groups, file permissions, processes, packages, networking commands, logs, Bash basics, and hardening fundamentals.",
+        topics: ["Linux navigation", "Users and groups", "File permissions", "Processes and services", "Package management", "Log files and Bash fundamentals"],
+        tools: [],
+      },
+      {
+        title: "Module 4: Windows Security Fundamentals",
+        summary: "Explains Windows users and permissions, NTFS file permissions, services, Defender, Firewall, Event Viewer, PowerShell basics, local security policy, patching, and hardening.",
+        topics: ["Windows users and permissions", "NTFS permissions", "Windows services and processes", "Windows Defender and Firewall", "Event Viewer and PowerShell basics"],
+        tools: [],
+      },
     ],
   },
   {
-    label: "Month 02", title: "Offensive Security",
-    stripe: "#ea580c",
+    month: "Month 2: Security Testing and Vulnerability Assessment",
     modules: [
-      { num: "05", title: "Reconnaissance", topics: ["Google Dorking","OSINT","WHOIS","DNS Enumeration","Subdomain Enumeration","Technology Fingerprinting"], tools: ["theHarvester","Amass","Subfinder","Shodan","Censys"] },
-      { num: "06", title: "Vulnerability Assessment", topics: ["Vulnerability Scanning","CVE","CVSS","Risk Assessment","Misconfiguration Detection"], tools: ["Nessus Essentials","OpenVAS","Nmap NSE"] },
-      { num: "07", title: "Web Security Basics", topics: ["SQL Injection","XSS","CSRF","File Upload","Authentication Issues","Session Management"], tools: ["Burp Suite Community","OWASP ZAP"] },
-      { num: "08", title: "Password Security", topics: ["Password Attacks","Hashes","Dictionary Attack","Brute Force","Password Policies"], tools: ["Hashcat","John the Ripper"] },
+      {
+        title: "Module 5: Cybersecurity Lab Development",
+        summary: "Guides students to build a controlled virtual lab using VirtualBox or VMware, Kali Linux, Windows and Ubuntu virtual machines, Metasploitable, OWASP Juice Shop, and DVWA.",
+        topics: ["VirtualBox or VMware", "Kali Linux", "Windows and Ubuntu lab systems", "Network isolation", "Snapshots", "Safe testing practices"],
+        tools: ["VirtualBox / VMware", "Kali Linux", "Metasploitable", "OWASP Juice Shop", "DVWA"],
+      },
+      {
+        title: "Module 6: Reconnaissance and OSINT",
+        summary: "Introduces passive and active reconnaissance, search-engine research, Google dorking, WHOIS analysis, DNS enumeration, subdomain discovery, technology fingerprinting, metadata analysis, and social engineering awareness.",
+        topics: ["Passive and active reconnaissance", "Google dorking", "WHOIS analysis", "DNS enumeration", "Subdomain discovery", "Technology fingerprinting"],
+        tools: ["theHarvester", "Amass", "Subfinder", "Shodan", "Censys", "Maltego Community Edition"],
+      },
+      {
+        title: "Module 7: Network Scanning and Enumeration",
+        summary: "Teaches host discovery, port scanning, service detection, OS detection, banner grabbing, network mapping, Nmap scripting, and basic service enumeration.",
+        topics: ["Host discovery", "Port scanning", "Service detection", "Operating-system detection", "Banner grabbing", "Interpreting scan results"],
+        tools: ["Nmap"],
+      },
+      {
+        title: "Module 8: Vulnerability Assessment",
+        summary: "Explains the difference between vulnerability assessment and penetration testing, CVE and CVSS, severity, false positives, patch verification, misconfiguration, risk prioritization, and remediation recommendations.",
+        topics: ["CVE and CVSS", "Vulnerability severity", "False positives and false negatives", "Patch verification", "Risk prioritization", "Remediation recommendations"],
+        tools: ["Nessus Essentials", "Greenbone / OpenVAS", "Nmap NSE", "Nikto", "Lynis"],
+      },
+      {
+        title: "Module 9: Web Application Security Fundamentals",
+        summary: "Covers HTTP requests and responses, headers, cookies, sessions, authentication, authorization, input validation, SQL injection, XSS, broken access control, file uploads, and OWASP Top 10 overview.",
+        topics: ["HTTP requests and responses", "Headers, cookies, sessions and tokens", "SQL injection fundamentals", "Cross-site scripting", "Broken access control", "OWASP Top 10 overview"],
+        tools: ["Burp Suite Community Edition", "OWASP ZAP", "Browser developer tools", "Postman basics"],
+      },
     ],
   },
   {
-    label: "Month 03", title: "Detection, Response & Career",
-    stripe: "#059669",
+    month: "Month 3: Security Monitoring, Incident Response and Professional Skills",
     modules: [
-      { num: "09", title: "Incident Response", topics: ["Detection","Containment","Eradication","Recovery","Lessons Learned"], tools: [] },
-      { num: "10", title: "Digital Forensics Basics", topics: ["Evidence Collection","Disk Imaging","Log Analysis","Memory Basics"], tools: ["Autopsy","FTK Imager"] },
-      { num: "11", title: "Security Monitoring", topics: ["Log Monitoring","Threat Hunting","SIEM Basics","Alerts","IOC Detection"], tools: ["Wazuh","Splunk (Basic)","ELK Stack Overview"] },
-      { num: "12", title: "Career Preparation", topics: ["Report Writing","Documentation","Resume Building","LinkedIn Profile","Bug Bounty Introduction","Freelancing Roadmap","Interview Preparation"], tools: [] },
+      {
+        title: "Module 10: Password and Authentication Security",
+        summary: "Discusses password storage, hashing, salting, weak-password risks, brute-force concepts, MFA, password policies, password managers, account lockout, and credential protection.",
+        topics: ["Password storage", "Hashing and salting", "Weak-password risks", "Multi-factor authentication", "Password managers", "Credential protection"],
+        tools: ["Hashcat", "John the Ripper", "Hydra overview"],
+      },
+      {
+        title: "Module 11: Security Monitoring and SIEM",
+        summary: "Introduces security logs, Windows event logs, Linux authentication logs, indicators of compromise, alert triage, false-positive analysis, SIEM fundamentals, dashboards, and basic threat hunting.",
+        topics: ["Security logs", "Windows event logs", "Linux authentication logs", "Indicators of compromise", "Alert triage", "Basic threat hunting"],
+        tools: ["Wazuh", "Splunk", "Elastic Stack overview", "Sysmon"],
+      },
+      {
+        title: "Module 12: Incident Response",
+        summary: "Teaches the incident response lifecycle: preparation, identification, containment, eradication, recovery, and lessons learned, with practical investigation and reporting steps.",
+        topics: ["Preparation", "Identification", "Containment", "Eradication", "Recovery", "Lessons learned"],
+        tools: [],
+      },
+      {
+        title: "Module 13: Digital Forensics Fundamentals",
+        summary: "Covers digital evidence, chain of custody, disk imaging, file-system artifacts, deleted-file recovery concepts, browser history, metadata, log correlation, and documentation.",
+        topics: ["Digital evidence", "Chain of custody", "Disk imaging", "Deleted-file recovery concepts", "Browser history", "Memory forensics overview"],
+        tools: ["Autopsy", "FTK Imager", "ExifTool", "Volatility overview"],
+      },
+      {
+        title: "Module 14: Security Architecture and Frameworks",
+        summary: "Explains defense in depth, zero trust, network segmentation, least privilege, secure backups, endpoint protection, IAM, and major frameworks such as NIST, CIS Controls, and ISO 27001.",
+        topics: ["Defense in depth", "Zero trust", "Network segmentation", "Least privilege", "Secure backups", "NIST Cybersecurity Framework"],
+        tools: [],
+      },
+      {
+        title: "Module 15: Reporting and Career Development",
+        summary: "Develops technical reporting, executive summaries, vulnerability descriptions, remediation guidance, professional communication, resume and LinkedIn preparation, and career planning.",
+        topics: ["Technical report structure", "Executive summaries", "Risk ratings and evidence", "Resume and LinkedIn preparation", "Certification pathways", "Interview preparation"],
+        tools: [],
+      },
     ],
   },
 ];
 
-const outcomes = [
-  "Understand modern cyber threats and security principles",
-  "Secure Windows and Linux systems",
-  "Analyse network traffic and identify suspicious activity",
-  "Discover and assess common vulnerabilities",
-  "Perform basic web application security testing",
-  "Use professional cybersecurity tools with confidence",
-  "Respond to security incidents using industry-standard processes",
-  "Write clear technical security reports",
-  "Build a home cybersecurity lab for continuous practice",
-  "Prepare for entry-level roles: SOC Analyst, Junior Security Analyst, Vulnerability Assessment Analyst",
+const teachingMethodology = [
+  "20% conceptual explanation",
+  "60% guided practical labs",
+  "20% projects, assessments and reporting",
 ];
 
-const allTools = [
-  "Kali Linux","Wireshark","Nmap","Burp Suite","OWASP ZAP",
-  "Nessus Essentials","OpenVAS","theHarvester","Amass","Subfinder",
-  "Shodan","Censys","Hashcat","John the Ripper","Autopsy",
-  "FTK Imager","Wazuh","Splunk","VirtualBox / VMware","Git & GitHub",
+const practicalActivities = [
+  "Create a virtual cybersecurity laboratory",
+  "Analyze packets using Wireshark",
+  "Scan a controlled network using Nmap",
+  "Identify running services",
+  "Review Linux and Windows logs",
+  "Harden a Linux system",
+  "Configure firewall rules",
+  "Perform a vulnerability scan",
+  "Analyze a vulnerable web application",
+  "Identify suspicious authentication attempts",
+  "Investigate a simulated compromised account",
+  "Recover basic digital evidence",
+  "Create an incident response checklist",
+  "Write a vulnerability assessment report",
 ];
+
+const courseProjects = [
+  "Secure System Build: harden Windows or Linux systems, remove unnecessary services, apply updates, configure permissions, enable firewall protection, implement password policies, and review logs.",
+  "Vulnerability Assessment: assess an authorized lab environment and produce an asset inventory, service findings, vulnerabilities, risk classifications, evidence, and recommendations.",
+  "Final Project: respond to a simulated incident by identifying suspicious activity, collecting evidence, determining the attack path, containing the affected system, and presenting a professional incident report.",
+];
+
+const assessmentPolicy = [
+  "Final Examination: practical lab assessment plus a theory examination covering the full curriculum.",
+  "Passing Criteria: complete labs and assignments, achieve the minimum passing score, pass both exams, and follow academic integrity and ethical conduct policies.",
+  "Examination Attempts: first attempt included in the course fee; one free re-attempt is available.",
+  "Additional Re-attempt Fee: USD $10 per additional attempt or equivalent in PKR.",
+  "Certification: students who pass both examinations and complete all requirements receive a verified UZYNTRA Security Course Completion Certificate.",
+];
+
+const learningOutcomes = {
+  knowledge: [
+    "The CIA triad and core security principles",
+    "Common cyber threats and attack methods",
+    "Network protocols and security controls",
+    "The cybersecurity attack lifecycle",
+    "Vulnerability management concepts",
+    "Authentication, authorization, and access control",
+    "Basic web application security risks",
+    "Security monitoring and incident response processes",
+    "Risk assessment and security reporting",
+    "Legal and ethical boundaries of cybersecurity testing",
+  ],
+  practical: [
+    "Build and configure a basic cybersecurity laboratory",
+    "Use Kali Linux and security-focused tools",
+    "Scan networks and identify active systems",
+    "Analyze ports, services, and network traffic",
+    "Perform basic vulnerability assessments",
+    "Identify common system and application misconfigurations",
+    "Secure Linux and Windows environments",
+    "Analyze logs and security alerts",
+    "Detect basic indicators of compromise",
+    "Test intentionally vulnerable web applications",
+    "Investigate simulated security incidents",
+    "Create professional security assessment reports",
+  ],
+  career: [
+    "Junior Cybersecurity Analyst",
+    "SOC Analyst Level 1",
+    "IT Security Support Specialist",
+    "Junior Vulnerability Analyst",
+    "Security Operations Intern",
+    "Network Security Assistant",
+    "Junior Incident Response Analyst",
+    "Cybersecurity Trainee",
+  ],
+};
 
 export function DownloadSyllabus() {
-  function handlePrint() {
-    const html = `<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8"/>
-<title>UZYNTRA Security — Cyber Security Course Syllabus</title>
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Arial',Helvetica,sans-serif;background:#fff;color:#0f172a;font-size:9.5px;line-height:1.55;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  async function handleDownload() {
+    const doc = new jsPDF({ unit: "pt", format: "a4" });
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const margin = 36;
+    const contentWidth = pageWidth - margin * 2;
+    let y = margin;
 
-/* ── COVER BAND (Magazine Style — Option 5) ── */
-.cover{background:#dc2626;padding:32px 36px 28px;position:relative;overflow:hidden}
-.cover::before{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,0.06)}
-.cover::after{content:'';position:absolute;bottom:-30px;left:60px;width:140px;height:140px;border-radius:50%;background:rgba(0,0,0,0.08)}
-.cover-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;position:relative;z-index:1}
-.brand{font-size:15px;font-weight:900;color:#fff;letter-spacing:-0.3px}
-.brand span{opacity:0.75}
-.cover-badge{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.35);color:#fff;font-size:7px;font-weight:700;letter-spacing:1.8px;padding:4px 10px;border-radius:2px;text-transform:uppercase}
-.cover-eyebrow{font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.65);margin-bottom:8px;position:relative;z-index:1}
-.cover-title{font-size:26px;font-weight:900;color:#fff;line-height:1.05;letter-spacing:-0.5px;margin-bottom:6px;position:relative;z-index:1}
-.cover-sub{font-size:10px;color:rgba(255,255,255,0.75);position:relative;z-index:1}
+    const addSectionHeading = (text: string, icon: string) => {
+      if (y > pageHeight - 90) {
+        doc.addPage();
+        y = margin;
+      }
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(15);
+      doc.setTextColor(220, 38, 38);
+      doc.text(`${icon} ${text}`, margin, y);
+      y += 20;
+      doc.setDrawColor(226, 232, 240);
+      doc.line(margin, y, pageWidth - margin, y);
+      y += 10;
+    };
 
-/* ── PRICING STRIP (Corporate — Option 1) ── */
-.pricing-strip{background:#0f172a;padding:10px 36px;display:flex;gap:0;border-bottom:3px solid #dc2626}
-.p-item{flex:1;padding:0 16px 0 0;border-right:1px solid rgba(255,255,255,0.1)}
-.p-item:last-child{border-right:none}
-.p-label{font-size:7px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:3px}
-.p-val{font-size:9.5px;font-weight:700;color:#fff}
-.p-val.red{color:#f87171}
+    const addJustifiedParagraph = (text: string, size = 10, color = [15, 23, 42]) => {
+      const lines = doc.splitTextToSize(text, contentWidth);
+      if (y + lines.length * (size + 2) > pageHeight - margin) {
+        doc.addPage();
+        y = margin;
+      }
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(size);
+      doc.setTextColor(color[0], color[1], color[2]);
+      doc.text(lines, margin, y, { align: "justify" });
+      y += lines.length * (size + 2) + 8;
+    };
 
-/* ── BODY ── */
-.body{padding:20px 36px 60px}
+    const addBulletPoints = (items: string[]) => {
+      items.forEach((item) => {
+        const lines = doc.splitTextToSize(`• ${item}`, contentWidth - 10);
+        if (y + lines.length * 11 > pageHeight - margin) {
+          doc.addPage();
+          y = margin;
+        }
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(10);
+        doc.setTextColor(51, 65, 85);
+        doc.text(lines, margin + 6, y, { align: "justify" });
+        y += lines.length * 11 + 4;
+      });
+    };
 
-/* ── SCHEDULE BOX ── */
-.sched-box{background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px;padding:14px 16px;margin-bottom:22px}
-.sec-eyebrow{font-size:7px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:#dc2626;margin-bottom:10px;display:flex;align-items:center;gap:6px}
-.sec-eyebrow::after{content:'';flex:1;height:1px;background:#e2e8f0}
-.sched-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.sched-item{background:#fff;border:1px solid #e2e8f0;border-radius:4px;padding:8px 10px}
-.sched-item-label{font-size:7px;color:#94a3b8;margin-bottom:2px;font-weight:600;letter-spacing:0.5px}
-.sched-item-val{font-size:9px;font-weight:700;color:#0f172a}
+    const addTwoColumnList = (items: string[], colWidth: number) => {
+      const rows = Math.ceil(items.length / 2);
+      const leftItems = items.slice(0, rows);
+      const rightItems = items.slice(rows);
+      const startY = y;
+      leftItems.forEach((item, index) => {
+        const lines = doc.splitTextToSize(`• ${item}`, colWidth - 10);
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(9.2);
+        doc.setTextColor(51, 65, 85);
+        doc.text(lines, margin, startY + index * 16, { align: "justify" });
+      });
+      rightItems.forEach((item, index) => {
+        const lines = doc.splitTextToSize(`• ${item}`, colWidth - 10);
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(9.2);
+        doc.setTextColor(51, 65, 85);
+        doc.text(lines, margin + colWidth + 10, startY + index * 16, { align: "justify" });
+      });
+      y += rows * 16 + 10;
+    };
 
-/* ── MONTH HEADER ── */
-.month-section{margin-bottom:18px;break-inside:avoid}
-.month-hdr{display:flex;align-items:stretch;margin-bottom:10px;border-radius:5px;overflow:hidden}
-.month-num-block{width:52px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px 6px;flex-shrink:0}
-.month-num{font-size:20px;font-weight:900;color:#fff;line-height:1}
-.month-num-label{font-size:6px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.65);margin-top:2px}
-.month-title-block{background:#0f172a;flex:1;padding:10px 14px;display:flex;flex-direction:column;justify-content:center}
-.month-title{font-size:10.5px;font-weight:700;color:#fff;margin-bottom:2px}
-.month-meta{font-size:7.5px;color:rgba(255,255,255,0.5)}
+    doc.setFillColor(248, 250, 252);
+    doc.rect(0, 0, pageWidth, 120, "F");
+    doc.setDrawColor(226, 232, 240);
+    doc.line(margin, 118, pageWidth - margin, 118);
+    doc.setFillColor(220, 38, 38);
+    doc.roundedRect(margin, 18, 44, 24, 3, 3, "F");
+    doc.setTextColor(255, 255, 255);
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(12);
+    doc.text("UZ", margin + 16, 34);
+    doc.setTextColor(15, 23, 42);
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(18);
+    doc.text("Cyber Security Course Syllabus", margin + 110, 38);
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(10);
+    doc.text("3-Month Practical Training • Foundations to Career-Ready • 12 Modules", margin + 110, 58);
+    doc.setFontSize(9);
+    doc.text("Practical labs, assessments, reporting, and career preparation", margin + 110, 76);
 
-/* ── MODULE CARDS (Option 4 — Bordered with colour stripe) ── */
-.mod-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
-.mod-card{border:1px solid #e2e8f0;border-radius:5px;overflow:hidden;break-inside:avoid;display:flex}
-.mod-stripe{width:4px;flex-shrink:0}
-.mod-inner{flex:1;min-width:0}
-.mod-hdr{background:#f8fafc;padding:7px 10px;display:flex;align-items:center;gap:7px;border-bottom:1px solid #e2e8f0}
-.mod-num{font-size:7px;font-weight:700;padding:2px 6px;border-radius:3px;color:#fff;flex-shrink:0}
-.mod-title{font-size:8.5px;font-weight:700;color:#0f172a;line-height:1.3}
-.mod-body{padding:8px 10px}
-.topics{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:5px}
-.topic{background:#f1f5f9;border-radius:3px;padding:2px 5px;font-size:7px;color:#475569}
-.tools-row{display:flex;flex-wrap:wrap;gap:3px;margin-top:5px}
-.tools-eyebrow{font-size:6.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#dc2626;margin-bottom:3px}
-.tool-pill{border-radius:3px;padding:2px 6px;font-size:7px;font-weight:700}
+    y = 150;
+    addSectionHeading("Course Overview", "🛡️");
+    addJustifiedParagraph("This three-month Cyber Security course introduces students to the practical foundations of defensive and offensive security. Students learn how cyberattacks occur, how attackers identify weaknesses, and how security professionals protect networks, systems, applications, and organizational data.");
+    addJustifiedParagraph("The course emphasizes hands-on labs, security tools, realistic scenarios, reporting, and problem-solving rather than excessive theory. It is designed for beginners as well as IT students and professionals who want a practical path into security roles.");
+    addJustifiedParagraph("Recommended duration: 3 months • Teaching weeks: 12 • Classes: 5 days per week • Class duration: 2 hours per day • Instructor-led training: approximately 120 hours • Self-practice: 1–2 hours daily • Total learning commitment: 180–220 hours.");
 
-/* ── TOOLS GRID ── */
-.tools-grid{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
-.tool-badge{background:#f8fafc;border:1px solid #e2e8f0;border-radius:4px;padding:4px 8px;font-size:7.5px;font-weight:700;color:#0f172a;display:flex;align-items:center;gap:4px}
-.tool-dot{width:4px;height:4px;border-radius:50%;background:#dc2626;flex-shrink:0}
+    addSectionHeading("Course Objectives", "🎯");
+    addBulletPoints([
+      "Develop a strong practical foundation in cybersecurity and prepare students to identify, assess, prevent, detect, and respond to common cyber threats.",
+      "Understand both the attacker’s methodology and the defender’s responsibilities while using security tools safely and responsibly.",
+      "Prepare professional vulnerability and incident reports and build a strong base for advanced certifications and cybersecurity careers.",
+    ]);
 
-/* ── OUTCOMES ── */
-.outcomes-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:8px}
-.outcome-item{background:#f8fafc;border:1px solid #e2e8f0;border-radius:4px;padding:7px 9px;display:flex;gap:7px;align-items:flex-start;break-inside:avoid}
-.outcome-num{font-size:8px;font-weight:900;color:#dc2626;flex-shrink:0;width:14px;text-align:right;margin-top:1px}
-.outcome-text{font-size:7.5px;color:#475569;line-height:1.5}
+    addSectionHeading("Target Audience & Prerequisites", "👥");
+    addBulletPoints([
+      "Beginners interested in cybersecurity, school and university students, IT students and professionals, network and system administrators, and developers interested in secure development.",
+      "No advanced experience is required. Basic computer knowledge is recommended.",
+      "Students should have basic computer literacy, a laptop capable of running virtual machines, at least 8 GB RAM, and about 80–100 GB of free storage.",
+    ]);
 
-/* ── ENROLL BOX ── */
-.enroll-box{background:#0f172a;border-radius:6px;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;margin-top:16px;gap:12px}
-.enroll-left{}
-.enroll-title{font-size:11px;font-weight:700;color:#fff;margin-bottom:3px}
-.enroll-sub{font-size:8px;color:rgba(255,255,255,0.55)}
-.enroll-btn{background:#dc2626;color:#fff;font-size:8px;font-weight:700;padding:8px 16px;border-radius:4px;text-transform:uppercase;letter-spacing:1px;white-space:nowrap;flex-shrink:0}
+    addSectionHeading("Learning Outcomes", "📘");
+    addJustifiedParagraph("Knowledge outcomes: students will understand the CIA triad, common threats, network protocols, attack lifecycles, vulnerability management, authentication, access control, web application risks, monitoring, incident response, and legal ethics.");
+    addJustifiedParagraph("Practical outcomes: students will build a lab, use Kali Linux and security tools, scan networks, identify vulnerabilities, secure operating systems, analyze logs, detect indicators of compromise, and create professional reports.");
+    addJustifiedParagraph("Career outcomes: students will gain foundational preparation for roles such as Junior Cybersecurity Analyst, SOC Analyst Level 1, IT Security Support Specialist, Junior Vulnerability Analyst, Security Operations Intern, and Junior Incident Response Analyst.");
 
-/* ── DIVIDER ── */
-.divider{height:1px;background:#e2e8f0;margin:16px 0}
+    addSectionHeading("Course Modules", "📚");
+    courseModules.forEach((group) => {
+      if (y > pageHeight - 130) {
+        doc.addPage();
+        y = margin;
+      }
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(12);
+      doc.setTextColor(15, 23, 42);
+      doc.text(`${group.month}`, margin, y);
+      y += 16;
+      group.modules.forEach((mod) => {
+        const heading = `${mod.title}`;
+        const lines = doc.splitTextToSize(`${heading} — ${mod.summary}`, contentWidth - 24);
+        if (y + lines.length * 10 + 26 > pageHeight - margin) {
+          doc.addPage();
+          y = margin;
+        }
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(10);
+        doc.setTextColor(220, 38, 38);
+        doc.text(heading, margin + 8, y);
+        y += 12;
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(9.2);
+        doc.setTextColor(51, 65, 85);
+        doc.text(lines, margin + 8, y, { align: "justify" });
+        y += lines.length * 10 + 6;
+        if (mod.topics.length > 0) {
+          const topicLines = doc.splitTextToSize(`Topics: ${mod.topics.join(" • ")}`, contentWidth - 24);
+          if (y + topicLines.length * 8 > pageHeight - margin) {
+            doc.addPage();
+            y = margin;
+          }
+          doc.setFont("helvetica", "italic");
+          doc.setFontSize(8.3);
+          doc.setTextColor(71, 85, 105);
+          doc.text(topicLines, margin + 8, y, { align: "justify" });
+          y += topicLines.length * 8 + 6;
+        }
+        if (mod.tools.length > 0) {
+          const toolLines = doc.splitTextToSize(`Tools: ${mod.tools.join(" • ")}`, contentWidth - 24);
+          if (y + toolLines.length * 8 > pageHeight - margin) {
+            doc.addPage();
+            y = margin;
+          }
+          doc.setFont("helvetica", "bold");
+          doc.setFontSize(8.2);
+          doc.setTextColor(15, 23, 42);
+          doc.text(toolLines, margin + 8, y, { align: "justify" });
+          y += toolLines.length * 8 + 8;
+        }
+      });
+      y += 8;
+    });
 
-/* ── FOOTER ── */
-.footer{position:fixed;bottom:0;left:0;right:0;background:#0f172a;padding:7px 36px;display:flex;justify-content:space-between;align-items:center}
-.footer-l{font-size:7px;color:rgba(255,255,255,0.4)}
-.footer-c{font-size:7.5px;font-weight:700;color:#dc2626}
-.footer-r{font-size:7px;color:rgba(255,255,255,0.4)}
+    addSectionHeading("Teaching Methodology", "🧪");
+    addBulletPoints(teachingMethodology);
 
-@media print{
-  body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  .footer{position:fixed;bottom:0}
-  .no-break{break-inside:avoid}
-  @page{margin:0;size:A4}
-}
-</style>
-</head>
-<body>
+    addSectionHeading("Practical Activities", "⚙️");
+    addBulletPoints(practicalActivities);
 
-<!-- COVER BAND -->
-<div class="cover">
-  <div class="cover-top">
-    <div class="brand">UZYN<span>TRA</span> Security</div>
-    <div class="cover-badge">Course Syllabus 2025</div>
-  </div>
-  <div class="cover-eyebrow">Cyber Security Programme</div>
-  <div class="cover-title">Cyber Security</div>
-  <div class="cover-sub">3-Month Practical Training &nbsp;·&nbsp; Foundations to Career-Ready &nbsp;·&nbsp; 12 Modules &nbsp;·&nbsp; 20 Tools</div>
-</div>
+    addSectionHeading("Course Projects", "🧭");
+    addBulletPoints(courseProjects);
 
-<!-- PRICING STRIP -->
-<div class="pricing-strip">
-  <div class="p-item"><div class="p-label">Duration</div><div class="p-val">3 Months</div></div>
-  <div class="p-item"><div class="p-label">Per Month</div><div class="p-val red">PKR 15,000</div></div>
-  <div class="p-item"><div class="p-label">Total Fee</div><div class="p-val red">PKR 45,000</div></div>
-  <div class="p-item"><div class="p-label">International</div><div class="p-val red">$199 USD</div></div>
-  <div class="p-item"><div class="p-label">Enroll</div><div class="p-val">forms.gle/3kRrPLjzp37dK8eh8</div></div>
-</div>
+    addSectionHeading("Assessment & Certification Policy", "✅");
+    addBulletPoints(assessmentPolicy);
 
-<div class="body">
+    addSectionHeading("Expected Final Outcome", "🏁");
+    addJustifiedParagraph("By the end of the programme, students should be able to independently set up a basic security lab, examine network and system activity, identify common vulnerabilities, secure operating systems, analyze logs, respond to basic incidents, and prepare professional technical reports.");
+    addJustifiedParagraph("Students will leave with practical cybersecurity experience, a completed home lab, multiple lab reports, a vulnerability assessment report, a final incident response project, basic portfolio material, and a roadmap for advanced learning and certifications.");
 
-<!-- SCHEDULE -->
-<div class="sched-box">
-  <div class="sec-eyebrow">Recommended Schedule</div>
-  <div class="sched-grid">
-    <div class="sched-item"><div class="sched-item-label">Duration</div><div class="sched-item-val">3 Months · 12 Weeks</div></div>
-    <div class="sched-item"><div class="sched-item-label">Classes</div><div class="sched-item-val">5 Days / Week</div></div>
-    <div class="sched-item"><div class="sched-item-label">Class Time</div><div class="sched-item-val">2 Hours / Day</div></div>
-    <div class="sched-item"><div class="sched-item-label">Self Practice</div><div class="sched-item-val">1–2 Hours / Day</div></div>
-    <div class="sched-item"><div class="sched-item-label">Instructor Hours</div><div class="sched-item-val">~120 Hours</div></div>
-    <div class="sched-item"><div class="sched-item-label">Total Learning</div><div class="sched-item-val">~180–220 Hours</div></div>
-  </div>
-</div>
-
-${months.map((month) => `
-<div class="month-section no-break">
-  <div class="month-hdr">
-    <div class="month-num-block" style="background:${month.stripe}">
-      <div class="month-num">${month.label.split(" ")[1]}</div>
-      <div class="month-num-label">Month</div>
-    </div>
-    <div class="month-title-block">
-      <div class="month-title">${month.title}</div>
-      <div class="month-meta">4 Modules &nbsp;·&nbsp; ${month.modules.flatMap(m => m.tools).length > 0 ? month.modules.flatMap(m => m.tools).length + " Tools" : "Concepts & Practice"}</div>
-    </div>
-  </div>
-  <div class="mod-grid">
-    ${month.modules.map((mod) => `
-    <div class="mod-card no-break">
-      <div class="mod-stripe" style="background:${month.stripe}"></div>
-      <div class="mod-inner">
-        <div class="mod-hdr">
-          <span class="mod-num" style="background:${month.stripe}">M${mod.num}</span>
-          <span class="mod-title">${mod.title}</span>
-        </div>
-        <div class="mod-body">
-          <div class="topics">
-            ${mod.topics.map(t => `<span class="topic">${t}</span>`).join("")}
-          </div>
-          ${mod.tools.length > 0 ? `
-          <div class="tools-eyebrow">Tools</div>
-          <div class="tools-row">
-            ${mod.tools.map(t => `<span class="tool-pill" style="background:${month.stripe}18;border:1px solid ${month.stripe}40;color:${month.stripe}">${t}</span>`).join("")}
-          </div>` : ""}
-        </div>
-      </div>
-    </div>`).join("")}
-  </div>
-</div>`).join("")}
-
-<div class="divider"></div>
-
-<!-- TOOLS -->
-<div class="sec-eyebrow">Tools Covered</div>
-<div class="tools-grid">
-  ${allTools.map(t => `<div class="tool-badge"><div class="tool-dot"></div>${t}</div>`).join("")}
-</div>
-
-<div class="divider"></div>
-
-<!-- OUTCOMES -->
-<div class="sec-eyebrow">Learning Outcomes</div>
-<div class="outcomes-grid">
-  ${outcomes.map((o, i) => `
-  <div class="outcome-item no-break">
-    <div class="outcome-num">${String(i + 1).padStart(2, "0")}</div>
-    <div class="outcome-text">${o}</div>
-  </div>`).join("")}
-</div>
-
-<!-- ENROLL -->
-<div class="enroll-box">
-  <div class="enroll-left">
-    <div class="enroll-title">Ready to start your cybersecurity career?</div>
-    <div class="enroll-sub">Register via Google Form &nbsp;·&nbsp; forms.gle/3kRrPLjzp37dK8eh8 &nbsp;·&nbsp; PKR 45,000 total &nbsp;·&nbsp; $199 international</div>
-  </div>
-  <div class="enroll-btn">Enroll Now</div>
-</div>
-
-</div>
-
-<!-- FOOTER -->
-<div class="footer">
-  <span class="footer-l">UZYNTRA Security — Cyber Security Course Syllabus 2025</span>
-  <span class="footer-c">uzyntra.com</span>
-  <span class="footer-r">© 2025 UZYNTRA Security. All rights reserved.</span>
-</div>
-
-<script>
-  window.onload = function() {
-    window.print();
-    window.onafterprint = function() { window.close(); };
-  };
-</script>
-</body>
-</html>`;
-
-    const win = window.open("", "_blank", "width=960,height=760");
-    if (!win) { alert("Please allow popups to download the syllabus."); return; }
-    win.document.write(html);
-    win.document.close();
+    doc.save("uzyntra-cyber-security-syllabus.pdf");
   }
 
   return (
     <button
-      onClick={handlePrint}
+      type="button"
+      onClick={handleDownload}
       className="btn-ghost-secondary inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl px-6 text-sm sm:w-auto"
     >
       <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" />
       </svg>
       Download Syllabus PDF
     </button>

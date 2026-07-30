@@ -81,14 +81,14 @@ export function FlipInfoCard({
     borderColor: "rgba(220,38,38,0.35)",
   };
 
-  // Fix 1: identical front card base — no card looks "more active" than others
-  // Fix 7 dark mode: bg-slate-950/70 border-white/10 hover:border-red-500/40
-  const frontBg          = dark ? "rgba(15,23,42,0.85)"    : "#ffffff";
-  const frontBorderColor = dark ? "rgba(255,255,255,0.10)" : "rgba(203,213,225,0.8)";
+  const frontBg          = dark ? "rgba(15,23,42,0.85)"    : "linear-gradient(145deg,#ffffff,#f8fafc)";
+  const frontBorderColor = dark ? "rgba(255,255,255,0.10)" : "rgba(203,213,225,1)";
   const frontHoverShadow = dark
     ? "0 0 0 1.5px rgba(239,68,68,0.40), 0 20px 48px rgba(220,38,38,0.14), 0 4px 16px rgba(0,0,0,0.20)"
-    : "0 0 0 1.5px rgba(220,38,38,0.30), 0 20px 48px rgba(220,38,38,0.12), 0 4px 16px rgba(0,0,0,0.06)";
-  const frontDefaultShadow = dark ? "0 1px 4px rgba(0,0,0,0.30)" : "0 1px 4px rgba(0,0,0,0.05)";
+    : "0 0 0 1.5px rgba(220,38,38,0.30), 0 20px 48px rgba(220,38,38,0.10), 0 8px 24px rgba(15,23,42,0.10)";
+  const frontDefaultShadow = dark
+    ? "0 1px 4px rgba(0,0,0,0.30)"
+    : "0 2px 8px rgba(15,23,42,0.08), 0 1px 2px rgba(15,23,42,0.04)";
 
   const inner = (
     <motion.div
@@ -135,14 +135,20 @@ export function FlipInfoCard({
         >
           {/* Fix 7: icon with ring glow */}
           {icon && (
-            <div className="flip-icon-front inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-red-50 text-red-700 ring-1 ring-red-500/20 transition-all duration-200">
+            <div
+              className="flip-icon-front inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl ring-1 transition-all duration-200"
+              style={dark
+                ? { background: "rgba(220,38,38,0.15)", color: "rgb(248,113,113)", boxShadow: "none", ringColor: "rgba(248,113,113,0.2)" }
+                : { background: "linear-gradient(135deg,#fee2e2,#fecaca)", color: "rgb(185,28,28)", boxShadow: "0 2px 8px rgba(220,38,38,0.18)", outline: "1px solid rgba(220,38,38,0.18)" }
+              }
+            >
               {icon}
             </div>
           )}
           <h3 className="flip-title-front text-base font-semibold" style={{ color: dark ? "hsl(210,40%,96%)" : "#0f172a" }}>
             {title}
           </h3>
-          <p className="flip-body-front text-sm leading-7" style={{ color: dark ? "hsl(215,16%,65%)" : "#475569" }}>
+          <p className="flip-body-front text-sm leading-7" style={{ color: dark ? "hsl(215,16%,65%)" : "#334155" }}>
             {frontDescription}
           </p>
           <div className="mt-auto pt-3">

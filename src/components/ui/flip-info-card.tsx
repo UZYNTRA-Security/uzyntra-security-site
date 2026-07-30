@@ -156,7 +156,7 @@ export function FlipInfoCard({
             <div
               className="flip-icon-front inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl ring-1 transition-all duration-200"
               style={dark
-                ? { background: "rgba(220,38,38,0.15)", color: "rgb(248,113,113)", boxShadow: "none", ringColor: "rgba(248,113,113,0.2)" }
+                ? { background: "rgba(220,38,38,0.15)", color: "rgb(248,113,113)", boxShadow: "none" }
                 : { background: "linear-gradient(135deg,#fee2e2,#fecaca)", color: "rgb(185,28,28)", boxShadow: "0 2px 8px rgba(220,38,38,0.18)", outline: "1px solid rgba(220,38,38,0.18)" }
               }
             >

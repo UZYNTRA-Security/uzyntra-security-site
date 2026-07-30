@@ -21,7 +21,7 @@ export function CTAGroup() {
 
         <Link
           href="/services"
-          className="btn-neutral inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl px-5 text-sm sm:w-auto"
+          className="btn-ghost-secondary inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl px-5 text-sm sm:w-auto"
         >
           <Boxes className="h-4 w-4 shrink-0" aria-hidden="true" />
           Explore Services

@@ -10,7 +10,7 @@ import { ThemedLogo } from "@/components/ui/themed-logo";
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200/60 bg-white/98 shadow-[0_2px_12px_rgba(0,0,0,0.06)] backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-slate-200/60 shadow-[0_2px_12px_rgba(0,0,0,0.06)] backdrop-blur-md" style={{ background: "var(--bg-surface-strong)" }}>
       <div className="container-shell">
         <div className="flex items-center justify-between gap-2 sm:gap-4" style={{ height: "56px" }}>
 

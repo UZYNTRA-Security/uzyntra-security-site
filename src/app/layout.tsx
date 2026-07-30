@@ -151,7 +151,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
         />
       </head>
       <body
-        className="min-h-screen bg-white text-slate-950 antialiased"
+        className="min-h-screen antialiased"
+        style={{ background: "transparent", color: "hsl(var(--foreground))" }}
       >
         <CustomCursor />
         <DeferredEffects />

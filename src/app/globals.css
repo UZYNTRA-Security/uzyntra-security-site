@@ -156,7 +156,7 @@ html {
     linear-gradient(to bottom, #ffffff, #fbfbfc);
 }
 
-[data-theme="dark"] html {
+html[data-theme="dark"] {
   background:
     radial-gradient(circle at top left, rgba(220, 38, 38, 0.06), transparent 22%),
     radial-gradient(circle at bottom right, rgba(153, 27, 27, 0.08), transparent 22%),
@@ -343,7 +343,7 @@ ol {
   --hero-desc:  #64748b;
 }
 /* Dark: light heading on dark bg */
-[data-theme="dark"] .home-hero {
+html[data-theme="dark"] .home-hero {
   --hero-title: #f1f5f9;
   --hero-desc:  #94a3b8;
 }
@@ -795,6 +795,47 @@ ol {
   }
 }
 
+/* GHOST-SECONDARY: transparent bg + slate border — visually subordinate to btn-solid */
+.btn-ghost-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease,
+              border-color 0.2s ease, box-shadow 0.2s ease,
+              transform 0.15s ease;
+  background: transparent;
+  color: #475569;
+  border: 1.5px solid #cbd5e1;
+}
+.btn-ghost-secondary:hover {
+  background: rgba(15, 23, 42, 0.05);
+  border-color: #94a3b8;
+  color: #334155;
+  transform: translateY(-1px);
+}
+.btn-ghost-secondary:active { transform: translateY(0); }
+[data-theme="dark"] .btn-ghost-secondary {
+  background: transparent;
+  color: hsl(215, 20%, 65%);
+  border-color: rgba(51, 65, 85, 0.8);
+}
+[data-theme="dark"] .btn-ghost-secondary:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(100, 116, 139, 0.7);
+  color: hsl(210, 40%, 80%);
+}
+@media (hover: none) {
+  .btn-ghost-secondary:hover { transform: none; }
+  .btn-ghost-secondary:active {
+    transform: scale(0.97);
+    transition-duration: 0.1s;
+  }
+}
+
 /* btn-primary is an alias of btn-solid — kept for backward compat with any
    existing usages outside the Button component (e.g. contact form). */
 .btn-primary {
@@ -874,14 +915,14 @@ ol {
   }
 }
 
-[data-theme="dark"] .hero-stat-card {
+html[data-theme="dark"] .hero-stat-card {
   background: #111827;
   border-color: rgba(51, 65, 85, 0.6);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 }
 
 @media (hover: hover) {
-  [data-theme="dark"] .hero-stat-card:hover {
+  html[data-theme="dark"] .hero-stat-card:hover {
     border-color: rgba(220, 38, 38, 0.25);
     box-shadow: 0 6px 18px rgba(220, 38, 38, 0.12);
   }
@@ -1243,7 +1284,7 @@ ol {
   color: #94a3b8 !important;
 }
 [data-theme="dark"] section:not(.cta-section) .text-slate-500 {
-  color: #64748b !important;
+  color: #94a3b8 !important;
 }
 
 /* ── Surface cards in dark sections ── */

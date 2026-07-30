@@ -76,9 +76,27 @@ export function FlipInfoCard({
     ? { background: "rgba(220,38,38,0.12)", border: "1px solid rgba(248,113,113,0.4)", color: "rgb(248,113,113)" }
     : { background: "#fff0f0",              border: "1px solid rgba(185,28,28,0.40)",   color: "rgb(153,27,27)" };
 
+  // Back face is always a premium dark surface (intentional design choice)
+  // but colours are still derived from the dark flag for future flexibility
   const backFaceStyle: React.CSSProperties = {
-    background: "#0f172a",
-    borderColor: "rgba(220,38,38,0.35)",
+    background: "linear-gradient(145deg,#1e293b,#0f172a)",
+    borderColor: dark ? "rgba(220,38,38,0.35)" : "rgba(220,38,38,0.45)",
+  };
+  const backShadow     = "0 16px 48px rgba(0,0,0,0.32), 0 0 0 1px rgba(220,38,38,0.12)";
+  const backIconBg     = "rgba(220,38,38,0.20)";
+  const backIconColor  = "rgb(252,165,165)";
+  const backHeading    = "#f1f5f9";
+  const backBody       = "rgba(241,245,249,0.78)";
+  const backBulletDot  = "rgb(239,68,68)";
+  const backPillStyle: React.CSSProperties = {
+    background: "rgba(220,38,38,0.16)",
+    border: "1px solid rgba(248,113,113,0.35)",
+    color: "rgb(252,165,165)",
+  };
+  const backBadgeStyle: React.CSSProperties = {
+    background: "rgba(255,255,255,0.06)",
+    border: "1px solid rgba(255,255,255,0.10)",
+    color: "#94a3b8",
   };
 
   const frontBg          = dark ? "rgba(15,23,42,0.85)"    : "linear-gradient(145deg,#ffffff,#f8fafc)";
@@ -163,42 +181,48 @@ export function FlipInfoCard({
           </div>
         </div>
 
-        {/* ── BACK — premium dark surface ── */}
+        {/* ── BACK — premium dark surface (both themes) ── */}
         <div
           style={{
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
             transform: "rotateY(180deg)",
             ...backFaceStyle,
+            boxShadow: backShadow,
           }}
-          className="absolute inset-0 flex flex-col gap-3 rounded-[22px] border p-6 shadow-[0_16px_48px_rgba(0,0,0,0.28)]"
+          className="absolute inset-0 flex flex-col gap-4 rounded-[22px] border p-6"
         >
           {icon && (
-            <div className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-red-600/20 text-red-400 ring-1 ring-red-500/20">
+            <div
+              className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl"
+              style={{ background: backIconBg, color: backIconColor, boxShadow: "0 2px 8px rgba(220,38,38,0.20)" }}
+            >
               {icon}
             </div>
           )}
-          <h3 className="text-base font-semibold text-white">
+          <h3 className="text-base font-semibold" style={{ color: backHeading }}>
             {backTitle ?? title}
           </h3>
 
-          {/* Fix 2: text-sm, space-y-2, text-white/90 */}
           {backBullets && backBullets.length > 0 ? (
             <ul className="space-y-2">
               {backBullets.map((b) => (
-                <li key={b} className="flex items-start gap-2 text-sm leading-6 text-white/90">
-                  <span className="mt-[6px] h-1.5 w-1.5 shrink-0 rounded-full bg-red-500" />
+                <li key={b} className="flex items-start gap-2 text-sm leading-6" style={{ color: backBody }}>
+                  <span className="mt-[6px] h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: backBulletDot }} />
                   {b}
                 </li>
               ))}
             </ul>
           ) : (
-            <p className="text-sm leading-7 text-white/90">{backDescription}</p>
+            <p className="text-sm leading-7" style={{ color: backBody }}>{backDescription}</p>
           )}
 
           {href && (
             <div className="mt-auto pt-3">
-              <span className="inline-flex items-center gap-1.5 rounded-lg border border-red-500/40 bg-red-600/15 px-3 py-1.5 text-xs font-semibold text-red-400 transition-all duration-200 hover:bg-red-600 hover:text-white hover:border-red-600">
+              <span
+                className="inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition-all duration-200"
+                style={backPillStyle}
+              >
                 {!hasHover && flipped ? "Tap again to visit →" : hrefLabel}
                 {(hasHover || !flipped) && <ArrowRight className="h-3 w-3 shrink-0" />}
               </span>
@@ -206,7 +230,10 @@ export function FlipInfoCard({
           )}
           {!href && (
             <div className="mt-auto pt-3">
-              <span className="inline-flex rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold text-slate-400">
+              <span
+                className="inline-flex rounded-full px-3 py-1 text-xs font-semibold"
+                style={backBadgeStyle}
+              >
                 UZYNTRA Enterprise Capability
               </span>
             </div>

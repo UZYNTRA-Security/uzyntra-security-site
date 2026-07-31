@@ -2748,3 +2748,28 @@ html[data-theme="dark"] .back-to-top-floating {
 .pdf-cover .pdf-logo-frame img + span {
   display: none;
 }
+
+/* Global back-to-top visibility state. Hidden during hero/top sections, visible after scroll threshold. */
+.back-to-top-floating {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(14px) scale(0.92);
+}
+
+.back-to-top-floating[data-visible="true"] {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+.back-to-top-floating[data-visible="true"]:hover {
+  transform: translateY(-4px) scale(1.04);
+}
+
+.back-to-top-floating[data-visible="false"] {
+  animation: none !important;
+}
+
+.back-to-top-floating[data-visible="true"] {
+  animation: uzyntraBackTopDance 2.6s ease-in-out infinite;
+}

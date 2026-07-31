@@ -7,6 +7,7 @@ import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { CustomCursor } from "@/components/cursor/custom-cursor";
 import { DeferredEffects } from "@/components/effects/deferred-effects";
+import { BackToTopButton } from "@/components/ui/back-to-top-button";
 import { GoogleAnalytics } from "@/components/analytics";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
@@ -167,6 +168,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <div className="flex flex-1 flex-col">{children}</div>
           <SiteFooter />
         </div>
+        <BackToTopButton />
         <SpeedInsights />
         <Analytics />
         {/* Analytics deferred until browser idle — off the critical path */}

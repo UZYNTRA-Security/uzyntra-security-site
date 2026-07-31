@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import {
   ArrowRight,
-  ArrowUp,
   BookOpen,
   Calendar,
   CheckCircle2,
@@ -378,9 +377,6 @@ export default function CybersecurityCourse() {
 
         </div>
       </section>
-      <a href="#main-content" aria-label="Back to top" className="back-to-top-floating fixed bottom-5 right-5 z-[80] inline-flex h-12 w-12 items-center justify-center rounded-full border shadow-lg transition-all hover:-translate-y-1">
-        <ArrowUp className="h-5 w-5" aria-hidden="true" />
-      </a>
     </main>
   );
 }

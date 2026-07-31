@@ -2994,3 +2994,52 @@ html[data-theme="dark"] .course-hero-actions a:hover {
     display: none;
   }
 }
+/* Course enroll-card buttons: navbar-style outline download and inverted enroll hover. */
+.course-enroll-card .btn-solid,
+.course-enroll-card .course-download-syllabus-button {
+  border-radius: 999px;
+  overflow: visible;
+}
+
+.course-enroll-card .btn-solid:hover {
+  background: #ffffff;
+  border-color: rgb(239, 31, 36);
+  color: rgb(220, 38, 38);
+  box-shadow: 0 12px 28px rgba(220, 38, 38, 0.16);
+}
+
+.course-enroll-card .btn-solid:hover svg {
+  color: rgb(220, 38, 38);
+}
+
+.course-enroll-card .course-download-syllabus-button {
+  background: #ffffff;
+  border: 2px solid rgb(239, 31, 36);
+  color: rgb(220, 38, 38);
+  box-shadow: 0 8px 20px rgba(220, 38, 38, 0.08);
+}
+
+.course-enroll-card .course-download-syllabus-button:hover {
+  background: rgb(239, 31, 36);
+  border-color: rgb(239, 31, 36);
+  color: #ffffff;
+  box-shadow: 0 12px 28px rgba(220, 38, 38, 0.2);
+}
+
+.course-enroll-card .btn-solid::after,
+.course-enroll-card .course-download-syllabus-button::after {
+  display: none !important;
+}
+
+html[data-theme="dark"] .course-enroll-card .btn-solid:hover,
+html[data-theme="dark"] .course-enroll-card .course-download-syllabus-button {
+  background: #ffffff;
+  border-color: rgb(248, 54, 59);
+  color: rgb(220, 38, 38);
+}
+
+html[data-theme="dark"] .course-enroll-card .course-download-syllabus-button:hover {
+  background: rgb(248, 54, 59);
+  border-color: rgb(248, 54, 59);
+  color: #ffffff;
+}

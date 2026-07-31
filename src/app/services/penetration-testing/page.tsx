@@ -3,13 +3,13 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import {
   Crosshair, Globe, Network, Cloud, UserX,
-  ShieldOff, CheckCircle2, AlertTriangle, ArrowRight, MessageSquare,
+  CheckCircle2, AlertTriangle, ArrowRight, MessageSquare,
 } from "lucide-react";
 
 import { PageHero } from "@/components/sections/page-hero";
 import { TechnologySlider } from "@/components/sections/technology-slider";
 import { siteConfig } from "@/config/site";
-import { cybersecurityTechnologies, pentestTechnologies } from "@/data/technologies";
+import { pentestTechnologies } from "@/data/technologies";
 
 const ServiceCapabilityGrid = dynamic(
   () => import("@/components/sections/service-capability-grid").then((m) => m.ServiceCapabilityGrid),
@@ -257,3 +257,4 @@ export default function PenetrationTestingPage() {
     </main>
   );
 }
+

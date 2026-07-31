@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef, useState } from "react";
 import { ChevronDown, Check, Search } from "lucide-react";
@@ -167,6 +167,7 @@ export function CustomSelect({
         role="combobox"
         aria-expanded={open}
         aria-haspopup="listbox"
+        aria-controls={`${id}-listbox`}
         aria-required={required}
         onClick={toggle}
         className={cn(
@@ -190,6 +191,7 @@ export function CustomSelect({
 
       {/* Dropdown panel */}
       <div
+        id={`${id}-listbox`}
         role="listbox"
         aria-label={label}
         className={cn(
@@ -210,7 +212,7 @@ export function CustomSelect({
                 type="text"
                 value={query}
                 onChange={(e) => { setQuery(e.target.value); setFocused(0); }}
-                placeholder="Search…"
+                placeholder="Searchâ€¦"
                 className="w-full bg-transparent text-sm text-slate-700 placeholder-slate-400 outline-none"
               />
             </div>
@@ -265,3 +267,6 @@ export function CustomSelect({
     </div>
   );
 }
+
+
+

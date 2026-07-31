@@ -1,6 +1,6 @@
-ï»¿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
-import { CheckCircle2, ArrowRight, MessageSquare } from "lucide-react";
+import { CheckCircle2, MessageSquare } from "lucide-react";
 import { CourseHeroImage } from "@/components/sections/course-hero-image";
 import { siteConfig } from "@/config/site";
 
@@ -34,9 +34,9 @@ export default function NetworkingCourse() {
       <CourseHeroImage
         src="/images/courses/networking-ccna.webp"
         alt="Networking CCNA Course"
-        eyebrow="Course â€” Networking (CCNA)"
+        eyebrow="Course — Networking (CCNA)"
         title="Networking: From TCP/IP to CCNA Certification"
-        description="Build a solid networking foundation â€” routing, switching, VLANs, VPNs, and network security â€” with full CCNA 200-301 certification preparation."
+        description="Build a solid networking foundation — routing, switching, VLANs, VPNs, and network security — with full CCNA 200-301 certification preparation."
       />
       <section id="curriculum" className="section-tight bg-slate-50/70">
         <div className="container-shell">
@@ -92,3 +92,4 @@ export default function NetworkingCourse() {
     </main>
   );
 }
+

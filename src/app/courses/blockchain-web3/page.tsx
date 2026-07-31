@@ -1,6 +1,6 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
-import { CheckCircle2, ArrowRight, MessageSquare } from "lucide-react";
+import { CheckCircle2, MessageSquare } from "lucide-react";
 import { CourseHeroImage } from "@/components/sections/course-hero-image";
 import { siteConfig } from "@/config/site";
 
@@ -34,7 +34,7 @@ export default function BlockchainCourse() {
       <CourseHeroImage
         src="/images/courses/blockchain-web3.webp"
         alt="Blockchain and Web3 Course"
-        eyebrow="Course — Blockchain & Web3"
+        eyebrow="Course � Blockchain & Web3"
         title="Blockchain & Web3: Smart Contracts to Secure dApps"
         description="Build on-chain applications with Solidity, understand DeFi protocols, and learn to audit smart contracts for security vulnerabilities."
       />
@@ -92,3 +92,4 @@ export default function BlockchainCourse() {
     </main>
   );
 }
+

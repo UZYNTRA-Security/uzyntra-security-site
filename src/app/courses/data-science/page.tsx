@@ -1,6 +1,6 @@
-ï»¿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
-import { CheckCircle2, ArrowRight, MessageSquare } from "lucide-react";
+import { CheckCircle2, MessageSquare } from "lucide-react";
 import { CourseHeroImage } from "@/components/sections/course-hero-image";
 import { siteConfig } from "@/config/site";
 
@@ -34,9 +34,9 @@ export default function DataScienceCourse() {
       <CourseHeroImage
         src="/images/courses/data-science.webp"
         alt="Data Science and Analytics Course"
-        eyebrow="Course â€” Data Science & Analytics"
+        eyebrow="Course — Data Science & Analytics"
         title="Data Science & Analytics: From Raw Data to Insights"
-        description="Master data analysis, visualization, statistical modeling, and machine learning pipelines using Python â€” applied to real-world and security datasets."
+        description="Master data analysis, visualization, statistical modeling, and machine learning pipelines using Python — applied to real-world and security datasets."
       />
       <section id="curriculum" className="section-tight bg-slate-50/70">
         <div className="container-shell">
@@ -92,3 +92,4 @@ export default function DataScienceCourse() {
     </main>
   );
 }
+

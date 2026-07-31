@@ -1,6 +1,6 @@
-ï»¿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
-import { CheckCircle2, ArrowRight, MessageSquare } from "lucide-react";
+import { CheckCircle2, MessageSquare } from "lucide-react";
 import { CourseHeroImage } from "@/components/sections/course-hero-image";
 import { siteConfig } from "@/config/site";
 
@@ -34,9 +34,9 @@ export default function PentestCourse() {
       <CourseHeroImage
         src="/images/courses/penetration-testing.webp"
         alt="Penetration Testing Course"
-        eyebrow="Course â€” Penetration Testing"
+        eyebrow="Course — Penetration Testing"
         title="Penetration Testing: Professional Methodology & Reporting"
-        description="Learn structured penetration testing methodology for web applications, networks, and cloud environments â€” with professional reporting and certification preparation."
+        description="Learn structured penetration testing methodology for web applications, networks, and cloud environments — with professional reporting and certification preparation."
       />
       <section id="curriculum" className="section-tight bg-slate-50/70">
         <div className="container-shell">
@@ -92,3 +92,4 @@ export default function PentestCourse() {
     </main>
   );
 }
+

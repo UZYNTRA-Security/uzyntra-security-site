@@ -1,6 +1,6 @@
-ï»¿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
-import { CheckCircle2, ArrowRight, MessageSquare } from "lucide-react";
+import { CheckCircle2, MessageSquare } from "lucide-react";
 import { CourseHeroImage } from "@/components/sections/course-hero-image";
 import { siteConfig } from "@/config/site";
 
@@ -34,9 +34,9 @@ export default function LinuxCourse() {
       <CourseHeroImage
         src="/images/courses/linux-administration.webp"
         alt="Linux Administration Course"
-        eyebrow="Course â€” Linux Administration"
+        eyebrow="Course — Linux Administration"
         title="Linux Administration: Command Line to Hardened Servers"
-        description="Master Linux system administration â€” from the command line and shell scripting to server hardening and security configuration for production environments."
+        description="Master Linux system administration — from the command line and shell scripting to server hardening and security configuration for production environments."
       />
       <section id="curriculum" className="section-tight bg-slate-50/70">
         <div className="container-shell">
@@ -92,3 +92,4 @@ export default function LinuxCourse() {
     </main>
   );
 }
+

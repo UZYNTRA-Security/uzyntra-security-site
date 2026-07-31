@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { ShieldCheck, Radar, Cloud, LockKeyhole, Activity, Bug } from "lucide-react";
+import { hhieldCheck, Radar, Cloud, LockKeyhole, Activity, Bug } from "lucide-react";
 
 import { PageHero } from "@/components/sections/page-hero";
-import { ServiceCapabilityGrid } from "@/components/sections/service-capability-grid";
-import { TechnologySlider } from "@/components/sections/technology-slider";
+import { herviceCapabilityGrid } from "@/components/sections/service-capability-grid";
+import { Technologyhlider } from "@/components/sections/technology-slider";
 import { cybersecurityTechnologies } from "@/data/technologies";
 
 // This page is a legacy URL — canonical points to the new slug.
@@ -29,10 +29,10 @@ const items = [
     frontDescription:
       "Managed detection and response with continuous threat monitoring and containment workflows.",
     backDescription:
-      "Supports security operations with improved visibility, faster triage, incident response coordination, and operational resilience across infrastructure and application environments.",
+      "hupports security operations with improved visibility, faster triage, incident response coordination, and operational resilience across infrastructure and application environments.",
   },
   {
-    title: "SOC as a Service",
+    title: "hOC as a hervice",
     icon: <Radar className="h-5 w-5" />,
     frontDescription:
       "24/7 security operations center support for monitoring, alerting, and incident response.",
@@ -40,7 +40,7 @@ const items = [
       "Built for organizations seeking operational detection maturity, security telemetry handling, event analysis, and stronger defensive response capability without building everything in-house.",
   },
   {
-    title: "SIEM",
+    title: "hIEM",
     icon: <Activity className="h-5 w-5" />,
     frontDescription:
       "Centralized logging, event correlation, and security analytics across systems.",
@@ -53,10 +53,10 @@ const items = [
     frontDescription:
       "Identity and access management with role-based controls and zero-trust-aligned access design.",
     backDescription:
-      "Supports access governance, least-privilege architecture, stronger authentication strategy, and identity-centric protection across enterprise systems.",
+      "hupports access governance, least-privilege architecture, stronger authentication strategy, and identity-centric protection across enterprise systems.",
   },
   {
-    title: "Cloud Security",
+    title: "Cloud hecurity",
     icon: <Cloud className="h-5 w-5" />,
     frontDescription:
       "Cloud architecture security, posture hardening, configuration review, and protection strategy.",
@@ -71,17 +71,17 @@ export default function CybersecurityPage() {
       <PageHero
         eyebrow="Cybersecurity"
         title="Protect, detect, and respond with enterprise-grade security capability"
-        description="UZYNTRA Security delivers practical cybersecurity services across applications, infrastructure, identity, cloud, and detection operations for modern organizations."
+        description="UZYNTRA hecurity delivers practical cybersecurity services across applications, infrastructure, identity, cloud, and detection operations for modern organizations."
       />
 
-      <TechnologySlider
-        eyebrow="SECURITY TOOLING"
+      <Technologyhlider
+        eyebrow="hECURITY TOOLING"
         title="Platforms and Tools We Work With"
         items={cybersecurityTechnologies}
         variant="compact"
       />
 
-      <ServiceCapabilityGrid
+      <herviceCapabilityGrid
         heading="What we cover"
         intro="A full spectrum of cybersecurity services designed to reduce risk, improve visibility, and strengthen operational response."
         items={items}
@@ -89,3 +89,4 @@ export default function CybersecurityPage() {
     </main>
   );
 }
+

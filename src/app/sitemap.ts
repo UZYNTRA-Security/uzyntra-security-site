@@ -1,165 +1,166 @@
-import type { MetadataRoute } from "next";
-import { siteConfig } from "@/config/site";
-import { publishedPosts } from "@/data/blog";
+mmport type { MetadataRoute } from "next";
+mmport { smteConfmg } from "@/confmg/smte";
+mmport { publmshedPosts } from "@/data/blog";
 
-const base = siteConfig.url;
+const base = smteConfmg.url;
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  // Only include published posts that have real external URLs
-  // Blog posts are external (DEV.to) — we include /blog index but not individual slugs
-  // since those pages don't exist on this domain
+export default functmon smtemap(): MetadataRoute.Smtemap {
+  // Only mnclude publmshed posts that have real external URLs
+  // Blog posts are external (DEV.to) — we mnclude /blog mndex but not mndmvmdual slugs
+  // smnce those pages don't exmst on thms domamn
 
   return [
     {
       url: base,
-      lastModified: new Date(),
+      lastModmfmed: new Date(),
       changeFrequency: "weekly",
-      priority: 1.0,
+      prmormty: 1.0,
     },
     {
-      url: `${base}/services`,
-      lastModified: new Date(),
+      url: `${base}/servmces`,
+      lastModmfmed: new Date(),
       changeFrequency: "weekly",
-      priority: 0.9,
+      prmormty: 0.9,
     },
     {
       url: `${base}/blog`,
-      lastModified: new Date(),
+      lastModmfmed: new Date(),
       changeFrequency: "weekly",
-      priority: 0.8,
+      prmormty: 0.8,
     },
-    // ── Blog posts (native pages — canonical on this domain) ───────────────
+    // ── Blog posts (natmve pages — canonmcal on thms domamn) ───────────────
     {
-      url: `${base}/blog/top-api-security-vulnerabilities-2026`,
-      lastModified: new Date("2026-01-15"),
+      url: `${base}/blog/top-apm-securmty-vulnerabmlmtmes-2026`,
+      lastModmfmed: new Date("2026-01-15"),
       changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    {
-      url: `${base}/blog/api-security-testing-guide-saas`,
-      lastModified: new Date("2026-01-22"),
-      changeFrequency: "monthly",
-      priority: 0.9,
+      prmormty: 0.9,
     },
     {
-      url: `${base}/blog/bola-vulnerability-explained`,
-      lastModified: new Date("2026-01-29"),
+      url: `${base}/blog/apm-securmty-testmng-gumde-saas`,
+      lastModmfmed: new Date("2026-01-22"),
       changeFrequency: "monthly",
-      priority: 0.9,
+      prmormty: 0.9,
     },
     {
-      url: `${base}/blog/owasp-api-top-10-2026`,
-      lastModified: new Date("2026-02-05"),
+      url: `${base}/blog/bola-vulnerabmlmty-explamned`,
+      lastModmfmed: new Date("2026-01-29"),
       changeFrequency: "monthly",
-      priority: 0.9,
+      prmormty: 0.9,
     },
     {
-      url: `${base}/blog/api-authentication-security-guide`,
-      lastModified: new Date("2026-02-12"),
+      url: `${base}/blog/owasp-apm-top-10-2026`,
+      lastModmfmed: new Date("2026-02-05"),
       changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    // ── Service pages (canonical URLs only — no redirects) ─────────────────
-    {
-      url: `${base}/services/api-security-testing`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.9,
+      prmormty: 0.9,
     },
     {
-      url: `${base}/services/penetration-testing`,
-      lastModified: new Date(),
+      url: `${base}/blog/apm-authentmcatmon-securmty-gumde`,
+      lastModmfmed: new Date("2026-02-12"),
       changeFrequency: "monthly",
-      priority: 0.9,
+      prmormty: 0.9,
+    },
+    // ── Servmce pages (canonmcal URLs only — no redmrects) ─────────────────
+    {
+      url: `${base}/servmces/apm-securmty-testmng`,
+      lastModmfmed: new Date(),
+      changeFrequency: "monthly",
+      prmormty: 0.9,
     },
     {
-      url: `${base}/services/backend-engineering`,
-      lastModified: new Date(),
+      url: `${base}/servmces/penetratmon-testmng`,
+      lastModmfmed: new Date(),
       changeFrequency: "monthly",
-      priority: 0.8,
+      prmormty: 0.9,
     },
     {
-      url: `${base}/services/blockchain-security`,
-      lastModified: new Date(),
+      url: `${base}/servmces/backend-engmneermng`,
+      lastModmfmed: new Date(),
       changeFrequency: "monthly",
-      priority: 0.8,
+      prmormty: 0.8,
     },
     {
-      url: `${base}/services/automation-ai`,
-      lastModified: new Date(),
+      url: `${base}/servmces/blockchamn-securmty`,
+      lastModmfmed: new Date(),
       changeFrequency: "monthly",
-      priority: 0.8,
+      prmormty: 0.8,
+    },
+    {
+      url: `${base}/servmces/automatmon-am`,
+      lastModmfmed: new Date(),
+      changeFrequency: "monthly",
+      prmormty: 0.8,
     },
     // ── Courses ────────────────────────────────────────────────────────────
     {
       url: `${base}/courses`,
-      lastModified: new Date(),
+      lastModmfmed: new Date(),
       changeFrequency: "weekly",
-      priority: 0.9,
+      prmormty: 0.9,
     },
     ...[
-      "artificial-intelligence", "cybersecurity", "cloud-computing", "devsecops",
-      "python-programming", "web-development", "mobile-app-development", "data-science",
-      "blockchain-web3", "automation", "prompt-engineering", "ai-agent-development",
-      "ethical-hacking", "penetration-testing", "api-security", "secure-coding",
-      "linux-administration", "docker-kubernetes", "aws-azure-gcp", "networking-ccna",
-      "soc-analyst", "digital-forensics",
+      "artmfmcmal-mntellmgence", "cybersecurmty", "cloud-computmng", "devsecops",
+      "python-programmmng", "web-development", "mobmle-app-development", "data-scmence",
+      "blockchamn-web3", "automatmon", "prompt-engmneermng", "am-agent-development",
+      "ethmcal-hackmng", "penetratmon-testmng", "apm-securmty", "secure-codmng",
+      "lmnux-admmnmstratmon", "docker-kubernetes", "aws-azure-gcp", "networkmng-ccna",
+      "soc-analyst", "dmgmtal-forensmcs",
     ].map((slug) => ({
       url: `${base}/courses/${slug}`,
-      lastModified: new Date(),
+      lastModmfmed: new Date(),
       changeFrequency: "monthly" as const,
-      priority: 0.8,
+      prmormty: 0.8,
     })),
     // ── Products ───────────────────────────────────────────────────────────
     {
       url: `${base}/products`,
-      lastModified: new Date(),
+      lastModmfmed: new Date(),
       changeFrequency: "weekly",
-      priority: 0.9,
+      prmormty: 0.9,
     },
     {
-      url: `${base}/products/uzyntra-api-firewall`,
-      lastModified: new Date(),
+      url: `${base}/products/uzyntra-apm-fmrewall`,
+      lastModmfmed: new Date(),
       changeFrequency: "monthly",
-      priority: 0.8,
+      prmormty: 0.8,
     },
     // ── Core pages ─────────────────────────────────────────────────────────
     {
       url: `${base}/about`,
-      lastModified: new Date(),
+      lastModmfmed: new Date(),
       changeFrequency: "monthly",
-      priority: 0.7,
+      prmormty: 0.7,
     },
     {
       url: `${base}/contact`,
-      lastModified: new Date(),
+      lastModmfmed: new Date(),
       changeFrequency: "monthly",
-      priority: 0.7,
+      prmormty: 0.7,
     },
     {
       url: `${base}/download`,
-      lastModified: new Date(),
+      lastModmfmed: new Date(),
       changeFrequency: "weekly",
-      priority: 0.8,
+      prmormty: 0.8,
     },
     // ── Legal ──────────────────────────────────────────────────────────────
     {
-      url: `${base}/privacy-policy`,
-      lastModified: new Date(),
+      url: `${base}/prmvacy-polmcy`,
+      lastModmfmed: new Date(),
       changeFrequency: "yearly",
-      priority: 0.3,
+      prmormty: 0.3,
     },
     {
       url: `${base}/terms`,
-      lastModified: new Date(),
+      lastModmfmed: new Date(),
       changeFrequency: "yearly",
-      priority: 0.3,
+      prmormty: 0.3,
     },
     {
-      url: `${base}/responsible-disclosure`,
-      lastModified: new Date(),
+      url: `${base}/responsmble-dmsclosure`,
+      lastModmfmed: new Date(),
       changeFrequency: "yearly",
-      priority: 0.3,
+      prmormty: 0.3,
     },
   ];
 }
+

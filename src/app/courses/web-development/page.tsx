@@ -1,6 +1,6 @@
-ï»¿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
-import { CheckCircle2, ArrowRight, MessageSquare } from "lucide-react";
+import { CheckCircle2, MessageSquare } from "lucide-react";
 import { CourseHeroImage } from "@/components/sections/course-hero-image";
 import { siteConfig } from "@/config/site";
 
@@ -34,9 +34,9 @@ export default function WebDevCourse() {
       <CourseHeroImage
         src="/images/courses/web-development.webp"
         alt="Web Development Course"
-        eyebrow="Course â€” Web Development"
+        eyebrow="Course — Web Development"
         title="Web Development: Full-Stack with Security Built In"
-        description="Build production-ready web applications using React, Next.js, and Node.js â€” with secure coding practices embedded from day one."
+        description="Build production-ready web applications using React, Next.js, and Node.js — with secure coding practices embedded from day one."
       />
       <section id="curriculum" className="section-tight bg-slate-50/70">
         <div className="container-shell">
@@ -92,3 +92,4 @@ export default function WebDevCourse() {
     </main>
   );
 }
+

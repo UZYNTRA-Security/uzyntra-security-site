@@ -34,12 +34,19 @@ export function MobileNav({ items }: MobileNavProps) {
   }, [items, pathname]);
 
   const [expanded, setExpanded] = useState<string | null>(getInitialExpanded);
+  const close = useCallback(() => {
+    setOpen(false);
+    setTimeout(() => hamburgerRef.current?.focus(), 50);
+  }, []);
 
   useEffect(() => {
-    setMounted(true);
-    // Sync theme state from html attribute
-    const current = document.documentElement.getAttribute("data-theme") as "light" | "dark";
-    setTheme(current ?? "light");
+    const mountTimer = window.setTimeout(() => {
+      const current = document.documentElement.getAttribute("data-theme") as "light" | "dark";
+      setTheme(current ?? "light");
+      setMounted(true);
+    }, 0);
+
+    return () => window.clearTimeout(mountTimer);
   }, []);
 
   // Keep in sync when desktop ThemeToggle fires
@@ -53,7 +60,8 @@ export function MobileNav({ items }: MobileNavProps) {
   }, []);
 
   useEffect(() => {
-    setExpanded(getInitialExpanded());
+    const syncTimer = window.setTimeout(() => setExpanded(getInitialExpanded()), 0);
+    return () => window.clearTimeout(syncTimer);
   }, [pathname, getInitialExpanded]);
 
   // iOS-safe scroll lock
@@ -72,7 +80,7 @@ export function MobileNav({ items }: MobileNavProps) {
       document.body.style.removeProperty("position");
       document.body.style.removeProperty("width");
     };
-  }, [open]);
+  }, [open, close]);
 
   // Escape + focus trap
   useEffect(() => {
@@ -96,12 +104,8 @@ export function MobileNav({ items }: MobileNavProps) {
     const first = panelRef.current?.querySelector<HTMLElement>(FOCUSABLE);
     first?.focus();
     return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [open]);
+  }, [open, close]);
 
-  const close = useCallback(() => {
-    setOpen(false);
-    setTimeout(() => hamburgerRef.current?.focus(), 50);
-  }, []);
 
   const toggle = (title: string) =>
     setExpanded((prev) => (prev === title ? null : title));
@@ -592,3 +596,7 @@ export function MobileNav({ items }: MobileNavProps) {
     </div>
   );
 }
+
+
+
+

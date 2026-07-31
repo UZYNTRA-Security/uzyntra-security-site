@@ -244,7 +244,7 @@ export function ContactForm() {
                 ))}
               </ul>
               <p className="mt-2.5 text-xs text-amber-700">
-                Select your discount type above and mention details in your message. We'll confirm eligibility.
+                Select your discount type above and mention details in your message. We&apos;ll confirm eligibility.
               </p>
             </div>
 
@@ -319,3 +319,4 @@ export function ContactForm() {
     </div>
   );
 }
+

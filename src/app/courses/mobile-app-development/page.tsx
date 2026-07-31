@@ -1,6 +1,6 @@
-ï»¿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
-import { CheckCircle2, ArrowRight, MessageSquare } from "lucide-react";
+import { CheckCircle2, MessageSquare } from "lucide-react";
 import { CourseHeroImage } from "@/components/sections/course-hero-image";
 import { siteConfig } from "@/config/site";
 
@@ -34,9 +34,9 @@ export default function MobileDevCourse() {
       <CourseHeroImage
         src="/images/courses/mobile-app-development.webp"
         alt="Mobile App Development Course"
-        eyebrow="Course â€” Mobile App Development"
+        eyebrow="Course — Mobile App Development"
         title="Mobile App Development: iOS & Android with Security"
-        description="Build cross-platform mobile applications using React Native and Flutter â€” with mobile security best practices and production deployment from day one."
+        description="Build cross-platform mobile applications using React Native and Flutter — with mobile security best practices and production deployment from day one."
       />
       <section id="curriculum" className="section-tight bg-slate-50/70">
         <div className="container-shell">
@@ -92,3 +92,4 @@ export default function MobileDevCourse() {
     </main>
   );
 }
+

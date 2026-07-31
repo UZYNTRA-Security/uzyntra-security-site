@@ -1,6 +1,6 @@
-ï»¿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
-import { CheckCircle2, ArrowRight, MessageSquare } from "lucide-react";
+import { CheckCircle2, MessageSquare } from "lucide-react";
 import { CourseHeroImage } from "@/components/sections/course-hero-image";
 import { siteConfig } from "@/config/site";
 
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 const modules = [
   { step: "01", title: "Prompt Design Fundamentals", body: "Zero-shot, few-shot, and chain-of-thought prompting techniques." },
   { step: "02", title: "Advanced Prompting", body: "ReAct, tree-of-thought, and structured output prompting for complex tasks." },
-  { step: "03", title: "RAG Systems", body: "Retrieval-augmented generation â€” embeddings, vector databases, and context injection." },
+  { step: "03", title: "RAG Systems", body: "Retrieval-augmented generation — embeddings, vector databases, and context injection." },
   { step: "04", title: "LLM Optimization & Safety", body: "Fine-tuning, RLHF, prompt injection defense, and production LLM deployment." },
 ];
 
@@ -34,9 +34,9 @@ export default function PromptEngineeringCourse() {
       <CourseHeroImage
         src="/images/courses/prompt-engineering.webp"
         alt="Prompt Engineering Course"
-        eyebrow="Course â€” Prompt Engineering"
+        eyebrow="Course — Prompt Engineering"
         title="Prompt Engineering: Master LLMs for Production"
-        description="Learn to design, optimize, and secure prompts for large language models â€” from basic techniques to advanced RAG systems and production deployment."
+        description="Learn to design, optimize, and secure prompts for large language models — from basic techniques to advanced RAG systems and production deployment."
       />
       <section id="curriculum" className="section-tight bg-slate-50/70">
         <div className="container-shell">
@@ -92,3 +92,4 @@ export default function PromptEngineeringCourse() {
     </main>
   );
 }
+

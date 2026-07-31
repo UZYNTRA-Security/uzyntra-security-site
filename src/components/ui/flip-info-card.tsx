@@ -42,10 +42,15 @@ export function FlipInfoCard({
   useEffect(() => {
     const check = () =>
       setDark(document.documentElement.getAttribute("data-theme") === "dark");
-    check();
+    const initTimer = window.setTimeout(() => {
+      check();
+      setHasHover(window.matchMedia("(hover: hover)").matches);
+    }, 0);
     window.addEventListener("uzyntra-theme-change", check);
-    setHasHover(window.matchMedia("(hover: hover)").matches);
-    return () => window.removeEventListener("uzyntra-theme-change", check);
+    return () => {
+      window.clearTimeout(initTimer);
+      window.removeEventListener("uzyntra-theme-change", check);
+    };
   }, []);
 
   const showBack = hasHover ? hovered : flipped;
@@ -266,3 +271,5 @@ export function FlipInfoCard({
   }
   return inner;
 }
+
+

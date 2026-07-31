@@ -10,7 +10,7 @@ import { PageHero } from "@/components/sections/page-hero";
 import { TechnologySlider } from "@/components/sections/technology-slider";
 import { CTASection } from "@/components/sections/cta-section";
 import { siteConfig } from "@/config/site";
-import { cybersecurityTechnologies, apiSecurityTechnologies } from "@/data/technologies";
+import { apiSecurityTechnologies } from "@/data/technologies";
 
 const ServiceCapabilityGrid = dynamic(
   () => import("@/components/sections/service-capability-grid").then((m) => m.ServiceCapabilityGrid),
@@ -298,3 +298,4 @@ export default function ApiSecurityPage() {
     </main>
   );
 }
+

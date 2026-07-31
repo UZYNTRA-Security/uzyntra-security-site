@@ -140,7 +140,7 @@ export default function AutomationAiPage() {
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-red-700">Why It Matters</p>
             <h2 className="mt-3 text-2xl font-bold text-slate-950 sm:text-3xl">
-              Manual operations don't scale — and insecure automation creates new risk
+              Manual operations don&apos;t scale — and insecure automation creates new risk
             </h2>
             <p className="mt-3 text-sm leading-7 text-slate-500 sm:text-base">
               Automation built without security controls trades one problem for another.
@@ -254,3 +254,4 @@ export default function AutomationAiPage() {
     </main>
   );
 }
+

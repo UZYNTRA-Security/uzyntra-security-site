@@ -8,15 +8,18 @@ export function ThemeToggle() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
-    const stored = localStorage.getItem("uzyntra-theme") as "light" | "dark" | null;
-    const preferred = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-    const resolved = stored ?? preferred;
-    setTheme(resolved);
-    document.documentElement.setAttribute("data-theme", resolved);
+    const mountTimer = window.setTimeout(() => {
+      const stored = localStorage.getItem("uzyntra-theme") as "light" | "dark" | null;
+      const preferred = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      const resolved = stored ?? preferred;
+      setTheme(resolved);
+      setMounted(true);
+      document.documentElement.setAttribute("data-theme", resolved);
+    }, 0);
+
+    return () => window.clearTimeout(mountTimer);
   }, []);
 
-  // Sync if another toggle (e.g. mobile nav) changes the theme
   useEffect(() => {
     const handler = () => {
       const current = document.documentElement.getAttribute("data-theme") as "light" | "dark";
@@ -31,7 +34,6 @@ export function ThemeToggle() {
     setTheme(next);
     localStorage.setItem("uzyntra-theme", next);
     document.documentElement.setAttribute("data-theme", next);
-    // Notify other toggle instances
     window.dispatchEvent(new Event("uzyntra-theme-change"));
   }
 

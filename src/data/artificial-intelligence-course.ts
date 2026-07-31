@@ -1,4 +1,4 @@
-﻿export type AiCourseModule = {
+export type AiCourseModule = {
   num: string;
   title: string;
   summary: string;
@@ -162,9 +162,9 @@ export const aiCourseMonths: AiCourseMonth[] = [
 
 export const aiCourseStats = [
   { label: "Duration", value: "3 Months" },
-  { label: "Total Hours", value: "120 Hours" },
-  { label: "Methodology", value: "80% Labs" },
-  { label: "Certificate", value: "UCAIP" },
+  { label: "Per Month", value: "PKR 18,000" },
+  { label: "Total", value: "PKR 54,000" },
+  { label: "International", value: "$249 USD" },
 ];
 
 export const aiCourseSchedule = [

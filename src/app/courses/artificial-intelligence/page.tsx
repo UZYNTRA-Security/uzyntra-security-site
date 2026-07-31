@@ -360,7 +360,7 @@ export default function AICourse() {
                     <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/75">Start Your AI Career</p>
                     <h2 className="mt-3 text-2xl font-extrabold text-white sm:text-3xl">Ready to enroll?</h2>
                     <p className="mt-3 max-w-[680px] text-sm leading-7 text-white/80">
-                      3 months. 120 learning hours. AI, ML, generative AI, agents, deployment, and capstone portfolio work.
+                      3 months. PKR 18,000 per month, PKR 54,000 total, or $249 USD for international students.
                     </p>
                   </div>
                   <div className="flex flex-col gap-3 sm:flex-row lg:shrink-0">

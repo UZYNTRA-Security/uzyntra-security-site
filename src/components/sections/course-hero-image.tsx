@@ -85,22 +85,17 @@ export function CourseHeroImage({ src, alt, eyebrow, title, description }: Cours
             </p>
 
             {/* CTA buttons */}
-            <div className="mt-7 flex flex-wrap gap-4">
+            <div className="course-hero-actions mt-7 flex flex-wrap gap-4">
               <Link
                 href="/contact"
-                className="inline-flex h-11 items-center gap-2 rounded-xl bg-red-600 px-6 text-sm font-semibold text-white shadow-lg transition-all duration-200 hover:bg-red-500 hover:-translate-y-0.5"
+                className="inline-flex h-11 items-center gap-2 rounded-full bg-red-600 px-6 text-sm font-semibold text-white shadow-lg transition-all duration-200"
               >
                 <MessageSquare className="h-4 w-4 shrink-0" />
                 Enroll Now
               </Link>
               <a
                 href="#curriculum"
-                className="inline-flex h-11 items-center gap-2 rounded-xl px-6 text-sm font-semibold backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-white hover:text-slate-950"
-                style={{
-                  color: "#f8fafc",
-                  border: "1px solid rgba(255,255,255,0.45)",
-                  background: "rgba(255,255,255,0.10)",
-                }}
+                className="course-hero-secondary inline-flex h-11 items-center gap-2 rounded-full px-6 text-sm font-semibold backdrop-blur-sm transition-all duration-200"
               >
                 <BookOpen className="h-4 w-4 shrink-0" />
                 View Curriculum

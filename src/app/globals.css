@@ -2897,10 +2897,17 @@ html[data-theme="dark"] .back-to-top-floating {
 .course-hero-actions a {
   position: relative;
   overflow: visible;
+  border: 1px solid transparent;
   border-radius: 999px;
+  color: #ffffff;
   box-shadow: 0 8px 20px rgba(220, 38, 38, 0.14);
 }
 
+.course-hero-actions .course-hero-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  color: #f8fafc;
+}
 .course-shell-muted .btn-solid::after,
 .course-shell-muted .btn-stroke::after,
 .course-shell-muted .btn-neutral::after,

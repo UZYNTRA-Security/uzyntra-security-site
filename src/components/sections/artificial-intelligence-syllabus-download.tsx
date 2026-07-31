@@ -199,7 +199,7 @@ export function DownloadAISyllabus() {
         type="button"
         onClick={handleDownload}
         disabled={isGenerating}
-        className="btn-stroke course-download-syllabus-button inline-flex h-12 w-full items-center justify-center gap-2 rounded-full px-6 text-sm font-semibold disabled:cursor-wait disabled:opacity-70 sm:w-auto"
+        className="course-download-syllabus-button inline-flex h-12 w-full items-center justify-center gap-2 rounded-full px-6 text-sm font-semibold disabled:cursor-wait disabled:opacity-70 sm:w-auto"
       >
         {isGenerating ? (
           <Loader2 className="h-4 w-4 shrink-0 animate-spin" aria-hidden="true" />

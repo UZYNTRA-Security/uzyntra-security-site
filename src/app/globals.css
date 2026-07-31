@@ -2975,6 +2975,24 @@ html[data-theme="dark"] .course-hero-actions a:hover {
   box-shadow: 0 14px 32px rgba(248, 54, 59, 0.24);
 }
 
+
+.course-hero-actions .course-hero-primary:hover {
+  background: #ffffff;
+  border-color: rgb(239, 31, 36);
+  color: rgb(220, 38, 38);
+  box-shadow: 0 14px 30px rgba(220, 38, 38, 0.2);
+}
+
+.course-hero-actions .course-hero-primary:hover svg {
+  color: rgb(220, 38, 38);
+}
+
+html[data-theme="dark"] .course-hero-actions .course-hero-primary:hover {
+  background: #ffffff;
+  border-color: rgb(248, 54, 59);
+  color: rgb(220, 38, 38);
+  box-shadow: 0 14px 32px rgba(248, 54, 59, 0.22);
+}
 @keyframes courseButtonGlowPulse {
   0%, 100% {
     box-shadow: 0 0 0 5px rgba(239, 68, 68, 0.12), 0 10px 24px rgba(220, 38, 38, 0.32);

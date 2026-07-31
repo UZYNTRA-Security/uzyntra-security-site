@@ -88,7 +88,7 @@ export function CourseHeroImage({ src, alt, eyebrow, title, description }: Cours
             <div className="course-hero-actions mt-7 flex flex-wrap gap-4">
               <Link
                 href="/contact"
-                className="inline-flex h-11 items-center gap-2 rounded-full bg-red-600 px-6 text-sm font-semibold text-white shadow-lg transition-all duration-200"
+                className="course-hero-primary inline-flex h-11 items-center gap-2 rounded-full bg-red-600 px-6 text-sm font-semibold text-white shadow-lg transition-all duration-200"
               >
                 <MessageSquare className="h-4 w-4 shrink-0" />
                 Enroll Now

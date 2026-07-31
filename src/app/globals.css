@@ -2888,3 +2888,102 @@ html[data-theme="dark"] .back-to-top-floating {
   background: rgba(254, 242, 242, 0.9);
   color: rgb(185, 28, 28);
 }
+/* Course page action buttons: home-style red hover with a small glow marker. */
+.course-shell-muted .btn-solid,
+.course-shell-muted .btn-stroke,
+.course-shell-muted .btn-neutral,
+.course-shell-muted .btn-ghost-secondary,
+.course-shell-muted .btn-primary,
+.course-hero-actions a {
+  position: relative;
+  overflow: visible;
+  border-radius: 999px;
+  box-shadow: 0 8px 20px rgba(220, 38, 38, 0.14);
+}
+
+.course-shell-muted .btn-solid::after,
+.course-shell-muted .btn-stroke::after,
+.course-shell-muted .btn-neutral::after,
+.course-shell-muted .btn-ghost-secondary::after,
+.course-shell-muted .btn-primary::after,
+.course-hero-actions a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -7px;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: rgb(239, 68, 68);
+  box-shadow: 0 0 0 5px rgba(239, 68, 68, 0.12), 0 10px 24px rgba(220, 38, 38, 0.32);
+  opacity: 0;
+  transform: translateX(-50%) translateY(-2px) scale(0.72);
+  transition: opacity 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease;
+  pointer-events: none;
+}
+
+.course-shell-muted .btn-solid:hover,
+.course-shell-muted .btn-stroke:hover,
+.course-shell-muted .btn-neutral:hover,
+.course-shell-muted .btn-ghost-secondary:hover,
+.course-shell-muted .btn-primary:hover,
+.course-hero-actions a:hover {
+  background: rgb(239, 31, 36);
+  border-color: rgb(239, 31, 36);
+  color: #ffffff;
+  box-shadow: 0 14px 30px rgba(220, 38, 38, 0.22);
+  filter: saturate(1.08);
+  transform: translateY(-2px);
+}
+
+.course-shell-muted .btn-solid:hover::after,
+.course-shell-muted .btn-stroke:hover::after,
+.course-shell-muted .btn-neutral:hover::after,
+.course-shell-muted .btn-ghost-secondary:hover::after,
+.course-shell-muted .btn-primary:hover::after,
+.course-hero-actions a:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0) scale(1);
+  animation: courseButtonGlowPulse 1.4s ease-in-out infinite;
+}
+
+.course-shell-muted .btn-solid:active,
+.course-shell-muted .btn-stroke:active,
+.course-shell-muted .btn-neutral:active,
+.course-shell-muted .btn-ghost-secondary:active,
+.course-shell-muted .btn-primary:active,
+.course-hero-actions a:active {
+  transform: translateY(0) scale(0.98);
+}
+
+html[data-theme="dark"] .course-shell-muted .btn-solid:hover,
+html[data-theme="dark"] .course-shell-muted .btn-stroke:hover,
+html[data-theme="dark"] .course-shell-muted .btn-neutral:hover,
+html[data-theme="dark"] .course-shell-muted .btn-ghost-secondary:hover,
+html[data-theme="dark"] .course-shell-muted .btn-primary:hover,
+html[data-theme="dark"] .course-hero-actions a:hover {
+  background: rgb(248, 54, 59);
+  border-color: rgb(248, 54, 59);
+  color: #ffffff;
+  box-shadow: 0 14px 32px rgba(248, 54, 59, 0.24);
+}
+
+@keyframes courseButtonGlowPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 5px rgba(239, 68, 68, 0.12), 0 10px 24px rgba(220, 38, 38, 0.32);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(239, 68, 68, 0.07), 0 14px 30px rgba(220, 38, 38, 0.42);
+  }
+}
+
+@media (hover: none) {
+  .course-shell-muted .btn-solid::after,
+  .course-shell-muted .btn-stroke::after,
+  .course-shell-muted .btn-neutral::after,
+  .course-shell-muted .btn-ghost-secondary::after,
+  .course-shell-muted .btn-primary::after,
+  .course-hero-actions a::after {
+    display: none;
+  }
+}

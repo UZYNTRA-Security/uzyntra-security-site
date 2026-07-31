@@ -2976,22 +2976,31 @@ html[data-theme="dark"] .course-hero-actions a:hover {
 }
 
 
-.course-hero-actions .course-hero-primary:hover {
-  background: #ffffff;
-  border-color: rgb(239, 31, 36);
-  color: rgb(220, 38, 38);
-  box-shadow: 0 14px 30px rgba(220, 38, 38, 0.2);
+.course-hero-actions .course-hero-primary {
+  border: 2px solid transparent;
 }
 
+.course-hero-actions .course-hero-primary:hover {
+  background: #ffffff !important;
+  border-color: rgb(239, 31, 36) !important;
+  color: rgb(220, 38, 38) !important;
+  box-shadow: 0 14px 30px rgba(220, 38, 38, 0.18);
+}
+
+.course-hero-actions .course-hero-primary::after,
+.course-hero-actions .course-hero-primary:hover::after {
+  display: none !important;
+  animation: none !important;
+}
 .course-hero-actions .course-hero-primary:hover svg {
   color: rgb(220, 38, 38);
 }
 
 html[data-theme="dark"] .course-hero-actions .course-hero-primary:hover {
-  background: #ffffff;
-  border-color: rgb(248, 54, 59);
-  color: rgb(220, 38, 38);
-  box-shadow: 0 14px 32px rgba(248, 54, 59, 0.22);
+  background: #ffffff !important;
+  border-color: rgb(248, 54, 59) !important;
+  color: rgb(220, 38, 38) !important;
+  box-shadow: 0 14px 32px rgba(248, 54, 59, 0.2);
 }
 @keyframes courseButtonGlowPulse {
   0%, 100% {

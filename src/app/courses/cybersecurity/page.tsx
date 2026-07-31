@@ -1,628 +1,386 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
-  CheckCircle2, ArrowRight, Shield, Clock,
-  Calendar, Users, Globe, Terminal, BookOpen,
-  Crosshair, Eye, Wrench,
+  ArrowRight,
+  ArrowUp,
+  BookOpen,
+  Calendar,
+  CheckCircle2,
+  Clock,
+  Crosshair,
+  Eye,
+  Shield,
+  Terminal,
+  Users,
 } from "lucide-react";
 import { CourseHeroImage } from "@/components/sections/course-hero-image";
 import { DownloadSyllabus } from "@/components/sections/cybersecurity-syllabus-download";
+import {
+  cybersecurityAssessmentPolicy,
+  cybersecurityCourseLabs,
+  cybersecurityCourseMonths,
+  cybersecurityCourseOutcomes,
+  cybersecurityCourseProjects,
+  cybersecurityCourseSchedule,
+  cybersecurityCourseStats,
+  cybersecurityCourseTools,
+} from "@/data/cybersecurity-course";
 import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
   title: "Cyber Security Course | 3 Months | UZYNTRA Security",
   description:
-    "Practical 3-month Cyber Security course. Foundations, offensive security, incident response, and career prep. PKR 45,000 total · $199 international.",
+    "Practical 3-month Cyber Security course. Foundations, offensive security, incident response, and career prep. PKR 45,000 total. $199 international.",
   alternates: { canonical: `${siteConfig.url}/courses/cybersecurity` },
 };
 
 const ENROLL_URL = "https://forms.gle/3kRrPLjzp37dK8eh8";
 
-// ── Data ─────────────────────────────────────────────────────────────────────
-
-const months = [
+const monthStyles = [
   {
-    num: "01",
-    label: "Month 1",
-    title: "Foundations & Defensive Security",
-    description: "Build the bedrock — understand how attacks work, how networks operate, and how to harden systems before you ever touch an offensive tool.",
     icon: Shield,
     accentClass: "text-red-600",
     bgClass: "bg-red-600",
-    lightBg: "bg-red-50",
-    border: "border-red-200",
     connectorColor: "bg-red-500",
     badgeBg: "bg-red-600",
-    topicBg: "bg-red-50 text-red-700 border border-red-200",
-    modules: [
-      { num: "01", title: "Cyber Security Fundamentals", summary: "Build a strong baseline in security principles, threats, and governance before moving into practice.", topics: ["CIA Triad","Types of Hackers","Cyber Kill Chain","Common Threats","Malware Analysis Basics","Security Principles"], tools: [] },
-      { num: "02", title: "Networking for Security", summary: "Learn how networks communicate and how to inspect traffic, protocols, and common attack paths.", topics: ["TCP/IP","OSI Model","DNS","DHCP","HTTP/HTTPS","VPN","Firewalls","Packet Analysis"], tools: ["Wireshark","TCPDump","Nmap"] },
-      { num: "03", title: "Linux & Windows Security", summary: "Explore core operating system security concepts, permissions, services, logs, and hardening basics.", topics: ["Linux Commands","Windows Security","User Management","File Permissions","Services","Logs","Process Monitoring","PowerShell Basics"], tools: [] },
-      { num: "04", title: "Security Hardening", summary: "Apply defensive controls such as patching, MFA, backup practices, and endpoint protection.", topics: ["Password Policies","MFA","Endpoint Security","Disk Encryption","Patch Management","Backup Strategy"], tools: [] },
-    ],
+    topicClass: "bg-red-50 text-red-700 border-red-200",
   },
   {
-    num: "02",
-    label: "Month 2",
-    title: "Offensive Security",
-    description: "Switch to the attacker's perspective. Learn reconnaissance, vulnerability discovery, web exploitation, and password attacks using real tools.",
     icon: Crosshair,
     accentClass: "text-orange-600",
     bgClass: "bg-orange-600",
-    lightBg: "bg-orange-50",
-    border: "border-orange-200",
     connectorColor: "bg-orange-500",
     badgeBg: "bg-orange-600",
-    topicBg: "bg-orange-50 text-orange-700 border border-orange-200",
-    modules: [
-      { num: "05", title: "Reconnaissance", summary: "Gather intelligence using passive and active techniques while staying within legal and ethical boundaries.", topics: ["Google Dorking","OSINT","WHOIS","DNS Enumeration","Subdomain Enumeration","Technology Fingerprinting"], tools: ["theHarvester","Amass","Subfinder","Shodan","Censys"] },
-      { num: "06", title: "Vulnerability Assessment", summary: "Learn how to identify weaknesses, assess severity, verify patch status, and prioritize remediation.", topics: ["Vulnerability Scanning","CVE","CVSS","Risk Assessment","Misconfiguration Detection"], tools: ["Nessus Essentials","OpenVAS","Nmap NSE"] },
-      { num: "07", title: "Web Security Basics", summary: "Explore common application-layer flaws and the security controls needed to reduce exploitation risk.", topics: ["SQL Injection","XSS","CSRF","File Upload","Authentication Issues","Session Management"], tools: ["Burp Suite Community","OWASP ZAP"] },
-      { num: "08", title: "Password Security", summary: "Understand how weak credentials are attacked and how strong authentication practices improve resilience.", topics: ["Password Attacks","Hashes","Dictionary Attack","Brute Force","Password Policies"], tools: ["Hashcat","John the Ripper"] },
-    ],
+    topicClass: "bg-orange-50 text-orange-700 border-orange-200",
   },
   {
-    num: "03",
-    label: "Month 3",
-    title: "Detection, Response & Career",
-    description: "Close the loop — learn how defenders detect attacks, respond to incidents, and how to position yourself for your first security role.",
     icon: Eye,
     accentClass: "text-emerald-600",
     bgClass: "bg-emerald-600",
-    lightBg: "bg-emerald-50",
-    border: "border-emerald-200",
     connectorColor: "bg-emerald-500",
     badgeBg: "bg-emerald-600",
-    topicBg: "bg-emerald-50 text-emerald-700 border border-emerald-200",
-    modules: [
-      { num: "09", title: "Incident Response", summary: "Practice the full response lifecycle from detection to recovery and learn how to report clearly.", topics: ["Detection","Containment","Eradication","Recovery","Lessons Learned"], tools: [] },
-      { num: "10", title: "Digital Forensics Basics", summary: "Learn the essentials of evidence handling, log correlation, and preservation of digital artifacts.", topics: ["Evidence Collection","Disk Imaging","Log Analysis","Memory Basics"], tools: ["Autopsy","FTK Imager"] },
-      { num: "11", title: "Security Monitoring", summary: "Understand how defenders monitor systems, triage alerts, and spot indicators of compromise.", topics: ["Log Monitoring","Threat Hunting","SIEM Basics","Alerts","IOC Detection"], tools: ["Wazuh","Splunk (Basic)","ELK Stack Overview"] },
-      { num: "12", title: "Career Preparation", summary: "Build portfolio-ready documentation, interview confidence, and a roadmap for the next learning step.", topics: ["Report Writing","Documentation","Resume Building","LinkedIn Profile","Bug Bounty Introduction","Freelancing Roadmap","Interview Preparation"], tools: [] },
-    ],
+    topicClass: "bg-emerald-50 text-emerald-700 border-emerald-200",
   },
-];
+] as const;
 
-const labs = [
-  "Scanning a network with Nmap",
-  "Detecting vulnerabilities with Nessus",
-  "Capturing network packets with Wireshark",
-  "Securing Windows & Linux systems",
-  "Creating and testing firewall rules",
-  "Basic malware investigation",
-  "Investigating security logs",
-  "Performing web security testing",
-  "Writing a professional security report",
-  "Responding to a simulated cyber attack",
-];
-
-const allTools = [
-  "Kali Linux","Wireshark","Nmap","Burp Suite","OWASP ZAP",
-  "Nessus Essentials","OpenVAS","theHarvester","Amass","Subfinder",
-  "Shodan","Censys","Hashcat","John the Ripper","Autopsy",
-  "FTK Imager","Wazuh","Splunk","VirtualBox / VMware","Git & GitHub",
-];
-
-const outcomes = [
-  "Understand modern cyber threats and security principles",
-  "Secure Windows and Linux systems against common attacks",
-  "Analyse network traffic and identify suspicious activity",
-  "Discover and assess common vulnerabilities",
-  "Perform basic web application security testing",
-  "Use professional cybersecurity tools with confidence",
-  "Respond to security incidents using industry-standard processes",
-  "Write clear, actionable technical security reports",
-  "Build a home cybersecurity lab for continuous practice",
-  "Prepare for entry-level roles: SOC Analyst, Junior Security Analyst, Vulnerability Assessment Analyst",
-];
-
-// ── Page ─────────────────────────────────────────────────────────────────────
+const scheduleIcons = [Calendar, Clock, BookOpen, Users];
+const moduleCount = cybersecurityCourseMonths.reduce((total, month) => total + month.modules.length, 0);
 
 export default function CybersecurityCourse() {
   return (
     <main id="main-content">
-
-      {/* ── Hero ── */}
       <CourseHeroImage
         src="/images/courses/cybersecurity.webp"
         alt="Cyber Security Course"
-        eyebrow="Course — Cyber Security"
+        eyebrow="Course - Cyber Security"
         title="Cyber Security: From Foundations to Career-Ready"
-        description="A practical 3-month programme — less theory, more hands-on labs. Defensive security, offensive techniques, incident response, and career preparation."
+        description="A practical 3-month programme with guided labs, security tools, reporting practice, and career preparation for entry-level security roles."
       />
 
-      {/* ── Pricing + CTA ── */}
-      <section className="course-panel border-b py-8">
+      <section className="section-shell course-shell-muted">
         <div className="container-shell">
-          <div className="mx-auto max-w-5xl">
+          <div className="grid gap-10 lg:grid-cols-[320px_minmax(0,1fr)] lg:items-start xl:grid-cols-[340px_minmax(0,1fr)] xl:gap-14">
+            <aside className="space-y-4 lg:sticky lg:top-24">
+              <div className="surface-card-strong course-enroll-card p-5 sm:p-6">
+                <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-red-600">Enroll</p>
+                <h2 className="mt-3 text-xl font-extrabold leading-tight text-slate-950 sm:text-2xl">Cyber Security Course</h2>
+                <p className="mt-3 text-sm leading-7 text-slate-600">
+                  3 months, 15 modules, practical labs, reporting, and final assessment.
+                </p>
 
-            {/* Top row: pricing + CTAs */}
-            <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+                <div className="mt-5 grid grid-cols-1 gap-2.5 xl:grid-cols-2">
+                  {cybersecurityCourseStats.map((item) => (
+                    <div key={item.label} className="course-sidebar-stat min-w-0 rounded-lg border p-3">
+                      <p className="text-[9px] font-bold uppercase tracking-[0.12em] text-slate-400">{item.label}</p>
+                      <p className="mt-1 break-words text-[13px] font-extrabold leading-tight text-slate-950">{item.value}</p>
+                    </div>
+                  ))}
+                </div>
 
-              {/* Pricing */}
-              <div className="flex flex-wrap gap-3">
-                {[
-                  { label: "Duration", value: "3 Months", highlight: false },
-                  { label: "Per Month", value: "PKR 15,000", highlight: true },
-                  { label: "Total", value: "PKR 45,000", highlight: true },
-                  { label: "International", value: "$199 USD", highlight: true },
-                ].map((p) => (
-                  <div
-                    key={p.label}
-                    className="surface-card flex min-w-[100px] flex-col items-center px-5 py-3.5 text-center"
+                <div className="mt-5 space-y-2.5">
+                  <a
+                    href={ENROLL_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-solid inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl px-7 text-sm font-semibold"
                   >
-                    <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-400">
-                      {p.label}
-                    </span>
-                    <span className={`mt-1 text-[15px] font-extrabold ${p.highlight ? "text-red-600" : "text-slate-950"}`}>
-                      {p.value}
-                    </span>
-                  </div>
-                ))}
-              </div>
-
-              {/* CTAs */}
-              <div className="flex flex-col gap-2.5 sm:flex-row">
-                <a
-                  href={ENROLL_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-solid inline-flex h-11 items-center justify-center gap-2 rounded-xl px-7 text-sm"
-                >
-                  <Shield className="h-4 w-4 shrink-0" aria-hidden="true" />
-                  Enroll Now
-                </a>
-                <DownloadSyllabus />
-              </div>
-            </div>
-
-            {/* Schedule strip */}
-            <div className="mt-6 grid grid-cols-2 gap-2 sm:grid-cols-4">
-              {[
-                { icon: Calendar, label: "Teaching Weeks", value: "12 Weeks" },
-                { icon: Clock, label: "Classes", value: "5 Days/Week" },
-                { icon: BookOpen, label: "Class Time", value: "2 Hrs/Day" },
-                { icon: Users, label: "Self Practice", value: "1–2 Hrs/Day" },
-              ].map((s) => (
-                <div
-                  key={s.label}
-                  className="surface-card flex items-center gap-2.5 px-3 py-2.5"
-                >
-                  <s.icon className="h-3.5 w-3.5 shrink-0 text-red-600" aria-hidden="true" />
-                  <div>
-                    <p className="text-[9px] font-semibold uppercase tracking-[0.12em] text-slate-400">{s.label}</p>
-                    <p className="text-[11px] font-bold text-slate-800">{s.value}</p>
-                  </div>
+                    <Shield className="h-4 w-4 shrink-0" aria-hidden="true" />
+                    Enroll Now
+                  </a>
+                  <DownloadSyllabus />
                 </div>
-              ))}
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* ── Course Overview ── */}
-      <section className="section-shell course-panel-muted">
-        <div className="container-shell">
-          <div className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-            <div className="surface-card p-8 sm:p-10">
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-red-600">Course Overview</p>
-              <h2 className="mt-3 text-2xl font-extrabold text-slate-950 sm:text-3xl">
-                Cyber Security Professional Course — 3 Months
-              </h2>
-              <p className="mt-4 text-sm leading-7 text-slate-600">
-                This three-month programme introduces students to the practical foundations of defensive and offensive security. Learners build core knowledge of networking, systems, threats, vulnerabilities, monitoring, and incident handling through guided labs, reports, and real-world scenarios.
-              </p>
-              <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                {[
-                  "Hands-on labs with industry tools",
-                  "Security foundations for beginners and IT professionals",
-                  "Practical reporting and incident response skills",
-                  "Career-ready preparation for entry-level security roles",
-                ].map((item) => (
-                  <div key={item} className="course-soft-pill flex items-start gap-2 rounded-lg px-3 py-2.5 text-sm">
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-red-600" aria-hidden="true" />
-                    <span>{item}</span>
-                  </div>
-                ))}
               </div>
-            </div>
 
-            <div className="space-y-4">
-              <div className="surface-card p-6">
-                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-red-600">Learning Objectives</p>
-                <ul className="mt-4 space-y-2 text-sm leading-6 text-slate-600">
-                  <li>• Understand security principles, threats, and the attacker–defender mindset.</li>
-                  <li>• Secure Windows and Linux systems through hardening and monitoring.</li>
-                  <li>• Perform reconnaissance, scanning, vulnerability assessment, and web security testing.</li>
-                  <li>• Respond to incidents, document findings, and prepare professional reports.</li>
-                </ul>
-              </div>
-              <div className="surface-card p-6">
-                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-red-600">Who Should Enroll</p>
-                <ul className="mt-4 space-y-2 text-sm leading-6 text-slate-600">
-                  <li>• Beginners interested in cybersecurity.</li>
-                  <li>• Students, IT professionals, and administrators.</li>
-                  <li>• Developers seeking secure engineering foundations.</li>
-                  <li>• Anyone preparing for SOC, analyst, or ethical hacking paths.</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Curriculum — Timeline ── */}
-      <section id="curriculum" className="section-shell course-panel-muted">
-        <div className="container-shell">
-
-          {/* Section heading */}
-          <div className="mx-auto max-w-2xl text-center">
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-red-600">Curriculum</p>
-            <h2 className="mt-2 text-2xl font-extrabold text-slate-950 sm:text-3xl">
-              12 Modules across 3 Months
-            </h2>
-            <p className="mt-3 text-sm leading-7 text-slate-500">
-              Each month builds on the last — from understanding threats, to exploiting them in labs, to detecting and responding to real incidents.
-            </p>
-          </div>
-
-          {/* Timeline */}
-          <div className="mx-auto mt-16 max-w-5xl">
-            {months.map((month, mIdx) => (
-              <div key={month.num} className="relative flex gap-6 sm:gap-10">
-
-                {/* ── Left column: number + connector ── */}
-                <div className="flex flex-col items-center">
-                  {/* Month circle */}
-                  <div className={`relative z-10 flex h-14 w-14 shrink-0 flex-col items-center justify-center rounded-2xl text-white shadow-lg ${month.bgClass}`}>
-                    <month.icon className="h-5 w-5" aria-hidden="true" />
-                    <span className="mt-0.5 text-[9px] font-bold uppercase tracking-wider opacity-80">
-                      {month.label}
-                    </span>
-                  </div>
-                  {/* Connector line — hidden on last item */}
-                  {mIdx < months.length - 1 && (
-                    <div className={`mt-2 w-0.5 flex-1 ${month.connectorColor} opacity-30`} />
-                  )}
+              <div className="surface-card course-enroll-card p-5">
+                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-red-600">Schedule</p>
+                <div className="mt-4 space-y-3">
+                  {cybersecurityCourseSchedule.map((item, index) => {
+                    const Icon = scheduleIcons[index];
+                    return (
+                      <div key={item.label} className="flex items-center gap-3 border-b border-slate-100 pb-3 last:border-b-0 last:pb-0">
+                        <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-red-50 text-red-600 ring-1 ring-red-100">
+                          <Icon className="h-4 w-4" aria-hidden="true" />
+                        </span>
+                        <span>
+                          <span className="block text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-400">{item.label}</span>
+                          <span className="block text-sm font-bold text-slate-800">{item.value}</span>
+                        </span>
+                      </div>
+                    );
+                  })}
                 </div>
+              </div>
+            </aside>
 
-                {/* ── Right column: content ── */}
-                <div className={`pb-16 flex-1 ${mIdx === months.length - 1 ? "pb-0" : ""}`}>
-
-                  {/* Month header */}
-                  <div className="mb-6 flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-4">
-                    <h3 className={`text-xl font-extrabold ${month.accentClass}`}>
-                      {month.title}
-                    </h3>
-                    <span className="hidden h-px flex-1 self-center bg-slate-200 sm:block" />
-                    <span className="text-xs font-semibold text-slate-400">4 Modules</span>
-                  </div>
-                  <p className="mb-6 max-w-xl text-sm leading-7 text-slate-500">
-                    {month.description}
+            <div className="min-w-0 space-y-10">
+              <section className="surface-card p-7 sm:p-9">
+                <p className="text-xs font-bold uppercase tracking-[0.18em] text-red-600">Course Overview</p>
+                <h2 className="mt-3 max-w-3xl text-3xl font-extrabold text-slate-950 sm:text-4xl">
+                  Practical cybersecurity training without the cramped syllabus layout.
+                </h2>
+                <div className="mt-5 max-w-[760px] space-y-4 text-sm leading-7 text-slate-600 sm:text-base">
+                  <p>
+                    This three-month programme introduces students to the practical foundations of defensive and offensive security. Learners build core knowledge of networking, systems, threats, vulnerabilities, monitoring, and incident handling through guided labs and real scenarios.
                   </p>
+                  <p>
+                    The course is designed for beginners, IT students, administrators, and developers who want a direct path into security roles through practical tools, reporting, and portfolio-ready work.
+                  </p>
+                </div>
+                <div className="mt-7 grid gap-3 sm:grid-cols-2">
+                  {["Hands-on labs with industry tools", "Security foundations for beginners and IT professionals", "Practical reporting and incident response skills", "Career-ready preparation for entry-level roles"].map((item) => (
+                    <div key={item} className="course-soft-pill flex items-start gap-2 rounded-lg px-3 py-2.5 text-sm">
+                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-red-600" aria-hidden="true" />
+                      <span>{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </section>
 
-                  {/* Module cards — 2 col */}
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    {month.modules.map((mod) => (
-                      <div
-                        key={mod.num}
-                        className="surface-card overflow-hidden transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
-                      >
-                        {/* Card header */}
-                        <div className="flex items-center gap-3 border-b border-slate-100 bg-slate-50/80 px-4 py-3">
-                          <span className={`inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-[10px] font-black text-white ${month.badgeBg}`}>
-                            {mod.num}
+              <section id="curriculum" className="scroll-mt-24">
+                <div className="mb-7 flex flex-col gap-3 border-b border-slate-200 pb-6 sm:flex-row sm:items-end sm:justify-between">
+                  <div>
+                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-red-600">Curriculum</p>
+                    <h2 className="mt-2 text-2xl font-extrabold text-slate-950 sm:text-3xl">
+                      {moduleCount} modules across 3 months
+                    </h2>
+                    <p className="mt-3 max-w-[760px] text-sm leading-7 text-slate-500">
+                      Each month builds on the last: foundations, authorized testing, then monitoring, incident response, and career preparation.
+                    </p>
+                  </div>
+                  <span className="inline-flex w-fit rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-xs font-bold text-red-700">
+                    120 instructor-led hours
+                  </span>
+                </div>
+
+                <div className="space-y-8">
+                  {cybersecurityCourseMonths.map((month, index) => {
+                    const style = monthStyles[index];
+                    const Icon = style.icon;
+                    return (
+                      <article key={month.num} className="surface-card overflow-hidden">
+                        <div className="flex flex-col gap-4 border-b border-slate-100 bg-slate-50/80 p-5 sm:flex-row sm:items-start sm:justify-between">
+                          <div className="flex gap-4">
+                            <span className={`inline-flex h-14 w-14 shrink-0 flex-col items-center justify-center rounded-xl text-white shadow-sm ${style.bgClass}`}>
+                              <Icon className="h-5 w-5" aria-hidden="true" />
+                              <span className="mt-0.5 text-[9px] font-bold uppercase tracking-wider">{month.label}</span>
+                            </span>
+                            <div>
+                              <h3 className={`text-xl font-extrabold ${style.accentClass}`}>{month.title}</h3>
+                              <p className="mt-2 max-w-[760px] text-sm leading-7 text-slate-600">{month.description}</p>
+                            </div>
+                          </div>
+                          <span className="course-module-count-badge inline-flex min-w-[94px] items-center justify-center whitespace-nowrap rounded-lg border px-3 py-1.5 text-xs font-bold">
+                            {month.modules.length} modules
                           </span>
-                          <h4 className="text-sm font-bold text-slate-900">{mod.title}</h4>
                         </div>
 
-                        {/* Topics */}
-                        <div className="p-4">
-                          <p className="mb-3 text-[11px] leading-6 text-slate-600">
-                            {mod.summary}
-                          </p>
-                          <div className="flex flex-wrap gap-1.5">
-                            {mod.topics.map((t) => (
-                              <span
-                                key={t}
-                                className="rounded-md bg-slate-100 px-2 py-0.5 text-[11px] font-medium text-slate-600"
-                              >
-                                {t}
-                              </span>
-                            ))}
-                          </div>
-
-                          {/* Tools */}
-                          {mod.tools.length > 0 && (
-                            <div className="mt-3 border-t border-slate-100 pt-3">
-                              <p className="mb-1.5 text-[9px] font-bold uppercase tracking-[0.14em] text-red-600">
-                                Tools
-                              </p>
-                              <div className="flex flex-wrap gap-1.5">
-                                {mod.tools.map((t) => (
-                                  <span
-                                    key={t}
-                                    className="rounded-md border border-red-200 bg-red-50 px-2 py-0.5 text-[11px] font-semibold text-red-700"
-                                  >
-                                    {t}
+                        <div className="grid gap-0 divide-y divide-slate-100 lg:grid-cols-2 lg:divide-x lg:divide-y-0">
+                          {month.modules.map((module) => (
+                            <div key={module.num} className="p-5">
+                              <div className="flex items-start gap-3">
+                                <span className={`inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-xs font-black text-white ${style.badgeBg}`}>
+                                  {module.num}
+                                </span>
+                                <div className="min-w-0">
+                                  <h4 className="text-lg font-extrabold text-slate-950">{module.title}</h4>
+                                  <p className="mt-2 max-w-[700px] text-sm leading-7 text-slate-600">{module.summary}</p>
+                                </div>
+                              </div>
+                              <div className="mt-4 flex flex-wrap gap-1.5">
+                                {module.topics.map((topic) => (
+                                  <span key={topic} className={`rounded-md border px-2 py-1 text-[11px] font-semibold ${style.topicClass}`}>
+                                    {topic}
                                   </span>
                                 ))}
                               </div>
+                              {module.tools.length > 0 ? (
+                                <div className="mt-4 border-t border-slate-100 pt-3">
+                                  <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.14em] text-red-600">Tools</p>
+                                  <p className="text-xs leading-6 text-slate-500">{module.tools.join(" / ")}</p>
+                                </div>
+                              ) : null}
                             </div>
-                          )}
+                          ))}
                         </div>
+                      </article>
+                    );
+                  })}
+                </div>
+              </section>
+
+              <section className="grid gap-5 lg:grid-cols-[280px_minmax(0,1fr)] lg:items-start">
+                <div className="lg:sticky lg:top-24">
+                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-red-600">Hands-On</p>
+                  <h2 className="mt-2 text-2xl font-extrabold text-slate-950">Practical Labs</h2>
+                  <p className="mt-4 max-w-[520px] text-sm leading-7 text-slate-500">
+                    Students spend most class time in controlled lab environments, not just watching slides.
+                  </p>
+                  <div className="course-note-card mt-6 rounded-xl p-5">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-red-600">Practice Note</p>
+                    <p className="mt-2 text-sm leading-6 text-[color:var(--course-muted)]">
+                      Add 1-2 hours of self-study daily for faster progress and stronger portfolio work.
+                    </p>
+                  </div>
+                </div>
+                <div className="grid gap-2.5 sm:grid-cols-2">
+                  {cybersecurityCourseLabs.map((lab, index) => (
+                    <div key={lab} className="surface-card flex items-start gap-3 p-4 transition-all duration-200 hover:-translate-y-0.5">
+                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-red-600 text-[10px] font-black text-white">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <span className="text-sm leading-6 text-slate-700">{lab}</span>
+                    </div>
+                  ))}
+                </div>
+              </section>
+
+              <section className="surface-card p-7 sm:p-8">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+                  <div>
+                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-red-600">Toolset</p>
+                    <h2 className="mt-2 text-2xl font-extrabold text-slate-950">20 industry-standard tools</h2>
+                  </div>
+                  <Terminal className="h-7 w-7 text-red-600" aria-hidden="true" />
+                </div>
+                <div className="mt-6 flex flex-wrap gap-2.5">
+                  {cybersecurityCourseTools.map((tool) => (
+                    <span key={tool} className="course-tool-chip inline-flex items-center gap-2 rounded-lg px-3.5 py-2 text-xs font-semibold transition-all duration-150 hover:border-red-500/60 hover:bg-red-50/80 hover:text-red-700">
+                      <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-red-500" aria-hidden="true" />
+                      {tool}
+                    </span>
+                  ))}
+                </div>
+              </section>
+
+              <section className="grid gap-5 lg:grid-cols-2">
+                <div className="surface-card p-7">
+                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-red-600">Outcomes</p>
+                  <h2 className="mt-2 text-2xl font-extrabold text-slate-950">What you will be able to do</h2>
+                  <div className="mt-5 space-y-3">
+                    {cybersecurityCourseOutcomes.map((outcome, index) => (
+                      <div key={outcome} className="flex items-start gap-3">
+                        <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-red-50 text-[10px] font-black text-red-600 ring-1 ring-red-200">
+                          {index + 1}
+                        </span>
+                        <span className="text-sm leading-6 text-slate-700">{outcome}</span>
                       </div>
                     ))}
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* ── Practical Labs ── */}
-      <section className="section-shell">
-        <div className="container-shell">
-          <div className="mx-auto max-w-5xl">
-            <div className="grid gap-12 lg:grid-cols-[360px_1fr] lg:items-start">
+                <div className="surface-card p-7">
+                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-red-600">Assessment</p>
+                  <h2 className="mt-2 text-2xl font-extrabold text-slate-950">Certification path</h2>
+                  <ul className="mt-5 space-y-3">
+                    {cybersecurityAssessmentPolicy.map((item) => (
+                      <li key={item} className="flex items-start gap-2.5 text-sm leading-6 text-slate-600">
+                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-red-600" aria-hidden="true" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </section>
 
-              {/* Left — heading + note */}
-              <div className="lg:sticky lg:top-24">
-                <p className="text-xs font-bold uppercase tracking-[0.18em] text-red-600">Hands-On</p>
-                <h2 className="mt-2 text-2xl font-extrabold text-slate-950 sm:text-3xl">
-                  Practical Labs
-                </h2>
-                <p className="mt-4 text-sm leading-7 text-slate-500">
-                  Students spend the majority of class time inside real lab environments — not just watching slides.
-                </p>
-                <div className="course-note-card mt-6 rounded-xl p-5">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-red-600">
-                    Pro Tip
-                  </p>
-                  <p className="mt-2 text-sm leading-6 text-[color:var(--course-muted)]">
-                    Students who add{" "}
-                    <strong>1–2 hours of self-study daily</strong> progress
-                    significantly faster than those who only attend classes.
+              <section className="surface-card p-7 sm:p-8">
+                <p className="text-xs font-bold uppercase tracking-[0.18em] text-red-600">Course Projects</p>
+                <h2 className="mt-2 text-2xl font-extrabold text-slate-950">Portfolio-ready project work</h2>
+                <div className="mt-6 grid gap-4 lg:grid-cols-3">
+                  {cybersecurityCourseProjects.map((project, index) => (
+                    <div key={project} className="rounded-xl border border-slate-200 bg-slate-50/80 p-4">
+                      <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-red-600">Project {index + 1}</p>
+                      <p className="mt-2 text-sm leading-7 text-slate-600">{project}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+
+              <section className="surface-card overflow-hidden">
+                <div className="border-b border-slate-100 bg-slate-50/80 px-6 py-4">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-red-600">Frequently Asked</p>
+                  <h3 className="mt-1 text-lg font-extrabold text-slate-950">Is 2 hours/day enough?</h3>
+                </div>
+                <div className="px-6 py-5">
+                  <p className="max-w-[760px] text-sm leading-7 text-slate-600">
+                    For beginners, 2 instructor-led hours per day is a balanced choice for a 3-month programme. The limiting factor is not class time but practice: students who add 1-2 hours of self-study and lab work daily progress significantly faster.
                   </p>
                 </div>
-                <div className="course-note-card mt-5 flex items-center gap-3 rounded-xl p-4">
-                  <Terminal className="h-5 w-5 shrink-0 text-red-600" aria-hidden="true" />
+              </section>
+
+              <section className="section-tight rounded-2xl bg-gradient-to-br from-red-800 via-red-700 to-red-600 px-6 py-10 text-white sm:px-10">
+                <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
                   <div>
-                    <p className="text-xs font-bold text-slate-800">10 Lab Exercises</p>
-                    <p className="text-xs text-slate-500">Real tools, real environments</p>
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/75">Start Your Cybersecurity Career</p>
+                    <h2 className="mt-3 text-2xl font-extrabold text-white sm:text-3xl">Ready to enroll?</h2>
+                    <p className="mt-3 max-w-[680px] text-sm leading-7 text-white/80">
+                      PKR 45,000 total. $199 for international students. 3 months. 5 days/week.
+                    </p>
+                  </div>
+                  <div className="flex flex-col gap-3 sm:flex-row lg:shrink-0">
+                    <a href={ENROLL_URL} target="_blank" rel="noopener noreferrer" className="btn-neutral inline-flex h-12 items-center justify-center gap-2 rounded-xl px-8 text-sm font-semibold">
+                      <Shield className="h-4 w-4 shrink-0" aria-hidden="true" />
+                      Enroll Now
+                    </a>
+                    <DownloadSyllabus />
                   </div>
                 </div>
-              </div>
+              </section>
 
-              {/* Right — lab list */}
-              <div className="grid gap-2.5 sm:grid-cols-2">
-                {labs.map((lab, i) => (
-                  <div
-                    key={lab}
-                    className="surface-card flex items-start gap-3 p-4 transition-all duration-200 hover:-translate-y-0.5"
-                  >
-                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-red-600 text-[10px] font-black text-white">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <span className="text-sm leading-6 text-slate-700">{lab}</span>
+              <section className="section-tight pt-0">
+                <div className="mb-8 flex items-end justify-between gap-4">
+                  <div>
+                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-red-600">What&apos;s Next</p>
+                    <h2 className="mt-1 text-xl font-extrabold text-slate-950">Continue your learning path</h2>
                   </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Tools ── */}
-      <section className="section-shell course-toolset-section">
-        <div className="container-shell">
-          <div className="mx-auto max-w-4xl">
-            <div className="mb-10 text-center">
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-red-500">Toolset</p>
-              <h2 className="mt-2 text-2xl font-extrabold text-[color:var(--course-text)] sm:text-3xl">
-                20 Industry-Standard Tools
-              </h2>
-              <p className="mt-3 text-sm leading-7 text-[color:var(--course-muted)]">
-                The same tools used by professional security teams worldwide.
-              </p>
-            </div>
-            <div className="flex flex-wrap justify-center gap-2.5">
-              {allTools.map((t) => (
-                <span
-                  key={t}
-                  className="course-tool-chip inline-flex items-center gap-2 rounded-lg px-3.5 py-2 text-xs font-semibold transition-all duration-150 hover:border-red-500/60 hover:bg-red-50/80 hover:text-red-700"
-                >
-                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-red-500" aria-hidden="true" />
-                  {t}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Outcomes ── */}
-      <section className="section-shell">
-        <div className="container-shell">
-          <div className="mx-auto max-w-4xl">
-            <div className="mb-10 text-center">
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-red-600">Outcomes</p>
-              <h2 className="mt-2 text-2xl font-extrabold text-slate-950 sm:text-3xl">
-                What You Will Be Able To Do
-              </h2>
-              <p className="mt-3 text-sm leading-7 text-slate-500">
-                After completing the course, you will have the skills and confidence to step into your first security role.
-              </p>
-            </div>
-            <div className="grid gap-3 sm:grid-cols-2">
-              {outcomes.map((o, i) => (
-                <div
-                  key={o}
-                  className="surface-card flex items-start gap-4 p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-red-200 hover:shadow-sm"
-                >
-                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-red-50 text-[10px] font-black text-red-600 ring-1 ring-red-200">
-                    {i + 1}
-                  </span>
-                  <span className="text-sm leading-6 text-slate-700">{o}</span>
+                  <Link href="/courses" className="hidden items-center gap-1.5 text-sm font-semibold text-red-600 transition-all duration-200 hover:gap-2.5 sm:flex">
+                    All Courses
+                    <ArrowRight className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                  </Link>
                 </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Is 2 hrs enough ── */}
-      <section className="section-tight bg-slate-50/60">
-        <div className="container-shell">
-          <div className="mx-auto max-w-2xl">
-            <div className="surface-card overflow-hidden">
-              <div className="border-b border-slate-100 bg-slate-50/80 px-6 py-4">
-                <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-red-600">
-                  Frequently Asked
-                </p>
-                <h3 className="mt-1 text-base font-extrabold text-slate-950">
-                  Is 2 hours/day enough?
-                </h3>
-              </div>
-              <div className="px-6 py-5">
-                <p className="text-sm leading-7 text-slate-600">
-                  For beginners,{" "}
-                  <strong className="font-semibold text-slate-800">
-                    2 instructor-led hours per day
-                  </strong>{" "}
-                  is a balanced choice for a 3-month programme. It provides enough
-                  time for explanation and guided labs without overwhelming students.
-                  The limiting factor is not class time but practice — students who
-                  add{" "}
-                  <strong className="font-semibold text-slate-800">
-                    1–2 hours of self-study and lab work daily
-                  </strong>{" "}
-                  will progress much faster than those who only attend the classes.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Assessment & Certification ── */}
-      <section className="section-tight course-panel-muted">
-        <div className="container-shell">
-          <div className="mx-auto max-w-5xl">
-            <div className="surface-card overflow-hidden">
-              <div className="border-b border-slate-100 bg-slate-50/80 px-6 py-5">
-                <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-red-600">Assessment & Certification</p>
-                <h3 className="mt-1 text-xl font-extrabold text-slate-950">Official assessment policy and certification path</h3>
-              </div>
-              <div className="grid gap-6 p-6 lg:grid-cols-2">
-                <div>
-                  <p className="text-sm font-semibold text-slate-800">Final Examination</p>
-                  <ul className="mt-3 space-y-2 text-sm leading-7 text-slate-600">
-                    <li>• Practical lab assessment in a controlled environment.</li>
-                    <li>• Theory exam covering the full course curriculum.</li>
-                    <li>• Both assessments are mandatory for certification.</li>
-                  </ul>
+                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                  {[
+                    { href: "/courses/ethical-hacking", title: "Ethical Hacking", desc: "Offensive security techniques." },
+                    { href: "/courses/soc-analyst", title: "SOC Analyst", desc: "SIEM, detection, response." },
+                    { href: "/courses/penetration-testing", title: "Penetration Testing", desc: "Advanced red team methods." },
+                    { href: "/courses/digital-forensics", title: "Digital Forensics", desc: "Evidence and log analysis." },
+                  ].map((course) => (
+                    <Link key={course.href} href={course.href} className="surface-card group flex flex-col gap-2 p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-red-200 hover:shadow-sm">
+                      <p className="text-sm font-bold text-slate-950 group-hover:text-red-700">{course.title}</p>
+                      <p className="text-xs text-slate-500">{course.desc}</p>
+                      <ArrowRight className="mt-auto h-3.5 w-3.5 text-slate-300 transition-all group-hover:translate-x-1 group-hover:text-red-500" aria-hidden="true" />
+                    </Link>
+                  ))}
                 </div>
-                <div>
-                  <p className="text-sm font-semibold text-slate-800">Passing & Reattempts</p>
-                  <ul className="mt-3 space-y-2 text-sm leading-7 text-slate-600">
-                    <li>• Students must complete labs, assignments, and both exams.</li>
-                    <li>• First attempt is included in the course fee.</li>
-                    <li>• One free re-attempt is available; additional attempts may be charged.</li>
-                  </ul>
-                </div>
-              </div>
+              </section>
             </div>
           </div>
+
+
         </div>
       </section>
-
-      {/* ── Related ── */}
-      <section className="section-tight">
-        <div className="container-shell">
-          <div className="mx-auto max-w-4xl">
-            <div className="mb-8 flex items-end justify-between gap-4">
-              <div>
-                <p className="text-xs font-bold uppercase tracking-[0.18em] text-red-600">
-                  What&apos;s Next
-                </p>
-                <h2 className="mt-1 text-xl font-extrabold text-slate-950">
-                  Continue Your Learning Path
-                </h2>
-              </div>
-              <Link
-                href="/courses"
-                className="hidden items-center gap-1.5 text-sm font-semibold text-red-600 transition-all duration-200 hover:gap-2.5 sm:flex"
-              >
-                All Courses
-                <ArrowRight className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-              </Link>
-            </div>
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              {[
-                { href: "/courses/ethical-hacking",     title: "Ethical Hacking",     desc: "Offensive security techniques." },
-                { href: "/courses/soc-analyst",         title: "SOC Analyst",          desc: "SIEM, detection, response." },
-                { href: "/courses/penetration-testing", title: "Penetration Testing",  desc: "Advanced red team methods." },
-                { href: "/courses/digital-forensics",   title: "Digital Forensics",    desc: "Evidence & log analysis." },
-              ].map((c) => (
-                <Link
-                  key={c.href}
-                  href={c.href}
-                  className="surface-card group flex flex-col gap-2 p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-red-200 hover:shadow-sm"
-                >
-                  <p className="text-sm font-bold text-slate-950 group-hover:text-red-700">
-                    {c.title}
-                  </p>
-                  <p className="text-xs text-slate-500">{c.desc}</p>
-                  <ArrowRight className="mt-auto h-3.5 w-3.5 text-slate-300 transition-all group-hover:translate-x-1 group-hover:text-red-500" aria-hidden="true" />
-                </Link>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── CTA ── */}
-      <section className="cta-section relative overflow-hidden bg-gradient-to-br from-red-800 via-red-700 to-red-600 py-16 sm:py-20">
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.08),transparent_22%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.05),transparent_22%)]"
-        />
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 opacity-[0.06] [background-image:linear-gradient(to_right,rgba(255,255,255,0.5)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.5)_1px,transparent_1px)] [background-size:32px_32px]"
-        />
-        <div className="relative z-10 container-shell">
-          <div className="mx-auto flex max-w-2xl flex-col items-center text-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/15 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-white">
-              <Shield className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-              Start Your Cybersecurity Career
-            </div>
-            <h2 className="mt-5 text-2xl font-extrabold text-white sm:text-3xl lg:text-4xl">
-              Ready to enroll?
-            </h2>
-            <p className="mt-4 text-sm leading-7 text-white/80">
-              PKR 45,000 total &nbsp;·&nbsp; $199 for international students
-              &nbsp;·&nbsp; 3 months &nbsp;·&nbsp; 5 days/week
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <a
-                href={ENROLL_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-neutral inline-flex h-12 items-center gap-2 rounded-xl px-8 text-sm font-semibold"
-              >
-                <Shield className="h-4 w-4 shrink-0" aria-hidden="true" />
-                Enroll Now
-              </a>
-              <DownloadSyllabus />
-            </div>
-          </div>
-        </div>
-      </section>
-
+      <a href="#main-content" aria-label="Back to top" className="back-to-top-floating fixed bottom-5 right-5 z-[80] inline-flex h-12 w-12 items-center justify-center rounded-full border shadow-lg transition-all hover:-translate-y-1">
+        <ArrowUp className="h-5 w-5" aria-hidden="true" />
+      </a>
     </main>
   );
 }

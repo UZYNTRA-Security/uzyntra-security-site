@@ -1,22 +1,22 @@
-import Image from "next/image";
-import Link from "next/link";
+﻿import Link from "next/link";
 import { Mail, Shield, ArrowUpRight } from "lucide-react";
 import { FaGithub, FaLinkedinIn, FaInstagram, FaFacebookF, FaXTwitter } from "react-icons/fa6";
 
 import { siteConfig } from "@/config/site";
 import { footerNavigation } from "@/data/navigation";
 import { ThemedLogo } from "@/components/ui/themed-logo";
-import { blogPosts, publishedPosts } from "@/data/blog";
+import { publishedPosts } from "@/data/blog";
 
 type FooterGroupProps = {
   title: string;
   links: readonly { title: string; href: string }[];
+  className?: string;
 };
 
-function FooterGroup({ title, links }: FooterGroupProps) {
+function FooterGroup({ title, links, className = "" }: FooterGroupProps) {
   return (
-    <div>
-      <h3 className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-950">
+    <div className={`footer-link-group min-w-0 ${className}`}>
+      <h3 className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-950">
         {title}
       </h3>
       <ul className="mt-4 space-y-2.5">
@@ -30,7 +30,7 @@ function FooterGroup({ title, links }: FooterGroupProps) {
               <Link
                 href={link.href}
                 {...(isExternal ? { target: "_blank", rel: "noreferrer" } : {})}
-                className="text-sm text-slate-600 transition duration-200 hover:text-red-700"
+                className="footer-link-text block text-sm leading-6 text-slate-600 transition duration-200 hover:text-red-700"
               >
                 {link.title}
               </Link>
@@ -43,19 +43,19 @@ function FooterGroup({ title, links }: FooterGroupProps) {
 }
 
 const socialLinks = [
-  { title: "GitHub",    href: siteConfig.socials.github,    icon: FaGithub    },
-  { title: "LinkedIn",  href: siteConfig.socials.linkedin,  icon: FaLinkedinIn },
-  { title: "X",         href: siteConfig.socials.x,         icon: FaXTwitter  },
+  { title: "GitHub", href: siteConfig.socials.github, icon: FaGithub },
+  { title: "LinkedIn", href: siteConfig.socials.linkedin, icon: FaLinkedinIn },
+  { title: "X", href: siteConfig.socials.x, icon: FaXTwitter },
   { title: "Instagram", href: siteConfig.socials.instagram, icon: FaInstagram },
-  { title: "Facebook",  href: siteConfig.socials.facebook,  icon: FaFacebookF },
+  { title: "Facebook", href: siteConfig.socials.facebook, icon: FaFacebookF },
 ];
 
 export function SiteFooter() {
   return (
-    <footer className="relative border-t border-slate-200 bg-gradient-to-b from-white to-slate-50">
+    <footer className="site-footer relative border-t border-slate-200 bg-gradient-to-b from-white to-slate-50">
       <div className="container-shell py-10 sm:py-12">
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[1.4fr_0.9fr_0.9fr_0.9fr_0.9fr_0.9fr_1.1fr]">
-          <div className="max-w-sm">
+        <div className="footer-main-grid grid gap-8 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-[minmax(250px,1.15fr)_minmax(96px,0.48fr)_minmax(190px,0.82fr)_minmax(118px,0.54fr)_minmax(142px,0.62fr)_minmax(290px,1.25fr)] xl:gap-x-7 xl:gap-y-10">
+          <div className="footer-brand-block max-w-sm lg:col-span-2 xl:col-span-1">
             <Link href="/" className="inline-flex items-center" aria-label="UZYNTRA Security home">
               <ThemedLogo width={240} height={56} />
             </Link>
@@ -66,85 +66,73 @@ export function SiteFooter() {
               production-ready architecture.
             </p>
 
-            {/* Platform badge — clickable */}
             <Link
               href="/services"
-              className="group mt-5 inline-flex items-center gap-2 rounded-full border border-red-100 bg-red-50 px-3 py-2 text-[12px] font-semibold uppercase tracking-[0.14em] text-red-700 transition-all duration-200 hover:border-red-300 hover:bg-red-100"
+              className="group mt-5 inline-flex max-w-full items-center gap-2 rounded-full border border-red-100 bg-red-50 px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.1em] text-red-700 transition-all duration-200 hover:border-red-300 hover:bg-red-100"
             >
-              <Shield className="h-3.5 w-3.5" />
-              Enterprise Security Platform
-              <ArrowUpRight className="h-3 w-3 opacity-0 transition-all duration-200 group-hover:opacity-100" aria-hidden="true" />
+              <Shield className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+              <span className="min-w-0 leading-tight">Enterprise Security Platform</span>
+              <ArrowUpRight className="h-3 w-3 shrink-0 opacity-0 transition-all duration-200 group-hover:opacity-100" aria-hidden="true" />
             </Link>
 
-            {/* Domain email */}
             <p className="mt-5 text-sm font-medium text-slate-950">
-              <a
-                href="mailto:contact@uzyntra.com"
-                className="transition-colors hover:text-red-700"
-              >
+              <a href="mailto:contact@uzyntra.com" className="transition-colors hover:text-red-700">
                 contact@uzyntra.com
               </a>
             </p>
             <p className="mt-1.5 text-sm font-medium text-slate-950">
-              <a
-                href="tel:+923335545728"
-                className="transition-colors hover:text-red-700"
-              >
+              <a href="tel:+923335545728" className="transition-colors hover:text-red-700">
                 +92 333 5545728
               </a>
             </p>
           </div>
 
-          <FooterGroup title="Company"  links={footerNavigation.company}  />
+          <FooterGroup title="Company" links={footerNavigation.company} />
           <FooterGroup title="Services" links={footerNavigation.services} />
-          <FooterGroup title="Courses"  links={footerNavigation.courses}  />
-          <FooterGroup title="Products" links={footerNavigation.products} />
-          <FooterGroup title="Legal"    links={footerNavigation.legal}    />
+          <FooterGroup title="Courses" links={footerNavigation.courses} />
 
-          {/* Research / Articles column */}
-          <div>
-            <h3 className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-950">
-              Research
-            </h3>
-            <ul className="mt-4 space-y-3">
+          <div className="space-y-8">
+            <FooterGroup title="Products" links={footerNavigation.products} />
+            <FooterGroup title="Legal" links={footerNavigation.legal} />
+          </div>
+
+          <div className="footer-research-column min-w-0 lg:col-span-2 xl:col-span-1">
+            <div className="flex items-center justify-between gap-3 border-b border-slate-200 pb-2">
+              <h3 className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-950">
+                Research
+              </h3>
+              <Link
+                href="/blog"
+                className="inline-flex items-center gap-1 text-[11px] font-semibold text-red-700 transition-all duration-200 hover:gap-1.5"
+              >
+                All
+                <ArrowUpRight className="h-3 w-3 shrink-0" aria-hidden="true" />
+              </Link>
+            </div>
+            <ul className="mt-4 grid gap-2.5 sm:grid-cols-2 lg:grid-cols-1">
               {publishedPosts.slice(0, 4).map((post) => (
                 <li key={post.slug}>
-                  {/* Link to native page — SEO value + trust */}
                   <Link
                     href={`/blog/${post.slug}`}
-                    className="footer-research-link group flex items-start gap-1.5 text-sm text-slate-600 transition duration-200 hover:text-red-700"
+                    className="footer-research-card group block rounded-lg border p-3 transition-all duration-200 hover:-translate-y-0.5"
                   >
-                    <span className="flex-1 leading-snug">{post.title}</span>
-                  </Link>
-                  <div className="mt-1 flex items-center justify-between gap-2">
-                    <span className="footer-research-meta text-[11px] text-slate-400">
-                      {post.category} · {post.readTime}
+                    <span className="block text-[13px] font-semibold leading-snug text-slate-700 transition-colors group-hover:text-red-700">
+                      {post.title}
                     </span>
-                    <Link
-                      href={`/blog/${post.slug}`}
-                      className="text-[11px] font-semibold text-red-600 transition-all duration-200 hover:text-red-700"
-                    >
-                      Read guide →
-                    </Link>
-                  </div>
+                    <span className="footer-research-meta mt-1.5 flex items-center justify-between gap-3 text-[11px] text-slate-400">
+                      <span className="min-w-0 truncate">{post.category} - {post.readTime}</span>
+                      <ArrowUpRight className="h-3 w-3 shrink-0 text-red-600 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
+                    </span>
+                  </Link>
                 </li>
               ))}
-              <li className="pt-1">
-                <Link
-                  href="/blog"
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-red-700 transition-all duration-200 hover:gap-2"
-                >
-                  View all research
-                  <ArrowUpRight className="h-3 w-3 shrink-0" aria-hidden="true" />
-                </Link>
-              </li>
             </ul>
           </div>
         </div>
 
         <div className="mt-8 flex flex-col gap-5 border-t border-slate-200 pt-6 sm:mt-10 lg:flex-row lg:items-center lg:justify-between">
           <p className="text-sm text-slate-600">
-            © {new Date().getFullYear()} {siteConfig.legalName}. All rights reserved.
+            &copy; {new Date().getFullYear()} {siteConfig.legalName}. All rights reserved.
           </p>
 
           <div className="flex flex-wrap items-center gap-3">

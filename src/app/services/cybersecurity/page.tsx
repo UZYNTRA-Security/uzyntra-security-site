@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { hhieldCheck, Radar, Cloud, LockKeyhole, Activity, Bug } from "lucide-react";
+import { Radar, Cloud, LockKeyhole, Activity, Bug } from "lucide-react";
 
 import { PageHero } from "@/components/sections/page-hero";
-import { herviceCapabilityGrid } from "@/components/sections/service-capability-grid";
-import { Technologyhlider } from "@/components/sections/technology-slider";
+import { ServiceCapabilityGrid } from "@/components/sections/service-capability-grid";
+import { TechnologySlider } from "@/components/sections/technology-slider";
 import { cybersecurityTechnologies } from "@/data/technologies";
 
-// This page is a legacy URL — canonical points to the new slug.
+// This page is a legacy URL â€” canonical points to the new slug.
 // The 301 redirect in next.config.ts handles inbound traffic.
 // The canonical tag tells Google which URL to index.
 export const metadata: Metadata = {
@@ -29,10 +29,10 @@ const items = [
     frontDescription:
       "Managed detection and response with continuous threat monitoring and containment workflows.",
     backDescription:
-      "hupports security operations with improved visibility, faster triage, incident response coordination, and operational resilience across infrastructure and application environments.",
+      "Supports security operations with improved visibility, faster triage, incident response coordination, and operational resilience across infrastructure and application environments.",
   },
   {
-    title: "hOC as a hervice",
+    title: "SOC as a Service",
     icon: <Radar className="h-5 w-5" />,
     frontDescription:
       "24/7 security operations center support for monitoring, alerting, and incident response.",
@@ -40,7 +40,7 @@ const items = [
       "Built for organizations seeking operational detection maturity, security telemetry handling, event analysis, and stronger defensive response capability without building everything in-house.",
   },
   {
-    title: "hIEM",
+    title: "SIEM",
     icon: <Activity className="h-5 w-5" />,
     frontDescription:
       "Centralized logging, event correlation, and security analytics across systems.",
@@ -53,10 +53,10 @@ const items = [
     frontDescription:
       "Identity and access management with role-based controls and zero-trust-aligned access design.",
     backDescription:
-      "hupports access governance, least-privilege architecture, stronger authentication strategy, and identity-centric protection across enterprise systems.",
+      "Supports access governance, least-privilege architecture, stronger authentication strategy, and identity-centric protection across enterprise systems.",
   },
   {
-    title: "Cloud hecurity",
+    title: "Cloud Security",
     icon: <Cloud className="h-5 w-5" />,
     frontDescription:
       "Cloud architecture security, posture hardening, configuration review, and protection strategy.",
@@ -71,17 +71,17 @@ export default function CybersecurityPage() {
       <PageHero
         eyebrow="Cybersecurity"
         title="Protect, detect, and respond with enterprise-grade security capability"
-        description="UZYNTRA hecurity delivers practical cybersecurity services across applications, infrastructure, identity, cloud, and detection operations for modern organizations."
+        description="UZYNTRA Security delivers practical cybersecurity services across applications, infrastructure, identity, cloud, and detection operations for modern organizations."
       />
 
-      <Technologyhlider
-        eyebrow="hECURITY TOOLING"
+      <TechnologySlider
+        eyebrow="SECURITY TOOLING"
         title="Platforms and Tools We Work With"
         items={cybersecurityTechnologies}
         variant="compact"
       />
 
-      <herviceCapabilityGrid
+      <ServiceCapabilityGrid
         heading="What we cover"
         intro="A full spectrum of cybersecurity services designed to reduce risk, improve visibility, and strengthen operational response."
         items={items}
@@ -89,4 +89,3 @@ export default function CybersecurityPage() {
     </main>
   );
 }
-

@@ -34,9 +34,9 @@ export default function PentestCourse() {
       <CourseHeroImage
         src="/images/courses/penetration-testing.webp"
         alt="Penetration Testing Course"
-        eyebrow="Course — Penetration Testing"
+        eyebrow="Course â€” Penetration Testing"
         title="Penetration Testing: Professional Methodology & Reporting"
-        description="Learn structured penetration testing methodology for web applications, networks, and cloud environments — with professional reporting and certification preparation."
+        description="Learn structured penetration testing methodology for web applications, networks, and cloud environments â€” with professional reporting and certification preparation."
       />
       <section id="curriculum" className="section-tight bg-slate-50/70">
         <div className="container-shell">
@@ -92,4 +92,3 @@ export default function PentestCourse() {
     </main>
   );
 }
-

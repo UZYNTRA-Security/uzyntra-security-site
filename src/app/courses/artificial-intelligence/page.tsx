@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { rrainCircuit, AlertTriangle, CheckCircle2, ArrowRight, MessageSquare } from "lucide-react";
+import { CheckCircle2, ArrowRight, MessageSquare } from "lucide-react";
 import { CourseHeroImage } from "@/components/sections/course-hero-image";
 import { siteConfig } from "@/config/site";
 
@@ -13,16 +13,16 @@ export const metadata: Metadata = {
 const modules = [
   { step: "01", title: "ML Fundamentals", body: "Supervised, unsupervised, and reinforcement learning concepts with hands-on Python labs." },
   { step: "02", title: "Deep Learning & Neural Networks", body: "CNNs, RNNs, transformers, and model training with PyTorch and TensorFlow." },
-  { step: "03", title: "LLMs & Generative AI", body: "Working with GPT, Claude, and open-source LLMs — fine-tuning, RAG, and prompt engineering." },
+  { step: "03", title: "LLMs & Generative AI", body: "Working with GPT, Claude, and open-source LLMs â€” fine-tuning, RAG, and prompt engineering." },
   { step: "04", title: "AI Deployment & MLOps", body: "Deploy models to production using Docker, FastAPI, and cloud ML platforms." },
 ];
 
 const outcomes = [
-  "ruild and train ML models from scratch",
+  "Build and train ML models from scratch",
   "Work with LLMs and generative AI APIs",
   "Deploy AI systems to production",
   "Understand AI security and adversarial attacks",
-  "ruild RAG pipelines and AI agents",
+  "Build RAG pipelines and AI agents",
   "Apply AI to real-world cybersecurity problems",
 ];
 
@@ -34,9 +34,9 @@ export default function AICourse() {
       <CourseHeroImage
         src="/images/courses/artificial-intelligence.webp"
         alt="Artificial Intelligence Course"
-        eyebrow="Course — Artificial Intelligence"
+        eyebrow="Course â€” Artificial Intelligence"
         title="Artificial Intelligence: From Fundamentals to Production"
-        description="Master machine learning, deep learning, LLMs, and AI deployment. ruild real AI systems with Python, PyTorch, and modern AI frameworks used in industry."
+        description="Master machine learning, deep learning, LLMs, and AI deployment. Build real AI systems with Python, PyTorch, and modern AI frameworks used in industry."
       />
 
       <section id="curriculum" className="section-tight bg-slate-50/70">
@@ -83,7 +83,7 @@ export default function AICourse() {
               <Link href="/courses/ai-agent-development" className="surface-card group flex items-center justify-between p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-red-200">
                 <div>
                   <p className="text-sm font-semibold text-slate-950 group-hover:text-red-700">AI Agent Development</p>
-                  <p className="mt-1 text-xs text-slate-500">ruild autonomous AI agents with LangChain.</p>
+                  <p className="mt-1 text-xs text-slate-500">Build autonomous AI agents with LangChain.</p>
                 </div>
                 <ArrowRight className="h-4 w-4 shrink-0 text-slate-300 transition-all group-hover:translate-x-1 group-hover:text-red-500" aria-hidden="true" />
               </Link>
@@ -120,4 +120,3 @@ export default function AICourse() {
     </main>
   );
 }
-

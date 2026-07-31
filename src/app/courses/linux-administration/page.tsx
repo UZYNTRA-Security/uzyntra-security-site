@@ -34,9 +34,9 @@ export default function LinuxCourse() {
       <CourseHeroImage
         src="/images/courses/linux-administration.webp"
         alt="Linux Administration Course"
-        eyebrow="Course — Linux Administration"
+        eyebrow="Course â€” Linux Administration"
         title="Linux Administration: Command Line to Hardened Servers"
-        description="Master Linux system administration — from the command line and shell scripting to server hardening and security configuration for production environments."
+        description="Master Linux system administration â€” from the command line and shell scripting to server hardening and security configuration for production environments."
       />
       <section id="curriculum" className="section-tight bg-slate-50/70">
         <div className="container-shell">
@@ -92,4 +92,3 @@ export default function LinuxCourse() {
     </main>
   );
 }
-

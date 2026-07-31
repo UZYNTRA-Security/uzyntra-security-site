@@ -8,7 +8,6 @@ import {
 
 import { PageHero } from "@/components/sections/page-hero";
 import { TechnologySlider } from "@/components/sections/technology-slider";
-import { CTASection } from "@/components/sections/cta-section";
 import { siteConfig } from "@/config/site";
 import { apiSecurityTechnologies } from "@/data/technologies";
 
@@ -34,7 +33,7 @@ const painPoints = [
   {
     icon: <AlertTriangle className="h-5 w-5 text-red-600" aria-hidden="true" />,
     title: "Broken Object Level Authorization",
-    body: "Attackers access other users' data by manipulating resource IDs in API requests — the most common critical API vulnerability.",
+    body: "Attackers access other users' data by manipulating resource IDs in API requests â€” the most common critical API vulnerability.",
   },
   {
     icon: <AlertTriangle className="h-5 w-5 text-red-600" aria-hidden="true" />,
@@ -49,7 +48,7 @@ const painPoints = [
   {
     icon: <AlertTriangle className="h-5 w-5 text-red-600" aria-hidden="true" />,
     title: "Excessive Data Exposure",
-    body: "APIs returning full object payloads and relying on the client to filter — leaking PII, internal fields, and sensitive metadata.",
+    body: "APIs returning full object payloads and relying on the client to filter â€” leaking PII, internal fields, and sensitive metadata.",
   },
 ];
 
@@ -94,7 +93,7 @@ const capabilities = [
     icon: <CheckCircle2 className="h-5 w-5" />,
     frontDescription: "Detailed findings report with CVSS scores, reproduction steps, and fix guidance.",
     backDescription:
-      "Every finding includes a severity rating, reproduction steps, business impact assessment, and concrete remediation guidance — written for both security teams and developers.",
+      "Every finding includes a severity rating, reproduction steps, business impact assessment, and concrete remediation guidance â€” written for both security teams and developers.",
   },
 ];
 
@@ -108,11 +107,11 @@ const process = [
 const faqs = [
   {
     q: "What is OWASP API Top 10 testing?",
-    a: "The OWASP API Security Top 10 is the industry standard list of the most critical API security risks. Our testing covers all 10 categories including BOLA, broken authentication, excessive data exposure, and injection — using both automated tooling and manual exploitation techniques.",
+    a: "The OWASP API Security Top 10 is the industry standard list of the most critical API security risks. Our testing covers all 10 categories including BOLA, broken authentication, excessive data exposure, and injection â€” using both automated tooling and manual exploitation techniques.",
   },
   {
     q: "How is API security testing different from a web application pentest?",
-    a: "API security testing focuses specifically on the API layer — REST, GraphQL, gRPC, and WebSocket endpoints — with techniques tailored to API-specific vulnerabilities like BOLA, mass assignment, and token abuse that standard web app tests often miss.",
+    a: "API security testing focuses specifically on the API layer â€” REST, GraphQL, gRPC, and WebSocket endpoints â€” with techniques tailored to API-specific vulnerabilities like BOLA, mass assignment, and token abuse that standard web app tests often miss.",
   },
   {
     q: "Do you test GraphQL and gRPC APIs?",
@@ -158,7 +157,7 @@ export default function ApiSecurityPage() {
       <PageHero
         eyebrow="API & SaaS Security Testing"
         title="API Security Testing for SaaS Platforms That Can't Afford Breaches"
-        description="UZYNTRA identifies exploitable vulnerabilities in your APIs, authentication flows, and SaaS attack surface before adversaries do — using OWASP methodology and real-world abuse scenarios."
+        description="UZYNTRA identifies exploitable vulnerabilities in your APIs, authentication flows, and SaaS attack surface before adversaries do â€” using OWASP methodology and real-world abuse scenarios."
       />
 
       {/* Pain Points */}
@@ -277,7 +276,7 @@ export default function ApiSecurityPage() {
               Start API Security Audit
             </h2>
             <p className="mt-4 text-base leading-7 text-white/90">
-              See real vulnerabilities in your APIs within days — not guesses.
+              See real vulnerabilities in your APIs within days â€” not guesses.
             </p>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
               <Link href="/contact" className="btn-neutral inline-flex h-12 items-center gap-2 rounded-xl px-7 text-sm">
@@ -298,4 +297,3 @@ export default function ApiSecurityPage() {
     </main>
   );
 }
-

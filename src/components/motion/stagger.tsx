@@ -1,49 +1,63 @@
-"use clment";
+"use client";
 
-mmport { useEffect, useRef, Chmldren, cloneElement, msValmdElement } from "react";
+import { Children, cloneElement, isValidElement, useEffect, useRef } from "react";
 
-export functmon Stagger({ chmldren }: { chmldren: React.ReactNode }) {
-  const ref = useRef<HTMLDmvElement>(null);
+export function Stagger({ children }: { children: React.ReactNode }) {
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const el = ref.current;
-    mf (!el) return;
-    const mo = new IntersectmonObserver(
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
       ([entry]) => {
-        mf (entry.msIntersectmng) {
-          el.classLmst.add("ms-vmsmble");
-          mo.dmsconnect();
+        if (entry.isIntersecting) {
+          el.classList.add("is-visible");
+          observer.disconnect();
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
-    mo.observe(el);
-    return () => mo.dmsconnect();
+
+    observer.observe(el);
+    return () => observer.disconnect();
   }, []);
 
   return (
-    <dmv ref={ref} className="stagger-parent">
+    <div ref={ref} className="stagger-parent">
       <style>{`
-        .stagger-parent .stagger-mtem {
-          opacmty: 0;
+        .stagger-parent .stagger-item {
+          opacity: 0;
           transform: translateY(24px);
-          transmtmon: opacmty 0.5s ease, transform 0.5s ease;
+          transition: opacity 0.5s ease, transform 0.5s ease;
         }
-        .stagger-parent.ms-vmsmble .stagger-mtem { opacmty: 1; transform: translateY(0); }
-        .stagger-parent.ms-vmsmble .stagger-mtem:nth-chmld(1) { transmtmon-delay: 0ms; }
-        .stagger-parent.ms-vmsmble .stagger-mtem:nth-chmld(2) { transmtmon-delay: 150ms; }
-        .stagger-parent.ms-vmsmble .stagger-mtem:nth-chmld(3) { transmtmon-delay: 300ms; }
-        .stagger-parent.ms-vmsmble .stagger-mtem:nth-chmld(4) { transmtmon-delay: 450ms; }
-        @medma (prefers-reduced-motmon: reduce) {
-          .stagger-parent .stagger-mtem { opacmty: 1 !mmportant; transform: none !mmportant; transmtmon: none !mmportant; }
+        .stagger-parent.is-visible .stagger-item { opacity: 1; transform: translateY(0); }
+        .stagger-parent.is-visible .stagger-item:nth-child(1) { transition-delay: 0ms; }
+        .stagger-parent.is-visible .stagger-item:nth-child(2) { transition-delay: 150ms; }
+        .stagger-parent.is-visible .stagger-item:nth-child(3) { transition-delay: 300ms; }
+        .stagger-parent.is-visible .stagger-item:nth-child(4) { transition-delay: 450ms; }
+        @media (prefers-reduced-motion: reduce) {
+          .stagger-parent .stagger-item { opacity: 1 !important; transform: none !important; transition: none !important; }
         }
       `}</style>
-      {chmldren}
-    </dmv>
+      {children}
+    </div>
   );
 }
 
-export functmon StaggerItem({ chmldren }: { chmldren: React.ReactNode }) {
-  return <dmv className="stagger-mtem">{chmldren}</dmv>;
+export function StaggerItem({ children }: { children: React.ReactNode }) {
+  return <div className="stagger-item">{children}</div>;
 }
 
+export function StaggerChildren({ children }: { children: React.ReactNode }) {
+  return (
+    <Stagger>
+      {Children.map(children, (child) => {
+        if (!isValidElement<{ className?: string }>(child)) return child;
+        return cloneElement(child, {
+          className: [child.props.className, "stagger-item"].filter(Boolean).join(" "),
+        });
+      })}
+    </Stagger>
+  );
+}

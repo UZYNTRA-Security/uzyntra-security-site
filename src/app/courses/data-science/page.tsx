@@ -34,9 +34,9 @@ export default function DataScienceCourse() {
       <CourseHeroImage
         src="/images/courses/data-science.webp"
         alt="Data Science and Analytics Course"
-        eyebrow="Course — Data Science & Analytics"
+        eyebrow="Course â€” Data Science & Analytics"
         title="Data Science & Analytics: From Raw Data to Insights"
-        description="Master data analysis, visualization, statistical modeling, and machine learning pipelines using Python — applied to real-world and security datasets."
+        description="Master data analysis, visualization, statistical modeling, and machine learning pipelines using Python â€” applied to real-world and security datasets."
       />
       <section id="curriculum" className="section-tight bg-slate-50/70">
         <div className="container-shell">
@@ -92,4 +92,3 @@ export default function DataScienceCourse() {
     </main>
   );
 }
-

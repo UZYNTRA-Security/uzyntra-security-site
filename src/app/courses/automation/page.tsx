@@ -34,9 +34,9 @@ export default function AutomationCourse() {
       <CourseHeroImage
         src="/images/courses/automation.webp"
         alt="Automation Course"
-        eyebrow="Course — Automation"
+        eyebrow="Course â€” Automation"
         title="Automation: n8n, Make & Zapier for Business & Security"
-        description="Build powerful automation workflows using n8n, Make, and Zapier — from simple task automation to AI-powered business process pipelines."
+        description="Build powerful automation workflows using n8n, Make, and Zapier â€” from simple task automation to AI-powered business process pipelines."
       />
       <section id="curriculum" className="section-tight bg-slate-50/70">
         <div className="container-shell">
@@ -92,4 +92,3 @@ export default function AutomationCourse() {
     </main>
   );
 }
-

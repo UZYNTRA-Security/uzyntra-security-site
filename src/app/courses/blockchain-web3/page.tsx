@@ -34,7 +34,7 @@ export default function BlockchainCourse() {
       <CourseHeroImage
         src="/images/courses/blockchain-web3.webp"
         alt="Blockchain and Web3 Course"
-        eyebrow="Course — Blockchain & Web3"
+        eyebrow="Course â€” Blockchain & Web3"
         title="Blockchain & Web3: Smart Contracts to Secure dApps"
         description="Build on-chain applications with Solidity, understand DeFi protocols, and learn to audit smart contracts for security vulnerabilities."
       />
@@ -92,4 +92,3 @@ export default function BlockchainCourse() {
     </main>
   );
 }
-

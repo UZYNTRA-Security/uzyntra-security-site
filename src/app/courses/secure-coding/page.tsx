@@ -6,13 +6,13 @@ import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
   title: "Secure Coding Course | UZYNTRA Security",
-  description: "Write secure code from day one — input validation, OWASP Top 10, secure SDLC, and code review techniques for developers.",
+  description: "Write secure code from day one â€” input validation, OWASP Top 10, secure SDLC, and code review techniques for developers.",
   alternates: { canonical: `${siteConfig.url}/courses/secure-coding` },
 };
 
 const modules = [
   { step: "01", title: "Secure Coding Principles", body: "Defense in depth, least privilege, input validation, and output encoding fundamentals." },
-  { step: "02", title: "OWASP Top 10 for Developers", body: "Injection, XSS, IDOR, SSRF, and broken access control — how to prevent each in code." },
+  { step: "02", title: "OWASP Top 10 for Developers", body: "Injection, XSS, IDOR, SSRF, and broken access control â€” how to prevent each in code." },
   { step: "03", title: "Authentication & Session Security", body: "Secure password storage, JWT security, OAuth 2.0, and session management best practices." },
   { step: "04", title: "Secure SDLC & Code Review", body: "Threat modeling, SAST tools, manual code review, and security testing in CI/CD." },
 ];
@@ -34,9 +34,9 @@ export default function SecureCodingCourse() {
       <CourseHeroImage
         src="/images/courses/secure-coding.webp"
         alt="Secure Coding Course"
-        eyebrow="Course — Secure Coding"
+        eyebrow="Course â€” Secure Coding"
         title="Secure Coding: Build Security Into Every Line"
-        description="Learn to write secure code from the ground up — preventing OWASP Top 10 vulnerabilities, implementing secure authentication, and integrating security into your development workflow."
+        description="Learn to write secure code from the ground up â€” preventing OWASP Top 10 vulnerabilities, implementing secure authentication, and integrating security into your development workflow."
       />
       <section id="curriculum" className="section-tight bg-slate-50/70">
         <div className="container-shell">
@@ -92,4 +92,3 @@ export default function SecureCodingCourse() {
     </main>
   );
 }
-

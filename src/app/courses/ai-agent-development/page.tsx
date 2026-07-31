@@ -34,9 +34,9 @@ export default function AIAgentCourse() {
       <CourseHeroImage
         src="/images/courses/ai-agent-development.webp"
         alt="AI Agent Development Course"
-        eyebrow="Course — AI Agent Development"
+        eyebrow="Course â€” AI Agent Development"
         title="AI Agent Development: Build Autonomous AI Systems"
-        description="Learn to build, orchestrate, and deploy autonomous AI agents using LangChain, LlamaIndex, and multi-agent frameworks — for real-world production use."
+        description="Learn to build, orchestrate, and deploy autonomous AI agents using LangChain, LlamaIndex, and multi-agent frameworks â€” for real-world production use."
       />
       <section id="curriculum" className="section-tight bg-slate-50/70">
         <div className="container-shell">
@@ -92,4 +92,3 @@ export default function AIAgentCourse() {
     </main>
   );
 }
-

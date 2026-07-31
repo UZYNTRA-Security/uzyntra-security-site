@@ -1,7 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
 
-import { siteConfig } from "@/config/site";
 import { mainNavigation } from "@/data/navigation";
 import { DesktopNav } from "@/components/navigation/desktop-nav";
 import { MobileNav } from "@/components/navigation/mobile-nav";
@@ -29,7 +27,7 @@ export function SiteHeader() {
             </span>
           </Link>
 
-          {/* Desktop nav — centered */}
+          {/* Desktop nav â€” centered */}
           <DesktopNav items={mainNavigation} />
 
           {/* Right actions */}
@@ -49,4 +47,3 @@ export function SiteHeader() {
     </header>
   );
 }
-

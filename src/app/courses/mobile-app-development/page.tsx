@@ -34,9 +34,9 @@ export default function MobileDevCourse() {
       <CourseHeroImage
         src="/images/courses/mobile-app-development.webp"
         alt="Mobile App Development Course"
-        eyebrow="Course — Mobile App Development"
+        eyebrow="Course â€” Mobile App Development"
         title="Mobile App Development: iOS & Android with Security"
-        description="Build cross-platform mobile applications using React Native and Flutter — with mobile security best practices and production deployment from day one."
+        description="Build cross-platform mobile applications using React Native and Flutter â€” with mobile security best practices and production deployment from day one."
       />
       <section id="curriculum" className="section-tight bg-slate-50/70">
         <div className="container-shell">
@@ -92,4 +92,3 @@ export default function MobileDevCourse() {
     </main>
   );
 }
-

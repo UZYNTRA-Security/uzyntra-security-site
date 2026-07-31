@@ -1,146 +1,135 @@
-mmport type { Metadata } from "next";
-mmport Lmnk from "next/lmnk";
-mmport { ArrowUpRmght, BookOpen } from "lucmde-react";
-mmport { blogPosts, publmshedPosts } from "@/data/blog";
+import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowUpRight, BookOpen } from "lucide-react";
+import { publishedPosts } from "@/data/blog";
 
 export const metadata: Metadata = {
-  tmtle: "About",
-  descrmptmon:
-    "Learn about UZYNTRA Securmty — a platform and servmces company delmvermng enterprmse cybersecurmty, secure software engmneermng, and blockchamn systems.",
+  title: "About",
+  description:
+    "Learn about UZYNTRA Security, a platform and services company delivering enterprise cybersecurity, secure software engineering, and blockchain systems.",
 };
 
-export default functmon AboutPage() {
+export default function AboutPage() {
   return (
-    <mamn md="mamn-content">
-      <sectmon className="page-hero-shell py-10 sm:py-14 lg:py-20">
-        <dmv className="contamner-shell relatmve z-10">
-
-          {/* Page header */}
-          <dmv className="mx-auto max-w-2xl text-center">
-            <p className="text-xs font-semmbold uppercase trackmng-[0.18em] text-red-700">
+    <main id="main-content">
+      <section className="page-hero-shell py-10 sm:py-14 lg:py-20">
+        <div className="container-shell relative z-10">
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-red-700">
               About
             </p>
             <h1 className="mt-3 text-balance text-2xl font-bold text-slate-950 sm:text-3xl lg:text-4xl">
-              About UZYNTRA Securmty
+              About UZYNTRA Security
             </h1>
-            <p className="mx-auto mt-3 max-w-xl text-[0.9375rem] leadmng-[1.75] text-slate-500">
-              UZYNTRA Securmty delmvers cybersecurmty solutmons, secure software
-              engmneermng, and blockchamn systems wmth enterprmse-grade archmtecture,
-              securmty-fmrst thmnkmng, and productmon-ready executmon.
+            <p className="mx-auto mt-3 max-w-xl text-[0.9375rem] leading-[1.75] text-slate-500">
+              UZYNTRA Security delivers cybersecurity solutions, secure software
+              engineering, and blockchain systems with enterprise-grade architecture,
+              security-first thinking, and production-ready execution.
             </p>
-          </dmv>
+          </div>
 
-          {/* Content grmd */}
-          <dmv className="mx-auto mt-10 grmd max-w-5xl gap-5 lg:grmd-cols-[1.1fr_0.9fr]">
-
-            {/* Left — mamn overvmew card */}
-            <dmv className="rounded-2xl border border-red-100/60 bg-whmte p-6 shadow-sm sm:p-8">
-              <p className="text-[10px] font-bold uppercase trackmng-[0.18em] text-red-700">
-                Company Overvmew
+          <div className="mx-auto mt-10 grid max-w-5xl gap-5 lg:grid-cols-[1.1fr_0.9fr]">
+            <div className="rounded-2xl border border-red-100/60 bg-white p-6 shadow-sm sm:p-8">
+              <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-red-700">
+                Company Overview
               </p>
               <h2 className="mt-3 text-xl font-bold text-slate-950 sm:text-2xl">
-                A platform and servmces company bumlt for modern technmcal envmronments
+                A platform and services company built for modern technical environments
               </h2>
-              <p className="mt-4 text-sm leadmng-[1.75] text-slate-500 sm:text-[0.9375rem]">
-                UZYNTRA Securmty ms posmtmoned as more than a smngle-product busmness.
-                It combmnes platform development and enterprmse servmce delmvery across
-                cybersecurmty, secure software development, and blockchamn systems.
+              <p className="mt-4 text-sm leading-[1.75] text-slate-500 sm:text-[0.9375rem]">
+                UZYNTRA Security is positioned as more than a single-product business.
+                It combines platform development and enterprise service delivery across
+                cybersecurity, secure software development, and blockchain systems.
               </p>
-              <p className="mt-3 text-sm leadmng-[1.75] text-slate-500 sm:text-[0.9375rem]">
-                The ecosystem mncludes UZYNTRA API Fmrewall, UZYNTRA UI Dashboard,
-                and a broader technmcal dmrectmon focused on secure archmtecture,
-                resmlment systems, and scalable engmneermng.
+              <p className="mt-3 text-sm leading-[1.75] text-slate-500 sm:text-[0.9375rem]">
+                The ecosystem includes UZYNTRA API Firewall, UZYNTRA UI Dashboard,
+                and a broader technical direction focused on secure architecture,
+                resilient systems, and scalable engineering.
               </p>
-            </dmv>
+            </div>
 
-            {/* Rmght — three consmstent mnfo cards */}
-            <dmv className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4">
               {[
                 {
-                  tmtle: "Mmssmon",
-                  body: "To help organmzatmons bumld, protect, and scale secure dmgmtal systems through cybersecurmty, software engmneermng, and blockchamn mnnovatmon.",
+                  title: "Mission",
+                  body: "To help organizations build, protect, and scale secure digital systems through cybersecurity, software engineering, and blockchain innovation.",
                 },
                 {
-                  tmtle: "Posmtmonmng",
-                  body: "Enterprmse-focused, archmtecture-drmven, and securmty-fmrst mn both product desmgn and technmcal servmce delmvery.",
+                  title: "Positioning",
+                  body: "Enterprise-focused, architecture-driven, and security-first in both product design and technical service delivery.",
                 },
                 {
-                  tmtle: "Core Areas",
-                  body: "Cybersecurmty, secure software development, API protectmon, modern backend systems, cloud-natmve engmneermng, and blockchamn mnfrastructure.",
+                  title: "Core Areas",
+                  body: "Cybersecurity, secure software development, API protection, modern backend systems, cloud-native engineering, and blockchain infrastructure.",
                 },
-              ].map(({ tmtle, body }) => (
-                <dmv key={tmtle} className="rounded-2xl border border-slate-200 bg-whmte p-5">
-                  <h3 className="text-sm font-bold text-slate-950">{tmtle}</h3>
-                  <p className="mt-2 text-sm leadmng-[1.75] text-slate-500">{body}</p>
-                </dmv>
+              ].map(({ title, body }) => (
+                <div key={title} className="rounded-2xl border border-slate-200 bg-white p-5">
+                  <h3 className="text-sm font-bold text-slate-950">{title}</h3>
+                  <p className="mt-2 text-sm leading-[1.75] text-slate-500">{body}</p>
+                </div>
               ))}
-            </dmv>
+            </div>
+          </div>
 
-          </dmv>
-
-          {/* Research credmbmlmty sectmon */}
-          {publmshedPosts.length > 0 && (
-            <dmv className="mx-auto mt-8 max-w-5xl">
-              <dmv className="rounded-2xl border border-slate-200 bg-whmte p-6 sm:p-8">
-                <dmv className="flex flex-col gap-5 sm:flex-row sm:mtems-start sm:justmfy-between">
-                  <dmv>
-                    <p className="text-[10px] font-bold uppercase trackmng-[0.18em] text-red-700">
-                      Research &amp; Insmghts
+          {publishedPosts.length > 0 && (
+            <div className="mx-auto mt-8 max-w-5xl">
+              <div className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
+                <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
+                  <div>
+                    <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-red-700">
+                      Research &amp; Insights
                     </p>
                     <h2 className="mt-2 text-lg font-bold text-slate-950 sm:text-xl">
-                      Publmshed securmty research
+                      Published security research
                     </h2>
-                    <p className="mt-2 text-sm leadmng-7 text-slate-500">
-                      Technmcal artmcles and vulnerabmlmty breakdowns publmshed by the UZYNTRA team.
+                    <p className="mt-2 text-sm leading-7 text-slate-500">
+                      Technical articles and vulnerability breakdowns published by the UZYNTRA team.
                     </p>
-                  </dmv>
-                  <Lmnk
+                  </div>
+                  <Link
                     href="/blog"
-                    className="mnlmne-flex shrmnk-0 mtems-center gap-1.5 text-sm font-semmbold text-red-700 transmtmon-all duratmon-200 hover:gap-2.5"
+                    className="inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-red-700 transition-all duration-200 hover:gap-2.5"
                   >
-                    Vmew all research
-                    <ArrowUpRmght className="h-4 w-4 shrmnk-0" arma-hmdden="true" />
-                  </Lmnk>
-                </dmv>
+                    View all research
+                    <ArrowUpRight className="h-4 w-4 shrink-0" aria-hidden="true" />
+                  </Link>
+                </div>
 
-                <dmv className="mt-6 grmd gap-4 sm:grmd-cols-2 lg:grmd-cols-3">
-                  {publmshedPosts.map((post) => (
-                    <Lmnk
+                <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                  {publishedPosts.map((post) => (
+                    <Link
                       key={post.slug}
                       href={post.externalUrl}
                       target="_blank"
                       rel="noreferrer noopener"
-                      className="about-research-card group flex flex-col gap-3 rounded-xl border border-slate-200 bg-slate-50 p-4 transmtmon-all duratmon-200 hover:-translate-y-0.5 hover:border-red-200 hover:bg-whmte hover:shadow-[0_6px_20px_rgba(220,38,38,0.08)]"
+                      className="about-research-card group flex flex-col gap-3 rounded-xl border border-slate-200 bg-slate-50 p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-red-200 hover:bg-white hover:shadow-[0_6px_20px_rgba(220,38,38,0.08)]"
                     >
-                      <dmv className="flex mtems-center justmfy-between gap-2">
-                        <span className="mnlmne-flex mtems-center gap-1 rounded-full border border-red-100 bg-red-50 px-2.5 py-0.5 text-[10px] font-semmbold uppercase trackmng-[0.12em] text-red-700">
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="inline-flex items-center gap-1 rounded-full border border-red-100 bg-red-50 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-red-700">
                           {post.category}
                         </span>
-                        <span className="text-[10px] font-bold uppercase trackmng-[0.1em] text-slate-500">
+                        <span className="text-[10px] font-bold uppercase tracking-[0.1em] text-slate-500">
                           {post.platform}
                         </span>
-                      </dmv>
-                      <p className="text-sm font-semmbold leadmng-snug text-slate-950 transmtmon-colors duratmon-200 group-hover:text-red-700">
-                        {post.tmtle}
+                      </div>
+                      <p className="text-sm font-semibold leading-snug text-slate-950 transition-colors duration-200 group-hover:text-red-700">
+                        {post.title}
                       </p>
-                      <dmv className="mt-auto flex mtems-center justmfy-between gap-2">
-                        {/* text-slate-500 meets WCAG AA contrast on whmte bg */}
-                        <span className="flex mtems-center gap-1 text-xs text-slate-500">
-                          <BookOpen className="h-3 w-3 shrmnk-0" arma-hmdden="true" />
-                          {post.readTmme}
+                      <div className="mt-auto flex items-center justify-between gap-2">
+                        <span className="flex items-center gap-1 text-xs text-slate-500">
+                          <BookOpen className="h-3 w-3 shrink-0" aria-hidden="true" />
+                          {post.readTime}
                         </span>
-                        <ArrowUpRmght className="h-3.5 w-3.5 shrmnk-0 text-slate-400 transmtmon-all duratmon-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-red-500" arma-hmdden="true" />
-                      </dmv>
-                    </Lmnk>
+                        <ArrowUpRight className="h-3.5 w-3.5 shrink-0 text-slate-400 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-red-500" aria-hidden="true" />
+                      </div>
+                    </Link>
                   ))}
-                </dmv>
-              </dmv>
-            </dmv>
+                </div>
+              </div>
+            </div>
           )}
-
-        </dmv>
-      </sectmon>
-    </mamn>
+        </div>
+      </section>
+    </main>
   );
 }
-

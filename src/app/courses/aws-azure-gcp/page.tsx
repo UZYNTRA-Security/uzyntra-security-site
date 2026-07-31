@@ -34,9 +34,9 @@ export default function AWSAzureGCPCourse() {
       <CourseHeroImage
         src="/images/courses/aws-azure-gcp.webp"
         alt="AWS Azure GCP Course"
-        eyebrow="Course — AWS / Azure / GCP"
+        eyebrow="Course â€” AWS / Azure / GCP"
         title="AWS, Azure & GCP: Multi-Cloud Mastery"
-        description="Get hands-on with all three major cloud platforms — AWS, Azure, and GCP — with certification-aligned labs and real-world architecture projects."
+        description="Get hands-on with all three major cloud platforms â€” AWS, Azure, and GCP â€” with certification-aligned labs and real-world architecture projects."
       />
       <section id="curriculum" className="section-tight bg-slate-50/70">
         <div className="container-shell">
@@ -92,4 +92,3 @@ export default function AWSAzureGCPCourse() {
     </main>
   );
 }
-

@@ -34,9 +34,9 @@ export default function NetworkingCourse() {
       <CourseHeroImage
         src="/images/courses/networking-ccna.webp"
         alt="Networking CCNA Course"
-        eyebrow="Course — Networking (CCNA)"
+        eyebrow="Course â€” Networking (CCNA)"
         title="Networking: From TCP/IP to CCNA Certification"
-        description="Build a solid networking foundation — routing, switching, VLANs, VPNs, and network security — with full CCNA 200-301 certification preparation."
+        description="Build a solid networking foundation â€” routing, switching, VLANs, VPNs, and network security â€” with full CCNA 200-301 certification preparation."
       />
       <section id="curriculum" className="section-tight bg-slate-50/70">
         <div className="container-shell">
@@ -92,4 +92,3 @@ export default function NetworkingCourse() {
     </main>
   );
 }
-

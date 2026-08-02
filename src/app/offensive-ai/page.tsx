@@ -383,7 +383,7 @@ export default function OffensiveAIPage() {
 
       <OffensiveAICourseTabs />
 
-      <section id="curriculum" className="offensive-ai-modules bg-[#050505] py-14 sm:py-18">
+      <section id="curriculum" className="offensive-ai-modules bg-[#050505] py-10 sm:py-12">
         <div className="container-shell">
           <div className="mb-8 max-w-3xl">
             <p className="text-xs font-black uppercase tracking-[0.18em] text-red-500">Certification Modules</p>
@@ -431,7 +431,7 @@ export default function OffensiveAIPage() {
               </div>
             </div>
 
-            <aside className="offensive-ai-instructor-card rounded-lg border border-white/18 bg-white/[0.055] p-6 lg:sticky lg:top-36">
+            <aside className="offensive-ai-instructor-card h-fit self-start rounded-lg border border-white/18 bg-white/[0.055] p-6 lg:sticky lg:top-36">
               <h2 className="text-2xl font-black text-white">Course Delivery</h2>
               <ul className="mt-5 space-y-3">
                 {deliveryModes.map((mode) => (
@@ -481,7 +481,33 @@ export default function OffensiveAIPage() {
           </div>
         </div>
       </section>
-      <section id="eligibility" className="offensive-ai-light-section bg-white py-14 text-slate-950 sm:py-18">
+      <section className="offensive-ai-light-section bg-white py-10 text-slate-950 sm:py-12">
+        <div className="container-shell">
+          <div id="course-pricing" className="scroll-mt-28 rounded-2xl bg-gradient-to-br from-red-800 via-red-700 to-red-600 p-7 text-white sm:p-10">
+            <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+              <div>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/75">Build Offensive AI Skill</p>
+                <h2 className="mt-3 text-2xl font-black text-white sm:text-3xl">Ready to enroll?</h2>
+                <p className="mt-3 max-w-[680px] text-sm leading-7 text-white/82">
+                  Total program fee: <span className="text-white/55 line-through">$799 USD</span> <strong className="text-lg font-black text-white">$400 USD</strong>. Training includes course material, hands-on labs, capstone project, and certification assessment.
+                </p>
+              </div>
+              <div className="flex flex-col gap-3 sm:flex-row lg:shrink-0">
+                <Link href={ENROLL_URL} className="btn-neutral inline-flex h-12 items-center justify-center gap-2 rounded-xl px-8 text-sm font-semibold">
+                  <MessageSquare className="h-4 w-4 shrink-0" aria-hidden="true" />
+                  Enquire Now
+                </Link>
+                <Link href="/courses" className="btn-stroke inline-flex h-12 items-center justify-center gap-2 rounded-xl px-8 text-sm font-semibold">
+                  View All Courses
+                  <ArrowRight className="h-4 w-4 shrink-0" aria-hidden="true" />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="eligibility" className="offensive-ai-light-section bg-white py-10 text-slate-950 sm:py-12">
         <div className="container-shell">
           <div className="grid gap-5 lg:grid-cols-2">
             <div className="rounded-2xl border border-slate-200 bg-slate-50 p-7">
@@ -507,28 +533,6 @@ export default function OffensiveAIPage() {
                     <span className="text-sm leading-6 text-slate-700">{item}</span>
                   </div>
                 ))}
-              </div>
-            </div>
-          </div>
-
-          <div id="course-pricing" className="mt-8 scroll-mt-28 rounded-2xl bg-gradient-to-br from-red-800 via-red-700 to-red-600 p-7 text-white sm:p-10">
-            <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-              <div>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/75">Build Offensive AI Skill</p>
-                <h2 className="mt-3 text-2xl font-black text-white sm:text-3xl">Ready to enroll?</h2>
-                <p className="mt-3 max-w-[680px] text-sm leading-7 text-white/82">
-                  Total program fee: <span className="text-white/55 line-through">$799 USD</span> <strong className="text-lg font-black text-white">$400 USD</strong>. Training includes course material, hands-on labs, capstone project, and certification assessment.
-                </p>
-              </div>
-              <div className="flex flex-col gap-3 sm:flex-row lg:shrink-0">
-                <Link href={ENROLL_URL} className="btn-neutral inline-flex h-12 items-center justify-center gap-2 rounded-xl px-8 text-sm font-semibold">
-                  <MessageSquare className="h-4 w-4 shrink-0" aria-hidden="true" />
-                  Enquire Now
-                </Link>
-                <Link href="/courses" className="btn-stroke inline-flex h-12 items-center justify-center gap-2 rounded-xl px-8 text-sm font-semibold">
-                  View All Courses
-                  <ArrowRight className="h-4 w-4 shrink-0" aria-hidden="true" />
-                </Link>
               </div>
             </div>
           </div>

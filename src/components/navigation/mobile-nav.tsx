@@ -369,6 +369,7 @@ export function MobileNav({ items }: MobileNavProps) {
                         const isCourseItem = item.title === "Courses";
                         // short label map for courses (2-char abbrev shown in icon circle)
                         const iconMap: Record<string, string> = {
+                          "Offensive AI Certified Web Pentester": "OA",
                           "Artificial Intelligence": "AI", "AI Agent Development": "AG",
                           "Prompt Engineering": "PE", "Data Science & Analytics": "DS",
                           "Cyber Security": "CS", "Ethical Hacking": "EH",

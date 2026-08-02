@@ -26,6 +26,12 @@ const megaCourseColumns: MegaCourseColumn[] = [
   {
     groups: [
       {
+        label: "Exclusive Certifications",
+        items: [
+          { title: "Offensive AI: Certified Web Pentester", href: "/courses/offensive-ai-certified-web-pentester" },
+        ],
+      },
+      {
         label: "Cyber Security",
         items: [{ title: "Cyber Security", href: "/courses/cybersecurity" }],
       },

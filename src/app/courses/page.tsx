@@ -13,16 +13,27 @@ import { siteConfig } from "@/config/site";
 export const metadata: Metadata = {
   title: "Courses | UZYNTRA Security",
   description:
-    "Industry-relevant courses in cybersecurity, AI, cloud, DevSecOps, blockchain, automation, and more — built for 2026 job market demands.",
+    "Industry-relevant courses and exclusive certification tracks in cybersecurity, AI, cloud, DevSecOps, blockchain, automation, and more - built for 2026 job market demands.",
   alternates: { canonical: `${siteConfig.url}/courses` },
   openGraph: {
     title: "Courses | UZYNTRA Security",
     description:
-      "High-income, industry-relevant skills training in cybersecurity, AI, cloud computing, DevSecOps, blockchain, and automation.",
+      "High-income, industry-relevant skills training and exclusive certifications in cybersecurity, AI, cloud computing, DevSecOps, blockchain, and automation.",
     url: `${siteConfig.url}/courses`,
   },
 };
 
+const exclusiveCourses = [
+  {
+    title: "Offensive AI: Certified Web Pentester",
+    href: "/courses/offensive-ai-certified-web-pentester",
+    image: "/images/courses/penetration-testing.webp",
+    icon: <Bot className="h-6 w-6 text-red-600" aria-hidden="true" />,
+    eyebrow: "Exclusive Certification",
+    description: "AI-powered web pentesting certification with GPT agents, Burp Suite labs, API testing, reporting, and capstone assessment.",
+    highlights: ["10 Domains", "42 Modules", "GPT Agents", "$799 USD"],
+  },
+];
 const courses = [
   {
     title: "Artificial Intelligence",
@@ -230,9 +241,76 @@ export default function CoursesPage() {
       <PageHero
         eyebrow="Courses"
         title="High-Income Skills for the 2026 Job Market"
-        description="UZYNTRA Security offers industry-relevant training in cybersecurity, AI, cloud, DevSecOps, blockchain, and automation — skills that align with real market demand and our security-first brand."
+        description="UZYNTRA Security offers industry-relevant training in cybersecurity, AI, cloud, DevSecOps, blockchain, automation, and exclusive certification tracks that align with real market demand and our security-first brand."
       />
 
+      <section className="section-tight pb-0">
+        <div className="container-shell">
+          <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-red-700">Exclusive Certifications</p>
+              <h2 className="mt-2 text-2xl font-bold text-slate-950 sm:text-3xl">UZYNTRA exclusive course tracks</h2>
+              <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-500">
+                Premium certification programs with deeper labs, capstone assessment, and specialized career positioning. More exclusive tracks can be added here as they launch.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid gap-6 lg:grid-cols-2">
+            {exclusiveCourses.map((course) => (
+              <div
+                key={course.title}
+                className="surface-card-strong group relative flex flex-col overflow-hidden border-red-200/80 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_14px_38px_rgba(220,38,38,0.14)]"
+              >
+                <div className="absolute right-4 top-4 z-10 rounded-full border border-red-200 bg-white/95 px-3 py-1 text-[10px] font-black uppercase tracking-[0.14em] text-red-700 shadow-sm backdrop-blur-sm">
+                  Exclusive
+                </div>
+                <div className="relative h-56 w-full overflow-hidden bg-slate-100">
+                  <Image
+                    src={course.image}
+                    alt={`${course.title} certification`}
+                    fill
+                    className="object-cover brightness-[0.72] transition-transform duration-300 group-hover:scale-[1.03]"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-slate-950/78 via-slate-950/45 to-red-950/35" aria-hidden="true" />
+                  <div className="absolute inset-x-0 bottom-0 p-6">
+                    <span className="inline-flex rounded-full border border-white/25 bg-white/12 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-white backdrop-blur-sm">
+                      {course.eyebrow}
+                    </span>
+                    <h3 className="mt-3 max-w-xl text-2xl font-extrabold leading-tight text-white sm:text-3xl">{course.title}</h3>
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-5 p-5 sm:p-6">
+                  <div className="flex items-start gap-3">
+                    <div className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-red-50">
+                      {course.icon}
+                    </div>
+                    <p className="text-sm leading-7 text-slate-600">{course.description}</p>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+                    {course.highlights.map((h) => (
+                      <div key={h} className="rounded-lg border border-red-100 bg-red-50/60 px-3 py-2 text-xs font-bold text-red-700">
+                        {h}
+                      </div>
+                    ))}
+                  </div>
+
+                  <Link
+                    href={course.href}
+                    className="btn-solid mt-auto inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl px-6 text-sm font-semibold sm:w-fit"
+                  >
+                    View Certification
+                    <ArrowRight className="h-4 w-4 shrink-0" aria-hidden="true" />
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
       <section className="section-tight">
         <div className="container-shell">
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">

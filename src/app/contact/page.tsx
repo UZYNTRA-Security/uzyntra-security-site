@@ -42,7 +42,7 @@ const quickLinks = [
   {
     icon: GraduationCap,
     label: "Browse Courses",
-    desc: "22 courses across security, AI, cloud, and engineering.",
+    desc: "Courses and exclusive certifications across security, AI, cloud, and engineering.",
     href: "/courses",
   },
   {

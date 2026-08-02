@@ -15,12 +15,16 @@ interface DesktopNavProps {
 
 export function DesktopNav({ items }: DesktopNavProps) {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
+  const [pinnedMenu, setPinnedMenu] = useState<string | null>(null);
   const pathname = usePathname();
   const menuRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpenMenu(null);
+      if (e.key === "Escape") {
+        setOpenMenu(null);
+        setPinnedMenu(null);
+      }
     };
     document.addEventListener("keydown", handler);
     return () => document.removeEventListener("keydown", handler);
@@ -30,14 +34,34 @@ export function DesktopNav({ items }: DesktopNavProps) {
     const handler = (e: MouseEvent) => {
       const target = e.target as Node;
       const isInside = Object.values(menuRefs.current).some((el) => el?.contains(target));
-      if (!isInside) setOpenMenu(null);
+      if (!isInside) {
+        setOpenMenu(null);
+        setPinnedMenu(null);
+      }
     };
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
-  const open = useCallback((title: string) => setOpenMenu(title), []);
-  const close = useCallback(() => setOpenMenu(null), []);
+  const open = useCallback((title: string) => {
+    if (!pinnedMenu) setOpenMenu(title);
+  }, [pinnedMenu]);
+
+  const close = useCallback(() => {
+    if (!pinnedMenu) setOpenMenu(null);
+  }, [pinnedMenu]);
+
+  const togglePinned = useCallback((title: string) => {
+    setPinnedMenu((current) => {
+      if (current === title) {
+        setOpenMenu(null);
+        return null;
+      }
+
+      setOpenMenu(title);
+      return title;
+    });
+  }, []);
 
   return (
     <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary navigation">
@@ -80,7 +104,7 @@ export function DesktopNav({ items }: DesktopNavProps) {
               aria-expanded={isOpen}
               aria-haspopup="menu"
               aria-controls={`menu-${item.title}`}
-              onClick={() => setOpenMenu(isOpen ? null : item.title)}
+              onClick={() => togglePinned(item.title)}
               className={cn(
                 "relative inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 select-none",
                 "hover:bg-red-50 hover:text-red-700",

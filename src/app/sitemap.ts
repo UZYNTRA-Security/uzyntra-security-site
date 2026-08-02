@@ -13,6 +13,7 @@ const serviceSlugs = [
 ] as const;
 
 const courseSlugs = [
+  "offensive-ai-certified-web-pentester",
   "artificial-intelligence",
   "cybersecurity",
   "cloud-computing",

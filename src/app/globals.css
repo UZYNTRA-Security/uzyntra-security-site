@@ -4314,3 +4314,21 @@ html[data-theme="dark"] .offensive-ai-page .offensive-ai-domain-body {
 .offensive-ai-course-tabs + .offensive-ai-modules {
   padding-top: 1.25rem !important;
 }
+
+/* Offensive AI mobile sticky behavior */
+@media (max-width: 767px) {
+  body:has(.offensive-ai-page) .site-header-light {
+    position: static !important;
+    top: auto !important;
+  }
+
+  body:has(.offensive-ai-page) .offensive-ai-course-tabs {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 60 !important;
+  }
+
+  body:has(.offensive-ai-page) .offensive-ai-course-tabs .container-shell {
+    padding-inline: 0.75rem !important;
+  }
+}

@@ -28,7 +28,8 @@ export function OffensiveAICourseTabs() {
 
   useEffect(() => {
     const updateActive = () => {
-      const viewportLine = window.scrollY + 170;
+      const stickyOffset = window.innerWidth < 768 ? 96 : 170;
+      const viewportLine = window.scrollY + stickyOffset;
       const current = tabs
         .map((tab) => ({ id: tab.id, top: document.getElementById(tab.id)?.offsetTop ?? Number.POSITIVE_INFINITY }))
         .filter((tab) => Number.isFinite(tab.top) && tab.top <= viewportLine)

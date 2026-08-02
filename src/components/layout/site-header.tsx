@@ -20,10 +20,10 @@ export function SiteHeader() {
           >
             {/* Mobile: smaller logo | Desktop: full size */}
             <span className="block sm:hidden">
-              <ThemedLogo width={140} height={32} priority variant="light" />
+              <ThemedLogo width={140} height={32} priority variant="auto" />
             </span>
             <span className="hidden sm:block">
-              <ThemedLogo width={200} height={44} priority variant="light" />
+              <ThemedLogo width={200} height={44} priority variant="auto" />
             </span>
           </Link>
 

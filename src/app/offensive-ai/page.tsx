@@ -33,6 +33,7 @@ import {
 import { FaGithub, FaLinkedinIn } from "react-icons/fa6";
 
 import { siteConfig } from "@/config/site";
+import { OffensiveAIModuleIntro } from "@/components/offensive-ai/module-intro";
 
 export const metadata: Metadata = {
   title: "Offensive AI Certified Web Pentester | UZYNTRA Security",
@@ -400,9 +401,7 @@ export default function OffensiveAIPage() {
           <div className="mb-8 max-w-3xl">
             <p className="text-xs font-black uppercase tracking-[0.18em] text-red-500">Certification Modules</p>
             <h2 className="mt-3 text-3xl font-black text-white sm:text-4xl">10 domains, {moduleCount} in-depth modules</h2>
-            <p className="mt-4 text-sm leading-7 text-white/70">
-              Dive into 10 structured domains and {moduleCount} in-depth modules designed to map classic web application pentesting with the power of AI. Each module contains practical labs, real-world case studies, and guided use of GPT-driven agents to ensure you do not just learn the theory, you master the craft. <span className="font-bold text-red-500">Read Less</span>
-            </p>
+            <OffensiveAIModuleIntro moduleCount={moduleCount} />
           </div>
 
           <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_340px] xl:grid-cols-[minmax(0,1fr)_380px]">

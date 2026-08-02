@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import { Mail, Shield, ArrowUpRight } from "lucide-react";
 import { FaGithub, FaLinkedinIn, FaInstagram, FaFacebookF, FaXTwitter } from "react-icons/fa6";
 
@@ -143,7 +143,7 @@ export function SiteFooter() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label={title}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:scale-110 hover:border-red-300 hover:bg-red-600 hover:text-white hover:shadow-[0_6px_16px_rgba(220,38,38,0.28)] active:translate-y-0"
+                className="footer-social-link inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:scale-110 hover:border-red-300 hover:bg-white hover:text-red-600 hover:shadow-[0_6px_16px_rgba(220,38,38,0.18)] active:translate-y-0"
               >
                 <Icon className="h-4 w-4" />
               </Link>
@@ -152,7 +152,7 @@ export function SiteFooter() {
             <Link
               href={siteConfig.socials.email}
               aria-label="Email"
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:scale-110 hover:border-red-300 hover:bg-red-600 hover:text-white hover:shadow-[0_6px_16px_rgba(220,38,38,0.28)] active:translate-y-0"
+              className="footer-social-link inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:scale-110 hover:border-red-300 hover:bg-white hover:text-red-600 hover:shadow-[0_6px_16px_rgba(220,38,38,0.18)] active:translate-y-0"
             >
               <Mail className="h-4 w-4" />
             </Link>

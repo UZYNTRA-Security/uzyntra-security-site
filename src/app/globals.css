@@ -3568,3 +3568,337 @@ html[data-theme="light"] .offensive-ai-page #course-pricing strong {
   line-height: 1;
   vertical-align: baseline;
 }
+/* Theme-aware navigation and Offensive AI non-hero sections */
+html[data-theme="dark"] .site-header-light {
+  background: rgba(5, 5, 6, 0.96) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 2px 18px rgba(0, 0, 0, 0.35) !important;
+}
+
+html[data-theme="dark"] .site-header-light nav a,
+html[data-theme="dark"] .site-header-light nav button {
+  color: rgba(255, 255, 255, 0.82) !important;
+}
+
+html[data-theme="dark"] .site-header-light nav a:hover,
+html[data-theme="dark"] .site-header-light nav button:hover,
+html[data-theme="dark"] .site-header-light nav button.bg-red-50 {
+  background-color: rgba(239, 31, 36, 0.14) !important;
+  color: #ffffff !important;
+}
+
+html[data-theme="dark"] .site-header-light nav a.text-red-700,
+html[data-theme="dark"] .site-header-light nav button.text-red-700 {
+  color: #ff4b55 !important;
+}
+
+html[data-theme="dark"] .site-header-light nav svg {
+  color: rgba(255, 255, 255, 0.58) !important;
+}
+
+html[data-theme="dark"] .site-header-light nav button:hover svg,
+html[data-theme="dark"] .site-header-light nav button.bg-red-50 svg {
+  color: #ff4b55 !important;
+}
+
+html[data-theme="dark"] .site-header-light .site-header-download {
+  background: transparent !important;
+  border-color: #ff313b !important;
+  color: #ffffff !important;
+}
+
+html[data-theme="dark"] .site-header-light .site-header-download:hover {
+  background: #ef1f24 !important;
+  border-color: #ef1f24 !important;
+  color: #ffffff !important;
+}
+
+html[data-theme="dark"] .site-header-light button[aria-label*="theme"],
+html[data-theme="dark"] .site-header-light button[aria-label*="mode"] {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border-color: rgba(255, 255, 255, 0.14) !important;
+  color: #ffffff !important;
+}
+
+html[data-theme="light"] .nav-mega-panel {
+  background: rgba(255, 255, 255, 0.98) !important;
+  border-color: rgba(226, 232, 240, 0.9) !important;
+  color: #0f172a !important;
+}
+
+html[data-theme="light"] .nav-mega-panel aside {
+  border-color: rgba(203, 213, 225, 0.8) !important;
+}
+
+html[data-theme="light"] .nav-mega-panel a,
+html[data-theme="light"] .nav-mega-panel .text-white,
+html[data-theme="light"] .nav-mega-panel svg {
+  color: #0f172a !important;
+}
+
+html[data-theme="light"] .nav-mega-panel a:hover,
+html[data-theme="light"] .nav-mega-panel a:hover svg,
+html[data-theme="light"] .nav-mega-panel a.text-red-500,
+html[data-theme="light"] .nav-mega-panel svg.text-red-500 {
+  color: #ef1f24 !important;
+}
+
+html[data-theme="light"] .nav-mega-panel .nav-mega-heading {
+  color: #ef1f24 !important;
+}
+
+html[data-theme="light"] .nav-mega-panel .nav-mega-copy {
+  color: #64748b !important;
+}
+
+html[data-theme="light"] .nav-mega-panel a.bg-red-600,
+html[data-theme="light"] .nav-mega-panel a.bg-red-600 svg {
+  color: #ffffff !important;
+}
+
+html[data-theme="light"] .nav-mega-panel a.bg-red-600:hover,
+html[data-theme="light"] .nav-mega-panel a.bg-red-600:hover svg {
+  background: #0f172a !important;
+  color: #ffffff !important;
+}
+
+html[data-theme="light"] .offensive-ai-page {
+  color-scheme: light;
+  background: #ffffff !important;
+  color: #0f172a !important;
+}
+
+html[data-theme="dark"] .offensive-ai-page {
+  color-scheme: dark;
+  background: #050505 !important;
+  color: #ffffff !important;
+}
+
+html[data-theme="light"] .offensive-ai-page > section:not(.offensive-ai-hero),
+html[data-theme="light"] .offensive-ai-page > section:not(.offensive-ai-hero) .container-shell {
+  background: #ffffff !important;
+  color: #0f172a !important;
+}
+
+html[data-theme="dark"] .offensive-ai-page > section:not(.offensive-ai-hero),
+html[data-theme="dark"] .offensive-ai-page > section:not(.offensive-ai-hero) .container-shell {
+  background: #050505 !important;
+  color: #ffffff !important;
+}
+
+html[data-theme="light"] .offensive-ai-page > section:not(.offensive-ai-hero) h2,
+html[data-theme="light"] .offensive-ai-page > section:not(.offensive-ai-hero) h3,
+html[data-theme="light"] .offensive-ai-page > section:not(.offensive-ai-hero) li,
+html[data-theme="light"] .offensive-ai-page > section:not(.offensive-ai-hero) .text-white {
+  color: #0f172a !important;
+}
+
+html[data-theme="light"] .offensive-ai-page > section:not(.offensive-ai-hero) p,
+html[data-theme="light"] .offensive-ai-page > section:not(.offensive-ai-hero) .offensive-ai-module-intro,
+html[data-theme="light"] .offensive-ai-page > section:not(.offensive-ai-hero) .text-white\/68,
+html[data-theme="light"] .offensive-ai-page > section:not(.offensive-ai-hero) .text-white\/70,
+html[data-theme="light"] .offensive-ai-page > section:not(.offensive-ai-hero) .text-white\/78,
+html[data-theme="light"] .offensive-ai-page > section:not(.offensive-ai-hero) .text-white\/82,
+html[data-theme="light"] .offensive-ai-page > section:not(.offensive-ai-hero) .text-white\/88 {
+  color: #475569 !important;
+}
+
+html[data-theme="dark"] .offensive-ai-page > section:not(.offensive-ai-hero) h2,
+html[data-theme="dark"] .offensive-ai-page > section:not(.offensive-ai-hero) h3,
+html[data-theme="dark"] .offensive-ai-page > section:not(.offensive-ai-hero) .text-white {
+  color: #ffffff !important;
+}
+
+html[data-theme="dark"] .offensive-ai-page > section:not(.offensive-ai-hero) p,
+html[data-theme="dark"] .offensive-ai-page > section:not(.offensive-ai-hero) li,
+html[data-theme="dark"] .offensive-ai-page > section:not(.offensive-ai-hero) .offensive-ai-module-intro {
+  color: rgba(255, 255, 255, 0.78) !important;
+}
+
+html[data-theme="light"] .offensive-ai-course-tabs {
+  background: rgba(255, 255, 255, 0.96) !important;
+  border-color: rgba(226, 232, 240, 0.95) !important;
+  color: #0f172a !important;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08) !important;
+}
+
+html[data-theme="dark"] .offensive-ai-course-tabs {
+  background: rgba(23, 23, 24, 0.96) !important;
+  border-color: rgba(255, 255, 255, 0.16) !important;
+  color: #ffffff !important;
+}
+
+html[data-theme="light"] .offensive-ai-course-tabs a:not(.bg-red-600) {
+  color: #0f172a !important;
+}
+
+html[data-theme="light"] .offensive-ai-course-tabs a:not(.bg-red-600):hover {
+  background: #fef2f2 !important;
+  color: #b91c1c !important;
+}
+
+html[data-theme="dark"] .offensive-ai-course-tabs a:not(.bg-red-600) {
+  color: rgba(255, 255, 255, 0.82) !important;
+}
+
+html[data-theme="dark"] .offensive-ai-course-tabs a:not(.bg-red-600):hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important;
+}
+
+html[data-theme="light"] .offensive-ai-lab-card,
+html[data-theme="light"] .offensive-ai-feature-strip,
+html[data-theme="light"] .offensive-ai-instructor-card,
+html[data-theme="light"] .offensive-ai-domain-list,
+html[data-theme="light"] .offensive-ai-light-section .rounded-2xl {
+  background: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  color: #0f172a !important;
+  box-shadow: 0 18px 42px rgba(15, 23, 42, 0.06) !important;
+}
+
+html[data-theme="dark"] .offensive-ai-lab-card,
+html[data-theme="dark"] .offensive-ai-feature-strip,
+html[data-theme="dark"] .offensive-ai-instructor-card,
+html[data-theme="dark"] .offensive-ai-domain-list,
+html[data-theme="dark"] .offensive-ai-light-section .rounded-2xl {
+  background: #19191a !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+}
+
+html[data-theme="light"] .offensive-ai-lab-card svg {
+  color: #0f172a !important;
+  stroke: #0f172a !important;
+}
+
+html[data-theme="dark"] .offensive-ai-lab-card svg {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+html[data-theme="light"] .offensive-ai-domain {
+  border-color: rgba(15, 23, 42, 0.18) !important;
+  color: #0f172a !important;
+}
+
+html[data-theme="dark"] .offensive-ai-domain {
+  border-color: rgba(255, 255, 255, 0.38) !important;
+  color: #ffffff !important;
+}
+
+html[data-theme="light"] .offensive-ai-domain-summary,
+html[data-theme="light"] .offensive-ai-domain[open] .offensive-ai-domain-summary {
+  background: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+html[data-theme="dark"] .offensive-ai-domain-summary,
+html[data-theme="dark"] .offensive-ai-domain[open] .offensive-ai-domain-summary {
+  background: #19191a !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+  color: #ffffff !important;
+}
+
+html[data-theme="light"] .offensive-ai-domain-body {
+  background: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+html[data-theme="dark"] .offensive-ai-domain-body {
+  background: #111112 !important;
+  color: #ffffff !important;
+}
+
+html[data-theme="light"] .offensive-ai-module-row h3,
+html[data-theme="light"] .offensive-ai-module-row p {
+  color: #0f172a !important;
+}
+
+html[data-theme="dark"] .offensive-ai-module-row h3 {
+  color: #ffffff !important;
+}
+
+html[data-theme="dark"] .offensive-ai-module-row p {
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+html[data-theme="light"] .offensive-ai-instructor-card h2,
+html[data-theme="light"] .offensive-ai-instructor-card h3,
+html[data-theme="light"] .offensive-ai-instructor-card li {
+  color: #0f172a !important;
+}
+
+html[data-theme="light"] .offensive-ai-instructor-card p,
+html[data-theme="light"] .offensive-ai-instructor-card span {
+  color: #475569 !important;
+}
+
+html[data-theme="dark"] .offensive-ai-instructor-card h2,
+html[data-theme="dark"] .offensive-ai-instructor-card h3,
+html[data-theme="dark"] .offensive-ai-instructor-card li {
+  color: #ffffff !important;
+}
+
+html[data-theme="dark"] .offensive-ai-instructor-card p,
+html[data-theme="dark"] .offensive-ai-instructor-card span {
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+html[data-theme="light"] .offensive-ai-read-toggle,
+html[data-theme="dark"] .offensive-ai-read-toggle,
+html[data-theme="light"] .offensive-ai-page .text-red-500,
+html[data-theme="dark"] .offensive-ai-page .text-red-500 {
+  color: #ef1f24 !important;
+}
+
+html[data-theme="light"] .offensive-ai-page #course-pricing {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #0f172a !important;
+  box-shadow: 0 18px 42px rgba(15, 23, 42, 0.08) !important;
+}
+
+html[data-theme="dark"] .offensive-ai-page #course-pricing {
+  background: #19191a !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  color: #ffffff !important;
+}
+
+html[data-theme="light"] .offensive-ai-page #course-pricing p,
+html[data-theme="light"] .offensive-ai-page #course-pricing span {
+  color: #475569 !important;
+}
+
+html[data-theme="light"] .offensive-ai-page #course-pricing strong {
+  color: #0f172a !important;
+}
+
+html[data-theme="dark"] .offensive-ai-page #course-pricing p,
+html[data-theme="dark"] .offensive-ai-page #course-pricing span {
+  color: rgba(255, 255, 255, 0.78) !important;
+}
+
+html[data-theme="dark"] .offensive-ai-page #course-pricing strong {
+  color: #ffffff !important;
+}
+/* Footer hover color consistency */
+.site-footer a:hover,
+.site-footer a:hover span,
+.site-footer a:hover svg {
+  color: #ef1f24 !important;
+}
+
+.site-footer .footer-social-link:hover {
+  background: #ffffff !important;
+  border-color: #ef1f24 !important;
+  color: #ef1f24 !important;
+}
+
+html[data-theme="dark"] .site-footer .footer-social-link:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: #ef1f24 !important;
+  color: #ef1f24 !important;
+}

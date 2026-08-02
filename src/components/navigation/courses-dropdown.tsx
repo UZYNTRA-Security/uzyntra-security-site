@@ -1,12 +1,11 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronRight, GraduationCap } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-import { siteConfig } from "@/config/site";
+import { ThemedLogo } from "@/components/ui/themed-logo";
 
 type MegaCourseItem = {
   title: string;
@@ -141,14 +140,7 @@ export function CoursesDropdown({ open }: CoursesDropdownProps) {
       <div className="mx-auto flex max-h-[calc(100vh-96px)] max-w-[1360px] gap-9 overflow-y-auto px-10 py-6 xl:px-14">
         <aside className="w-[210px] shrink-0 border-r border-white/10 pr-7">
           <Link href="/" className="block" aria-label="UZYNTRA Security home">
-            <Image
-              src={siteConfig.logos.mainDark}
-              alt="UZYNTRA Security"
-              width={178}
-              height={46}
-              className="h-auto w-[178px] object-contain object-left"
-              priority
-            />
+            <ThemedLogo width={178} height={46} priority variant="auto" />
           </Link>
           <p className="nav-mega-heading mt-4 text-xs font-semibold uppercase tracking-[0.16em] text-[#ff1f2d]">
             Professional Training

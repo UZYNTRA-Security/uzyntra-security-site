@@ -106,7 +106,7 @@ export function DesktopNav({ items }: DesktopNavProps) {
               aria-controls={`menu-${item.title}`}
               onClick={() => togglePinned(item.title)}
               className={cn(
-                "relative inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 select-none",
+                "relative inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium text-slate-700 transition-all duration-200 select-none",
                 "hover:bg-red-50 hover:text-red-700",
                 isOpen && "bg-red-50 text-red-700",
                 isActive && !isOpen &&

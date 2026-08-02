@@ -3384,3 +3384,17 @@ html[data-theme="light"] .offensive-ai-page .offensive-ai-modules .text-white {
     padding: 0 1rem 1rem;
   }
 }
+
+/* Light header colors must remain readable in dark theme. */
+html[data-theme="dark"] .site-header-light nav button:not(.bg-red-50):not(.text-red-700) {
+  color: #334155 !important;
+}
+
+html[data-theme="dark"] .site-header-light nav button:not(.bg-red-50):not(.text-red-700) svg {
+  color: #64748b !important;
+}
+
+html[data-theme="dark"] .site-header-light nav button:hover svg,
+html[data-theme="dark"] .site-header-light nav button.bg-red-50 svg {
+  color: #ef4444 !important;
+}

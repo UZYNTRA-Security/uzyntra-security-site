@@ -3156,7 +3156,6 @@ html[data-theme="dark"] .nav-mega-panel .nav-mega-copy {
 html[data-theme="dark"] .nav-mega-panel a:hover .nav-mega-copy {
   color: rgba(255, 255, 255, 0.78) !important;
 }
-
 /* Offensive AI exclusive certification page */
 .offensive-ai-page {
   color-scheme: dark;
@@ -3178,7 +3177,8 @@ html[data-theme="dark"] .nav-mega-panel a:hover .nav-mega-copy {
   color: rgba(255, 255, 255, 0.88) !important;
 }
 
-.offensive-ai-hero .offensive-ai-typewriter {
+.offensive-ai-hero .offensive-ai-typewriter,
+.offensive-ai-typewriter {
   color: rgb(239, 31, 36) !important;
 }
 
@@ -3223,6 +3223,39 @@ html[data-theme="dark"] .offensive-ai-page .offensive-ai-light-section .bg-red-5
 html[data-theme="dark"] .offensive-ai-page .offensive-ai-light-section .bg-red-50\/60 {
   background-color: #fef2f2 !important;
 }
+
+.offensive-ai-modules,
+.offensive-ai-modules .container-shell,
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-modules,
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-modules .container-shell,
+html[data-theme="light"] .offensive-ai-page .offensive-ai-modules,
+html[data-theme="light"] .offensive-ai-page .offensive-ai-modules .container-shell {
+  background-color: #111112 !important;
+  color: #ffffff !important;
+}
+
+.offensive-ai-modules p:not(.offensive-ai-module-row p),
+.offensive-ai-modules h2,
+.offensive-ai-modules .text-white,
+.offensive-ai-modules .text-white\/62,
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-modules h2,
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-modules p:not(.offensive-ai-module-row p),
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-modules .text-white,
+html[data-theme="light"] .offensive-ai-page .offensive-ai-modules h2,
+html[data-theme="light"] .offensive-ai-page .offensive-ai-modules p:not(.offensive-ai-module-row p),
+html[data-theme="light"] .offensive-ai-page .offensive-ai-modules .text-white {
+  color: #ffffff !important;
+}
+
+.offensive-ai-modules .text-red-500 {
+  color: rgb(239, 31, 36) !important;
+}
+
+.offensive-ai-modules .offensive-ai-domain-list {
+  background-color: #181819 !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
 .offensive-ai-typewriter {
   position: relative;
   display: inline-block;
@@ -3231,7 +3264,6 @@ html[data-theme="dark"] .offensive-ai-page .offensive-ai-light-section .bg-red-5
   overflow: hidden;
   white-space: nowrap;
   border-right: 4px solid rgb(239, 31, 36);
-  color: rgb(239, 31, 36);
   animation: offensiveAiTyping 2.2s steps(2, end) infinite, offensiveAiCursorBlink 0.78s step-end infinite;
 }
 
@@ -3253,6 +3285,7 @@ html[data-theme="dark"] .offensive-ai-page .offensive-ai-light-section .bg-red-5
   justify-content: space-between;
   gap: 1rem;
   padding: 1.1rem 1rem;
+  color: #ffffff !important;
   outline: none;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
@@ -3274,11 +3307,15 @@ html[data-theme="dark"] .offensive-ai-page .offensive-ai-light-section .bg-red-5
   color: rgb(248, 113, 113);
 }
 
+.offensive-ai-domain:not([open]) .offensive-ai-domain-chevron {
+  color: rgb(239, 31, 36) !important;
+}
+
 .offensive-ai-domain[open] .offensive-ai-domain-summary {
   border: 2px solid #111111;
   border-radius: 0.45rem 0.45rem 0 0;
   background: #fff7f7;
-  color: #111111;
+  color: #111111 !important;
 }
 
 .offensive-ai-domain[open] .offensive-ai-domain-icon {
@@ -3336,6 +3373,7 @@ html[data-theme="dark"] .offensive-ai-page .offensive-ai-light-section .bg-red-5
     max-width: 1.45em;
     white-space: nowrap;
   }
+
   .offensive-ai-domain-summary {
     align-items: flex-start;
     min-height: 68px;

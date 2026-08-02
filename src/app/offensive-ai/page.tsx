@@ -358,8 +358,8 @@ export default function OffensiveAIPage() {
           </div>
 
           <div className="offensive-ai-domain-list mx-auto max-w-5xl rounded-xl border border-white/15 bg-[#181819] p-4 sm:p-8">
-            {domains.map(({ number, title, modules, icon: Icon }, index) => (
-              <details key={number} className="offensive-ai-domain" open={index === 0}>
+            {domains.map(({ number, title, modules, icon: Icon }) => (
+              <details key={number} className="offensive-ai-domain">
                 <summary className="offensive-ai-domain-summary">
                   <span className="flex min-w-0 items-center gap-3">
                     <span className="offensive-ai-domain-icon">

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, ChevronRight } from "lucide-react";
 import { useState, useRef, useCallback, useEffect } from "react";
 import { usePathname } from "next/navigation";
 
@@ -18,7 +18,6 @@ export function DesktopNav({ items }: DesktopNavProps) {
   const pathname = usePathname();
   const menuRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
-  // Close on Escape
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpenMenu(null);
@@ -27,7 +26,6 @@ export function DesktopNav({ items }: DesktopNavProps) {
     return () => document.removeEventListener("keydown", handler);
   }, []);
 
-  // Close when clicking outside
   useEffect(() => {
     const handler = (e: MouseEvent) => {
       const target = e.target as Node;
@@ -84,7 +82,7 @@ export function DesktopNav({ items }: DesktopNavProps) {
               aria-controls={`menu-${item.title}`}
               onClick={() => setOpenMenu(isOpen ? null : item.title)}
               className={cn(
-                "relative inline-flex items-center gap-1.5 rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200 select-none",
+                "relative inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 select-none",
                 "hover:bg-red-50 hover:text-red-700",
                 isOpen && "bg-red-50 text-red-700",
                 isActive && !isOpen &&
@@ -101,65 +99,70 @@ export function DesktopNav({ items }: DesktopNavProps) {
               />
             </button>
 
-            {/* ── Courses: premium dropdown ── */}
-            {isCourses && (
+            {isCourses ? (
               <CoursesDropdown open={isOpen} />
-            )}
-
-            {/* ── Services / Products: generic dropdown ── */}
-            {!isCourses && (
+            ) : (
               <div
                 id={`menu-${item.title}`}
                 role="menu"
                 aria-label={`${item.title} menu`}
                 className={cn(
-                  "absolute left-0 top-full z-50 mt-2 w-[440px] rounded-2xl border border-slate-200/80 bg-white/95 p-2 shadow-[0_4px_6px_rgba(0,0,0,0.04),0_20px_60px_rgba(0,0,0,0.08)] backdrop-blur-sm xl:w-[500px]",
-                  "transition-[opacity,transform,visibility] duration-[180ms] [transition-timing-function:cubic-bezier(.2,.8,.2,1)]",
-                  isOpen
-                    ? "visible translate-y-0 scale-100 opacity-100"
-                    : "invisible -translate-y-1.5 scale-[0.98] opacity-0"
+                  "fixed left-0 right-0 top-[56px] z-50 border-y border-red-950/60 bg-[#0b0b0c] text-white shadow-[0_28px_70px_rgba(0,0,0,0.35)]",
+                  "transition-[opacity,transform,visibility] duration-200 [transition-timing-function:cubic-bezier(.2,.8,.2,1)]",
+                  isOpen ? "visible translate-y-0 opacity-100" : "invisible -translate-y-2 opacity-0 pointer-events-none"
                 )}
               >
-                {/* Top accent */}
-                <div className="mb-2 h-[2px] w-full rounded-full bg-gradient-to-r from-red-500 via-red-400 to-transparent" />
+                <div className="mx-auto grid max-w-[1360px] grid-cols-[240px_minmax(0,1fr)] gap-10 px-10 py-7 xl:px-14">
+                  <aside className="border-r border-white/10 pr-8">
+                    <p className="text-[13px] font-extrabold uppercase leading-tight text-[#ff1f2d]">
+                      {item.title}
+                    </p>
+                    <p className="mt-3 text-sm leading-6 text-white/65">
+                      {item.title === "Services"
+                        ? "Security testing, engineering, blockchain, and automation capabilities for modern teams."
+                        : "UZYNTRA products and platforms built for secure operations and visibility."}
+                    </p>
+                    <Link
+                      href={item.title === "Services" ? "/services" : "/products"}
+                      role="menuitem"
+                      className="mt-5 inline-flex h-10 items-center justify-center bg-red-600 px-4 text-xs font-extrabold uppercase text-white transition-colors duration-200 hover:bg-white hover:text-red-600"
+                    >
+                      View All
+                    </Link>
+                  </aside>
 
-                <div className="grid gap-1">
-                  {item.children?.map((child) => {
-                    const childActive = pathname.startsWith(child.href);
-                    return (
-                      <Link
-                        key={child.title}
-                        href={child.href}
-                        role="menuitem"
-                        className={cn(
-                          "group relative flex items-start gap-3 overflow-hidden rounded-xl px-4 py-3 transition-all duration-200",
-                          "hover:bg-red-50/80 hover:translate-x-0.5",
-                          childActive ? "bg-red-50 border border-red-100" : "border border-transparent"
-                        )}
-                      >
-                        <span
+                  <div className="grid min-w-0 grid-cols-2 gap-x-10 gap-y-4 xl:grid-cols-3">
+                    {item.children?.map((child) => {
+                      const childActive = pathname.startsWith(child.href);
+                      return (
+                        <Link
+                          key={child.title}
+                          href={child.href}
+                          role="menuitem"
                           className={cn(
-                            "absolute left-0 top-2 bottom-2 w-[3px] rounded-full bg-red-500 transition-all duration-200",
-                            childActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+                            "group flex items-start gap-2 py-1.5 text-[15px] font-semibold leading-5 text-white transition-colors duration-200 hover:text-red-500",
+                            childActive && "text-red-500"
                           )}
-                        />
-                        <div className="min-w-0 flex-1 pl-1">
-                          <div className={cn(
-                            "text-sm font-semibold transition-colors duration-150",
-                            childActive ? "text-red-700" : "text-slate-950 group-hover:text-red-700"
-                          )}>
-                            {child.title}
-                          </div>
-                          {child.description && (
-                            <p className="mt-0.5 text-xs leading-5 text-slate-500 group-hover:text-slate-600">
-                              {child.description}
-                            </p>
-                          )}
-                        </div>
-                        <ChevronDown className="mt-0.5 h-3.5 w-3.5 shrink-0 -rotate-90 text-slate-300 opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:opacity-100 group-hover:text-red-400" aria-hidden="true" />
-                      </Link>
-                    );
-                  })}
+                        >
+                          <ChevronRight
+                            className={cn(
+                              "mt-0.5 h-3.5 w-3.5 shrink-0 text-white transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-red-500",
+                              childActive && "text-red-500"
+                            )}
+                            aria-hidden="true"
+                          />
+                          <span>
+                            <span className="block">{child.title}</span>
+                            {child.description ? (
+                              <span className="mt-1 block text-xs font-medium leading-5 text-white/55 group-hover:text-white/75">
+                                {child.description}
+                              </span>
+                            ) : null}
+                          </span>
+                        </Link>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
             )}

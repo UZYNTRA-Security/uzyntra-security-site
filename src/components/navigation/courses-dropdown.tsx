@@ -132,8 +132,8 @@ export function CoursesDropdown({ open }: CoursesDropdownProps) {
         open ? "visible translate-y-0 opacity-100" : "invisible -translate-y-2 opacity-0 pointer-events-none"
       )}
     >
-      <div className="mx-auto flex max-h-[calc(100vh-72px)] max-w-[1360px] gap-10 overflow-y-auto px-10 py-8 xl:px-14">
-        <aside className="w-[210px] shrink-0 border-r border-white/10 pr-8">
+      <div className="mx-auto flex max-h-[calc(100vh-96px)] max-w-[1360px] gap-9 overflow-y-auto px-10 py-6 xl:px-14">
+        <aside className="w-[210px] shrink-0 border-r border-white/10 pr-7">
           <Link href="/" className="block" aria-label="UZYNTRA Security home">
             <Image
               src={siteConfig.logos.mainDark}
@@ -144,7 +144,7 @@ export function CoursesDropdown({ open }: CoursesDropdownProps) {
               priority
             />
           </Link>
-          <p className="mt-5 text-xs font-semibold uppercase tracking-[0.16em] text-red-500">
+          <p className="mt-4 text-xs font-semibold uppercase tracking-[0.16em] text-[#ff1f2d]">
             Professional Training
           </p>
           <p className="mt-3 text-sm leading-6 text-white/65">
@@ -153,22 +153,22 @@ export function CoursesDropdown({ open }: CoursesDropdownProps) {
           <Link
             href="/courses"
             role="menuitem"
-            className="mt-6 inline-flex h-10 items-center justify-center gap-2 rounded-none bg-red-600 px-4 text-xs font-extrabold uppercase text-white transition-colors duration-200 hover:bg-white hover:text-red-600"
+            className="mt-5 inline-flex h-10 items-center justify-center gap-2 rounded-none bg-red-600 px-4 text-xs font-extrabold uppercase text-white transition-colors duration-200 hover:bg-white hover:text-red-600"
           >
             All Courses
-            <GraduationCap className="h-3.5 w-3.5" aria-hidden="true" />
+            <GraduationCap className="h-3 w-3" aria-hidden="true" />
           </Link>
         </aside>
 
-        <div className="grid min-w-0 flex-1 grid-cols-5 gap-x-10 gap-y-8">
+        <div className="grid min-w-0 flex-1 grid-cols-5 gap-x-9 gap-y-6">
           {megaCourseColumns.map((column, columnIndex) => (
-            <div key={columnIndex} className="min-w-0 space-y-6">
+            <div key={columnIndex} className="min-w-0 space-y-5">
               {column.groups.map((group) => (
                 <section key={group.label}>
-                  <h3 className="mb-3 text-[15px] font-bold uppercase leading-tight text-red-600">
+                  <p className="mb-2 text-[15px] font-extrabold uppercase leading-tight text-[#ff1f2d]">
                     {group.label}
-                  </h3>
-                  <div className="space-y-3">
+                  </p>
+                  <div className="space-y-2.5">
                     {group.items.map((course) => {
                       const isActive = pathname === course.href || pathname.startsWith(`${course.href}/`);
                       return (
@@ -177,14 +177,14 @@ export function CoursesDropdown({ open }: CoursesDropdownProps) {
                           href={course.href}
                           role="menuitem"
                           className={cn(
-                            "group flex items-start gap-2 text-[15px] font-semibold leading-5 text-white transition-colors duration-200",
+                            "group flex items-start gap-2 text-[14px] font-semibold leading-5 text-white transition-colors duration-200",
                             "hover:text-red-500",
                             isActive && "text-red-500"
                           )}
                         >
                           <ChevronRight
                             className={cn(
-                              "mt-0.5 h-3.5 w-3.5 shrink-0 text-white transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-red-500",
+                              "mt-0.5 h-3 w-3 shrink-0 text-white transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-red-500",
                               isActive && "text-red-500"
                             )}
                             aria-hidden="true"

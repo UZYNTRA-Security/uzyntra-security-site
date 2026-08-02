@@ -493,11 +493,11 @@ export default function OffensiveAIPage() {
                 </p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row lg:shrink-0">
-                <Link href={ENROLL_URL} className="btn-neutral inline-flex h-12 items-center justify-center gap-2 rounded-xl px-8 text-sm font-semibold">
+                <Link href={ENROLL_URL} className="offensive-ai-pricing-btn offensive-ai-pricing-primary inline-flex h-12 items-center justify-center gap-2 rounded-full px-8 text-sm font-bold">
                   <MessageSquare className="h-4 w-4 shrink-0" aria-hidden="true" />
                   Enquire Now
                 </Link>
-                <Link href="/courses" className="btn-stroke inline-flex h-12 items-center justify-center gap-2 rounded-xl px-8 text-sm font-semibold">
+                <Link href="/courses" className="offensive-ai-pricing-btn offensive-ai-pricing-secondary inline-flex h-12 items-center justify-center gap-2 rounded-full px-8 text-sm font-bold">
                   View All Courses
                   <ArrowRight className="h-4 w-4 shrink-0" aria-hidden="true" />
                 </Link>

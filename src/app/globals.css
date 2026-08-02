@@ -4484,3 +4484,64 @@ html[data-theme="dark"] .offensive-ai-page .offensive-ai-module-intro[data-cours
     top: 0 !important;
   }
 }
+
+/* Offensive AI pricing CTA hierarchy */
+.offensive-ai-page .offensive-ai-pricing-btn {
+  min-width: 11.25rem !important;
+  border-width: 2px !important;
+  transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease, border-color 180ms ease, color 180ms ease !important;
+}
+
+.offensive-ai-page .offensive-ai-pricing-btn:hover {
+  transform: translateY(-2px) !important;
+}
+
+.offensive-ai-page .offensive-ai-pricing-primary {
+  background: #ef1f24 !important;
+  border-color: #ef1f24 !important;
+  color: #ffffff !important;
+  box-shadow: 0 18px 38px rgba(239, 31, 36, 0.3) !important;
+}
+
+.offensive-ai-page .offensive-ai-pricing-primary svg {
+  color: #ffffff !important;
+}
+
+.offensive-ai-page .offensive-ai-pricing-primary:hover {
+  background: #ffffff !important;
+  border-color: #ef1f24 !important;
+  color: #ef1f24 !important;
+  box-shadow: 0 18px 38px rgba(239, 31, 36, 0.18) !important;
+}
+
+.offensive-ai-page .offensive-ai-pricing-primary:hover svg {
+  color: #ef1f24 !important;
+}
+
+.offensive-ai-page .offensive-ai-pricing-secondary {
+  background: #ffffff !important;
+  border-color: #ef1f24 !important;
+  color: #ef1f24 !important;
+  box-shadow: 0 16px 34px rgba(15, 23, 42, 0.08) !important;
+}
+
+.offensive-ai-page .offensive-ai-pricing-secondary svg {
+  color: #ef1f24 !important;
+}
+
+.offensive-ai-page .offensive-ai-pricing-secondary:hover {
+  background: #ef1f24 !important;
+  border-color: #ef1f24 !important;
+  color: #ffffff !important;
+  box-shadow: 0 18px 38px rgba(239, 31, 36, 0.28) !important;
+}
+
+.offensive-ai-page .offensive-ai-pricing-secondary:hover svg {
+  color: #ffffff !important;
+}
+
+@media (max-width: 640px) {
+  .offensive-ai-page .offensive-ai-pricing-btn {
+    width: 100% !important;
+  }
+}

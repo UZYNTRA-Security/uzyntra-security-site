@@ -1,6 +1,6 @@
 "use client";
 
-import type { MouseEvent } from "react";
+import type { CSSProperties, MouseEvent } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 const tabs = [
@@ -11,6 +11,12 @@ const tabs = [
 
 type TabId = (typeof tabs)[number]["id"];
 type Theme = "light" | "dark";
+type PinnedBounds = { left: number; width: number };
+
+type TabNavStyle = CSSProperties & {
+  "--offensive-ai-tabs-left"?: string;
+  "--offensive-ai-tabs-width"?: string;
+};
 
 function readTheme(): Theme {
   if (typeof document === "undefined") return "light";
@@ -26,10 +32,11 @@ export function OffensiveAICourseTabs() {
   const [theme, setTheme] = useState<Theme>("light");
   const [mobilePinned, setMobilePinned] = useState(false);
   const [navHeight, setNavHeight] = useState(0);
+  const [pinnedBounds, setPinnedBounds] = useState<PinnedBounds>({ left: 0, width: 0 });
 
   const getScrollOffset = useCallback(() => {
     const mobile = window.innerWidth < 768;
-    return mobile ? Math.max(navHeight, 64) + 8 : 140;
+    return mobile ? Math.max(navHeight, 58) + 8 : 140;
   }, [navHeight]);
 
   const scrollToTab = useCallback(
@@ -67,10 +74,13 @@ export function OffensiveAICourseTabs() {
     const updatePinnedState = () => {
       const mobile = window.innerWidth < 768;
       const measuredHeight = navRef.current?.offsetHeight ?? 0;
-      const wrapperTop = wrapperRef.current ? wrapperRef.current.getBoundingClientRect().top + window.scrollY : 0;
+      const rect = wrapperRef.current?.getBoundingClientRect();
 
       setNavHeight(measuredHeight);
-      setMobilePinned(mobile && window.scrollY >= wrapperTop);
+      if (rect) {
+        setPinnedBounds({ left: rect.left, width: rect.width });
+      }
+      setMobilePinned(Boolean(mobile && rect && rect.top <= 0));
     };
 
     updatePinnedState();
@@ -97,7 +107,7 @@ export function OffensiveAICourseTabs() {
   useEffect(() => {
     const updateActive = () => {
       const mobile = window.innerWidth < 768;
-      const offset = mobile ? Math.max(navHeight, 64) + 24 : 170;
+      const offset = mobile ? Math.max(navHeight, 58) + 24 : 170;
 
       if (pendingTabRef.current) {
         const pendingTarget = document.getElementById(pendingTabRef.current);
@@ -133,6 +143,14 @@ export function OffensiveAICourseTabs() {
   }, [navHeight]);
 
   const dark = theme === "dark";
+  const navStyle: TabNavStyle = {
+    "--offensive-ai-tabs-left": `${pinnedBounds.left}px`,
+    "--offensive-ai-tabs-width": `${pinnedBounds.width}px`,
+    background: dark ? "rgba(23, 23, 24, 0.96)" : "rgba(255, 255, 255, 0.98)",
+    borderColor: dark ? "rgba(255, 255, 255, 0.16)" : "rgba(226, 232, 240, 0.95)",
+    boxShadow: dark ? "none" : "0 12px 28px rgba(15, 23, 42, 0.08)",
+    color: dark ? "#ffffff" : "#0f172a",
+  };
 
   const handleTabClick = (tabId: TabId) => (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
@@ -140,26 +158,21 @@ export function OffensiveAICourseTabs() {
   };
 
   return (
-    <div ref={wrapperRef} className="offensive-ai-course-tabs-wrap" style={{ height: mobilePinned ? navHeight || undefined : undefined }}>
-      <nav
-        ref={navRef}
-        className={
-          mobilePinned
-            ? "offensive-ai-course-tabs offensive-ai-course-tabs--mobile-fixed sticky top-[56px] z-30 border-y backdrop-blur"
-            : "offensive-ai-course-tabs sticky top-[56px] z-30 border-y backdrop-blur"
-        }
-        aria-label="Offensive AI course sections"
-        data-course-theme={theme}
-        data-mobile-pinned={mobilePinned ? "true" : undefined}
-        style={{
-          background: dark ? "rgba(23, 23, 24, 0.96)" : "rgba(255, 255, 255, 0.98)",
-          borderColor: dark ? "rgba(255, 255, 255, 0.16)" : "rgba(226, 232, 240, 0.95)",
-          boxShadow: dark ? "none" : "0 12px 28px rgba(15, 23, 42, 0.08)",
-          color: dark ? "#ffffff" : "#0f172a",
-        }}
-      >
-        <div className="container-shell">
-          <div className="flex min-h-[64px] items-center gap-4 overflow-x-auto py-2">
+    <div className="offensive-ai-course-tabs-shell">
+      <div ref={wrapperRef} className="container-shell offensive-ai-course-tabs-wrap" style={{ height: mobilePinned ? navHeight || undefined : undefined }}>
+        <nav
+          ref={navRef}
+          className={
+            mobilePinned
+              ? "offensive-ai-course-tabs offensive-ai-course-tabs--mobile-fixed sticky top-[56px] z-30 border-y backdrop-blur"
+              : "offensive-ai-course-tabs sticky top-[56px] z-30 border-y backdrop-blur"
+          }
+          aria-label="Offensive AI course sections"
+          data-course-theme={theme}
+          data-mobile-pinned={mobilePinned ? "true" : undefined}
+          style={navStyle}
+        >
+          <div className="offensive-ai-course-tabs-scroll flex min-h-[64px] items-center gap-4 overflow-x-auto py-2">
             {tabs.map((tab) => {
               const active = activeId === tab.id;
               return (
@@ -180,8 +193,8 @@ export function OffensiveAICourseTabs() {
               );
             })}
           </div>
-        </div>
-      </nav>
+        </nav>
+      </div>
     </div>
   );
 }

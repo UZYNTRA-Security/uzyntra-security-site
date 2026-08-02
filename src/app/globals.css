@@ -4428,3 +4428,17 @@ html[data-theme="dark"] .offensive-ai-page .offensive-ai-module-intro {
   background: transparent !important;
   color: rgba(255, 255, 255, 0.86) !important;
 }
+
+/* Offensive AI module intro text must follow the visible section theme */
+.offensive-ai-page .offensive-ai-module-intro[data-course-theme="light"] .offensive-ai-module-intro-text,
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-module-intro[data-course-theme="light"] .offensive-ai-module-intro-text,
+html:not([data-theme="dark"]) .offensive-ai-page .offensive-ai-module-intro .offensive-ai-module-intro-text {
+  background: transparent !important;
+  color: #334155 !important;
+}
+
+.offensive-ai-page .offensive-ai-module-intro[data-course-theme="dark"] .offensive-ai-module-intro-text,
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-module-intro[data-course-theme="dark"] .offensive-ai-module-intro-text {
+  background: transparent !important;
+  color: rgba(255, 255, 255, 0.86) !important;
+}

@@ -8,6 +8,7 @@ import {
   CheckCircle2,
   ChevronDown,
   ClipboardCheck,
+  Clock3,
   Cloud,
   Code2,
   FileText,
@@ -16,16 +17,20 @@ import {
   Laptop,
   Layers3,
   Lock,
+  PackageOpen,
   MessageSquare,
   Search,
+  ServerCog,
   ShieldAlert,
   ShieldCheck,
   Target,
   Terminal,
   User,
+  UserCog,
   Users,
   Zap,
 } from "lucide-react";
+import { FaGithub, FaLinkedinIn } from "react-icons/fa6";
 
 import { siteConfig } from "@/config/site";
 
@@ -62,7 +67,7 @@ const stats = [
   { label: "Domains", value: "10" },
   { label: "Modules", value: "42" },
   { label: "Format", value: "Labs + Capstone" },
-  { label: "Program Fee", value: "$799 USD" },
+  { label: "Program Fee", value: "$400 USD", oldValue: "$799 USD" },
 ] as const;
 
 const audienceChips = [
@@ -79,13 +84,29 @@ const whoFor = [
   "Corporate and government teams that need modern AI-powered security testing capability.",
 ] as const;
 
+const featureHighlights = [
+  { title: "Flexible Learning Duration", icon: Clock3, tone: "text-rose-400 border-rose-400/35 bg-rose-500/10" },
+  { title: "Train under Chief Information Security Officer", icon: UserCog, tone: "text-emerald-400 border-emerald-400/35 bg-emerald-500/10" },
+  { title: "Detailed Hands-on Labs", icon: ServerCog, tone: "text-amber-400 border-amber-400/35 bg-amber-500/10" },
+] as const;
+
+const deliveryModes = ["In-Person", "Live Instructor Led", "OnDemand", "Onsite"] as const;
+
+const instructorSkills = [
+  "API Security",
+  "Red Teaming",
+  "Rust Backend",
+  "Offensive Tooling",
+  "Threat Detection",
+] as const;
+
 const labFormats = [
-  { title: "Cloud-hosted Labs", icon: Cloud },
-  { title: "Local Setup VMs", icon: Laptop },
-  { title: "Apple Silicon Macs", icon: Terminal },
-  { title: "Agent Pack Download", icon: Bot },
-  { title: "Burp Suite + GPT Plugin Labs", icon: Zap },
-  { title: "Capstone Project", icon: ClipboardCheck },
+  { title: "Cloud-hosted Labs", icon: Cloud, tone: "text-cyan-300 border-cyan-400/25 bg-cyan-500/10" },
+  { title: "Local Setup VMs", icon: Laptop, tone: "text-violet-300 border-violet-400/25 bg-violet-500/10" },
+  { title: "Apple Silicon Macs", icon: Terminal, tone: "text-slate-100 border-slate-300/25 bg-slate-400/10" },
+  { title: "Agent Pack Download", icon: PackageOpen, tone: "text-emerald-300 border-emerald-400/25 bg-emerald-500/10" },
+  { title: "Burp Suite + GPT Plugin Labs", icon: Zap, tone: "text-amber-300 border-amber-400/25 bg-amber-500/10" },
+  { title: "Capstone Project", icon: ClipboardCheck, tone: "text-rose-300 border-rose-400/25 bg-rose-500/10" },
 ] as const;
 
 const domains: Domain[] = [
@@ -292,7 +313,14 @@ export default function OffensiveAIPage() {
                     {stats.map((item) => (
                       <div key={item.label} className="rounded-xl border border-white/10 bg-white/[0.06] p-3">
                         <p className="text-[9px] font-black uppercase tracking-[0.14em] text-white/45">{item.label}</p>
-                        <p className="mt-1 text-sm font-black text-white">{item.value}</p>
+                                                {"oldValue" in item ? (
+                          <p className="mt-1 flex flex-wrap items-baseline gap-2 text-white">
+                            <span className="text-xs font-bold text-white/45 line-through">{item.oldValue}</span>
+                            <strong className="text-base font-black text-white">{item.value}</strong>
+                          </p>
+                        ) : (
+                          <p className="mt-1 text-sm font-black text-white">{item.value}</p>
+                        )}
                       </div>
                     ))}
                   </div>
@@ -325,28 +353,109 @@ export default function OffensiveAIPage() {
         </div>
       </section>
 
-      <section className="offensive-ai-light-section bg-white py-14 text-slate-950 sm:py-18">
+      <section className="offensive-ai-course-details bg-[#060606] py-14 sm:py-18">
         <div className="container-shell">
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {stats.map((item) => (
-              <div key={item.label} className="rounded-xl border border-slate-200 bg-slate-50 p-5">
-                <p className="text-[10px] font-black uppercase tracking-[0.16em] text-slate-400">{item.label}</p>
-                <p className="mt-2 text-2xl font-black text-slate-950">{item.value}</p>
+          <div className="offensive-ai-feature-strip grid overflow-hidden rounded-xl border border-white/20 bg-white/[0.055] sm:grid-cols-3">
+            {featureHighlights.map(({ title, icon: Icon, tone }) => (
+              <div key={title} className="offensive-ai-feature-card flex min-h-[126px] flex-col items-center justify-center gap-3 p-5 text-center">
+                <span className={`inline-flex h-11 w-11 items-center justify-center rounded-full border ${tone}`}>
+                  <Icon className="h-6 w-6" strokeWidth={1.8} aria-hidden="true" />
+                </span>
+                <span className="max-w-[220px] text-sm font-black leading-tight text-white">{title}</span>
               </div>
             ))}
           </div>
 
-          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {labFormats.map(({ title, icon: Icon }) => (
-              <div key={title} className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-red-200 hover:shadow-[0_12px_30px_rgba(220,38,38,0.10)]">
-                <Icon className="h-5 w-5 text-red-600" aria-hidden="true" />
-                <p className="mt-3 text-sm font-bold text-slate-900">{title}</p>
+          <div className="mt-10 grid gap-8 lg:grid-cols-[minmax(0,1fr)_340px] xl:grid-cols-[minmax(0,1fr)_380px]">
+            <div className="min-w-0">
+              <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+                {stats.map((item) => (
+                  <div key={item.label} className="rounded-xl border border-white/10 bg-white/[0.055] p-4">
+                    <p className="text-[10px] font-black uppercase tracking-[0.16em] text-white/45">{item.label}</p>
+                                        {"oldValue" in item ? (
+                      <p className="mt-2 flex flex-wrap items-baseline gap-2 text-white">
+                        <span className="text-sm font-bold text-white/45 line-through">{item.oldValue}</span>
+                        <strong className="text-2xl font-black text-white">{item.value}</strong>
+                      </p>
+                    ) : (
+                      <p className="mt-2 text-xl font-black text-white">{item.value}</p>
+                    )}
+                  </div>
+                ))}
               </div>
-            ))}
+
+              <div className="mt-10">
+                <p className="text-xs font-black uppercase tracking-[0.18em] text-red-500">Lab Format & Access</p>
+                <h2 className="mt-3 text-3xl font-black text-white sm:text-4xl">Practical lab access for offensive AI workflows</h2>
+                <p className="offensive-ai-muted mt-4 max-w-3xl text-sm leading-7">
+                  Learners work through cloud labs, local VMs, agent packs, Burp Suite workflows, and a capstone project designed around realistic AI-assisted pentesting scenarios.
+                </p>
+              </div>
+
+              <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                {labFormats.map(({ title, icon: Icon, tone }) => (
+                  <div key={title} className="offensive-ai-lab-card rounded-xl border border-white/15 bg-white/[0.055] p-6 text-center transition-all duration-200 hover:-translate-y-0.5 hover:border-red-500/45 hover:bg-red-950/20">
+                    <span className={`mx-auto inline-flex h-14 w-14 items-center justify-center rounded-xl border ${tone}`}>
+                      <Icon className="h-8 w-8" strokeWidth={1.7} aria-hidden="true" />
+                    </span>
+                    <p className="mt-5 text-sm font-black text-white">{title}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <aside className="offensive-ai-instructor-card rounded-xl border border-white/15 bg-white/[0.055] p-6 lg:sticky lg:top-24">
+              <h2 className="text-2xl font-black text-white">Course Delivery</h2>
+              <ul className="mt-5 space-y-3">
+                {deliveryModes.map((mode) => (
+                  <li key={mode} className="flex items-center gap-3 text-sm font-semibold text-white/86">
+                    <CheckCircle2 className="h-4 w-4 shrink-0 text-red-500" aria-hidden="true" />
+                    {mode}
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-8 border-t border-white/10 pt-8">
+                <h2 className="text-2xl font-black text-white">Instructor</h2>
+                <div className="mt-5 flex items-center gap-4">
+                  <div className="offensive-ai-instructor-avatar flex h-24 w-24 shrink-0 items-center justify-center rounded-xl border border-red-500/35 bg-gradient-to-br from-red-600 via-red-700 to-slate-950 text-2xl font-black text-white shadow-[0_18px_42px_rgba(220,38,38,0.22)]">
+                    MU
+                  </div>
+                  <div className="min-w-0">
+                    <h3 className="text-xl font-black text-white">Muhammad Usama</h3>
+                    <p className="mt-1 text-sm font-semibold text-white/70">Founder @ UZYNTRA</p>
+                    <p className="mt-1 text-xs leading-5 text-white/55">API Security Engineer | Rust Backend Developer | Cyber Security Consultant | Red Team Specialist</p>
+                    <div className="mt-4 flex gap-2">
+                      <a href="https://www.linkedin.com/in/usamamatrix" target="_blank" rel="noreferrer" aria-label="Muhammad Usama on LinkedIn" className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-white text-[#0a66c2] transition-transform duration-200 hover:-translate-y-0.5">
+                        <FaLinkedinIn className="h-4 w-4" aria-hidden="true" />
+                      </a>
+                      <a href={siteConfig.founderLinks.github} target="_blank" rel="noreferrer" aria-label="Muhammad Usama on GitHub" className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-white text-slate-950 transition-transform duration-200 hover:-translate-y-0.5">
+                        <FaGithub className="h-4 w-4" aria-hidden="true" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <p className="mt-6 text-sm leading-7 text-white/72">
+                  Muhammad Usama, also known as UsamaMatrix, is a cybersecurity engineer and founder of UZYNTRA focused on API security, adversary simulation, penetration testing, offensive tooling, and high-performance Rust-based security systems.
+                </p>
+
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {instructorSkills.map((skill) => (
+                    <span key={skill} className="rounded-full border border-red-500/25 bg-red-500/10 px-3 py-1 text-[11px] font-bold text-red-200">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+
+                <p className="mt-5 text-xs leading-6 text-white/55">
+                  Certifications include CEH v11 and v12, OSCP, ISO/IEC 27001 Lead Auditor, and Certified Chief Information Security Officer (C|CISO).
+                </p>
+              </div>
+            </aside>
           </div>
         </div>
       </section>
-
       <section id="curriculum" className="offensive-ai-modules bg-[#111112] py-14 sm:py-18">
         <div className="container-shell">
           <div className="mb-8 max-w-3xl">
@@ -421,7 +530,7 @@ export default function OffensiveAIPage() {
                 <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/75">Build Offensive AI Skill</p>
                 <h2 className="mt-3 text-2xl font-black text-white sm:text-3xl">Ready to enroll?</h2>
                 <p className="mt-3 max-w-[680px] text-sm leading-7 text-white/82">
-                  Total program fee: $799 USD. Training includes course material, hands-on labs, capstone project, and certification assessment.
+                  Total program fee: <span className="text-white/55 line-through">$799 USD</span> <strong className="text-lg font-black text-white">$400 USD</strong>. Training includes course material, hands-on labs, capstone project, and certification assessment.
                 </p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row lg:shrink-0">

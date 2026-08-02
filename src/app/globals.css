@@ -3224,6 +3224,51 @@ html[data-theme="dark"] .offensive-ai-page .offensive-ai-light-section .bg-red-5
   background-color: #fef2f2 !important;
 }
 
+.offensive-ai-course-details,
+.offensive-ai-course-details .container-shell,
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-course-details,
+html[data-theme="light"] .offensive-ai-page .offensive-ai-course-details {
+  background-color: #060606 !important;
+  color: #ffffff !important;
+}
+
+.offensive-ai-course-details h2,
+.offensive-ai-course-details h3,
+.offensive-ai-course-details .text-white {
+  color: #ffffff !important;
+}
+
+.offensive-ai-course-details .offensive-ai-muted,
+.offensive-ai-course-details .text-white\/45,
+.offensive-ai-course-details .text-white\/55,
+.offensive-ai-course-details .text-white\/70,
+.offensive-ai-course-details .text-white\/72,
+.offensive-ai-course-details .text-white\/86 {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.offensive-ai-feature-card {
+  position: relative;
+}
+
+@media (min-width: 640px) {
+  .offensive-ai-feature-card + .offensive-ai-feature-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 26px;
+    bottom: 26px;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.22);
+  }
+}
+
+@media (max-width: 639px) {
+  .offensive-ai-feature-card + .offensive-ai-feature-card {
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+  }
+}
+
 .offensive-ai-modules,
 .offensive-ai-modules .container-shell,
 html[data-theme="dark"] .offensive-ai-page .offensive-ai-modules,

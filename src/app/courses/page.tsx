@@ -31,7 +31,7 @@ const exclusiveCourses = [
     icon: <Bot className="h-6 w-6 text-red-600" aria-hidden="true" />,
     eyebrow: "Exclusive Certification",
     description: "AI-powered web pentesting certification with GPT agents, Burp Suite labs, API testing, reporting, and capstone assessment.",
-    highlights: ["10 Domains", "42 Modules", "GPT Agents", "$799 USD"],
+    highlights: ["10 Domains", "42 Modules", "GPT Agents", "$400 USD"],
   },
 ];
 const courses = [
@@ -293,7 +293,12 @@ export default function CoursesPage() {
                   <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
                     {course.highlights.map((h) => (
                       <div key={h} className="rounded-lg border border-red-100 bg-red-50/60 px-3 py-2 text-xs font-bold text-red-700">
-                        {h}
+                        {h === "$400 USD" ? (
+                          <span className="flex flex-col leading-tight">
+                            <span className="text-[10px] text-red-400 line-through">$799 USD</span>
+                            <strong className="text-xs font-black text-red-700">$400 USD</strong>
+                          </span>
+                        ) : h}
                       </div>
                     ))}
                   </div>

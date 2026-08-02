@@ -4383,3 +4383,25 @@ html[data-theme="dark"] .offensive-ai-page .offensive-ai-domain-body {
 .offensive-ai-course-tabs-shell + .offensive-ai-modules {
   padding-top: 1.25rem !important;
 }
+
+/* Offensive AI final active inner-tab emphasis */
+.offensive-ai-page .offensive-ai-course-tabs .offensive-ai-course-tab.active,
+.offensive-ai-page .offensive-ai-course-tabs .offensive-ai-course-tab[aria-current="true"],
+body:has(.offensive-ai-page) .offensive-ai-course-tabs .offensive-ai-course-tab.active,
+body:has(.offensive-ai-page) .offensive-ai-course-tabs .offensive-ai-course-tab[aria-current="true"] {
+  background: #ef1f24 !important;
+  border-color: #ef1f24 !important;
+  color: #ffffff !important;
+  box-shadow: 0 14px 34px rgba(239, 31, 36, 0.34) !important;
+}
+
+.offensive-ai-page .offensive-ai-course-tabs .offensive-ai-course-tab.active *,
+.offensive-ai-page .offensive-ai-course-tabs .offensive-ai-course-tab[aria-current="true"] *,
+body:has(.offensive-ai-page) .offensive-ai-course-tabs .offensive-ai-course-tab.active *,
+body:has(.offensive-ai-page) .offensive-ai-course-tabs .offensive-ai-course-tab[aria-current="true"] * {
+  color: #ffffff !important;
+}
+
+.offensive-ai-page .offensive-ai-course-tabs .offensive-ai-course-tab:not(.active):not([aria-current="true"]):hover {
+  color: #ef1f24 !important;
+}

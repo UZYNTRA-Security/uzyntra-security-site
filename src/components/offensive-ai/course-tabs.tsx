@@ -41,7 +41,7 @@ export function OffensiveAICourseTabs() {
   }, []);
 
   return (
-    <nav className="offensive-ai-course-tabs sticky top-[56px] z-30 border-y border-white/15 bg-[#171718]/95 backdrop-blur" aria-label="Offensive AI course sections">
+    <nav className="offensive-ai-course-tabs sticky top-[56px] z-30 border-y backdrop-blur" aria-label="Offensive AI course sections">
       <div className="container-shell">
         <div className="flex min-h-[72px] items-center gap-4 overflow-x-auto py-3">
           {tabs.map((tab) => {

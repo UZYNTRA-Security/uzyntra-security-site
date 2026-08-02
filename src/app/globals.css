@@ -3156,3 +3156,128 @@ html[data-theme="dark"] .nav-mega-panel .nav-mega-copy {
 html[data-theme="dark"] .nav-mega-panel a:hover .nav-mega-copy {
   color: rgba(255, 255, 255, 0.78) !important;
 }
+
+/* Offensive AI exclusive certification page */
+.offensive-ai-typewriter {
+  position: relative;
+  display: inline-block;
+  width: max-content;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 4px solid rgb(239, 31, 36);
+  animation: offensiveAiTyping 1.55s steps(12, end) 0.15s both, offensiveAiCursorBlink 0.78s step-end infinite;
+}
+
+.offensive-ai-domain {
+  border-bottom: 2px solid rgba(255, 255, 255, 0.72);
+  color: #f8fafc;
+}
+
+.offensive-ai-domain:last-child {
+  border-bottom: 0;
+}
+
+.offensive-ai-domain-summary {
+  display: flex;
+  min-height: 80px;
+  cursor: pointer;
+  list-style: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.1rem 1rem;
+  outline: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.offensive-ai-domain-summary::-webkit-details-marker {
+  display: none;
+}
+
+.offensive-ai-domain-icon {
+  display: inline-flex;
+  height: 2.35rem;
+  width: 2.35rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.7rem;
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  background: rgba(127, 29, 29, 0.28);
+  color: rgb(248, 113, 113);
+}
+
+.offensive-ai-domain[open] .offensive-ai-domain-summary {
+  border: 2px solid #111111;
+  border-radius: 0.45rem 0.45rem 0 0;
+  background: #fff7f7;
+  color: #111111;
+}
+
+.offensive-ai-domain[open] .offensive-ai-domain-icon {
+  border-color: rgba(220, 38, 38, 0.2);
+  background: #fee2e2;
+  color: rgb(220, 38, 38);
+}
+
+.offensive-ai-domain-chevron {
+  transition: transform 0.2s ease;
+}
+
+.offensive-ai-domain[open] .offensive-ai-domain-chevron {
+  transform: rotate(180deg);
+}
+
+.offensive-ai-domain-body {
+  border-radius: 0 0 0.45rem 0.45rem;
+  background: #fff7f7;
+  padding: 0 2.75rem 1.15rem;
+  color: #171717;
+}
+
+.offensive-ai-module-row + .offensive-ai-module-row {
+  margin-top: 0.65rem;
+}
+
+.offensive-ai-module-row h3 {
+  font-size: 0.94rem;
+  font-weight: 800;
+  line-height: 1.3;
+  color: #121212;
+}
+
+.offensive-ai-module-row p {
+  margin-top: 0.2rem;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: #333333;
+}
+
+@keyframes offensiveAiTyping {
+  from { width: 0; }
+  to { width: 12ch; }
+}
+
+@keyframes offensiveAiCursorBlink {
+  0%, 46% { border-color: rgb(239, 31, 36); }
+  47%, 100% { border-color: transparent; }
+}
+
+@media (max-width: 640px) {
+  .offensive-ai-typewriter {
+    white-space: normal;
+    width: auto;
+    animation: offensiveAiCursorBlink 0.78s step-end infinite;
+  }
+
+  .offensive-ai-domain-summary {
+    align-items: flex-start;
+    min-height: 68px;
+    padding: 1rem 0.8rem;
+  }
+
+  .offensive-ai-domain-body {
+    padding: 0 1rem 1rem;
+  }
+}

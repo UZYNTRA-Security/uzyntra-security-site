@@ -13,7 +13,6 @@ const serviceSlugs = [
 ] as const;
 
 const courseSlugs = [
-  "offensive-ai-certified-web-pentester",
   "artificial-intelligence",
   "cybersecurity",
   "cloud-computing",
@@ -77,6 +76,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
     {
       url: `${base}/courses`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${base}/offensive-ai`,
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.9,

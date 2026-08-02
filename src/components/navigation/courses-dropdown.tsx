@@ -28,7 +28,7 @@ const megaCourseColumns: MegaCourseColumn[] = [
       {
         label: "Exclusive Certifications",
         items: [
-          { title: "Offensive AI: Certified Web Pentester", href: "/courses/offensive-ai-certified-web-pentester" },
+          { title: "Offensive AI: Certified Web Pentester", href: "/offensive-ai" },
         ],
       },
       {

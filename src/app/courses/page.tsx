@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 const exclusiveCourses = [
   {
     title: "Offensive AI: Certified Web Pentester",
-    href: "/courses/offensive-ai-certified-web-pentester",
+    href: "/offensive-ai",
     image: "/images/courses/penetration-testing.webp",
     icon: <Bot className="h-6 w-6 text-red-600" aria-hidden="true" />,
     eyebrow: "Exclusive Certification",

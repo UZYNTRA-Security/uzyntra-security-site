@@ -70,7 +70,7 @@ export const mainNavigation: NavItem[] = [
     children: [
       {
         title: "Offensive AI Certified Web Pentester",
-        href: "/courses/offensive-ai-certified-web-pentester",
+        href: "/offensive-ai",
         description: "Exclusive certification for AI-powered web pentesting, GPT agents, labs, and reporting.",
       },
       {
@@ -146,7 +146,7 @@ export const mainNavigation: NavItem[] = [
 
 export const footerNavigation = {
   courses: [
-    { title: "Offensive AI Certified Web Pentester", href: "/courses/offensive-ai-certified-web-pentester" },
+    { title: "Offensive AI Certified Web Pentester", href: "/offensive-ai" },
     { title: "Artificial Intelligence", href: "/courses/artificial-intelligence" },
     { title: "Cyber Security", href: "/courses/cybersecurity" },
     { title: "Ethical Hacking", href: "/courses/ethical-hacking" },

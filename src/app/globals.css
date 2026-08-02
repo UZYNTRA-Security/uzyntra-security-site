@@ -3443,3 +3443,128 @@ html[data-theme="dark"] .site-header-light nav button:hover svg,
 html[data-theme="dark"] .site-header-light nav button.bg-red-50 svg {
   color: #ef4444 !important;
 }
+/* Offensive AI reference-style course layout refinements */
+.offensive-ai-course-tabs,
+html[data-theme="light"] .offensive-ai-page .offensive-ai-course-tabs,
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-course-tabs {
+  background: rgba(23, 23, 24, 0.96) !important;
+  border-color: rgba(255, 255, 255, 0.16) !important;
+  color: #ffffff !important;
+}
+
+.offensive-ai-course-tabs a {
+  text-decoration: none;
+}
+
+.offensive-ai-course-tabs a:focus-visible,
+.offensive-ai-domain-summary:focus-visible {
+  outline: 2px solid rgba(239, 31, 36, 0.85);
+  outline-offset: 3px;
+}
+
+.offensive-ai-lab-card {
+  min-height: 148px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.035)) !important;
+}
+
+.offensive-ai-lab-card svg {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+.offensive-ai-feature-strip,
+.offensive-ai-instructor-card {
+  background: #19191a !important;
+  border-color: rgba(255, 255, 255, 0.22) !important;
+}
+
+.offensive-ai-instructor-card,
+.offensive-ai-instructor-card h2,
+.offensive-ai-instructor-card h3,
+.offensive-ai-instructor-card p,
+.offensive-ai-instructor-card li {
+  color: #ffffff !important;
+}
+
+.offensive-ai-instructor-card p,
+.offensive-ai-instructor-card li {
+  color: rgba(255, 255, 255, 0.78) !important;
+}
+
+.offensive-ai-instructor-card img {
+  object-position: center center;
+}
+
+.offensive-ai-modules,
+.offensive-ai-modules .container-shell,
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-modules,
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-modules .container-shell,
+html[data-theme="light"] .offensive-ai-page .offensive-ai-modules,
+html[data-theme="light"] .offensive-ai-page .offensive-ai-modules .container-shell {
+  background-color: #050505 !important;
+}
+
+.offensive-ai-domain-list {
+  box-shadow: inset 4px 0 0 rgba(239, 31, 36, 0.72);
+}
+
+#curriculum,
+#eligibility,
+#course-pricing {
+  scroll-margin-top: 8.5rem;
+}
+
+html[data-theme="dark"] .offensive-ai-page #course-pricing,
+html[data-theme="light"] .offensive-ai-page #course-pricing {
+  color: #ffffff !important;
+}
+
+html[data-theme="dark"] .offensive-ai-page #course-pricing p,
+html[data-theme="dark"] .offensive-ai-page #course-pricing span,
+html[data-theme="light"] .offensive-ai-page #course-pricing p,
+html[data-theme="light"] .offensive-ai-page #course-pricing span {
+  color: rgba(255, 255, 255, 0.82) !important;
+}
+
+html[data-theme="dark"] .offensive-ai-page #course-pricing .line-through,
+html[data-theme="light"] .offensive-ai-page #course-pricing .line-through {
+  color: rgba(255, 255, 255, 0.55) !important;
+}
+
+html[data-theme="dark"] .offensive-ai-page #course-pricing strong,
+html[data-theme="light"] .offensive-ai-page #course-pricing strong {
+  color: #ffffff !important;
+}
+
+@media (max-width: 1023px) {
+  .offensive-ai-course-tabs {
+    top: 56px;
+  }
+}
+
+@media (max-width: 640px) {
+  .offensive-ai-course-tabs .container-shell {
+    padding-inline: 0.75rem;
+  }
+
+  .offensive-ai-course-tabs a {
+    padding-inline: 1rem;
+    font-size: 0.78rem;
+  }
+
+  .offensive-ai-lab-card {
+    min-height: 132px;
+    padding: 1.25rem !important;
+  }
+}
+.offensive-ai-title-line {
+  display: flex !important;
+  align-items: baseline;
+  gap: 0.28em;
+  line-height: 1;
+}
+
+.offensive-ai-title-line .offensive-ai-typewriter {
+  line-height: 1;
+  vertical-align: baseline;
+}

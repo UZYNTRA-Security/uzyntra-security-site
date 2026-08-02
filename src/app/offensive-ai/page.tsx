@@ -24,7 +24,7 @@ import {
   ShieldAlert,
   ShieldCheck,
   Target,
-  Terminal,
+  Apple,
   User,
   UserCog,
   Users,
@@ -101,12 +101,12 @@ const instructorSkills = [
 ] as const;
 
 const labFormats = [
-  { title: "Cloud-hosted Labs", icon: Cloud, tone: "text-cyan-300 border-cyan-400/25 bg-cyan-500/10" },
-  { title: "Local Setup VMs", icon: Laptop, tone: "text-violet-300 border-violet-400/25 bg-violet-500/10" },
-  { title: "Apple Silicon Macs", icon: Terminal, tone: "text-slate-100 border-slate-300/25 bg-slate-400/10" },
-  { title: "Agent Pack Download", icon: PackageOpen, tone: "text-emerald-300 border-emerald-400/25 bg-emerald-500/10" },
-  { title: "Burp Suite + GPT Plugin Labs", icon: Zap, tone: "text-amber-300 border-amber-400/25 bg-amber-500/10" },
-  { title: "Capstone Project", icon: ClipboardCheck, tone: "text-rose-300 border-rose-400/25 bg-rose-500/10" },
+  { title: "Cloud-hosted Labs", icon: Cloud },
+  { title: "Local Setup VMs", icon: Laptop },
+  { title: "Apple Silicon Macs", icon: Apple },
+  { title: "Agent Pack Download", icon: PackageOpen },
+  { title: "Burp Suite + GPT Plugin Labs", icon: Zap },
+  { title: "Capstone Project", icon: ClipboardCheck },
 ] as const;
 
 const domains: Domain[] = [
@@ -263,7 +263,10 @@ export default function OffensiveAIPage() {
                 UZYNTRA Exclusive Certification
               </p>
               <h1 className="offensive-ai-hero-title mt-8 max-w-[760px] text-4xl font-black leading-tight text-white sm:text-5xl lg:text-6xl">
-                <span>Offensive </span><span className="offensive-ai-typewriter">AI</span>
+                <span className="offensive-ai-title-line">
+                  <span>Offensive</span>
+                  <span className="offensive-ai-typewriter">AI</span>
+                </span>
                 <span className="block">Certified Web Pentester</span>
               </h1>
               <p className="offensive-ai-description mt-7 max-w-[760px] text-base leading-8 sm:text-lg">
@@ -353,102 +356,138 @@ export default function OffensiveAIPage() {
         </div>
       </section>
 
-      <section className="offensive-ai-course-details bg-[#060606] py-14 sm:py-18">
+      <section className="offensive-ai-course-details bg-[#050505] py-14 sm:py-18">
         <div className="container-shell">
-          <div className="offensive-ai-feature-strip grid overflow-hidden rounded-xl border border-white/20 bg-white/[0.055] sm:grid-cols-3">
-            {featureHighlights.map(({ title, icon: Icon, tone }) => (
-              <div key={title} className="offensive-ai-feature-card flex min-h-[126px] flex-col items-center justify-center gap-3 p-5 text-center">
-                <span className={`inline-flex h-11 w-11 items-center justify-center rounded-full border ${tone}`}>
-                  <Icon className="h-6 w-6" strokeWidth={1.8} aria-hidden="true" />
-                </span>
-                <span className="max-w-[220px] text-sm font-black leading-tight text-white">{title}</span>
-              </div>
-            ))}
+          <div className="mx-auto max-w-5xl">
+            <p className="text-xs font-black uppercase tracking-[0.18em] text-red-500">Hands-on Access</p>
+            <h2 className="mt-3 text-3xl font-black text-white sm:text-4xl">Lab Format & Access</h2>
+            <p className="mt-4 max-w-3xl text-sm leading-7 text-white/68">
+              Learners work through cloud labs, local VMs, agent packs, Burp Suite workflows, Apple Silicon-friendly setup notes, and a capstone built around realistic AI-assisted pentesting scenarios.
+            </p>
+
+            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {labFormats.map(({ title, icon: Icon }) => (
+                <div key={title} className="offensive-ai-lab-card rounded-lg border border-white/18 bg-white/[0.055] p-6 text-center transition-all duration-200 hover:-translate-y-0.5 hover:border-red-500/55 hover:bg-red-950/20 hover:shadow-[0_18px_42px_rgba(239,68,68,0.14)]">
+                  <span className="mx-auto inline-flex h-14 w-14 items-center justify-center text-white">
+                    <Icon className="h-9 w-9" strokeWidth={1.6} aria-hidden="true" />
+                  </span>
+                  <p className="mt-5 text-sm font-black text-white">{title}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <nav className="offensive-ai-course-tabs sticky top-[56px] z-30 border-y border-white/15 bg-[#171718]/95 backdrop-blur" aria-label="Offensive AI course sections">
+        <div className="container-shell">
+          <div className="flex min-h-[72px] items-center gap-4 overflow-x-auto py-3">
+            <a href="#curriculum" className="inline-flex h-11 shrink-0 items-center justify-center rounded-lg bg-red-600 px-7 text-sm font-black text-white shadow-[0_14px_34px_rgba(239,68,68,0.24)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-white hover:text-red-600">
+              Syllabus
+            </a>
+            <a href="#course-pricing" className="inline-flex h-11 shrink-0 items-center justify-center rounded-lg px-7 text-sm font-black text-white/82 transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/10 hover:text-white">
+              Course Pricing
+            </a>
+            <a href="#eligibility" className="inline-flex h-11 shrink-0 items-center justify-center rounded-lg px-7 text-sm font-black text-white/82 transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/10 hover:text-white">
+              Eligibility & Requirements
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      <section id="curriculum" className="offensive-ai-modules bg-[#050505] py-14 sm:py-18">
+        <div className="container-shell">
+          <div className="mb-8 max-w-3xl">
+            <p className="text-xs font-black uppercase tracking-[0.18em] text-red-500">Certification Modules</p>
+            <h2 className="mt-3 text-3xl font-black text-white sm:text-4xl">10 domains, {moduleCount} in-depth modules</h2>
+            <p className="mt-4 text-sm leading-7 text-white/70">
+              Dive into 10 structured domains and {moduleCount} in-depth modules designed to map classic web application pentesting with the power of AI. Each module contains practical labs, real-world case studies, and guided use of GPT-driven agents to ensure you do not just learn the theory, you master the craft. <span className="font-bold text-red-500">Read Less</span>
+            </p>
           </div>
 
-          <div className="mt-10 grid gap-8 lg:grid-cols-[minmax(0,1fr)_340px] xl:grid-cols-[minmax(0,1fr)_380px]">
-            <div className="min-w-0">
-              <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-                {stats.map((item) => (
-                  <div key={item.label} className="rounded-xl border border-white/10 bg-white/[0.055] p-4">
-                    <p className="text-[10px] font-black uppercase tracking-[0.16em] text-white/45">{item.label}</p>
-                                        {"oldValue" in item ? (
-                      <p className="mt-2 flex flex-wrap items-baseline gap-2 text-white">
-                        <span className="text-sm font-bold text-white/45 line-through">{item.oldValue}</span>
-                        <strong className="text-2xl font-black text-white">{item.value}</strong>
-                      </p>
-                    ) : (
-                      <p className="mt-2 text-xl font-black text-white">{item.value}</p>
-                    )}
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_340px] xl:grid-cols-[minmax(0,1fr)_380px]">
+            <div className="min-w-0 space-y-6">
+              <div className="offensive-ai-feature-strip grid overflow-hidden rounded-lg border border-white/20 bg-white/[0.055] sm:grid-cols-3">
+                {featureHighlights.map(({ title, icon: Icon, tone }) => (
+                  <div key={title} className="offensive-ai-feature-card flex min-h-[126px] flex-col items-center justify-center gap-3 p-5 text-center">
+                    <span className={`inline-flex h-11 w-11 items-center justify-center rounded-full border ${tone}`}>
+                      <Icon className="h-6 w-6" strokeWidth={1.8} aria-hidden="true" />
+                    </span>
+                    <span className="max-w-[220px] text-sm font-black leading-tight text-white">{title}</span>
                   </div>
                 ))}
               </div>
 
-              <div className="mt-10">
-                <p className="text-xs font-black uppercase tracking-[0.18em] text-red-500">Lab Format & Access</p>
-                <h2 className="mt-3 text-3xl font-black text-white sm:text-4xl">Practical lab access for offensive AI workflows</h2>
-                <p className="offensive-ai-muted mt-4 max-w-3xl text-sm leading-7">
-                  Learners work through cloud labs, local VMs, agent packs, Burp Suite workflows, and a capstone project designed around realistic AI-assisted pentesting scenarios.
-                </p>
-              </div>
-
-              <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-                {labFormats.map(({ title, icon: Icon, tone }) => (
-                  <div key={title} className="offensive-ai-lab-card rounded-xl border border-white/15 bg-white/[0.055] p-6 text-center transition-all duration-200 hover:-translate-y-0.5 hover:border-red-500/45 hover:bg-red-950/20">
-                    <span className={`mx-auto inline-flex h-14 w-14 items-center justify-center rounded-xl border ${tone}`}>
-                      <Icon className="h-8 w-8" strokeWidth={1.7} aria-hidden="true" />
-                    </span>
-                    <p className="mt-5 text-sm font-black text-white">{title}</p>
-                  </div>
+              <div className="offensive-ai-domain-list rounded-lg border border-white/18 bg-[#181819] p-4 sm:p-8">
+                {domains.map(({ number, title, modules, icon: Icon }) => (
+                  <details key={number} className="offensive-ai-domain">
+                    <summary className="offensive-ai-domain-summary">
+                      <span className="flex min-w-0 items-center gap-3">
+                        <span className="offensive-ai-domain-icon">
+                          <Icon className="h-5 w-5" aria-hidden="true" />
+                        </span>
+                        <span className="min-w-0 text-balance text-base font-black sm:text-xl">
+                          Domain{number} : {title}
+                        </span>
+                      </span>
+                      <ChevronDown className="offensive-ai-domain-chevron h-5 w-5 shrink-0 text-red-500" aria-hidden="true" />
+                    </summary>
+                    <div className="offensive-ai-domain-body">
+                      {modules.map((module) => (
+                        <div key={module.title} className="offensive-ai-module-row">
+                          <h3>{module.title}</h3>
+                          <p>{module.body}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </details>
                 ))}
               </div>
             </div>
 
-            <aside className="offensive-ai-instructor-card rounded-xl border border-white/15 bg-white/[0.055] p-6 lg:sticky lg:top-24">
+            <aside className="offensive-ai-instructor-card rounded-lg border border-white/18 bg-white/[0.055] p-6 lg:sticky lg:top-36">
               <h2 className="text-2xl font-black text-white">Course Delivery</h2>
               <ul className="mt-5 space-y-3">
                 {deliveryModes.map((mode) => (
-                  <li key={mode} className="flex items-center gap-3 text-sm font-semibold text-white/86">
-                    <CheckCircle2 className="h-4 w-4 shrink-0 text-red-500" aria-hidden="true" />
+                  <li key={mode} className="text-base font-semibold leading-6 text-white/88">
                     {mode}
                   </li>
                 ))}
               </ul>
 
-              <div className="mt-8 border-t border-white/10 pt-8">
+              <div className="mt-8 border-t border-white/12 pt-8">
                 <h2 className="text-2xl font-black text-white">Instructor</h2>
                 <div className="mt-5 flex items-center gap-4">
-                  <div className="offensive-ai-instructor-avatar flex h-24 w-24 shrink-0 items-center justify-center rounded-xl border border-red-500/35 bg-gradient-to-br from-red-600 via-red-700 to-slate-950 text-2xl font-black text-white shadow-[0_18px_42px_rgba(220,38,38,0.22)]">
-                    MU
+                  <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-sm border border-white/18 bg-white/10">
+                    <Image src="/images/Founder.webp" alt="Muhammad Usama" fill className="object-cover" sizes="96px" />
                   </div>
                   <div className="min-w-0">
-                    <h3 className="text-xl font-black text-white">Muhammad Usama</h3>
-                    <p className="mt-1 text-sm font-semibold text-white/70">Founder @ UZYNTRA</p>
-                    <p className="mt-1 text-xs leading-5 text-white/55">API Security Engineer | Rust Backend Developer | Cyber Security Consultant | Red Team Specialist</p>
+                    <h3 className="text-lg font-black text-white">Muhammad Usama</h3>
+                    <p className="mt-1 text-sm font-semibold text-white/80">Founder @ UZYNTRA</p>
                     <div className="mt-4 flex gap-2">
-                      <a href="https://www.linkedin.com/in/usamamatrix" target="_blank" rel="noreferrer" aria-label="Muhammad Usama on LinkedIn" className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-white text-[#0a66c2] transition-transform duration-200 hover:-translate-y-0.5">
-                        <FaLinkedinIn className="h-4 w-4" aria-hidden="true" />
+                      <a href="https://www.linkedin.com/in/usamamatrix" target="_blank" rel="noreferrer" aria-label="Muhammad Usama on LinkedIn" className="inline-flex h-9 w-9 items-center justify-center rounded-sm bg-white text-[#0a66c2] transition-transform duration-200 hover:-translate-y-0.5">
+                        <FaLinkedinIn className="h-5 w-5" aria-hidden="true" />
                       </a>
-                      <a href={siteConfig.founderLinks.github} target="_blank" rel="noreferrer" aria-label="Muhammad Usama on GitHub" className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-white text-slate-950 transition-transform duration-200 hover:-translate-y-0.5">
-                        <FaGithub className="h-4 w-4" aria-hidden="true" />
+                      <a href={siteConfig.founderLinks.github} target="_blank" rel="noreferrer" aria-label="Muhammad Usama on GitHub" className="inline-flex h-9 w-9 items-center justify-center rounded-sm bg-white text-slate-950 transition-transform duration-200 hover:-translate-y-0.5">
+                        <FaGithub className="h-5 w-5" aria-hidden="true" />
                       </a>
                     </div>
                   </div>
                 </div>
 
-                <p className="mt-6 text-sm leading-7 text-white/72">
-                  Muhammad Usama, also known as UsamaMatrix, is a cybersecurity engineer and founder of UZYNTRA focused on API security, adversary simulation, penetration testing, offensive tooling, and high-performance Rust-based security systems.
+                <p className="mt-6 text-sm leading-7 text-white/78">
+                  Muhammad Usama is the founder of UZYNTRA, an API Security Engineer, Rust Backend Developer, Cyber Security Consultant, and Red Team Specialist focused on practical offensive security, adversary simulation, and high-performance security systems.
                 </p>
 
                 <div className="mt-5 flex flex-wrap gap-2">
                   {instructorSkills.map((skill) => (
-                    <span key={skill} className="rounded-full border border-red-500/25 bg-red-500/10 px-3 py-1 text-[11px] font-bold text-red-200">
+                    <span key={skill} className="rounded-sm border border-white/16 bg-white/[0.06] px-3 py-1 text-[11px] font-bold text-white/82">
                       {skill}
                     </span>
                   ))}
                 </div>
 
-                <p className="mt-5 text-xs leading-6 text-white/55">
+                <p className="mt-5 text-xs leading-6 text-white/58">
                   Certifications include CEH v11 and v12, OSCP, ISO/IEC 27001 Lead Auditor, and Certified Chief Information Security Officer (C|CISO).
                 </p>
               </div>
@@ -456,45 +495,7 @@ export default function OffensiveAIPage() {
           </div>
         </div>
       </section>
-      <section id="curriculum" className="offensive-ai-modules bg-[#111112] py-14 sm:py-18">
-        <div className="container-shell">
-          <div className="mb-8 max-w-3xl">
-            <p className="text-xs font-black uppercase tracking-[0.18em] text-red-500">Certification Modules</p>
-            <h2 className="mt-3 text-3xl font-black text-white sm:text-4xl">10 domains, {moduleCount} in-depth modules</h2>
-            <p className="mt-4 text-sm leading-7 text-white/62">
-              Click any domain to expand it. Each track combines practical labs, real-world case studies, and guided use of GPT-driven agents.
-            </p>
-          </div>
-
-          <div className="offensive-ai-domain-list mx-auto max-w-5xl rounded-xl border border-white/15 bg-[#181819] p-4 sm:p-8">
-            {domains.map(({ number, title, modules, icon: Icon }) => (
-              <details key={number} className="offensive-ai-domain">
-                <summary className="offensive-ai-domain-summary">
-                  <span className="flex min-w-0 items-center gap-3">
-                    <span className="offensive-ai-domain-icon">
-                      <Icon className="h-5 w-5" aria-hidden="true" />
-                    </span>
-                    <span className="min-w-0 text-balance text-base font-black sm:text-xl">
-                      Domain{number} : {title}
-                    </span>
-                  </span>
-                  <ChevronDown className="offensive-ai-domain-chevron h-5 w-5 shrink-0 text-red-500" aria-hidden="true" />
-                </summary>
-                <div className="offensive-ai-domain-body">
-                  {modules.map((module) => (
-                    <div key={module.title} className="offensive-ai-module-row">
-                      <h3>{module.title}</h3>
-                      <p>{module.body}</p>
-                    </div>
-                  ))}
-                </div>
-              </details>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="offensive-ai-light-section bg-white py-14 text-slate-950 sm:py-18">
+      <section id="eligibility" className="offensive-ai-light-section bg-white py-14 text-slate-950 sm:py-18">
         <div className="container-shell">
           <div className="grid gap-5 lg:grid-cols-2">
             <div className="rounded-2xl border border-slate-200 bg-slate-50 p-7">
@@ -524,7 +525,7 @@ export default function OffensiveAIPage() {
             </div>
           </div>
 
-          <div className="mt-8 rounded-2xl bg-gradient-to-br from-red-800 via-red-700 to-red-600 p-7 text-white sm:p-10">
+          <div id="course-pricing" className="mt-8 scroll-mt-28 rounded-2xl bg-gradient-to-br from-red-800 via-red-700 to-red-600 p-7 text-white sm:p-10">
             <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
               <div>
                 <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/75">Build Offensive AI Skill</p>

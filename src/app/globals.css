@@ -4405,3 +4405,26 @@ body:has(.offensive-ai-page) .offensive-ai-course-tabs .offensive-ai-course-tab[
 .offensive-ai-page .offensive-ai-course-tabs .offensive-ai-course-tab:not(.active):not([aria-current="true"]):hover {
   color: #ef1f24 !important;
 }
+
+/* Offensive AI module intro paragraph color cleanup */
+.offensive-ai-page .offensive-ai-module-intro,
+.offensive-ai-page .offensive-ai-module-intro[data-course-theme="light"],
+html:not([data-theme="dark"]) .offensive-ai-page .offensive-ai-module-intro {
+  background: transparent !important;
+  box-decoration-break: clone;
+  box-shadow: none !important;
+  color: #334155 !important;
+  -webkit-box-decoration-break: clone;
+}
+
+.offensive-ai-page .offensive-ai-module-intro::selection,
+.offensive-ai-page .offensive-ai-module-intro *::selection {
+  background: transparent !important;
+  color: inherit !important;
+}
+
+.offensive-ai-page .offensive-ai-module-intro[data-course-theme="dark"],
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-module-intro {
+  background: transparent !important;
+  color: rgba(255, 255, 255, 0.86) !important;
+}

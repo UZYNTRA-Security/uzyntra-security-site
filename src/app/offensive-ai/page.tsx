@@ -242,7 +242,7 @@ export default function OffensiveAIPage() {
                 UZYNTRA Exclusive Certification
               </p>
               <h1 className="offensive-ai-hero-title mt-8 max-w-[760px] text-4xl font-black leading-tight text-white sm:text-5xl lg:text-6xl">
-                <span className="offensive-ai-typewriter">Offensive AI</span>
+                <span>Offensive </span><span className="offensive-ai-typewriter">AI</span>
                 <span className="block">Certified Web Pentester</span>
               </h1>
               <p className="mt-7 max-w-[760px] text-base leading-8 text-white/86 sm:text-lg">

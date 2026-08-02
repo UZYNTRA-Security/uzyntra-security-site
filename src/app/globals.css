@@ -3161,12 +3161,13 @@ html[data-theme="dark"] .nav-mega-panel a:hover .nav-mega-copy {
 .offensive-ai-typewriter {
   position: relative;
   display: inline-block;
-  width: max-content;
-  max-width: 100%;
+  width: 0;
+  max-width: 2ch;
   overflow: hidden;
   white-space: nowrap;
   border-right: 4px solid rgb(239, 31, 36);
-  animation: offensiveAiTyping 1.55s steps(12, end) 0.15s both, offensiveAiCursorBlink 0.78s step-end infinite;
+  color: rgb(239, 31, 36);
+  animation: offensiveAiTyping 2.2s steps(2, end) infinite, offensiveAiCursorBlink 0.78s step-end infinite;
 }
 
 .offensive-ai-domain {
@@ -3255,8 +3256,9 @@ html[data-theme="dark"] .nav-mega-panel a:hover .nav-mega-copy {
 }
 
 @keyframes offensiveAiTyping {
-  from { width: 0; }
-  to { width: 12ch; }
+  0%, 18% { width: 0; }
+  42%, 72% { width: 2ch; }
+  100% { width: 0; }
 }
 
 @keyframes offensiveAiCursorBlink {
@@ -3266,11 +3268,9 @@ html[data-theme="dark"] .nav-mega-panel a:hover .nav-mega-copy {
 
 @media (max-width: 640px) {
   .offensive-ai-typewriter {
-    white-space: normal;
-    width: auto;
-    animation: offensiveAiCursorBlink 0.78s step-end infinite;
+    max-width: 2ch;
+    white-space: nowrap;
   }
-
   .offensive-ai-domain-summary {
     align-items: flex-start;
     min-height: 68px;

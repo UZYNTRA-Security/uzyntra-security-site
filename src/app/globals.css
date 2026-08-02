@@ -3959,3 +3959,127 @@ html[data-theme="light"] .offensive-ai-instructor-card p span,
 html[data-theme="light"] .offensive-ai-instructor-card .rounded-sm:not(a) {
   color: #475569 !important;
 }
+/* Offensive AI active tabs, dark cards, and icon contrast fixes */
+.offensive-ai-course-tab {
+  display: inline-flex;
+  height: 2.75rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  padding-inline: 1.75rem;
+  font-size: 0.875rem;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.82);
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.offensive-ai-course-tab:hover {
+  transform: translateY(-1px);
+}
+
+.offensive-ai-course-tab.active,
+.offensive-ai-course-tab[aria-current="true"] {
+  background: #ef1f24 !important;
+  color: #ffffff !important;
+  box-shadow: 0 14px 34px rgba(239, 31, 36, 0.24) !important;
+}
+
+html[data-theme="light"] .offensive-ai-course-tab:not(.active):not([aria-current="true"]) {
+  color: #0f172a !important;
+}
+
+html[data-theme="dark"] .offensive-ai-course-tab:not(.active):not([aria-current="true"]) {
+  color: rgba(255, 255, 255, 0.82) !important;
+}
+
+html[data-theme="light"] .offensive-ai-course-tab:not(.active):not([aria-current="true"]):hover {
+  background: #fef2f2 !important;
+  color: #b91c1c !important;
+}
+
+html[data-theme="dark"] .offensive-ai-course-tab:not(.active):not([aria-current="true"]):hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important;
+}
+
+html[data-theme="light"] .offensive-ai-page .offensive-ai-hero,
+html[data-theme="light"] .offensive-ai-page .offensive-ai-hero .container-shell {
+  color-scheme: dark;
+  background: #080809 !important;
+  color: #ffffff !important;
+}
+
+html[data-theme="light"] .offensive-ai-page .offensive-ai-hero h1,
+html[data-theme="light"] .offensive-ai-page .offensive-ai-hero h2,
+html[data-theme="light"] .offensive-ai-page .offensive-ai-hero p,
+html[data-theme="light"] .offensive-ai-page .offensive-ai-hero span:not(.offensive-ai-typewriter),
+html[data-theme="light"] .offensive-ai-page .offensive-ai-hero svg {
+  color: #ffffff !important;
+}
+
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-light-section,
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-light-section .container-shell {
+  background: #050505 !important;
+  color: #ffffff !important;
+}
+
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-light-section .rounded-2xl,
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-light-section .bg-slate-50,
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-light-section .bg-white:not(a) {
+  background: #19191a !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+}
+
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-light-section h2,
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-light-section h3,
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-light-section .text-slate-950,
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-light-section .text-slate-900 {
+  color: #ffffff !important;
+}
+
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-light-section p,
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-light-section span:not(.text-white):not(.line-through),
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-light-section .text-slate-700,
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-light-section .text-slate-600,
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-light-section .text-slate-500 {
+  color: rgba(255, 255, 255, 0.74) !important;
+}
+
+.offensive-ai-instructor-card .offensive-ai-social-link,
+html[data-theme="dark"] .offensive-ai-instructor-card .offensive-ai-social-link,
+html[data-theme="light"] .offensive-ai-instructor-card .offensive-ai-social-link {
+  background: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  color: #0f172a !important;
+}
+
+.offensive-ai-instructor-card .offensive-ai-linkedin-link svg,
+html[data-theme="dark"] .offensive-ai-instructor-card .offensive-ai-linkedin-link svg,
+html[data-theme="light"] .offensive-ai-instructor-card .offensive-ai-linkedin-link svg {
+  color: #0a66c2 !important;
+  fill: currentColor;
+}
+
+.offensive-ai-instructor-card .offensive-ai-github-link svg,
+html[data-theme="dark"] .offensive-ai-instructor-card .offensive-ai-github-link svg,
+html[data-theme="light"] .offensive-ai-instructor-card .offensive-ai-github-link svg {
+  color: #0f172a !important;
+  fill: currentColor;
+}
+
+.offensive-ai-instructor-card .offensive-ai-social-link:hover,
+html[data-theme="dark"] .offensive-ai-instructor-card .offensive-ai-social-link:hover,
+html[data-theme="light"] .offensive-ai-instructor-card .offensive-ai-social-link:hover {
+  border-color: #ef1f24 !important;
+  color: #ef1f24 !important;
+}
+
+.offensive-ai-instructor-card .offensive-ai-social-link:hover svg,
+html[data-theme="dark"] .offensive-ai-instructor-card .offensive-ai-social-link:hover svg,
+html[data-theme="light"] .offensive-ai-instructor-card .offensive-ai-social-link:hover svg {
+  color: #ef1f24 !important;
+}

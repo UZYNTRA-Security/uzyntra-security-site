@@ -34,6 +34,7 @@ import { FaGithub, FaLinkedinIn } from "react-icons/fa6";
 
 import { siteConfig } from "@/config/site";
 import { OffensiveAIModuleIntro } from "@/components/offensive-ai/module-intro";
+import { OffensiveAICourseTabs } from "@/components/offensive-ai/course-tabs";
 
 export const metadata: Metadata = {
   title: "Offensive AI Certified Web Pentester | UZYNTRA Security",
@@ -380,21 +381,7 @@ export default function OffensiveAIPage() {
         </div>
       </section>
 
-      <nav className="offensive-ai-course-tabs sticky top-[56px] z-30 border-y border-white/15 bg-[#171718]/95 backdrop-blur" aria-label="Offensive AI course sections">
-        <div className="container-shell">
-          <div className="flex min-h-[72px] items-center gap-4 overflow-x-auto py-3">
-            <a href="#curriculum" className="inline-flex h-11 shrink-0 items-center justify-center rounded-lg bg-red-600 px-7 text-sm font-black text-white shadow-[0_14px_34px_rgba(239,68,68,0.24)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-white hover:text-red-600">
-              Syllabus
-            </a>
-            <a href="#course-pricing" className="inline-flex h-11 shrink-0 items-center justify-center rounded-lg px-7 text-sm font-black text-white/82 transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/10 hover:text-white">
-              Course Pricing
-            </a>
-            <a href="#eligibility" className="inline-flex h-11 shrink-0 items-center justify-center rounded-lg px-7 text-sm font-black text-white/82 transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/10 hover:text-white">
-              Eligibility & Requirements
-            </a>
-          </div>
-        </div>
-      </nav>
+      <OffensiveAICourseTabs />
 
       <section id="curriculum" className="offensive-ai-modules bg-[#050505] py-14 sm:py-18">
         <div className="container-shell">
@@ -464,10 +451,10 @@ export default function OffensiveAIPage() {
                     <h3 className="text-lg font-black text-white">Muhammad Usama</h3>
                     <p className="mt-1 text-sm font-semibold text-white/80">Founder @ UZYNTRA</p>
                     <div className="mt-4 flex gap-2">
-                      <a href="https://www.linkedin.com/in/usamamatrix" target="_blank" rel="noreferrer" aria-label="Muhammad Usama on LinkedIn" className="inline-flex h-9 w-9 items-center justify-center rounded-sm bg-white text-[#0a66c2] transition-transform duration-200 hover:-translate-y-0.5">
+                      <a href="https://www.linkedin.com/in/usamamatrix" target="_blank" rel="noreferrer" aria-label="Muhammad Usama on LinkedIn" className="offensive-ai-social-link offensive-ai-linkedin-link inline-flex h-9 w-9 items-center justify-center rounded-sm bg-white text-[#0a66c2] transition-transform duration-200 hover:-translate-y-0.5">
                         <FaLinkedinIn className="h-5 w-5" aria-hidden="true" />
                       </a>
-                      <a href={siteConfig.founderLinks.github} target="_blank" rel="noreferrer" aria-label="Muhammad Usama on GitHub" className="inline-flex h-9 w-9 items-center justify-center rounded-sm bg-white text-slate-950 transition-transform duration-200 hover:-translate-y-0.5">
+                      <a href={siteConfig.founderLinks.github} target="_blank" rel="noreferrer" aria-label="Muhammad Usama on GitHub" className="offensive-ai-social-link offensive-ai-github-link inline-flex h-9 w-9 items-center justify-center rounded-sm bg-white text-slate-950 transition-transform duration-200 hover:-translate-y-0.5">
                         <FaGithub className="h-5 w-5" aria-hidden="true" />
                       </a>
                     </div>

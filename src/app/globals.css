@@ -4182,3 +4182,135 @@ html[data-theme="dark"] .offensive-ai-page .offensive-ai-module-intro {
 .offensive-ai-course-tabs + .offensive-ai-modules {
   padding-top: 1.5rem !important;
 }
+
+/* Offensive AI final theme normalization */
+.offensive-ai-page .offensive-ai-course-tabs[data-course-theme="light"],
+html:not([data-theme="dark"]) .offensive-ai-page .offensive-ai-course-tabs {
+  background: rgba(255, 255, 255, 0.98) !important;
+  border-color: rgba(226, 232, 240, 0.95) !important;
+  color: #0f172a !important;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08) !important;
+}
+
+.offensive-ai-page .offensive-ai-course-tabs[data-course-theme="dark"],
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-course-tabs {
+  background: rgba(23, 23, 24, 0.96) !important;
+  border-color: rgba(255, 255, 255, 0.16) !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+}
+
+.offensive-ai-page .offensive-ai-course-tabs[data-course-theme="light"] .offensive-ai-course-tab:not(.active):not([aria-current="true"]),
+html:not([data-theme="dark"]) .offensive-ai-page .offensive-ai-course-tab:not(.active):not([aria-current="true"]) {
+  background: transparent !important;
+  color: #0f172a !important;
+}
+
+.offensive-ai-page .offensive-ai-course-tabs[data-course-theme="dark"] .offensive-ai-course-tab:not(.active):not([aria-current="true"]),
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-course-tab:not(.active):not([aria-current="true"]) {
+  background: transparent !important;
+  color: rgba(255, 255, 255, 0.82) !important;
+}
+
+.offensive-ai-page .offensive-ai-course-tabs .offensive-ai-course-tab.active,
+.offensive-ai-page .offensive-ai-course-tabs .offensive-ai-course-tab[aria-current="true"] {
+  background: #ef1f24 !important;
+  color: #ffffff !important;
+  box-shadow: 0 14px 34px rgba(239, 31, 36, 0.24) !important;
+}
+
+.offensive-ai-page .offensive-ai-course-tabs .offensive-ai-course-tab.active *,
+.offensive-ai-page .offensive-ai-course-tabs .offensive-ai-course-tab[aria-current="true"] * {
+  color: #ffffff !important;
+}
+
+html:not([data-theme="dark"]) .offensive-ai-page .offensive-ai-modules,
+html:not([data-theme="dark"]) .offensive-ai-page .offensive-ai-modules .container-shell,
+html[data-theme="light"] .offensive-ai-page .offensive-ai-modules,
+html[data-theme="light"] .offensive-ai-page .offensive-ai-modules .container-shell {
+  background: #ffffff !important;
+  color: #0f172a !important;
+}
+
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-modules,
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-modules .container-shell {
+  background: #050505 !important;
+  color: #ffffff !important;
+}
+
+html:not([data-theme="dark"]) .offensive-ai-page .offensive-ai-modules h2,
+html:not([data-theme="dark"]) .offensive-ai-page .offensive-ai-modules h3,
+html:not([data-theme="dark"]) .offensive-ai-page .offensive-ai-modules li,
+html:not([data-theme="dark"]) .offensive-ai-page .offensive-ai-modules .text-white {
+  color: #0f172a !important;
+}
+
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-modules h2,
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-modules h3,
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-modules .text-white {
+  color: #ffffff !important;
+}
+
+.offensive-ai-page .offensive-ai-module-intro[data-course-theme="light"],
+html:not([data-theme="dark"]) .offensive-ai-page .offensive-ai-module-intro {
+  display: block !important;
+  color: #334155 !important;
+  min-height: auto !important;
+}
+
+.offensive-ai-page .offensive-ai-module-intro[data-course-theme="dark"],
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-module-intro {
+  display: block !important;
+  color: rgba(255, 255, 255, 0.86) !important;
+  min-height: auto !important;
+}
+
+.offensive-ai-page .offensive-ai-module-intro .offensive-ai-read-toggle {
+  color: #ef1f24 !important;
+}
+
+html:not([data-theme="dark"]) .offensive-ai-page .offensive-ai-feature-strip,
+html:not([data-theme="dark"]) .offensive-ai-page .offensive-ai-instructor-card,
+html:not([data-theme="dark"]) .offensive-ai-page .offensive-ai-domain-list {
+  background: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  color: #0f172a !important;
+  box-shadow: 0 18px 42px rgba(15, 23, 42, 0.06) !important;
+}
+
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-feature-strip,
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-instructor-card,
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-domain-list {
+  background: #19191a !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+}
+
+html:not([data-theme="dark"]) .offensive-ai-page .offensive-ai-domain-summary,
+html:not([data-theme="dark"]) .offensive-ai-page .offensive-ai-domain[open] .offensive-ai-domain-summary {
+  background: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-domain-summary,
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-domain[open] .offensive-ai-domain-summary {
+  background: #19191a !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+  color: #ffffff !important;
+}
+
+html:not([data-theme="dark"]) .offensive-ai-page .offensive-ai-domain-body {
+  background: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-domain-body {
+  background: #111112 !important;
+  color: #ffffff !important;
+}
+
+.offensive-ai-course-tabs + .offensive-ai-modules {
+  padding-top: 1.25rem !important;
+}

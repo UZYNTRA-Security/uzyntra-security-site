@@ -238,14 +238,14 @@ export default function OffensiveAIPage() {
         <div className="container-shell relative z-10 flex min-h-[calc(100vh-56px)] flex-col justify-center py-16 sm:py-20">
           <div className="grid gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(360px,0.74fr)] lg:items-center">
             <div className="max-w-3xl">
-              <p className="inline-flex border-b-2 border-red-600 pb-2 text-xs font-black uppercase tracking-[0.18em] text-red-500">
+              <p className="offensive-ai-kicker inline-flex border-b-2 border-red-600 pb-2 text-xs font-black uppercase tracking-[0.18em]">
                 UZYNTRA Exclusive Certification
               </p>
               <h1 className="offensive-ai-hero-title mt-8 max-w-[760px] text-4xl font-black leading-tight text-white sm:text-5xl lg:text-6xl">
                 <span>Offensive </span><span className="offensive-ai-typewriter">AI</span>
                 <span className="block">Certified Web Pentester</span>
               </h1>
-              <p className="mt-7 max-w-[760px] text-base leading-8 text-white/86 sm:text-lg">
+              <p className="offensive-ai-description mt-7 max-w-[760px] text-base leading-8 sm:text-lg">
                 Gain mastery in offensive cybersecurity by combining proven web pentesting practices with cutting-edge AI automation. Develop the skills to identify, exploit, and remediate vulnerabilities across modern digital infrastructures.
               </p>
 
@@ -325,7 +325,7 @@ export default function OffensiveAIPage() {
         </div>
       </section>
 
-      <section className="bg-white py-14 text-slate-950 sm:py-18">
+      <section className="offensive-ai-light-section bg-white py-14 text-slate-950 sm:py-18">
         <div className="container-shell">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {stats.map((item) => (
@@ -385,7 +385,7 @@ export default function OffensiveAIPage() {
         </div>
       </section>
 
-      <section className="bg-white py-14 text-slate-950 sm:py-18">
+      <section className="offensive-ai-light-section bg-white py-14 text-slate-950 sm:py-18">
         <div className="container-shell">
           <div className="grid gap-5 lg:grid-cols-2">
             <div className="rounded-2xl border border-slate-200 bg-slate-50 p-7">

@@ -3158,11 +3158,76 @@ html[data-theme="dark"] .nav-mega-panel a:hover .nav-mega-copy {
 }
 
 /* Offensive AI exclusive certification page */
+.offensive-ai-page {
+  color-scheme: dark;
+  background: #0b0b0c !important;
+}
+
+.offensive-ai-hero,
+.offensive-ai-hero .container-shell {
+  color: #ffffff !important;
+}
+
+.offensive-ai-hero .offensive-ai-kicker,
+.offensive-ai-hero .offensive-ai-hero-title,
+.offensive-ai-hero .offensive-ai-hero-title span:not(.offensive-ai-typewriter) {
+  color: #ffffff !important;
+}
+
+.offensive-ai-hero .offensive-ai-description {
+  color: rgba(255, 255, 255, 0.88) !important;
+}
+
+.offensive-ai-hero .offensive-ai-typewriter {
+  color: rgb(239, 31, 36) !important;
+}
+
+.offensive-ai-light-section {
+  color-scheme: light;
+  background: #ffffff !important;
+  color: #0f172a !important;
+}
+
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-light-section,
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-light-section .bg-white,
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-light-section .bg-slate-50 {
+  background-color: #ffffff !important;
+}
+
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-light-section .text-slate-950,
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-light-section .text-slate-900,
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-light-section h2,
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-light-section h3,
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-light-section p {
+  color: #0f172a !important;
+}
+
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-light-section .text-slate-700,
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-light-section .text-slate-600,
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-light-section .text-slate-500,
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-light-section span {
+  color: #475569 !important;
+}
+
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-light-section .text-red-600,
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-light-section .text-red-700,
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-light-section svg.text-red-600 {
+  color: rgb(220, 38, 38) !important;
+}
+
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-light-section .border-slate-200 {
+  border-color: #e2e8f0 !important;
+}
+
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-light-section .bg-red-50,
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-light-section .bg-red-50\/60 {
+  background-color: #fef2f2 !important;
+}
 .offensive-ai-typewriter {
   position: relative;
   display: inline-block;
   width: 0;
-  max-width: 2ch;
+  max-width: 1.45em;
   overflow: hidden;
   white-space: nowrap;
   border-right: 4px solid rgb(239, 31, 36);
@@ -3257,7 +3322,7 @@ html[data-theme="dark"] .nav-mega-panel a:hover .nav-mega-copy {
 
 @keyframes offensiveAiTyping {
   0%, 18% { width: 0; }
-  42%, 72% { width: 2ch; }
+  42%, 72% { width: 1.45em; }
   100% { width: 0; }
 }
 
@@ -3268,7 +3333,7 @@ html[data-theme="dark"] .nav-mega-panel a:hover .nav-mega-copy {
 
 @media (max-width: 640px) {
   .offensive-ai-typewriter {
-    max-width: 2ch;
+    max-width: 1.45em;
     white-space: nowrap;
   }
   .offensive-ai-domain-summary {

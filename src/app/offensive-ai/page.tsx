@@ -489,7 +489,7 @@ export default function OffensiveAIPage() {
                 <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/75">Build Offensive AI Skill</p>
                 <h2 className="mt-3 text-2xl font-black text-white sm:text-3xl">Ready to enroll?</h2>
                 <p className="mt-3 max-w-[680px] text-sm leading-7 text-white/82">
-                  Total program fee: <span className="text-white/55 line-through">$799 USD</span> <strong className="text-lg font-black text-white">$400 USD</strong>. Training includes course material, hands-on labs, capstone project, and certification assessment.
+                  Total program fee: <span className="offensive-ai-old-price line-through">$799 USD</span> <strong className="text-lg font-black text-white">$400 USD</strong>. Training includes course material, hands-on labs, capstone project, and certification assessment.
                 </p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row lg:shrink-0">

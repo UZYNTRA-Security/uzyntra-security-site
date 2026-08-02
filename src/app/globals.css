@@ -4760,3 +4760,20 @@ html:not([data-theme="dark"]) .offensive-ai-page .offensive-ai-hero .offensive-a
   color: #ffffff !important;
   stroke: #ffffff !important;
 }
+
+/* Offensive AI pricing old price stays visible in both themes. */
+.offensive-ai-page #course-pricing .offensive-ai-old-price {
+  display: inline-block !important;
+  margin-right: 0.25rem !important;
+  opacity: 1 !important;
+  text-decoration-color: currentColor !important;
+}
+
+html[data-theme="light"] .offensive-ai-page #course-pricing .offensive-ai-old-price,
+html:not([data-theme="dark"]) .offensive-ai-page #course-pricing .offensive-ai-old-price {
+  color: #64748b !important;
+}
+
+html[data-theme="dark"] .offensive-ai-page #course-pricing .offensive-ai-old-price {
+  color: rgba(255, 255, 255, 0.58) !important;
+}

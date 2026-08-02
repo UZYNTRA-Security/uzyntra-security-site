@@ -4545,3 +4545,218 @@ html[data-theme="dark"] .offensive-ai-page .offensive-ai-module-intro[data-cours
     width: 100% !important;
   }
 }
+
+/* Offensive AI hero is intentionally identical in light and dark themes. */
+.offensive-ai-page .offensive-ai-hero,
+html[data-theme="light"] .offensive-ai-page .offensive-ai-hero,
+html:not([data-theme="dark"]) .offensive-ai-page .offensive-ai-hero,
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-hero {
+  background: #080809 !important;
+  color: #ffffff !important;
+  color-scheme: dark !important;
+}
+
+.offensive-ai-page .offensive-ai-hero .container-shell,
+html[data-theme="light"] .offensive-ai-page .offensive-ai-hero .container-shell,
+html:not([data-theme="dark"]) .offensive-ai-page .offensive-ai-hero .container-shell,
+html[data-theme="dark"] .offensive-ai-page .offensive-ai-hero .container-shell {
+  background: transparent !important;
+  color: #ffffff !important;
+}
+
+.offensive-ai-page .offensive-ai-hero-media {
+  filter: grayscale(0.2) !important;
+  opacity: 0.35 !important;
+}
+
+.offensive-ai-page .offensive-ai-hero-red-overlay {
+  background: linear-gradient(90deg, #000000 0%, rgba(0, 0, 0, 0.92) 32%, rgba(22, 5, 7, 0.78) 68%, rgba(127, 29, 29, 0.58) 100%) !important;
+  opacity: 1 !important;
+}
+
+.offensive-ai-page .offensive-ai-hero-grid-overlay {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px) !important;
+  background-size: 48px 48px !important;
+  opacity: 0.45 !important;
+}
+
+.offensive-ai-page .offensive-ai-hero-bottom-fade {
+  background: linear-gradient(to top, #0b0b0c, transparent) !important;
+}
+
+.offensive-ai-page .offensive-ai-hero h1,
+.offensive-ai-page .offensive-ai-hero h2,
+.offensive-ai-page .offensive-ai-hero h3,
+.offensive-ai-page .offensive-ai-hero p,
+.offensive-ai-page .offensive-ai-hero span:not(.offensive-ai-typewriter),
+.offensive-ai-page .offensive-ai-hero strong,
+.offensive-ai-page .offensive-ai-hero svg {
+  color: #ffffff !important;
+}
+
+.offensive-ai-page .offensive-ai-hero .offensive-ai-kicker {
+  border-color: #ef1f24 !important;
+  color: #ffffff !important;
+}
+
+.offensive-ai-page .offensive-ai-hero .offensive-ai-typewriter {
+  color: #ef1f24 !important;
+}
+
+.offensive-ai-page .offensive-ai-hero .offensive-ai-description {
+  color: rgba(255, 255, 255, 0.88) !important;
+}
+
+.offensive-ai-page .offensive-ai-hero-lab-frame {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 0 24px 90px rgba(0, 0, 0, 0.55) !important;
+}
+
+.offensive-ai-page .offensive-ai-hero-lab-card {
+  background: #111114 !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.offensive-ai-page .offensive-ai-hero-lab-card > div:first-child {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.offensive-ai-page .offensive-ai-hero-lab-card p,
+.offensive-ai-page .offensive-ai-hero-lab-card span:not(.offensive-ai-typewriter) {
+  color: rgba(255, 255, 255, 0.74) !important;
+}
+
+.offensive-ai-page .offensive-ai-hero-lab-card .text-red-400,
+.offensive-ai-page .offensive-ai-hero-lab-card p .text-red-400 {
+  color: #f87171 !important;
+}
+
+.offensive-ai-page .offensive-ai-hero-stat-card {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.offensive-ai-page .offensive-ai-hero-stat-card strong {
+  color: #ffffff !important;
+}
+
+.offensive-ai-page .offensive-ai-hero-primary {
+  background: #ef1f24 !important;
+  border-color: #ef1f24 !important;
+  color: #ffffff !important;
+  box-shadow: 0 18px 38px rgba(239, 31, 36, 0.32) !important;
+}
+
+.offensive-ai-page .offensive-ai-hero-primary svg {
+  color: #ffffff !important;
+}
+
+.offensive-ai-page .offensive-ai-hero-primary:hover {
+  background: #ffffff !important;
+  border-color: #ef1f24 !important;
+  color: #ef1f24 !important;
+}
+
+.offensive-ai-page .offensive-ai-hero-primary:hover svg {
+  color: #ef1f24 !important;
+}
+
+.offensive-ai-page .offensive-ai-hero-secondary {
+  background: #ffffff !important;
+  border-color: #ef1f24 !important;
+  color: #ef1f24 !important;
+  box-shadow: 0 18px 38px rgba(239, 31, 36, 0.14) !important;
+}
+
+.offensive-ai-page .offensive-ai-hero-secondary svg {
+  color: #ef1f24 !important;
+}
+
+.offensive-ai-page .offensive-ai-hero-secondary:hover {
+  background: #ef1f24 !important;
+  border-color: #ef1f24 !important;
+  color: #ffffff !important;
+}
+
+.offensive-ai-page .offensive-ai-hero-secondary:hover svg {
+  color: #ffffff !important;
+}
+.offensive-ai-page .offensive-ai-hero-stat-card > p:first-child,
+.offensive-ai-page .offensive-ai-hero-stat-card .line-through {
+  color: rgba(255, 255, 255, 0.45) !important;
+}
+/* Offensive AI light-mode hero parity: high-specificity fixes for card details and secondary CTA icon. */
+html[data-theme="light"] .offensive-ai-page .offensive-ai-hero .offensive-ai-hero-lab-frame,
+html:not([data-theme="dark"]) .offensive-ai-page .offensive-ai-hero .offensive-ai-hero-lab-frame {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 0 24px 90px rgba(0, 0, 0, 0.55) !important;
+}
+
+html[data-theme="light"] .offensive-ai-page .offensive-ai-hero .offensive-ai-hero-lab-card,
+html:not([data-theme="dark"]) .offensive-ai-page .offensive-ai-hero .offensive-ai-hero-lab-card {
+  background: #111114 !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important;
+}
+
+html[data-theme="light"] .offensive-ai-page .offensive-ai-hero .offensive-ai-hero-lab-card h2,
+html[data-theme="light"] .offensive-ai-page .offensive-ai-hero .offensive-ai-hero-lab-card strong,
+html:not([data-theme="dark"]) .offensive-ai-page .offensive-ai-hero .offensive-ai-hero-lab-card h2,
+html:not([data-theme="dark"]) .offensive-ai-page .offensive-ai-hero .offensive-ai-hero-lab-card strong {
+  color: #ffffff !important;
+}
+
+html[data-theme="light"] .offensive-ai-page .offensive-ai-hero .offensive-ai-hero-lab-card p,
+html[data-theme="light"] .offensive-ai-page .offensive-ai-hero .offensive-ai-hero-lab-card span:not(.offensive-ai-typewriter),
+html:not([data-theme="dark"]) .offensive-ai-page .offensive-ai-hero .offensive-ai-hero-lab-card p,
+html:not([data-theme="dark"]) .offensive-ai-page .offensive-ai-hero .offensive-ai-hero-lab-card span:not(.offensive-ai-typewriter) {
+  color: rgba(255, 255, 255, 0.74) !important;
+}
+
+html[data-theme="light"] .offensive-ai-page .offensive-ai-hero .offensive-ai-hero-lab-card .text-red-400,
+html[data-theme="light"] .offensive-ai-page .offensive-ai-hero .offensive-ai-hero-lab-card p .text-red-400,
+html:not([data-theme="dark"]) .offensive-ai-page .offensive-ai-hero .offensive-ai-hero-lab-card .text-red-400,
+html:not([data-theme="dark"]) .offensive-ai-page .offensive-ai-hero .offensive-ai-hero-lab-card p .text-red-400 {
+  color: #f87171 !important;
+}
+
+html[data-theme="light"] .offensive-ai-page .offensive-ai-hero .offensive-ai-hero-stat-card,
+html:not([data-theme="dark"]) .offensive-ai-page .offensive-ai-hero .offensive-ai-hero-stat-card {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+html[data-theme="light"] .offensive-ai-page .offensive-ai-hero .offensive-ai-hero-stat-card > p:first-child,
+html[data-theme="light"] .offensive-ai-page .offensive-ai-hero .offensive-ai-hero-stat-card .line-through,
+html:not([data-theme="dark"]) .offensive-ai-page .offensive-ai-hero .offensive-ai-hero-stat-card > p:first-child,
+html:not([data-theme="dark"]) .offensive-ai-page .offensive-ai-hero .offensive-ai-hero-stat-card .line-through {
+  color: rgba(255, 255, 255, 0.45) !important;
+}
+
+html[data-theme="light"] .offensive-ai-page .offensive-ai-hero .offensive-ai-hero-secondary,
+html:not([data-theme="dark"]) .offensive-ai-page .offensive-ai-hero .offensive-ai-hero-secondary {
+  background: #ffffff !important;
+  border-color: #ef1f24 !important;
+  color: #ef1f24 !important;
+}
+
+html[data-theme="light"] .offensive-ai-page .offensive-ai-hero .offensive-ai-hero-secondary svg,
+html:not([data-theme="dark"]) .offensive-ai-page .offensive-ai-hero .offensive-ai-hero-secondary svg {
+  color: #ef1f24 !important;
+  stroke: #ef1f24 !important;
+}
+
+html[data-theme="light"] .offensive-ai-page .offensive-ai-hero .offensive-ai-hero-secondary:hover,
+html:not([data-theme="dark"]) .offensive-ai-page .offensive-ai-hero .offensive-ai-hero-secondary:hover {
+  background: #ef1f24 !important;
+  border-color: #ef1f24 !important;
+  color: #ffffff !important;
+}
+
+html[data-theme="light"] .offensive-ai-page .offensive-ai-hero .offensive-ai-hero-secondary:hover svg,
+html:not([data-theme="dark"]) .offensive-ai-page .offensive-ai-hero .offensive-ai-hero-secondary:hover svg {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+}

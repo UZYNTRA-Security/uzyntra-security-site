@@ -251,12 +251,12 @@ export default function OffensiveAIPage() {
           alt="Offensive AI web pentesting lab"
           fill
           priority
-          className="object-cover opacity-35 grayscale-[0.2]"
+          className="offensive-ai-hero-media object-cover opacity-35 grayscale-[0.2]"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,#000_0%,rgba(0,0,0,0.92)_32%,rgba(22,5,7,0.78)_68%,rgba(127,29,29,0.58)_100%)]" aria-hidden="true" />
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:48px_48px] opacity-45" aria-hidden="true" />
-        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#0b0b0c] to-transparent" aria-hidden="true" />
+        <div className="offensive-ai-hero-red-overlay absolute inset-0 bg-[linear-gradient(90deg,#000_0%,rgba(0,0,0,0.92)_32%,rgba(22,5,7,0.78)_68%,rgba(127,29,29,0.58)_100%)]" aria-hidden="true" />
+        <div className="offensive-ai-hero-grid-overlay absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:48px_48px] opacity-45" aria-hidden="true" />
+        <div className="offensive-ai-hero-bottom-fade absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#0b0b0c] to-transparent" aria-hidden="true" />
 
         <div className="container-shell relative z-10 flex min-h-[calc(100vh-56px)] flex-col justify-center py-16 sm:py-20">
           <div className="grid gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(360px,0.74fr)] lg:items-center">
@@ -286,11 +286,11 @@ export default function OffensiveAIPage() {
               </div>
 
               <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-                <Link href={ENROLL_URL} className="btn-solid inline-flex h-12 items-center justify-center gap-2 rounded-full px-7 text-sm font-semibold">
+                <Link href={ENROLL_URL} className="offensive-ai-hero-primary btn-solid inline-flex h-12 items-center justify-center gap-2 rounded-full px-7 text-sm font-semibold">
                   <MessageSquare className="h-4 w-4 shrink-0" aria-hidden="true" />
                   Enquire Now
                 </Link>
-                <a href="#curriculum" className="course-download-syllabus-button inline-flex h-12 items-center justify-center gap-2 rounded-full px-7 text-sm font-semibold">
+                <a href="#curriculum" className="offensive-ai-hero-secondary course-download-syllabus-button inline-flex h-12 items-center justify-center gap-2 rounded-full px-7 text-sm font-semibold">
                   <Layers3 className="h-4 w-4 shrink-0" aria-hidden="true" />
                   View Modules
                 </a>
@@ -298,8 +298,8 @@ export default function OffensiveAIPage() {
             </div>
 
             <div className="relative mx-auto w-full max-w-[470px] lg:mr-0">
-              <div className="rounded-[26px] border border-white/20 bg-white/8 p-3 shadow-[0_24px_90px_rgba(0,0,0,0.55)] backdrop-blur-md">
-                <div className="rounded-[18px] border border-white/10 bg-[#111114] p-5">
+              <div className="offensive-ai-hero-lab-frame rounded-[26px] border border-white/20 bg-white/8 p-3 shadow-[0_24px_90px_rgba(0,0,0,0.55)] backdrop-blur-md">
+                <div className="offensive-ai-hero-lab-card rounded-[18px] border border-white/10 bg-[#111114] p-5">
                   <div className="flex items-center justify-between border-b border-white/10 pb-4">
                     <div>
                       <p className="text-[10px] font-black uppercase tracking-[0.18em] text-red-400">Agentic Lab</p>
@@ -316,7 +316,7 @@ export default function OffensiveAIPage() {
                   </div>
                   <div className="mt-6 grid grid-cols-2 gap-3">
                     {stats.map((item) => (
-                      <div key={item.label} className="rounded-xl border border-white/10 bg-white/[0.06] p-3">
+                      <div key={item.label} className="offensive-ai-hero-stat-card rounded-xl border border-white/10 bg-white/[0.06] p-3">
                         <p className="text-[9px] font-black uppercase tracking-[0.14em] text-white/45">{item.label}</p>
                                                 {"oldValue" in item ? (
                           <p className="mt-1 flex flex-wrap items-baseline gap-2 text-white">

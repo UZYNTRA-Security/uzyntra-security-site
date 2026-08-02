@@ -127,7 +127,7 @@ export function CoursesDropdown({ open }: CoursesDropdownProps) {
       role="menu"
       aria-label="Courses menu"
       className={cn(
-        "fixed left-0 right-0 top-[56px] z-50 border-y border-red-950/60 bg-[#0b0b0c] text-white shadow-[0_28px_70px_rgba(0,0,0,0.35)]",
+        "nav-mega-panel fixed left-0 right-0 top-[56px] z-50 border-y border-red-950/60 bg-[#0b0b0c] text-white shadow-[0_28px_70px_rgba(0,0,0,0.35)]",
         "transition-[opacity,transform,visibility] duration-200 [transition-timing-function:cubic-bezier(.2,.8,.2,1)]",
         open ? "visible translate-y-0 opacity-100" : "invisible -translate-y-2 opacity-0 pointer-events-none"
       )}
@@ -144,10 +144,10 @@ export function CoursesDropdown({ open }: CoursesDropdownProps) {
               priority
             />
           </Link>
-          <p className="mt-4 text-xs font-semibold uppercase tracking-[0.16em] text-[#ff1f2d]">
+          <p className="nav-mega-heading mt-4 text-xs font-semibold uppercase tracking-[0.16em] text-[#ff1f2d]">
             Professional Training
           </p>
-          <p className="mt-3 text-sm leading-6 text-white/65">
+          <p className="nav-mega-copy mt-3 text-sm leading-6 text-white/65">
             Practical cybersecurity, AI, cloud, and software engineering courses for job-ready skills.
           </p>
           <Link
@@ -165,7 +165,7 @@ export function CoursesDropdown({ open }: CoursesDropdownProps) {
             <div key={columnIndex} className="min-w-0 space-y-5">
               {column.groups.map((group) => (
                 <section key={group.label}>
-                  <p className="mb-2 text-[15px] font-extrabold uppercase leading-tight text-[#ff1f2d]">
+                  <p className="nav-mega-heading mb-2 text-[15px] font-extrabold uppercase leading-tight text-[#ff1f2d]">
                     {group.label}
                   </p>
                   <div className="space-y-2.5">

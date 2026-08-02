@@ -8,9 +8,10 @@ type ThemedLogoProps = {
   width: number;
   height: number;
   priority?: boolean;
+  variant?: "auto" | "light" | "dark";
 };
 
-export function ThemedLogo({ width, height, priority = false }: ThemedLogoProps) {
+export function ThemedLogo({ width, height, priority = false, variant = "auto" }: ThemedLogoProps) {
   // Always start with false (light logo) — matches SSR output exactly.
   // After mount, read the real theme and update. This eliminates the
   // hydration mismatch caused by the synchronous useState initializer
@@ -26,6 +27,8 @@ export function ThemedLogo({ width, height, priority = false }: ThemedLogoProps)
     return () => window.removeEventListener("uzyntra-theme-change", check);
   }, []);
 
+  const useDarkLogo = variant === "dark" || (variant === "auto" && dark);
+
   return (
     <span
       style={{
@@ -38,7 +41,7 @@ export function ThemedLogo({ width, height, priority = false }: ThemedLogoProps)
       }}
     >
       <Image
-        src={dark ? siteConfig.logos.mainDark : siteConfig.logos.main}
+        src={useDarkLogo ? siteConfig.logos.mainDark : siteConfig.logos.main}
         alt="UZYNTRA Security"
         fill
         priority={priority}

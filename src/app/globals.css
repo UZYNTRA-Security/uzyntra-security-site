@@ -3081,3 +3081,78 @@ html[data-theme="dark"] .course-download-syllabus-button:hover {
   border-color: rgb(248, 54, 59) !important;
   color: #ffffff !important;
 }
+/* Keep desktop navigation visually identical in light and dark themes. */
+html[data-theme="dark"] .site-header-light {
+  background: #ffffff !important;
+  border-color: rgba(226, 232, 240, 0.6) !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06) !important;
+}
+
+html[data-theme="dark"] .site-header-light nav a.text-slate-700,
+html[data-theme="dark"] .site-header-light nav button.text-slate-700 {
+  color: #334155 !important;
+}
+
+html[data-theme="dark"] .site-header-light nav a:hover,
+html[data-theme="dark"] .site-header-light nav button:hover,
+html[data-theme="dark"] .site-header-light nav button.bg-red-50 {
+  background-color: #fef2f2 !important;
+  color: #b91c1c !important;
+}
+
+html[data-theme="dark"] .site-header-light nav a.text-red-700,
+html[data-theme="dark"] .site-header-light nav button.text-red-700 {
+  color: #b91c1c !important;
+}
+
+html[data-theme="dark"] .site-header-light .site-header-download {
+  background: #ffffff !important;
+  border-color: rgb(220, 38, 38) !important;
+  color: rgb(185, 28, 28) !important;
+}
+
+html[data-theme="dark"] .site-header-light .site-header-download:hover {
+  background: rgb(220, 38, 38) !important;
+  border-color: rgb(220, 38, 38) !important;
+  color: #ffffff !important;
+}
+
+html[data-theme="dark"] .site-header-light button[aria-label*="theme"],
+html[data-theme="dark"] .site-header-light button[aria-label*="mode"] {
+  background: #ffffff !important;
+  border-color: rgba(203, 213, 225, 0.9) !important;
+  color: #334155 !important;
+}
+
+html[data-theme="dark"] .site-header-light button[aria-label*="theme"]:hover,
+html[data-theme="dark"] .site-header-light button[aria-label*="mode"]:hover {
+  background: #f8fafc !important;
+  color: #b91c1c !important;
+}
+
+html[data-theme="dark"] .nav-mega-panel {
+  background: #0b0b0c !important;
+  border-color: rgba(69, 10, 10, 0.6) !important;
+  color: #ffffff !important;
+}
+
+html[data-theme="dark"] .nav-mega-panel a {
+  color: #ffffff !important;
+}
+
+html[data-theme="dark"] .nav-mega-panel a:hover {
+  background-color: transparent !important;
+  color: #ef4444 !important;
+}
+
+html[data-theme="dark"] .nav-mega-panel .nav-mega-heading {
+  color: #ff1f2d !important;
+}
+
+html[data-theme="dark"] .nav-mega-panel .nav-mega-copy {
+  color: rgba(255, 255, 255, 0.65) !important;
+}
+
+html[data-theme="dark"] .nav-mega-panel a:hover .nav-mega-copy {
+  color: rgba(255, 255, 255, 0.78) !important;
+}

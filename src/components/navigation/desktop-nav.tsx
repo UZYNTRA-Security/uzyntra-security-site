@@ -107,17 +107,17 @@ export function DesktopNav({ items }: DesktopNavProps) {
                 role="menu"
                 aria-label={`${item.title} menu`}
                 className={cn(
-                  "fixed left-0 right-0 top-[56px] z-50 border-y border-red-950/60 bg-[#0b0b0c] text-white shadow-[0_28px_70px_rgba(0,0,0,0.35)]",
+                  "nav-mega-panel fixed left-0 right-0 top-[56px] z-50 border-y border-red-950/60 bg-[#0b0b0c] text-white shadow-[0_28px_70px_rgba(0,0,0,0.35)]",
                   "transition-[opacity,transform,visibility] duration-200 [transition-timing-function:cubic-bezier(.2,.8,.2,1)]",
                   isOpen ? "visible translate-y-0 opacity-100" : "invisible -translate-y-2 opacity-0 pointer-events-none"
                 )}
               >
                 <div className="mx-auto grid max-w-[1360px] grid-cols-[240px_minmax(0,1fr)] gap-10 px-10 py-7 xl:px-14">
                   <aside className="border-r border-white/10 pr-8">
-                    <p className="text-[13px] font-extrabold uppercase leading-tight text-[#ff1f2d]">
+                    <p className="nav-mega-heading text-[13px] font-extrabold uppercase leading-tight text-[#ff1f2d]">
                       {item.title}
                     </p>
-                    <p className="mt-3 text-sm leading-6 text-white/65">
+                    <p className="nav-mega-copy mt-3 text-sm leading-6 text-white/65">
                       {item.title === "Services"
                         ? "Security testing, engineering, blockchain, and automation capabilities for modern teams."
                         : "UZYNTRA products and platforms built for secure operations and visibility."}
@@ -154,7 +154,7 @@ export function DesktopNav({ items }: DesktopNavProps) {
                           <span>
                             <span className="block">{child.title}</span>
                             {child.description ? (
-                              <span className="mt-1 block text-xs font-medium leading-5 text-white/55 group-hover:text-white/75">
+                              <span className="nav-mega-copy mt-1 block text-xs font-medium leading-5 text-white/55 group-hover:text-white/75">
                                 {child.description}
                               </span>
                             ) : null}

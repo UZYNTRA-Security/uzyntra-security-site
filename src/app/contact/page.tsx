@@ -32,8 +32,8 @@ const contactLinks = [
   {
     icon: ExternalLink,
     label: "GitHub",
-    value: "github.com/UsamaMatrix",
-    href: siteConfig.founderLinks.github,
+    value: "github.com/UZYNTRA-Security",
+    href: siteConfig.socials.github,
     external: true,
   },
 ];

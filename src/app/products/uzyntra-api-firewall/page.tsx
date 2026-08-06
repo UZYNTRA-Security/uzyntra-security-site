@@ -120,15 +120,60 @@ const stack = [
 ] as const;
 
 const screenshots = [
-  { title: "Dashboard", file: "ui-dashboard-overview.webp", source: "uzyntra-ui/docs/screenshots", available: true },
-  { title: "Metrics API", file: "api-firewall-metrics.webp", source: "uzyntra-api-firewall/docs", available: false },
-  { title: "Events API Response", file: "api-firewall-events.webp", source: "uzyntra-api-firewall/docs", available: false },
-  { title: "Mitigations API", file: "api-firewall-mitigations.webp", source: "uzyntra-api-firewall/docs", available: false },
-  { title: "Policy API", file: "api-firewall-policy.webp", source: "uzyntra-api-firewall/docs", available: false },
-  { title: "Events Explorer", file: "ui-events-explorer.webp", source: "uzyntra-ui/docs/screenshots", available: false },
-  { title: "Reputation", file: "ui-reputation.webp", source: "uzyntra-ui/docs/screenshots", available: false },
-  { title: "Audit Trail", file: "ui-audit-trail.webp", source: "uzyntra-ui/docs/screenshots", available: false },
-  { title: "Policy Management", file: "ui-policy-management.webp", source: "uzyntra-ui/docs/screenshots", available: false },
+  {
+    title: "Dashboard",
+    file: "ui-dashboard-overview.webp",
+    source: "uzyntra-ui/docs/screenshots",
+    alt: "UZYNTRA operator dashboard showing API firewall metrics and activity overview",
+  },
+  {
+    title: "Metrics API",
+    file: "api-firewall-metrics.webp",
+    source: "uzyntra-api-firewall/docs",
+    alt: "UZYNTRA API Firewall metrics API response screenshot",
+  },
+  {
+    title: "Events API Response",
+    file: "api-firewall-events.webp",
+    source: "uzyntra-api-firewall/docs",
+    alt: "UZYNTRA API Firewall events API response screenshot",
+  },
+  {
+    title: "Mitigations API",
+    file: "api-firewall-mitigations.webp",
+    source: "uzyntra-api-firewall/docs",
+    alt: "UZYNTRA API Firewall mitigations API screenshot",
+  },
+  {
+    title: "Policy API",
+    file: "api-firewall-policy.webp",
+    source: "uzyntra-api-firewall/docs",
+    alt: "UZYNTRA API Firewall policy API screenshot",
+  },
+  {
+    title: "Events Explorer",
+    file: "ui-events-explorer.webp",
+    source: "uzyntra-ui/docs/screenshots",
+    alt: "UZYNTRA UI events explorer for searching and reviewing firewall events",
+  },
+  {
+    title: "Reputation",
+    file: "ui-reputation.webp",
+    source: "uzyntra-ui/docs/screenshots",
+    alt: "UZYNTRA UI reputation system screen for source reputation tracking",
+  },
+  {
+    title: "Audit Trail",
+    file: "ui-audit-trail.webp",
+    source: "uzyntra-ui/docs/screenshots",
+    alt: "UZYNTRA UI audit trail screen for operator activity review",
+  },
+  {
+    title: "Policy Management",
+    file: "ui-policy-management.webp",
+    source: "uzyntra-ui/docs/screenshots",
+    alt: "UZYNTRA UI policy management screen for firewall configuration",
+  },
 ] as const;
 
 const jsonLd = {
@@ -439,25 +484,36 @@ export default function FirewallPage() {
         <div className="container-shell">
           <div className="mx-auto max-w-3xl text-center">
             <p className="eyebrow">Screenshots</p>
-            <h2 className="font-semibold text-slate-950">Product screenshot set</h2>
+            <h2 className="font-semibold text-slate-950">Product screenshot gallery</h2>
             <p className="mt-4 text-slate-600">
-              Add the GitHub repository screenshots as optimized WebP files in <code className="rounded bg-slate-100 px-1.5 py-0.5 text-xs text-slate-800">public/images/products</code>. The dashboard screenshot is already wired into this page.
+              API engine responses and operator console screens are now wired directly from <code className="rounded bg-slate-100 px-1.5 py-0.5 text-xs text-slate-800">public/images/products</code> so visitors can inspect the platform visually.
             </p>
           </div>
-          <div className="mt-10 grid gap-4 md:grid-cols-3">
+          <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {screenshots.map((shot) => (
-              <div key={shot.file} className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <p className="text-sm font-bold text-slate-950">{shot.title}</p>
-                    <p className="mt-1 font-mono text-xs text-slate-600">{shot.file}</p>
-                  </div>
-                  <span className={shot.available ? "rounded-full bg-emerald-50 px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-emerald-700" : "rounded-full bg-amber-50 px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-amber-700"}>
-                    {shot.available ? "Added" : "Add"}
-                  </span>
+              <figure key={shot.file} className="group overflow-hidden rounded-[24px] border border-slate-200 bg-slate-50 shadow-[0_18px_46px_rgba(15,23,42,0.08)] transition-all duration-200 hover:-translate-y-1 hover:border-red-200 hover:shadow-[0_24px_70px_rgba(220,38,38,0.14)]">
+                <div className="relative aspect-[16/10] overflow-hidden border-b border-slate-200 bg-slate-950">
+                  <Image
+                    src={`/images/products/${shot.file}`}
+                    alt={shot.alt}
+                    fill
+                    sizes="(min-width: 1280px) 31vw, (min-width: 768px) 46vw, calc(100vw - 2rem)"
+                    className="object-cover transition-transform duration-300 group-hover:scale-[1.025]"
+                  />
                 </div>
-                <p className="mt-3 text-xs leading-5 text-slate-500">Source: {shot.source}</p>
-              </div>
+                <figcaption className="p-5">
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <h3 className="text-base font-black text-slate-950">{shot.title}</h3>
+                      <p className="mt-1 font-mono text-xs text-slate-500">{shot.file}</p>
+                    </div>
+                    <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-emerald-700">
+                      Added
+                    </span>
+                  </div>
+                  <p className="mt-3 text-xs leading-5 text-slate-500">Source: {shot.source}</p>
+                </figcaption>
+              </figure>
             ))}
           </div>
         </div>

@@ -42,7 +42,7 @@ export default function AboutPage() {
                 cybersecurity, secure software development, and blockchain systems.
               </p>
               <p className="mt-3 text-sm leading-[1.75] text-slate-500 sm:text-[0.9375rem]">
-                The ecosystem includes UZYNTRA API Firewall, UZYNTRA UI Dashboard,
+                The ecosystem includes the UZYNTRA API Firewall Platform, its operator control console,
                 and a broader technical direction focused on secure architecture,
                 resilient systems, and scalable engineering.
               </p>

@@ -33,10 +33,10 @@ export function PlatformSection() {
               <div className="group rounded-2xl border border-slate-200 bg-white px-4 py-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-red-200 hover:shadow-[0_6px_18px_rgba(220,38,38,0.10)]">
                 <div className="flex items-center gap-2">
                   <BarChart3 className="h-4 w-4 text-red-600 transition-transform duration-200 group-hover:scale-110" />
-                  <p className="text-sm font-semibold text-slate-950">UZYNTRA UI Dashboard</p>
+                  <p className="text-sm font-semibold text-slate-950">Operator Control Console</p>
                 </div>
                 <p className="mt-2 text-sm leading-7 text-slate-600">
-                  Monitoring, visibility, and operational insight for the platform.
+                  Monitoring, visibility, mitigation control, and operational insight for the API Firewall platform.
                 </p>
               </div>
             </div>

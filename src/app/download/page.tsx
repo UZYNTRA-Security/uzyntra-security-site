@@ -6,12 +6,12 @@ import { PageHero } from "@/components/sections/page-hero";
 export const metadata: Metadata = {
   title: "Download",
   description:
-    "Download the latest release of UZYNTRA API Firewall and access platform repositories.",
+    "Download the UZYNTRA API Firewall source and access the platform repositories.",
   alternates: { canonical: "/download" },
   openGraph: {
     title: "Download UZYNTRA API Firewall",
     description:
-      "Get the latest release of the UZYNTRA API Firewall and explore the platform repositories.",
+      "Download the UZYNTRA API Firewall source and explore the platform repositories.",
     url: `${siteConfig.url}/download`,
   },
 };
@@ -22,7 +22,7 @@ export default function DownloadPage() {
       <PageHero
         eyebrow="Download"
         title="Access UZYNTRA API Firewall and platform repositories"
-        description="Download the latest release of the UZYNTRA API Firewall or explore the source repositories for the firewall and UI dashboard."
+        description="Download the UZYNTRA API Firewall source ZIP or explore the source repositories for the firewall engine and operator control console."
       />
 
       <section className="section-tight">
@@ -47,7 +47,7 @@ export default function DownloadPage() {
                   rel="noreferrer"
                   className="btn-solid inline-flex items-center justify-center rounded-2xl px-5 py-3 text-sm"
                 >
-                  Download Latest Release
+                  Download Source ZIP
                 </a>
                 <a
                   href={siteConfig.productLinks.apiFirewallRepo}
@@ -62,10 +62,10 @@ export default function DownloadPage() {
 
             <div className="surface-card p-6 sm:p-8">
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-red-700">
-                Support Product
+                Control Plane Repository
               </p>
               <h2 className="mt-4 text-3xl font-semibold tracking-[-0.04em] text-slate-950">
-                UZYNTRA UI Dashboard
+                Operator Control Console
               </h2>
               <p className="mt-4 text-sm leading-7 text-slate-600">
                 Modern operator console for telemetry, events, mitigations,
@@ -76,7 +76,7 @@ export default function DownloadPage() {
 
               <div className="mt-6">
                 <a
-                  href={siteConfig.productLinks.apiFirewallRepo}
+                  href={siteConfig.productLinks.uiRepo}
                   target="_blank"
                   rel="noreferrer"
                   className="btn-neutral inline-flex items-center justify-center rounded-2xl px-5 py-3 text-sm"
@@ -91,7 +91,7 @@ export default function DownloadPage() {
                 Platform Notes
               </p>
               <p className="mt-4 text-sm leading-7 text-slate-600">
-                The Firewall and UI Dashboard are positioned as a connected platform —
+                The Firewall engine and operator control console are positioned as one connected platform —
                 Firewall → Admin API → UZYNTRA UI. Current capabilities include
                 real-time visibility and operational control. The near-term direction
                 expands into richer analytics, reporting, and dashboard improvements

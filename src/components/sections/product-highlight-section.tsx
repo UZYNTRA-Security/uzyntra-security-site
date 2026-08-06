@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Shield, LayoutDashboard, ArrowRight, Download } from "lucide-react";
 
 import { ProductHighlightAnimations } from "@/components/sections/product-highlight-animations";
+import { siteConfig } from "@/config/site";
 
 export function ProductHighlightSection() {
   const textCol = (
@@ -13,7 +14,7 @@ export function ProductHighlightSection() {
       </p>
 
       <h2 className="mt-4 text-3xl font-semibold tracking-[-0.04em] text-slate-950 sm:text-4xl">
-        UZYNTRA API Firewall
+        UZYNTRA API Firewall Platform
       </h2>
 
       <p className="mt-4 text-sm leading-7 text-slate-600 sm:text-base">
@@ -36,10 +37,10 @@ export function ProductHighlightSection() {
         <div className="group rounded-2xl border border-slate-200 bg-white px-4 py-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-red-200 hover:shadow-[0_6px_18px_rgba(220,38,38,0.10)]">
           <div className="flex items-center gap-2">
             <LayoutDashboard className="h-4 w-4 text-red-600 transition-transform duration-200 group-hover:scale-110" aria-hidden="true" />
-            <p className="text-sm font-semibold text-slate-950">UZYNTRA UI Dashboard</p>
+            <p className="text-sm font-semibold text-slate-950">Operator Control Console</p>
           </div>
           <p className="mt-2 text-sm leading-7 text-slate-600">
-            Monitoring, analytics, and visibility for firewall operations.
+            Monitoring, analytics, mitigation control, and visibility for firewall operations.
           </p>
         </div>
       </div>
@@ -51,13 +52,15 @@ export function ProductHighlightSection() {
         >
           View Product
         </Link>
-        <Link
-          href="/download"
+        <a
+          href={siteConfig.productLinks.apiFirewallDownload}
+          target="_blank"
+          rel="noreferrer"
           className="btn-neutral inline-flex min-h-[50px] items-center justify-center gap-2 rounded-2xl px-6 py-3 text-sm active:translate-y-0"
         >
           <Download className="h-4 w-4" aria-hidden="true" />
-          Download
-        </Link>
+          Download Source
+        </a>
       </div>
     </div>
   );
@@ -68,7 +71,7 @@ export function ProductHighlightSection() {
         <div className="overflow-hidden rounded-[22px] border border-white/70 bg-white">
           <Image
             src="/images/products/ui-dashboard-overview.webp"
-            alt="UZYNTRA UI Dashboard — firewall monitoring and analytics overview"
+            alt="Operator Control Console — firewall monitoring and analytics overview"
             width={1600}
             height={1000}
             className="h-auto w-full object-cover"
@@ -97,10 +100,10 @@ export function ProductHighlightSection() {
           Positioned as the control layer between clients and backend services.
         </p>
         <Link
-          href="/products"
+          href="/products/uzyntra-api-firewall"
           className="group dark-info-link mt-4 inline-flex items-center gap-2 text-sm font-semibold text-red-700 transition-all duration-200 hover:gap-3"
         >
-          Explore products
+          View unified product
           <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
         </Link>
       </div>

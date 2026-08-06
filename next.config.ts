@@ -131,6 +131,8 @@ const nextConfig: NextConfig = {
       { source: "/services/software-development", destination: "/services/backend-engineering",  permanent: true },
       { source: "/services/blockchain",           destination: "/services/blockchain-security",  permanent: true },
       { source: "/services/n8n-automation",       destination: "/services/automation-ai",        permanent: true },
+      { source: "/products/uzyntra-ui",         destination: "/products/uzyntra-api-firewall", permanent: true },
+      { source: "/products/uzyntra-ui-dashboard", destination: "/products/uzyntra-api-firewall", permanent: true },
     ];
   },
 

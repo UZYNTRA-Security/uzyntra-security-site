@@ -56,12 +56,7 @@ export const mainNavigation: NavItem[] = [
       {
         title: "UZYNTRA API Firewall",
         href: "/products/uzyntra-api-firewall",
-        description: "Enterprise API protection, traffic inspection, and modern control layer.",
-      },
-      {
-        title: "UZYNTRA UI Dashboard",
-        href: "/products",
-        description: "Operational visibility and management experience for the UZYNTRA platform.",
+        description: "Rust API firewall engine with integrated operator control plane.",
       },
     ],
   },
@@ -169,8 +164,7 @@ export const footerNavigation = {
     { title: "Automation & AI Workflow Systems", href: "/services/automation-ai" },
   ],
   products: [
-    { title: "UZYNTRA API Firewall", href: "/products/uzyntra-api-firewall" },
-    { title: "UZYNTRA UI Dashboard", href: "/products" },
+    { title: "UZYNTRA API Firewall Platform", href: "/products/uzyntra-api-firewall" },
   ],
   legal: [
     { title: "Privacy Policy", href: "/privacy-policy" },

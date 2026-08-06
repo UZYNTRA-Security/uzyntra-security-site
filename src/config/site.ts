@@ -22,7 +22,7 @@ export const siteConfig = {
     apiFirewallRepo: "https://github.com/UsamaMatrix/uzyntra-api-firewall",
     uiRepo: "https://github.com/UsamaMatrix/uzyntra-ui",
     apiFirewallDownload:
-      "https://github.com/UsamaMatrix/uzyntra-api-firewall/releases/latest",
+      "https://github.com/UsamaMatrix/uzyntra-api-firewall/archive/refs/heads/main.zip",
   },
 
   logos: {

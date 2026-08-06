@@ -18,6 +18,8 @@ interface ProductScreenshotGalleryProps {
 export function ProductScreenshotGallery({ screenshots }: ProductScreenshotGalleryProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const activeShot = activeIndex === null ? null : screenshots[activeIndex];
+  const featuredShot = screenshots[0];
+  const remainingShots = screenshots.slice(1);
 
   const goPrevious = useCallback(() => {
     setActiveIndex((current) => {
@@ -59,16 +61,79 @@ export function ProductScreenshotGallery({ screenshots }: ProductScreenshotGalle
 
   return (
     <>
-      <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-        {screenshots.map((shot, index) => (
+      <div className="mt-10 overflow-hidden rounded-[34px] border border-slate-200 bg-[linear-gradient(135deg,#070708_0%,#111114_44%,#24090b_100%)] p-3 shadow-[0_28px_90px_rgba(15,23,42,0.16)]">
+        <div className="grid gap-3 lg:grid-cols-[minmax(0,1.35fr)_minmax(320px,0.65fr)]">
+          <button
+            type="button"
+            onClick={() => setActiveIndex(0)}
+            className="group relative min-h-[320px] overflow-hidden rounded-[28px] border border-white/10 bg-[#050506] text-left outline-none transition-all duration-300 hover:border-red-400/45 focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#070708] sm:min-h-[430px]"
+            aria-label={`Open ${featuredShot.title} screenshot`}
+          >
+            <Image
+              src={`/images/products/${featuredShot.file}`}
+              alt={featuredShot.alt}
+              fill
+              sizes="(min-width: 1024px) 63vw, calc(100vw - 2rem)"
+              className="object-contain p-4 transition-transform duration-700 group-hover:scale-[1.025] sm:p-6"
+              priority
+            />
+            <span className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(5,5,6,0.04)_0%,rgba(5,5,6,0.24)_48%,rgba(5,5,6,0.92)_100%)]" aria-hidden="true" />
+            <span className="pointer-events-none absolute inset-0 rounded-[28px] ring-1 ring-inset ring-white/10" aria-hidden="true" />
+            <span className="absolute left-5 top-5 inline-flex items-center gap-2 rounded-full border border-white/12 bg-black/50 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.16em] text-white/72 backdrop-blur-md">
+              <span className="h-2 w-2 rounded-full bg-red-500 shadow-[0_0_16px_rgba(239,31,36,0.9)]" />
+              Featured view
+            </span>
+            <span className="absolute bottom-0 left-0 right-0 flex flex-col gap-4 p-5 sm:flex-row sm:items-end sm:justify-between sm:p-6">
+              <span>
+                <span className="rounded-full border border-red-400/35 bg-red-500/12 px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-red-200">
+                  {featuredShot.kind}
+                </span>
+                <span className="mt-3 block text-2xl font-black text-white sm:text-3xl">{featuredShot.title}</span>
+                <span className="mt-2 block max-w-2xl text-sm leading-6 text-white/68">
+                  Command-center overview with live firewall metrics, recent activity, reputation, and blocked-event context.
+                </span>
+              </span>
+              <span className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-red-600 px-5 text-sm font-black text-white shadow-[0_16px_42px_rgba(239,31,36,0.36)] transition-colors group-hover:bg-white group-hover:text-red-600">
+                <Eye className="h-4 w-4" aria-hidden="true" />
+                Open preview
+              </span>
+            </span>
+          </button>
+
+          <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
+            {[
+              ["Screens", screenshots.length.toString()],
+              ["Coverage", "Engine + UI"],
+              ["Preview", "Fullscreen"],
+            ].map(([label, value]) => (
+              <div key={label} className="rounded-[24px] border border-white/10 bg-white/[0.06] p-5">
+                <p className="text-[10px] font-black uppercase tracking-[0.18em] text-white/42">{label}</p>
+                <p className="mt-2 text-xl font-black text-white">{value}</p>
+                <p className="mt-3 text-sm leading-6 text-white/58">
+                  {label === "Screens"
+                    ? "Consistent frames keep every capture easy to scan."
+                    : label === "Coverage"
+                      ? "Rust API responses and operator console views together."
+                      : "Click any image, then use arrows or keyboard navigation."}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-6 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+        {remainingShots.map((shot, remainingIndex) => {
+          const index = remainingIndex + 1;
+          return (
           <button
             key={shot.file}
             type="button"
             onClick={() => setActiveIndex(index)}
-            className="group relative h-full overflow-hidden rounded-[28px] bg-[linear-gradient(135deg,rgba(239,31,36,0.48),rgba(15,23,42,0.18),rgba(15,23,42,0.42))] p-[1px] text-left shadow-[0_22px_64px_rgba(15,23,42,0.11)] outline-none transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_30px_82px_rgba(220,38,38,0.18)] focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+            className="group relative h-full overflow-hidden rounded-[26px] bg-[linear-gradient(135deg,rgba(239,31,36,0.50),rgba(148,163,184,0.26),rgba(15,23,42,0.42))] p-[1px] text-left shadow-[0_18px_48px_rgba(15,23,42,0.10)] outline-none transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_26px_70px_rgba(220,38,38,0.18)] focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
             aria-label={`Open ${shot.title} screenshot`}
           >
-            <span className="relative block h-full overflow-hidden rounded-[27px] bg-[#080809] p-3">
+            <span className="relative block h-full overflow-hidden rounded-[25px] bg-[#09090b] p-3">
               <span className="mb-3 flex items-center justify-between gap-3 px-1">
                 <span className="flex items-center gap-1.5" aria-hidden="true">
                   <span className="h-2.5 w-2.5 rounded-full bg-red-500" />
@@ -79,7 +144,7 @@ export function ProductScreenshotGallery({ screenshots }: ProductScreenshotGalle
                   {shot.kind}
                 </span>
               </span>
-              <span className="relative block aspect-[16/10] overflow-hidden rounded-[20px] border border-white/10 bg-[radial-gradient(circle_at_20%_0%,rgba(239,31,36,0.12),transparent_28%),#050506]">
+              <span className="relative block aspect-[16/10] overflow-hidden rounded-[20px] border border-white/10 bg-[radial-gradient(circle_at_20%_0%,rgba(239,31,36,0.13),transparent_28%),#050506]">
                 <Image
                   src={`/images/products/${shot.file}`}
                   alt={shot.alt}
@@ -87,6 +152,9 @@ export function ProductScreenshotGallery({ screenshots }: ProductScreenshotGalle
                   sizes="(min-width: 1280px) 31vw, (min-width: 768px) 46vw, calc(100vw - 2rem)"
                   className="object-contain p-2 transition-transform duration-500 group-hover:scale-[1.025]"
                 />
+                <span className="absolute inset-x-3 bottom-3 translate-y-3 rounded-full border border-white/10 bg-black/70 px-3 py-2 text-center text-xs font-black text-white opacity-0 shadow-lg backdrop-blur-md transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                  Open screenshot
+                </span>
                 <span className="pointer-events-none absolute inset-0 rounded-[20px] ring-1 ring-inset ring-white/10" aria-hidden="true" />
               </span>
               <span className="flex min-h-[72px] items-center justify-between gap-4 px-2 py-4">
@@ -97,7 +165,8 @@ export function ProductScreenshotGallery({ screenshots }: ProductScreenshotGalle
               </span>
             </span>
           </button>
-        ))}
+          );
+        })}
       </div>
 
       {activeShot ? (

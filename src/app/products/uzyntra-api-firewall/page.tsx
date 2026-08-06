@@ -214,21 +214,21 @@ export default function FirewallPage() {
     <main id="main-content" className="api-firewall-product-page overflow-hidden">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      <section className="relative isolate bg-[#080809] py-20 text-white sm:py-24 lg:py-28">
+      <section className="relative isolate bg-[#080809] py-12 text-white sm:py-14 lg:py-16">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(239,31,36,0.22),transparent_32%),radial-gradient(circle_at_78%_18%,rgba(248,113,113,0.15),transparent_30%),linear-gradient(135deg,#060607_0%,#111114_48%,#1d0709_100%)]" aria-hidden="true" />
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.045)_1px,transparent_1px)] bg-[size:48px_48px] opacity-35" aria-hidden="true" />
-        <div className="container-shell relative z-10 grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.82fr)]">
+        <div className="container-shell relative z-10 grid items-start gap-9 lg:grid-cols-[minmax(0,0.98fr)_minmax(340px,0.76fr)] xl:gap-12">
           <div>
             <span className="inline-flex rounded-full border border-red-500/40 bg-red-500/10 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-red-200">
               Flagship security platform
             </span>
-            <h1 className="mt-6 max-w-4xl text-4xl font-black leading-tight text-white sm:text-5xl lg:text-6xl">
+            <h1 className="mt-5 max-w-4xl text-4xl font-black leading-tight text-white sm:text-5xl lg:text-[3.45rem]">
               UZYNTRA API Firewall Platform
             </h1>
-            <p className="mt-6 max-w-3xl text-base leading-8 text-white/78 sm:text-lg">
+            <p className="mt-5 max-w-3xl text-base leading-8 text-white/78 sm:text-lg">
               A high-performance API security platform that unifies a Rust reverse-proxy firewall engine with a modern Next.js operator console. Inspect requests, detect attacks, stop abuse, observe telemetry, and control policies from one production-ready security layer.
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <a href={siteConfig.productLinks.apiFirewallDownload} target="_blank" rel="noreferrer" className="btn-solid inline-flex h-12 items-center justify-center gap-2 rounded-full px-7 text-sm font-bold">
                 <Download className="h-4 w-4" aria-hidden="true" />
                 Download Source ZIP
@@ -244,28 +244,28 @@ export default function FirewallPage() {
             </div>
           </div>
 
-          <div className="rounded-[28px] border border-white/16 bg-white/[0.07] p-3 shadow-[0_24px_90px_rgba(0,0,0,0.55)] backdrop-blur-md">
-            <div className="rounded-[20px] border border-white/10 bg-[#111114] p-5">
-              <div className="flex items-start justify-between gap-4 border-b border-white/10 pb-5">
+          <div className="rounded-[26px] border border-white/16 bg-white/[0.07] p-3 shadow-[0_24px_90px_rgba(0,0,0,0.55)] backdrop-blur-md">
+            <div className="rounded-[19px] border border-white/10 bg-[#111114] p-5 lg:p-4 xl:p-5">
+              <div className="flex items-start justify-between gap-4 border-b border-white/10 pb-4">
                 <div>
                   <p className="text-xs font-black uppercase tracking-[0.18em] text-red-400">Unified architecture</p>
-                  <h2 className="mt-2 text-2xl font-black text-white">Engine + Control Plane</h2>
+                  <h2 className="mt-2 text-2xl font-black leading-tight text-white lg:text-[1.7rem]">Engine + Control Plane</h2>
                 </div>
                 <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-red-600 shadow-[0_0_28px_rgba(239,31,36,0.45)]">
                   <Shield className="h-6 w-6 text-white" aria-hidden="true" />
                 </span>
               </div>
-              <div className="mt-5 space-y-3 font-mono text-xs text-white/76">
+              <div className="mt-4 space-y-2.5 font-mono text-xs text-white/76">
                 <p><span className="text-red-400">Client</span> -&gt; UZYNTRA Firewall (Rust)</p>
                 <p><span className="text-red-400">Detection</span> -&gt; Mitigation System</p>
                 <p><span className="text-red-400">Admin API</span> -&gt; UZYNTRA UI (Next.js)</p>
               </div>
-              <div className="mt-6 grid grid-cols-2 gap-3">
+              <div className="mt-5 grid grid-cols-2 gap-3">
                 {platformStats.map((item) => (
-                  <div key={item.label} className="rounded-2xl border border-white/10 bg-white/[0.06] p-4">
+                  <div key={item.label} className="rounded-2xl border border-white/10 bg-white/[0.06] p-3.5">
                     <p className="text-[10px] font-black uppercase tracking-[0.14em] text-white/45">{item.label}</p>
                     <p className="mt-1 text-lg font-black text-white">{item.value}</p>
-                    <p className="mt-2 text-xs leading-5 text-white/58">{item.detail}</p>
+                    <p className="mt-1.5 text-xs leading-5 text-white/58">{item.detail}</p>
                   </div>
                 ))}
               </div>

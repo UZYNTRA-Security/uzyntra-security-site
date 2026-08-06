@@ -34,10 +34,10 @@ export function SiteHeader() {
           <div className="flex items-center gap-1.5">
             <ThemeToggle />
             <Link
-              href="/download"
+              href="/contact"
               className="site-header-download btn-stroke hidden h-8 items-center gap-1.5 rounded-lg px-3.5 text-xs active:translate-y-0 lg:inline-flex"
             >
-              Download
+              Contact
             </Link>
             <MobileNav items={mainNavigation} />
           </div>

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronDown, Menu, X, Download, Sun, Moon } from "lucide-react";
+import { ChevronDown, Menu, X, MessageSquare, Sun, Moon } from "lucide-react";
 import { useEffect, useRef, useState, useCallback } from "react";
 import { createPortal } from "react-dom";
 import { usePathname } from "next/navigation";
@@ -539,7 +539,7 @@ export function MobileNav({ items }: MobileNavProps) {
           }}
         >
           <Link
-            href={siteConfig.nav.download}
+            href={siteConfig.nav.contact}
             onClick={close}
             style={{
               display: "flex",
@@ -559,8 +559,8 @@ export function MobileNav({ items }: MobileNavProps) {
               transition: "background-color 0.15s ease",
             }}
           >
-            <Download style={{ width: "13px", height: "13px", flexShrink: 0 }} />
-            Download API Firewall
+            <MessageSquare style={{ width: "13px", height: "13px", flexShrink: 0 }} />
+            Contact UZYNTRA
           </Link>
         </div>
       </div>

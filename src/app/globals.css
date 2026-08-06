@@ -4777,3 +4777,74 @@ html:not([data-theme="dark"]) .offensive-ai-page #course-pricing .offensive-ai-o
 html[data-theme="dark"] .offensive-ai-page #course-pricing .offensive-ai-old-price {
   color: rgba(255, 255, 255, 0.58) !important;
 }
+
+/* Final dark navbar contrast and Contact CTA styling. */
+html[data-theme="dark"] .site-header-light {
+  background: rgba(5, 5, 6, 0.98) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 2px 18px rgba(0, 0, 0, 0.42) !important;
+}
+
+html[data-theme="dark"] .site-header-light nav a.text-slate-700,
+html[data-theme="dark"] .site-header-light nav button.text-slate-700,
+html[data-theme="dark"] .site-header-light nav button:not(.bg-red-50):not(.text-red-700) {
+  color: rgba(255, 255, 255, 0.78) !important;
+}
+
+html[data-theme="dark"] .site-header-light nav a.text-slate-700:hover,
+html[data-theme="dark"] .site-header-light nav button.text-slate-700:hover,
+html[data-theme="dark"] .site-header-light nav button:not(.bg-red-50):not(.text-red-700):hover {
+  background: rgba(239, 31, 36, 0.14) !important;
+  color: #ffffff !important;
+}
+
+html[data-theme="dark"] .site-header-light nav a.text-red-700,
+html[data-theme="dark"] .site-header-light nav button.text-red-700,
+html[data-theme="dark"] .site-header-light nav button.bg-red-50 {
+  color: #ff313b !important;
+}
+
+html[data-theme="dark"] .site-header-light nav button.bg-red-50 {
+  background: rgba(239, 31, 36, 0.12) !important;
+}
+
+html[data-theme="dark"] .site-header-light nav svg,
+html[data-theme="dark"] .site-header-light nav button:not(.bg-red-50):not(.text-red-700) svg {
+  color: rgba(255, 255, 255, 0.62) !important;
+  stroke: currentColor !important;
+}
+
+html[data-theme="dark"] .site-header-light nav button:hover svg,
+html[data-theme="dark"] .site-header-light nav button.bg-red-50 svg,
+html[data-theme="dark"] .site-header-light nav button.text-red-700 svg {
+  color: #ff313b !important;
+  stroke: currentColor !important;
+}
+
+html[data-theme="dark"] .site-header-light .site-header-download {
+  background: transparent !important;
+  border-color: #ff313b !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+}
+
+html[data-theme="dark"] .site-header-light .site-header-download:hover {
+  background: #ef1f24 !important;
+  border-color: #ef1f24 !important;
+  color: #ffffff !important;
+  box-shadow: 0 12px 26px rgba(239, 31, 36, 0.28) !important;
+}
+
+html[data-theme="dark"] .site-header-light button[aria-label*="theme"],
+html[data-theme="dark"] .site-header-light button[aria-label*="mode"] {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+  color: #ffffff !important;
+}
+
+html[data-theme="dark"] .site-header-light button[aria-label*="theme"]:hover,
+html[data-theme="dark"] .site-header-light button[aria-label*="mode"]:hover {
+  background: rgba(239, 31, 36, 0.12) !important;
+  border-color: #ff313b !important;
+  color: #ffffff !important;
+}

@@ -223,7 +223,7 @@ export default function FirewallPage() {
     <main id="main-content" className="api-firewall-product-page overflow-hidden">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      <section className="relative isolate bg-[#080809] py-12 text-white sm:py-14 lg:py-16">
+      <section className="api-firewall-hero relative isolate bg-[#080809] py-12 text-white sm:py-14 lg:py-16">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(239,31,36,0.22),transparent_32%),radial-gradient(circle_at_78%_18%,rgba(248,113,113,0.15),transparent_30%),linear-gradient(135deg,#060607_0%,#111114_48%,#1d0709_100%)]" aria-hidden="true" />
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.045)_1px,transparent_1px)] bg-[size:48px_48px] opacity-35" aria-hidden="true" />
         <div className="container-shell relative z-10 grid items-start gap-9 lg:grid-cols-[minmax(0,0.98fr)_minmax(340px,0.76fr)] xl:gap-12">

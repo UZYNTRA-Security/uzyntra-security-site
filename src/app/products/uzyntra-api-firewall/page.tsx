@@ -93,6 +93,15 @@ const uiCapabilities = [
   { icon: ServerCog, title: "Policy management", body: "Tune security policies and control firewall behavior from a modern SaaS-style console." },
 ] as const;
 
+const uiCapabilityTones = [
+  "border-red-400/35 bg-red-500/10 text-red-500",
+  "border-sky-400/35 bg-sky-500/10 text-sky-500",
+  "border-emerald-400/35 bg-emerald-500/10 text-emerald-500",
+  "border-amber-400/35 bg-amber-500/10 text-amber-500",
+  "border-violet-400/35 bg-violet-500/10 text-violet-500",
+  "border-cyan-400/35 bg-cyan-500/10 text-cyan-500",
+] as const;
+
 const useCases = [
   "API security platforms",
   "Reverse proxy security",
@@ -336,30 +345,82 @@ export default function FirewallPage() {
       </section>
 
       <section className="section-shell bg-white">
-        <div className="container-shell grid items-center gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
-          <div className="relative overflow-hidden rounded-[28px] border border-slate-200 bg-slate-100 shadow-[0_24px_70px_rgba(15,23,42,0.12)]">
-            <Image
-              src="/images/products/ui-dashboard-overview.webp"
-              alt="UZYNTRA UI operator control console dashboard overview"
-              width={1200}
-              height={760}
-              className="h-full w-full object-cover"
-            />
-          </div>
-          <div>
-            <p className="eyebrow">Operator Control Console</p>
-            <h2 className="font-semibold text-slate-950">The UI is the control plane for the same platform</h2>
-            <p className="mt-4 text-slate-600">
-              UZYNTRA UI is not a separate product story. It is the operator console for the API Firewall: a modern SaaS control plane that lets security teams monitor live telemetry, investigate attacks, manage mitigations, track reputation, review audit logs, and control policies.
-            </p>
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
-              {uiCapabilities.map(({ icon: Icon, title, body }) => (
-                <div key={title} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-                  <Icon className="h-5 w-5 text-red-600" aria-hidden="true" />
-                  <h3 className="mt-3 text-base font-bold text-slate-950">{title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-slate-600">{body}</p>
+        <div className="container-shell">
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,0.98fr)_minmax(0,1.02fr)] lg:items-start">
+            <div className="lg:sticky lg:top-28">
+              <div className="overflow-hidden rounded-[32px] border border-slate-200 bg-[linear-gradient(135deg,#080809_0%,#111114_54%,#23090b_100%)] p-3 shadow-[0_30px_90px_rgba(15,23,42,0.18)]">
+                <div className="flex items-center justify-between border-b border-white/10 px-3 py-3">
+                  <div className="flex items-center gap-2" aria-hidden="true">
+                    <span className="h-3 w-3 rounded-full bg-red-500 shadow-[0_0_18px_rgba(239,31,36,0.7)]" />
+                    <span className="h-3 w-3 rounded-full bg-slate-500" />
+                    <span className="h-3 w-3 rounded-full bg-slate-700" />
+                  </div>
+                  <span className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-white/58">
+                    Live console
+                  </span>
                 </div>
-              ))}
+                <div className="relative mt-3 aspect-[16/10] overflow-hidden rounded-[24px] border border-white/10 bg-[#050506]">
+                  <Image
+                    src="/images/products/ui-dashboard-overview.webp"
+                    alt="UZYNTRA UI operator control console dashboard overview"
+                    fill
+                    sizes="(min-width: 1024px) 48vw, calc(100vw - 2rem)"
+                    className="object-contain p-3"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_42%,rgba(5,5,6,0.72)_100%)]" aria-hidden="true" />
+                  <div className="absolute bottom-4 left-4 right-4 grid gap-3 sm:grid-cols-3">
+                    {["Telemetry", "Mitigation", "Policies"].map((item) => (
+                      <div key={item} className="rounded-2xl border border-white/10 bg-black/55 p-3 backdrop-blur-md">
+                        <p className="text-[10px] font-black uppercase tracking-[0.14em] text-white/42">{item}</p>
+                        <p className="mt-1 text-sm font-black text-white">Operator ready</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <div className="mt-4 grid gap-3 sm:grid-cols-3">
+                {[
+                  { label: "Console", value: "Next.js" },
+                  { label: "Data", value: "REST API" },
+                  { label: "Workflow", value: "SOC Ready" },
+                ].map((item) => (
+                  <div key={item.label} className="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-center shadow-sm">
+                    <p className="text-[10px] font-black uppercase tracking-[0.16em] text-red-600">{item.label}</p>
+                    <p className="mt-1 text-sm font-black text-slate-950">{item.value}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="min-w-0">
+              <p className="eyebrow">Operator Control Console</p>
+              <h2 className="font-semibold text-slate-950">The UI is the control plane for the same platform</h2>
+              <p className="mt-4 text-slate-600">
+                UZYNTRA UI is not a separate product story. It is the operator console for the API Firewall: a modern SaaS control plane that lets security teams monitor live telemetry, investigate attacks, manage mitigations, track reputation, review audit logs, and control policies.
+              </p>
+              <div className="mt-8 space-y-4">
+                {uiCapabilities.map(({ icon: Icon, title, body }, index) => (
+                  <div key={title} className="group rounded-[26px] border border-slate-200 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-red-300 hover:shadow-[0_22px_60px_rgba(15,23,42,0.12)] sm:p-6">
+                    <div className="flex gap-4">
+                      <span className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border ${uiCapabilityTones[index]}`}>
+                        <Icon className="h-6 w-6" strokeWidth={1.8} aria-hidden="true" />
+                      </span>
+                      <div className="min-w-0">
+                        <div className="flex flex-wrap items-center gap-3">
+                          <h3 className="text-xl font-black text-slate-950">{title}</h3>
+                          <span className="rounded-full border border-red-100 bg-red-50 px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.14em] text-red-600">
+                            0{index + 1}
+                          </span>
+                        </div>
+                        <p className="mt-2 text-sm leading-7 text-slate-600">{body}</p>
+                        <p className="mt-3 text-xs font-black uppercase tracking-[0.14em] text-slate-400 transition-colors group-hover:text-red-600">
+                          Connected to firewall engine telemetry
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

@@ -30,6 +30,7 @@ import {
 } from "lucide-react";
 
 import { siteConfig } from "@/config/site";
+import { ProductScreenshotGallery } from "@/components/products/product-screenshot-gallery";
 
 export const metadata: Metadata = {
   title: "UZYNTRA API Firewall Platform | Rust API Security Engine and Operator UI",
@@ -210,7 +211,7 @@ function CodeBlock({ children }: { children: string }) {
 
 export default function FirewallPage() {
   return (
-    <main id="main-content" className="overflow-hidden">
+    <main id="main-content" className="api-firewall-product-page overflow-hidden">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       <section className="relative isolate bg-[#080809] py-20 text-white sm:py-24 lg:py-28">
@@ -489,40 +490,7 @@ export default function FirewallPage() {
               A polished visual tour of the firewall engine responses and operator control plane screens.
             </p>
           </div>
-          <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-            {screenshots.map((shot) => (
-              <figure key={shot.file} className="group relative h-full overflow-hidden rounded-[28px] bg-[linear-gradient(135deg,rgba(239,31,36,0.42),rgba(15,23,42,0.14),rgba(15,23,42,0.36))] p-[1px] shadow-[0_22px_64px_rgba(15,23,42,0.11)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_30px_82px_rgba(220,38,38,0.18)]">
-                <div className="relative h-full overflow-hidden rounded-[27px] bg-[#080809] p-3">
-                  <div className="mb-3 flex items-center justify-between gap-3 px-1">
-                    <div className="flex items-center gap-1.5" aria-hidden="true">
-                      <span className="h-2.5 w-2.5 rounded-full bg-red-500" />
-                      <span className="h-2.5 w-2.5 rounded-full bg-slate-500" />
-                      <span className="h-2.5 w-2.5 rounded-full bg-slate-700" />
-                    </div>
-                    <span className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-[10px] font-black uppercase tracking-[0.14em] text-white/62">
-                      {shot.kind}
-                    </span>
-                  </div>
-                  <div className="relative aspect-[16/10] overflow-hidden rounded-[20px] border border-white/10 bg-[radial-gradient(circle_at_20%_0%,rgba(239,31,36,0.12),transparent_28%),#050506]">
-                    <Image
-                      src={`/images/products/${shot.file}`}
-                      alt={shot.alt}
-                      fill
-                      sizes="(min-width: 1280px) 31vw, (min-width: 768px) 46vw, calc(100vw - 2rem)"
-                      className="object-contain p-2 transition-transform duration-500 group-hover:scale-[1.025]"
-                    />
-                    <div className="pointer-events-none absolute inset-0 rounded-[20px] ring-1 ring-inset ring-white/10" aria-hidden="true" />
-                  </div>
-                  <figcaption className="flex min-h-[72px] items-center justify-between gap-4 px-2 py-4">
-                    <h3 className="text-lg font-black text-white">{shot.title}</h3>
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-red-400/35 bg-red-500/12 text-red-300 transition-colors duration-300 group-hover:bg-red-600 group-hover:text-white">
-                      <Eye className="h-4 w-4" aria-hidden="true" />
-                    </span>
-                  </figcaption>
-                </div>
-              </figure>
-            ))}
-          </div>
+          <ProductScreenshotGallery screenshots={screenshots} />
         </div>
       </section>
 

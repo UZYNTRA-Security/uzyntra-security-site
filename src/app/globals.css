@@ -4848,3 +4848,59 @@ html[data-theme="dark"] .site-header-light button[aria-label*="mode"]:hover {
   border-color: #ff313b !important;
   color: #ffffff !important;
 }
+
+/* API Firewall product page dark-theme containers */
+html[data-theme="dark"] .api-firewall-product-page {
+  background: #050506 !important;
+  color: #ffffff !important;
+}
+
+html[data-theme="dark"] .api-firewall-product-page section.bg-white,
+html[data-theme="dark"] .api-firewall-product-page section.bg-slate-50,
+html[data-theme="dark"] .api-firewall-product-page .section-shell.bg-white,
+html[data-theme="dark"] .api-firewall-product-page .section-shell.bg-slate-50 {
+  background: #050506 !important;
+  color: #ffffff !important;
+}
+
+html[data-theme="dark"] .api-firewall-product-page section.bg-slate-50:nth-of-type(even),
+html[data-theme="dark"] .api-firewall-product-page section.bg-white:nth-of-type(even) {
+  background: #080809 !important;
+}
+
+html[data-theme="dark"] .api-firewall-product-page .surface-card,
+html[data-theme="dark"] .api-firewall-product-page .surface-card-strong,
+html[data-theme="dark"] .api-firewall-product-page [class*="bg-white"],
+html[data-theme="dark"] .api-firewall-product-page [class*="bg-slate-50"],
+html[data-theme="dark"] .api-firewall-product-page [class*="bg-slate-100"] {
+  background-color: #111114 !important;
+  border-color: rgba(255, 255, 255, 0.14) !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+}
+
+html[data-theme="dark"] .api-firewall-product-page [class*="text-slate-950"],
+html[data-theme="dark"] .api-firewall-product-page [class*="text-slate-900"],
+html[data-theme="dark"] .api-firewall-product-page [class*="text-slate-800"] {
+  color: #ffffff !important;
+}
+
+html[data-theme="dark"] .api-firewall-product-page [class*="text-slate-700"],
+html[data-theme="dark"] .api-firewall-product-page [class*="text-slate-600"],
+html[data-theme="dark"] .api-firewall-product-page [class*="text-slate-500"] {
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+html[data-theme="dark"] .api-firewall-product-page [class*="border-slate-200"],
+html[data-theme="dark"] .api-firewall-product-page [class*="border-red-100"] {
+  border-color: rgba(255, 255, 255, 0.14) !important;
+}
+
+html[data-theme="dark"] .api-firewall-product-page code[class*="bg-slate-100"] {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: rgba(255, 255, 255, 0.86) !important;
+}
+
+html[data-theme="dark"] .api-firewall-product-page .border-gradient-red {
+  background: #111114 !important;
+}

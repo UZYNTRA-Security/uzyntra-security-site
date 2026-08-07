@@ -1,0 +1,472 @@
+% ============================================================
+%  UZYNTRA Security — Company Overview Document
+%  Compile with: pdflatex (or XeLaTeX for best font support)
+%  Logo file required: uzyntra-logo-main.png (place in same dir)
+% ============================================================
+\documentclass[11pt, a4paper]{article}
+
+% ── Packages ────────────────────────────────────────────────
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=2.4cm, top=2.8cm, bottom=2.8cm]{geometry}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{parskip}
+\usepackage{microtype}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{mdframed}
+\usepackage{multicol}
+\usepackage{fontawesome5}
+
+% ── Brand Colours ───────────────────────────────────────────
+\definecolor{uzred}{HTML}{DC2626}       % primary red
+\definecolor{uzredlight}{HTML}{FEF2F2}  % red tint background
+\definecolor{uzslate}{HTML}{0F172A}     % near-black
+\definecolor{uzgray}{HTML}{475569}      % body text
+\definecolor{uzline}{HTML}{E2E8F0}      % divider
+\definecolor{uzaccent}{HTML}{B91C1C}    % darker red accent
+
+% ── Hyperref Setup ──────────────────────────────────────────
+\hypersetup{
+  colorlinks=true,
+  linkcolor=uzred,
+  urlcolor=uzred,
+  pdftitle={UZYNTRA Security — Company Overview},
+  pdfauthor={UZYNTRA Security},
+  pdfsubject={Services, Products, and Courses},
+}
+
+% ── Typography ──────────────────────────────────────────────
+\titleformat{\section}
+  {\color{uzslate}\large\bfseries}
+  {}
+  {0em}
+  {\colorbox{uzredlight}{\parbox{\dimexpr\linewidth-2\fboxsep}{\strut #1\strut}}}
+  [\vspace{-4pt}\textcolor{uzred}{\rule{\linewidth}{1.2pt}}]
+
+\titleformat{\subsection}
+  {\color{uzslate}\normalsize\bfseries}
+  {}
+  {0em}
+  {#1}
+  [\vspace{-2pt}\textcolor{uzline}{\rule{\linewidth}{0.6pt}}]
+
+\titlespacing*{\section}{0pt}{18pt}{8pt}
+\titlespacing*{\subsection}{0pt}{12pt}{4pt}
+
+% ── Header / Footer ─────────────────────────────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{\small\color{uzgray}\textbf{UZYNTRA Security} — Confidential Overview}
+\fancyhead[R]{\small\color{uzgray}\thepage}
+\fancyfoot[C]{\small\color{uzgray}
+  \href{https://uzyntra.com}{uzyntra.com} \quad|\quad
+  \href{mailto:security@uzyntra.com}{security@uzyntra.com} \quad|\quad
+  +92 333 5545728
+}
+
+% ── Custom Environments ─────────────────────────────────────
+\newmdenv[
+  linecolor=uzred,
+  linewidth=1.2pt,
+  leftline=true, rightline=false, topline=false, bottomline=false,
+  backgroundcolor=uzredlight,
+  innerleftmargin=10pt,
+  innerrightmargin=8pt,
+  innertopmargin=6pt,
+  innerbottommargin=6pt,
+  skipabove=6pt,
+  skipbelow=6pt,
+]{redbar}
+
+\newmdenv[
+  linecolor=uzline,
+  linewidth=0.8pt,
+  backgroundcolor=white,
+  innerleftmargin=10pt,
+  innerrightmargin=10pt,
+  innertopmargin=8pt,
+  innerbottommargin=8pt,
+  skipabove=4pt,
+  skipbelow=4pt,
+  roundcorner=4pt,
+]{infobox}
+
+% ── List Styling ────────────────────────────────────────────
+\setlist[itemize]{
+  leftmargin=1.4em,
+  itemsep=2pt,
+  topsep=4pt,
+  label={\textcolor{uzred}{\small$\bullet$}}
+}
+
+% ============================================================
+\begin{document}
+
+% ── Cover / Title Block ─────────────────────────────────────
+\begin{titlepage}
+  \newgeometry{margin=2.4cm}
+  \pagecolor{uzslate}
+
+  \vspace*{1.8cm}
+
+  % Logo
+  \begin{center}
+    \includegraphics[width=7cm]{uzyntra-logo-main.png}
+  \end{center}
+
+  \vspace{1.4cm}
+
+  \begin{center}
+    {\color{white}\fontsize{28}{34}\selectfont\bfseries Company Overview}\\[0.5em]
+    {\color{uzred}\fontsize{14}{18}\selectfont\bfseries Services \textbullet{} Products \textbullet{} Courses}\\[2.2em]
+    {\color{white!70}\normalsize
+      Enterprise Cybersecurity \textbullet{} Blockchain Engineering \textbullet{} Secure Software Development}
+  \end{center}
+
+  \vfill
+
+  \begin{center}
+    \textcolor{uzline}{\rule{0.6\linewidth}{0.5pt}}\\[1em]
+    {\color{white!60}\small
+      \href{https://uzyntra.com}{\color{white!60}uzyntra.com} \quad
+      \href{mailto:security@uzyntra.com}{\color{white!60}security@uzyntra.com} \quad
+      +92 333 5545728
+    }\\[0.6em]
+    {\color{white!40}\footnotesize
+      \href{https://github.com/UZYNTRA-Security}{\color{white!40}github.com/UZYNTRA-Security} \quad
+      \href{https://linkedin.com/company/uzyntra}{\color{white!40}linkedin.com/company/uzyntra} \quad
+      \href{https://x.com/uzyntra}{\color{white!40}x.com/uzyntra}
+    }
+  \end{center}
+  \vspace{1.2cm}
+  \restoregeometry
+\end{titlepage}
+\pagecolor{white}
+
+% ── Table of Contents ───────────────────────────────────────
+\tableofcontents
+\newpage
+
+% ============================================================
+\section{About UZYNTRA Security}
+
+\begin{redbar}
+  \textbf{UZYNTRA Security} is a platform and services company delivering enterprise-grade cybersecurity solutions, secure software engineering, and blockchain systems built with modern architecture, security-first thinking, and production-ready technology.
+\end{redbar}
+
+\vspace{6pt}
+
+UZYNTRA Security operates at the intersection of offensive security, secure engineering, and emerging technology. The company serves organisations that need both the expertise to identify and eliminate vulnerabilities and the engineering capability to build systems that are secure by design.
+
+\subsection{Mission}
+
+To help organisations build, protect, and scale secure digital systems through cybersecurity, secure software development, and blockchain engineering.
+
+\subsection{Core Positioning}
+
+UZYNTRA Security is not a single-product vendor. It is a full-spectrum security and engineering platform offering:
+
+\begin{itemize}
+  \item Offensive security services (API testing, penetration testing, red teaming)
+  \item Secure engineering services (backend, cloud, blockchain, automation)
+  \item A flagship open-source security product (UZYNTRA API Firewall Platform)
+  \item Professional training and exclusive certification programmes
+\end{itemize}
+
+\begin{infobox}
+  \textbf{Contact:} \href{mailto:security@uzyntra.com}{security@uzyntra.com} \quad
+  \textbf{Phone:} +92 333 5545728 \quad
+  \textbf{Web:} \href{https://uzyntra.com}{uzyntra.com}
+\end{infobox}
+
+% ============================================================
+\newpage
+\section{Services}
+
+UZYNTRA Security offers five core service lines, each designed to address a distinct dimension of enterprise security and engineering.
+
+% ── Service 1 ───────────────────────────────────────────────
+\subsection{API \& SaaS Security Testing}
+
+\begin{redbar}
+  \textit{Offensive testing for APIs, SaaS platforms, authentication systems, and cloud services.}
+\end{redbar}
+
+UZYNTRA identifies exploitable vulnerabilities in APIs, authentication flows, and SaaS attack surfaces before adversaries do — using OWASP methodology and real-world abuse scenarios.
+
+\textbf{Coverage areas:}
+\begin{itemize}
+  \item OWASP API Top 10 (2023 \& 2026 editions)
+  \item Broken Object Level Authorisation (BOLA / IDOR)
+  \item Authentication and token abuse (JWT, OAuth 2.0, API keys)
+  \item Business-logic and privilege-escalation testing
+  \item Rate limiting, mass assignment, and injection vectors
+  \item SaaS multi-tenant isolation and data-leakage testing
+  \item Cloud-connected API surface enumeration
+\end{itemize}
+
+\textbf{Deliverable:} Detailed security report with CVSS-scored findings, proof-of-concept evidence, and remediation guidance.
+
+\vspace{8pt}
+
+% ── Service 2 ───────────────────────────────────────────────
+\subsection{Penetration Testing \& Red Teaming}
+
+\begin{redbar}
+  \textit{Real-world attack simulations across infrastructure, applications, and identity systems.}
+\end{redbar}
+
+UZYNTRA conducts structured penetration tests and red team operations across web applications, internal networks, cloud environments, and identity systems to expose exploitable weaknesses before they become incidents.
+
+\textbf{Scope options:}
+
+\begin{tabularx}{\linewidth}{@{} l X @{}}
+  \toprule
+  \textbf{Type} & \textbf{Description} \\
+  \midrule
+  Web Application Pentest & OWASP Top 10, business logic, authentication, session management \\
+  Network \& Infrastructure & Internal/external network, firewall bypass, lateral movement \\
+  Cloud Security Assessment & AWS, Azure, GCP misconfiguration, IAM privilege escalation \\
+  Identity \& Active Directory & Kerberoasting, pass-the-hash, domain privilege escalation \\
+  Red Team Operation & Full adversary simulation with defined objectives and TTPs \\
+  \bottomrule
+\end{tabularx}
+
+\vspace{8pt}
+
+% ── Service 3 ───────────────────────────────────────────────
+\subsection{Secure Backend \& Cloud Engineering}
+
+\begin{redbar}
+  \textit{Design and development of secure backend systems, APIs, and cloud-native architectures.}
+\end{redbar}
+
+UZYNTRA designs and builds backend systems, APIs, and cloud-native architectures with security embedded at every layer — from authentication design to deployment hardening.
+
+\textbf{Engineering capabilities:}
+\begin{itemize}
+  \item Rust-based high-performance backend and API development
+  \item Secure REST and GraphQL API design with authentication and authorisation
+  \item Cloud-native architecture on AWS, Azure, and GCP
+  \item DevSecOps pipeline integration (SAST, DAST, SCA, IaC scanning)
+  \item Infrastructure as Code (Terraform, Pulumi) with security controls
+  \item Container security (Docker, Kubernetes, Helm)
+  \item Authentication systems: OAuth 2.0, OIDC, JWT, RBAC, ABAC
+\end{itemize}
+
+\vspace{8pt}
+
+% ── Service 4 ───────────────────────────────────────────────
+\subsection{Blockchain Security \& Smart Contract Engineering}
+
+\begin{redbar}
+  \textit{Smart contract development, blockchain security reviews, dApp architecture, and Web3 engineering.}
+\end{redbar}
+
+UZYNTRA designs and secures smart contracts, dApps, token systems, and blockchain-integrated platforms with a security-first engineering approach.
+
+\textbf{Capabilities:}
+\begin{itemize}
+  \item Solidity smart contract development and security review
+  \item DeFi protocol architecture and vulnerability assessment
+  \item dApp frontend and backend integration (Ethers.js, Wagmi)
+  \item Token economics design and implementation (ERC-20, ERC-721, ERC-1155)
+  \item Multi-chain deployment: Ethereum, Polygon, Solana
+  \item Wallet integration and secure key management
+  \item OpenZeppelin standards and Hardhat / Foundry tooling
+  \item IPFS and decentralised storage integration
+\end{itemize}
+
+\vspace{8pt}
+
+% ── Service 5 ───────────────────────────────────────────────
+\subsection{Automation \& AI Workflow Systems}
+
+\begin{redbar}
+  \textit{n8n automation, API orchestration, AI pipelines, and self-hosted workflow systems.}
+\end{redbar}
+
+UZYNTRA builds production-grade automation systems using n8n, LangChain, and event-driven architecture — connecting tools, APIs, and AI models into reliable operational workflows.
+
+\textbf{Capabilities:}
+\begin{itemize}
+  \item n8n self-hosted workflow design, deployment, and maintenance
+  \item API orchestration and webhook-driven event pipelines
+  \item LangChain and LlamaIndex AI agent workflow construction
+  \item Multi-agent system design with tool use and memory
+  \item Secure automation with credential management and audit logging
+  \item Integration with CRMs, ERPs, communication platforms, and databases
+  \item Business process automation reducing manual operational overhead
+\end{itemize}
+
+% ============================================================
+\newpage
+\section{Product: UZYNTRA API Firewall Platform}
+
+\begin{redbar}
+  \textbf{Flagship open-source security product.} A high-performance Rust API security engine unified with a Next.js operator control console for real-time request inspection, threat detection, active mitigation, telemetry, and policy control.
+\end{redbar}
+
+\subsection{Platform Architecture}
+
+The UZYNTRA API Firewall Platform consists of two tightly integrated components:
+
+\begin{center}
+\begin{tabularx}{0.88\linewidth}{@{} >{\bfseries}l X @{}}
+  \toprule
+  Component & Description \\
+  \midrule
+  Rust Security Engine & High-performance async reverse-proxy firewall built with Tokio, Axum, Reqwest, and Serde. Sits between clients and backend services. \\[4pt]
+  Next.js Operator Console & Modern SaaS-style control plane for monitoring, investigation, mitigation management, and policy control. \\
+  \bottomrule
+\end{tabularx}
+\end{center}
+
+\vspace{6pt}
+
+\textbf{Request flow:}
+
+\begin{center}
+  \texttt{Client \textrightarrow{} UZYNTRA Firewall (Rust) \textrightarrow{} Inspection \textrightarrow{} Detection \textrightarrow{} Decision \textrightarrow{} Backend}
+\end{center}
+
+\subsection{Rust Engine Capabilities}
+
+\begin{tabularx}{\linewidth}{@{} >{\bfseries}l X @{}}
+  \toprule
+  Capability & Detail \\
+  \midrule
+  Deep Request Inspection & Analyse headers, query strings, routes, payloads, and request context before traffic reaches the backend. \\
+  Attack Detection Engine & Pattern matching, heuristic scoring, confidence levels, and attack classification for API threats. \\
+  Active Mitigation & Block malicious requests, apply TTL bans, reset reputation, and enforce decisions through the proxy layer. \\
+  Security Telemetry & Emit events, metrics, logs, routes, severity, attack types, and actions for operational review. \\
+  Policy Control & Manage rules, rate limiting, and enforcement behaviour through admin APIs and the operator console. \\
+  High Performance & Built with Tokio, Axum, Reqwest, and Serde for async Rust throughput and predictable latency. \\
+  \bottomrule
+\end{tabularx}
+
+\subsection{Detection Coverage}
+
+\begin{multicols}{2}
+\begin{itemize}
+  \item SQL Injection
+  \item Cross-Site Scripting (XSS)
+  \item Path Traversal
+  \item Rate Abuse
+  \item Behavioural Anomalies
+  \item Pattern Matching
+  \item Request Scoring
+  \item Confidence Levels
+  \item Attack Classification
+  \item Heuristic Analysis
+\end{itemize}
+\end{multicols}
+
+\subsection{Operator Control Console (UI)}
+
+\begin{tabularx}{\linewidth}{@{} >{\bfseries}l X @{}}
+  \toprule
+  Module & Function \\
+  \midrule
+  Dashboard & Live metrics, attack activity, security posture, and operational health. \\
+  Events Explorer & Search, filter, and investigate attack events with route, IP, severity, and attack context. \\
+  Mitigation Control & Review blocked traffic, TTL bans, IP reputation changes, and response decisions. \\
+  Reputation System & Track source behaviour and reputation signals for repeated abuse control. \\
+  Audit Trail & Review operator actions, policy changes, and security events for accountability. \\
+  Policy Management & Tune security policies and control firewall behaviour from a modern SaaS-style console. \\
+  \bottomrule
+\end{tabularx}
+
+\subsection{Technical Stack}
+
+\begin{infobox}
+\begin{tabularx}{\linewidth}{@{} >{\bfseries}l X @{}}
+  Engine & Rust, Tokio, Axum, Reqwest, Serde \\
+  Control Plane & Next.js App Router, Tailwind CSS, REST API integration \\
+  Deployment & Docker, GitHub Actions, cloud-native services \\
+  Observability & JSON logs, events, metrics, audit records, SIEM-ready output \\
+\end{tabularx}
+\end{infobox}
+
+\subsection{Service Endpoints}
+
+\begin{infobox}
+\begin{tabularx}{\linewidth}{@{} >{\bfseries}l l @{}}
+  Proxy & \texttt{http://127.0.0.1:8080} \\
+  Admin API & \texttt{http://127.0.0.1:9090} \\
+  Admin Token Header & \texttt{x-admin-token: dev-admin-token-1} \\
+\end{tabularx}
+\end{infobox}
+
+\subsection{Use Cases}
+
+\begin{multicols}{2}
+\begin{itemize}
+  \item API security platforms
+  \item Reverse proxy security
+  \item DevSecOps pipelines
+  \item SaaS backend protection
+  \item Threat monitoring systems
+  \item Cloud-native API gateways
+  \item Security telemetry and SIEM workflows
+  \item Multi-tenant SaaS protection
+\end{itemize}
+\end{multicols}
+
+\subsection{Roadmap}
+
+\begin{itemize}
+  \item JWT authentication and role-based access control
+  \item ML-assisted detection models
+  \item Distributed architecture for clustered deployments
+  \item Multi-tenant SaaS management
+  \item Real-time alerts and notification channels
+  \item Analytics dashboards and reporting views
+\end{itemize}
+
+\subsection{Open Source Repositories}
+
+\begin{infobox}
+\begin{tabularx}{\linewidth}{@{} >{\bfseries}l X @{}}
+  Firewall Engine & \href{https://github.com/UsamaMatrix/uzyntra-api-firewall}{github.com/UsamaMatrix/uzyntra-api-firewall} \\
+  Operator UI & \href{https://github.com/UsamaMatrix/uzyntra-ui}{github.com/UsamaMatrix/uzyntra-ui} \\
+  Organisation & \href{https://github.com/UZYNTRA-Security}{github.com/UZYNTRA-Security} \\
+\end{tabularx}
+\end{infobox}
+
+% ============================================================
+\newpage
+\section{Contact \& Engagement}
+
+\begin{infobox}
+\begin{tabularx}{\linewidth}{@{} >{\bfseries}l X @{}}
+  Website & \href{https://uzyntra.com}{https://uzyntra.com} \\
+  Email & \href{mailto:security@uzyntra.com}{security@uzyntra.com} \\
+  Phone & +92 333 5545728 \\
+  GitHub & \href{https://github.com/UZYNTRA-Security}{github.com/UZYNTRA-Security} \\
+  LinkedIn & \href{https://linkedin.com/company/uzyntra}{linkedin.com/company/uzyntra} \\
+  X (Twitter) & \href{https://x.com/uzyntra}{x.com/uzyntra} \\
+  Instagram & \href{https://instagram.com/uzyntra}{instagram.com/uzyntra} \\
+\end{tabularx}
+\end{infobox}
+
+\vspace{10pt}
+
+To engage UZYNTRA Security for a service, product deployment, or training enquiry, reach out via email or the contact form at \href{https://uzyntra.com/contact}{uzyntra.com/contact}.
+
+\vspace{20pt}
+\begin{center}
+  \textcolor{uzline}{\rule{0.5\linewidth}{0.5pt}}\\[8pt]
+  {\small\color{uzgray} \textcopyright{} UZYNTRA Security. All rights reserved. \href{https://uzyntra.com}{uzyntra.com}}
+\end{center}
+
+\end{document}

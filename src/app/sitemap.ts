@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/config/site";
 import { publishedPosts } from "@/data/blog";
+import { certificationPrograms } from "@/data/exclusive-course-catalog";
 
 const base = siteConfig.url;
 
@@ -86,6 +87,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.9,
     },
+    {
+      url: `${base}/certifications`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    ...certificationPrograms.map((program) => ({
+      url: `${base}${program.href}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
     ...courseSlugs.map((slug) => ({
       url: `${base}/courses/${slug}`,
       lastModified: now,

@@ -1,3 +1,5 @@
+import { certificationPrograms, coursePrograms } from "@/data/exclusive-course-catalog";
+
 export type NavChildItem = {
   title: string;
   href: string;
@@ -9,6 +11,18 @@ export type NavItem = {
   href?: string;
   children?: NavChildItem[];
 };
+
+const courseNavigationItems: NavChildItem[] = coursePrograms.map((course) => ({
+  title: course.title,
+  href: course.href,
+  description: course.summary,
+}));
+
+const certificationNavigationItems: NavChildItem[] = certificationPrograms.map((certification) => ({
+  title: `${certification.code} - ${certification.title}`,
+  href: certification.href,
+  description: certification.summary,
+}));
 
 export const mainNavigation: NavItem[] = [
   {
@@ -68,56 +82,13 @@ export const mainNavigation: NavItem[] = [
         href: "/offensive-ai",
         description: "Exclusive certification for AI-powered web pentesting, GPT agents, labs, and reporting.",
       },
+      ...courseNavigationItems,
       {
-        title: "Artificial Intelligence",
-        href: "/courses/artificial-intelligence",
-        description: "ML, deep learning, LLMs, and AI deployment for production.",
+        title: "All Certifications",
+        href: "/certifications",
+        description: "Professional and master certification paths from the advanced course poster.",
       },
-      {
-        title: "Cyber Security",
-        href: "/courses/cybersecurity",
-        description: "Threats, defenses, NIST framework, and incident response.",
-      },
-      {
-        title: "Cloud Computing",
-        href: "/courses/cloud-computing",
-        description: "AWS, Azure, and GCP from fundamentals to advanced architecture.",
-      },
-      {
-        title: "DevOps & DevSecOps",
-        href: "/courses/devsecops",
-        description: "CI/CD pipelines, IaC, and security integrated into delivery.",
-      },
-      {
-        title: "Ethical Hacking",
-        href: "/courses/ethical-hacking",
-        description: "Hands-on offensive security from recon to post-exploitation.",
-      },
-      {
-        title: "Penetration Testing",
-        href: "/courses/penetration-testing",
-        description: "Professional pentest methodology, CVSS scoring, and reporting.",
-      },
-      {
-        title: "API Security",
-        href: "/courses/api-security",
-        description: "OWASP API Top 10, BOLA, auth attacks, and API hardening.",
-      },
-      {
-        title: "AI Agent Development",
-        href: "/courses/ai-agent-development",
-        description: "Build autonomous AI agents with LangChain and multi-agent frameworks.",
-      },
-      {
-        title: "SOC Analyst",
-        href: "/courses/soc-analyst",
-        description: "SIEM, threat detection, MITRE ATT&CK, and incident response.",
-      },
-      {
-        title: "Docker & Kubernetes",
-        href: "/courses/docker-kubernetes",
-        description: "Containerization and orchestration for production deployments.",
-      },
+      ...certificationNavigationItems,
       {
         title: "View All Courses",
         href: "/courses",
@@ -142,12 +113,8 @@ export const mainNavigation: NavItem[] = [
 export const footerNavigation = {
   courses: [
     { title: "Offensive AI Certified Web Pentester", href: "/offensive-ai" },
-    { title: "Artificial Intelligence", href: "/courses/artificial-intelligence" },
-    { title: "Cyber Security", href: "/courses/cybersecurity" },
-    { title: "Ethical Hacking", href: "/courses/ethical-hacking" },
-    { title: "Penetration Testing", href: "/courses/penetration-testing" },
-    { title: "API Security", href: "/courses/api-security" },
-    { title: "SOC Analyst", href: "/courses/soc-analyst" },
+    ...coursePrograms.slice(0, 7).map((course) => ({ title: course.title, href: course.href })),
+    { title: "Certifications", href: "/certifications" },
     { title: "View All Courses", href: "/courses" },
   ],
   company: [

@@ -28,6 +28,7 @@ const megaCourseColumns: MegaCourseColumn[] = [
         label: "Exclusive Certifications",
         items: [
           { title: "Offensive AI: Certified Web Pentester", href: "/offensive-ai" },
+          { title: "All Certifications", href: "/certifications" },
         ],
       },
       {
@@ -113,6 +114,26 @@ const megaCourseColumns: MegaCourseColumn[] = [
         items: [
           { title: "Blockchain and Web3", href: "/courses/blockchain-web3" },
           { title: "Automation", href: "/courses/automation" },
+        ],
+      },
+      {
+        label: "Professional Certs",
+        items: [
+          { title: "UCRT Red Team Professional", href: "/certifications/ucrt-red-team-professional" },
+          { title: "UCBT Blue Team Professional", href: "/certifications/ucbt-blue-team-professional" },
+          { title: "UCCE Cloud Engineer Professional", href: "/certifications/ucce-cloud-engineer-professional" },
+          { title: "UCAE AI Engineer Professional", href: "/certifications/ucae-ai-engineer-professional" },
+          { title: "UCFS Full Stack Professional", href: "/certifications/ucfs-full-stack-professional" },
+          { title: "UCSE Security Engineer Professional", href: "/certifications/ucse-security-engineer-professional" },
+        ],
+      },
+      {
+        label: "Master Certs",
+        items: [
+          { title: "UCRM Cyber Security Master", href: "/certifications/ucrm-cyber-security-master" },
+          { title: "UCDM DevOps and Cloud Master", href: "/certifications/ucdm-devops-cloud-master" },
+          { title: "UCAM AI and Data Science Master", href: "/certifications/ucam-ai-data-science-master" },
+          { title: "UCRM Full Stack Master", href: "/certifications/ucrm-full-stack-master" },
         ],
       },
     ],

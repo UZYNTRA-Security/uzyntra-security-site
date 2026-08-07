@@ -1,578 +1,226 @@
-"use client";
-
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import {
+  Activity,
+  ArrowRight,
+  Blocks,
+  CheckCircle2,
+  Code2,
+  Cpu,
+  Database,
+  Eye,
+  FileJson,
+  GitBranch,
+  Globe2,
+  LockKeyhole,
+  Mail,
+  Phone,
+  Radar,
+  ServerCog,
+  ShieldCheck,
+  Workflow,
+  Zap,
+} from "lucide-react";
 
-// ─── Services ────────────────────────────────────────────────────────────────
+import { siteConfig } from "@/config/site";
+
+export const metadata: Metadata = {
+  title: "Company Overview | UZYNTRA Security",
+  description:
+    "UZYNTRA Security company overview covering enterprise cybersecurity services, secure engineering, blockchain systems, the UZYNTRA API Firewall platform, and professional training programs.",
+  alternates: { canonical: `${siteConfig.url}/company-overview` },
+  openGraph: {
+    title: "UZYNTRA Security Company Overview",
+    description:
+      "A concise overview of UZYNTRA Security services, products, courses, open-source security platform, and engagement channels.",
+    url: `${siteConfig.url}/company-overview`,
+    type: "website",
+    images: [
+      {
+        url: `${siteConfig.url}/images/products/ui-dashboard-overview.webp`,
+        width: 1200,
+        height: 630,
+        alt: "UZYNTRA API Firewall operator dashboard",
+      },
+    ],
+  },
+};
 
 const services = [
   {
-    slug: "api-security",
+    href: "/services/api-security-testing",
+    icon: Radar,
     eyebrow: "Offensive Security",
     title: "API & SaaS Security Testing",
     description:
       "Offensive testing for APIs, SaaS platforms, authentication systems, and cloud services using OWASP methodology and real-world abuse scenarios.",
-    points: [
-      "OWASP API Top 10 (2023 & 2026 editions)",
-      "Broken Object Level Authorisation (BOLA / IDOR)",
-      "Authentication and token abuse — JWT, OAuth 2.0, API keys",
-      "Business-logic and privilege-escalation testing",
-      "Rate limiting, mass assignment, and injection vectors",
-      "SaaS multi-tenant isolation and data-leakage testing",
-      "Cloud-connected API surface enumeration",
-    ],
-    deliverable:
-      "Detailed security report with CVSS-scored findings, proof-of-concept evidence, and remediation guidance.",
+    points: ["OWASP API Top 10", "BOLA / IDOR", "JWT, OAuth, API key abuse", "Business logic flaws"],
   },
   {
-    slug: "penetration-testing",
+    href: "/services/penetration-testing",
+    icon: ShieldCheck,
     eyebrow: "Red Team Operations",
     title: "Penetration Testing & Red Teaming",
     description:
-      "Structured penetration tests and red team operations across web applications, internal networks, cloud environments, and identity systems.",
-    points: [
-      "Web Application Pentest — OWASP Top 10, business logic, session management",
-      "Network & Infrastructure — firewall bypass, lateral movement",
-      "Cloud Security Assessment — AWS, Azure, GCP misconfiguration, IAM escalation",
-      "Identity & Active Directory — Kerberoasting, pass-the-hash, domain escalation",
-      "Red Team Operation — full adversary simulation with defined TTPs",
-    ],
-    deliverable:
-      "Structured pentest report with attack narrative, evidence, CVSS scores, and prioritised remediation steps.",
+      "Structured penetration tests and adversary simulations across applications, networks, cloud environments, and identity systems.",
+    points: ["Web application pentest", "Network and infrastructure", "Cloud security assessment", "Active Directory attacks"],
   },
   {
-    slug: "backend-engineering",
+    href: "/services/backend-engineering",
+    icon: Code2,
     eyebrow: "Secure Engineering",
     title: "Secure Backend & Cloud Engineering",
     description:
-      "Design and development of secure backend systems, APIs, and cloud-native architectures with security embedded at every layer.",
-    points: [
-      "Rust-based high-performance backend and API development",
-      "Secure REST and GraphQL API design with authentication and authorisation",
-      "Cloud-native architecture on AWS, Azure, and GCP",
-      "DevSecOps pipeline integration — SAST, DAST, SCA, IaC scanning",
-      "Infrastructure as Code with Terraform and Pulumi",
-      "Container security — Docker, Kubernetes, Helm",
-      "Authentication systems: OAuth 2.0, OIDC, JWT, RBAC, ABAC",
-    ],
-    deliverable:
-      "Production-ready secure backend system with documentation, deployment configuration, and security review.",
+      "Production-ready backend systems, APIs, cloud-native architectures, and DevSecOps pipelines with security embedded at every layer.",
+    points: ["Rust backend systems", "Secure REST and GraphQL APIs", "AWS, Azure, and GCP", "Docker and Kubernetes"],
   },
   {
-    slug: "blockchain-security",
+    href: "/services/blockchain-security",
+    icon: Blocks,
     eyebrow: "Web3 Engineering",
     title: "Blockchain Security & Smart Contract Engineering",
     description:
-      "Smart contract development, blockchain security reviews, dApp architecture, and Web3 engineering with a security-first approach.",
-    points: [
-      "Solidity smart contract development and security review",
-      "DeFi protocol architecture and vulnerability assessment",
-      "dApp frontend and backend integration — Ethers.js, Wagmi",
-      "Token economics design — ERC-20, ERC-721, ERC-1155",
-      "Multi-chain deployment: Ethereum, Polygon, Solana",
-      "Wallet integration and secure key management",
-      "OpenZeppelin standards, Hardhat and Foundry tooling",
-      "IPFS and decentralised storage integration",
-    ],
-    deliverable:
-      "Audited smart contracts, security report, and deployment-ready dApp with documentation.",
+      "Smart contract development, blockchain security reviews, dApp architecture, and Web3 systems with security-first engineering.",
+    points: ["Solidity reviews", "DeFi assessments", "Token systems", "Multi-chain deployment"],
   },
   {
-    slug: "automation-ai",
+    href: "/services/automation-ai",
+    icon: Workflow,
     eyebrow: "Workflow Engineering",
     title: "Automation & AI Workflow Systems",
     description:
-      "Production-grade automation systems using n8n, LangChain, and event-driven architecture connecting tools, APIs, and AI models.",
-    points: [
-      "n8n self-hosted workflow design, deployment, and maintenance",
-      "API orchestration and webhook-driven event pipelines",
-      "LangChain and LlamaIndex AI agent workflow construction",
-      "Multi-agent system design with tool use and memory",
-      "Secure automation with credential management and audit logging",
-      "Integration with CRMs, ERPs, communication platforms, and databases",
-      "Business process automation reducing manual operational overhead",
-    ],
-    deliverable:
-      "Deployed automation system with workflow documentation, monitoring setup, and handover guide.",
+      "n8n automation, API orchestration, AI agent workflows, and self-hosted systems built for reliable operational scale.",
+    points: ["n8n workflows", "Webhook pipelines", "LangChain agents", "Credential-safe automation"],
   },
-];
-
-// ─── Product ──────────────────────────────────────────────────────────────────
+] as const;
 
 const engineCapabilities = [
-  {
-    label: "Deep Request Inspection",
-    detail:
-      "Analyse headers, query strings, routes, payloads, and request context before traffic reaches the backend.",
-  },
-  {
-    label: "Attack Detection Engine",
-    detail:
-      "Pattern matching, heuristic scoring, confidence levels, and attack classification for API threats.",
-  },
-  {
-    label: "Active Mitigation",
-    detail:
-      "Block malicious requests, apply TTL bans, reset reputation, and enforce decisions through the proxy layer.",
-  },
-  {
-    label: "Security Telemetry",
-    detail:
-      "Emit events, metrics, logs, routes, severity, attack types, and actions for operational review.",
-  },
-  {
-    label: "Policy Control",
-    detail:
-      "Manage rules, rate limiting, and enforcement behaviour through admin APIs and the operator console.",
-  },
-  {
-    label: "High Performance",
-    detail:
-      "Built with Tokio, Axum, Reqwest, and Serde for async Rust throughput and predictable latency.",
-  },
-];
+  { icon: Eye, title: "Deep Request Inspection", body: "Headers, routes, payloads, query strings, and request context are inspected before origin traffic." },
+  { icon: Radar, title: "Attack Detection Engine", body: "Pattern matching, heuristic scoring, confidence levels, and attack classification for API threats." },
+  { icon: LockKeyhole, title: "Active Mitigation", body: "Block malicious requests, apply TTL bans, reset reputation, and enforce proxy-layer decisions." },
+  { icon: Activity, title: "Security Telemetry", body: "Events, metrics, logs, routes, severity, attack types, and actions for operational review." },
+  { icon: ServerCog, title: "Policy Control", body: "Rules, rate limits, and enforcement behavior managed through admin APIs and the operator console." },
+  { icon: Zap, title: "High Performance", body: "Async Rust architecture with Tokio, Axum, Reqwest, and Serde for predictable low-latency handling." },
+] as const;
+
+const consoleModules = [
+  { icon: Activity, title: "Dashboard", body: "Live metrics, attack activity, security posture, and operational health." },
+  { icon: Eye, title: "Events Explorer", body: "Search, filter, and investigate attack events with route, IP, severity, and context." },
+  { icon: ShieldCheck, title: "Mitigation Control", body: "Review blocked traffic, TTL bans, IP reputation changes, and response decisions." },
+  { icon: Database, title: "Reputation System", body: "Track source behavior and reputation signals for repeated abuse control." },
+  { icon: FileJson, title: "Audit Trail", body: "Review operator actions, policy changes, and security events for accountability." },
+  { icon: ServerCog, title: "Policy Management", body: "Tune policies and control firewall behavior from a SaaS-style console." },
+] as const;
 
 const detectionCoverage = [
   "SQL Injection",
-  "Cross-Site Scripting (XSS)",
+  "Cross-Site Scripting",
   "Path Traversal",
   "Rate Abuse",
-  "Behavioural Anomalies",
-  "Pattern Matching",
+  "Behavioral Anomalies",
   "Request Scoring",
   "Confidence Levels",
   "Attack Classification",
-  "Heuristic Analysis",
-];
-
-const consoleModules = [
-  {
-    label: "Dashboard",
-    detail:
-      "Live metrics, attack activity, security posture, and operational health.",
-  },
-  {
-    label: "Events Explorer",
-    detail:
-      "Search, filter, and investigate attack events with route, IP, severity, and attack context.",
-  },
-  {
-    label: "Mitigation Control",
-    detail:
-      "Review blocked traffic, TTL bans, IP reputation changes, and response decisions.",
-  },
-  {
-    label: "Reputation System",
-    detail:
-      "Track source behaviour and reputation signals for repeated abuse control.",
-  },
-  {
-    label: "Audit Trail",
-    detail:
-      "Review operator actions, policy changes, and security events for accountability.",
-  },
-  {
-    label: "Policy Management",
-    detail:
-      "Tune security policies and control firewall behaviour from a modern SaaS-style console.",
-  },
-];
-
-const productRoadmap = [
-  "JWT authentication and role-based access control",
-  "ML-assisted detection models",
-  "Distributed architecture for clustered deployments",
-  "Multi-tenant SaaS management",
-  "Real-time alerts and notification channels",
-  "Analytics dashboards and reporting views",
-];
-
-// ─── Courses ──────────────────────────────────────────────────────────────────
+] as const;
 
 const courses = [
   {
     href: "/courses/cybersecurity",
-    eyebrow: "Cybersecurity",
+    icon: ShieldCheck,
+    eyebrow: "Professional Program",
     title: "Cybersecurity Professional Programme",
-    duration: "3 Months",
+    detail: "3 months, 15 modules, guided labs, reporting, and final assessment.",
     price: "PKR 45,000 / $199 USD",
-    cert: "UZYNTRA Security Course Completion Certificate",
-    description:
-      "A structured 3-month programme covering security foundations, vulnerability assessment, penetration testing fundamentals, security monitoring, incident response, and digital forensics.",
-    highlights: [
-      "15 modules across 3 months — 5 days/week, 2 hrs/day",
-      "Hands-on labs: Kali Linux, Wireshark, Nmap, Burp Suite, Nessus, Wazuh",
-      "Projects: Secure System Build, Vulnerability Assessment, Incident Response",
-      "Career paths: SOC Analyst, Junior Security Analyst, Vulnerability Assessment Analyst",
-    ],
   },
   {
     href: "/courses/artificial-intelligence",
-    eyebrow: "Artificial Intelligence",
+    icon: Cpu,
+    eyebrow: "Professional Program",
     title: "AI Professional Programme",
-    duration: "3 Months",
+    detail: "3 months, 13 modules, AI labs, deployment workflows, and capstone assessment.",
     price: "PKR 54,000 / $249 USD",
-    cert: "UZYNTRA Certified Artificial Intelligence Professional (UCAIP)",
-    description:
-      "A comprehensive 3-month AI programme covering Python, machine learning, deep learning, NLP, computer vision, LLMs, AI agents, MLOps, deployment, and responsible AI.",
-    highlights: [
-      "13 modules — 5 days/week, 2 hrs/day, live labs",
-      "15+ portfolio projects plus a capstone presentation",
-      "Tools: Python, TensorFlow, PyTorch, LangChain, LangGraph, FastAPI, Docker",
-      "Career paths: ML Engineer, AI Agent Developer, Generative AI Engineer, Data Scientist",
-    ],
   },
-];
+] as const;
 
-// ─── Component ────────────────────────────────────────────────────────────────
+const contactCards = [
+  { icon: Globe2, label: "Website", value: "uzyntra.com", href: siteConfig.url },
+  { icon: Mail, label: "Email", value: siteConfig.email, href: `mailto:${siteConfig.email}` },
+  { icon: Phone, label: "Phone", value: siteConfig.phone, href: "tel:+923335545728" },
+  { icon: GitBranch, label: "GitHub", value: "UZYNTRA-Security", href: siteConfig.socials.github },
+] as const;
 
 export default function CompanyOverviewPage() {
   return (
-    <main className="min-h-screen bg-white text-slate-800">
-
-      {/* ── Hero ── */}
-      <section className="bg-slate-900 text-white py-20 px-6">
-        <div className="max-w-5xl mx-auto">
-          <div className="mb-10">
-            <Image
-              src="/logos/uzyntra-logo-main.webp"
-              alt="UZYNTRA Security"
-              width={200}
-              height={56}
-              priority
-              className="brightness-0 invert"
-            />
-          </div>
-          <p className="text-red-500 text-sm font-semibold uppercase tracking-widest mb-3">
-            Company Overview
-          </p>
-          <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-5">
-            Services · Products · Courses
-          </h1>
-          <p className="text-slate-300 text-lg max-w-3xl leading-relaxed">
-            UZYNTRA Security is a platform and services company delivering
-            enterprise-grade cybersecurity, secure software engineering, and
-            blockchain systems — built with modern architecture, security-first
-            thinking, and production-ready technology.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-4 text-sm text-slate-400">
-            <span>
-              <a href="https://uzyntra.com" className="text-red-400 hover:underline">
-                uzyntra.com
-              </a>
-            </span>
-            <span>·</span>
-            <span>
-              <a href="mailto:security@uzyntra.com" className="text-red-400 hover:underline">
-                security@uzyntra.com
-              </a>
-            </span>
-            <span>·</span>
-            <span>+92 333 5545728</span>
-          </div>
-        </div>
-      </section>
-
-      {/* ── About ── */}
-      <section className="py-16 px-6 border-b border-slate-100">
-        <div className="max-w-5xl mx-auto">
-          <p className="text-red-600 text-xs font-semibold uppercase tracking-widest mb-3">
-            About
-          </p>
-          <h2 className="text-2xl font-bold text-slate-900 mb-5">
-            What UZYNTRA Security Does
-          </h2>
-          <p className="text-slate-600 leading-relaxed max-w-3xl mb-6">
-            UZYNTRA Security operates at the intersection of offensive security,
-            secure engineering, and emerging technology. The company serves
-            organisations that need both the expertise to identify and eliminate
-            vulnerabilities and the engineering capability to build systems that
-            are secure by design.
-          </p>
-          <div className="grid sm:grid-cols-2 gap-4">
-            {[
-              "Offensive security services — API testing, penetration testing, red teaming",
-              "Secure engineering — backend, cloud, blockchain, automation",
-              "Flagship open-source security product — UZYNTRA API Firewall Platform",
-              "Professional training and exclusive certification programmes",
-            ].map((item) => (
-              <div
-                key={item}
-                className="flex gap-3 items-start bg-slate-50 rounded-lg p-4 border border-slate-100"
-              >
-                <span className="mt-1 w-2 h-2 rounded-full bg-red-500 shrink-0" />
-                <span className="text-slate-700 text-sm">{item}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Services ── */}
-      <section className="py-16 px-6 border-b border-slate-100">
-        <div className="max-w-5xl mx-auto">
-          <p className="text-red-600 text-xs font-semibold uppercase tracking-widest mb-3">
-            Services
-          </p>
-          <h2 className="text-2xl font-bold text-slate-900 mb-2">
-            Five Core Service Lines
-          </h2>
-          <p className="text-slate-500 text-sm mb-10">
-            Each service line addresses a distinct dimension of enterprise
-            security and engineering.
-          </p>
-
-          <div className="space-y-10">
-            {services.map((svc, i) => (
-              <div
-                key={svc.slug}
-                className="border border-slate-200 rounded-xl overflow-hidden"
-              >
-                <div className="bg-slate-900 px-6 py-4 flex items-center gap-4">
-                  <span className="text-red-500 font-mono text-xs font-bold">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <div>
-                    <p className="text-red-400 text-xs font-semibold uppercase tracking-widest">
-                      {svc.eyebrow}
-                    </p>
-                    <h3 className="text-white font-bold text-lg">{svc.title}</h3>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <p className="text-slate-600 text-sm mb-5 leading-relaxed">
-                    {svc.description}
-                  </p>
-                  <ul className="space-y-2 mb-5">
-                    {svc.points.map((pt) => (
-                      <li key={pt} className="flex gap-2 items-start text-sm text-slate-700">
-                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-red-500 shrink-0" />
-                        {pt}
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="bg-red-50 border-l-4 border-red-500 px-4 py-3 rounded-r-lg">
-                    <span className="text-xs font-semibold text-red-700 uppercase tracking-wide">
-                      Deliverable —{" "}
-                    </span>
-                    <span className="text-sm text-slate-700">{svc.deliverable}</span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Product ── */}
-      <section className="py-16 px-6 border-b border-slate-100 bg-slate-50">
-        <div className="max-w-5xl mx-auto">
-          <p className="text-red-600 text-xs font-semibold uppercase tracking-widest mb-3">
-            Product
-          </p>
-          <h2 className="text-2xl font-bold text-slate-900 mb-2">
-            UZYNTRA API Firewall Platform
-          </h2>
-          <p className="text-slate-500 text-sm mb-2">
-            Flagship open-source security product
-          </p>
-          <p className="text-slate-600 leading-relaxed max-w-3xl mb-10">
-            A high-performance Rust API security engine unified with a Next.js
-            operator control console for real-time request inspection, threat
-            detection, active mitigation, telemetry, and policy control.
-          </p>
-
-          {/* Architecture */}
-          <div className="mb-10">
-            <h3 className="text-slate-900 font-semibold mb-4">
-              Platform Architecture
-            </h3>
-            <div className="grid sm:grid-cols-2 gap-4 mb-5">
-              {[
-                {
-                  label: "Rust Security Engine",
-                  detail:
-                    "High-performance async reverse-proxy firewall built with Tokio, Axum, Reqwest, and Serde. Sits between clients and backend services.",
-                },
-                {
-                  label: "Next.js Operator Console",
-                  detail:
-                    "Modern SaaS-style control plane for monitoring, investigation, mitigation management, and policy control.",
-                },
-              ].map((c) => (
-                <div
-                  key={c.label}
-                  className="bg-white border border-slate-200 rounded-xl p-5"
-                >
-                  <p className="font-semibold text-slate-900 mb-1">{c.label}</p>
-                  <p className="text-sm text-slate-600">{c.detail}</p>
-                </div>
-              ))}
-            </div>
-            <div className="bg-slate-900 text-slate-300 font-mono text-sm rounded-xl px-6 py-4 text-center">
-              Client → UZYNTRA Firewall (Rust) → Inspection → Detection →
-              Decision → Backend
-            </div>
-          </div>
-
-          {/* Engine Capabilities */}
-          <div className="mb-10">
-            <h3 className="text-slate-900 font-semibold mb-4">
-              Rust Engine Capabilities
-            </h3>
-            <div className="grid sm:grid-cols-2 gap-4">
-              {engineCapabilities.map((c) => (
-                <div
-                  key={c.label}
-                  className="bg-white border border-slate-200 rounded-xl p-5"
-                >
-                  <p className="font-semibold text-slate-900 text-sm mb-1">
-                    {c.label}
-                  </p>
-                  <p className="text-sm text-slate-600">{c.detail}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Detection Coverage */}
-          <div className="mb-10">
-            <h3 className="text-slate-900 font-semibold mb-4">
-              Detection Coverage
-            </h3>
-            <div className="flex flex-wrap gap-2">
-              {detectionCoverage.map((d) => (
-                <span
-                  key={d}
-                  className="bg-red-50 border border-red-200 text-red-700 text-xs font-medium px-3 py-1.5 rounded-full"
-                >
-                  {d}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* Console Modules */}
-          <div className="mb-10">
-            <h3 className="text-slate-900 font-semibold mb-4">
-              Operator Control Console
-            </h3>
-            <div className="grid sm:grid-cols-2 gap-4">
-              {consoleModules.map((m) => (
-                <div
-                  key={m.label}
-                  className="bg-white border border-slate-200 rounded-xl p-5"
-                >
-                  <p className="font-semibold text-slate-900 text-sm mb-1">
-                    {m.label}
-                  </p>
-                  <p className="text-sm text-slate-600">{m.detail}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Technical Stack */}
-          <div className="mb-10">
-            <h3 className="text-slate-900 font-semibold mb-4">
-              Technical Stack
-            </h3>
-            <div className="bg-white border border-slate-200 rounded-xl overflow-hidden">
-              {[
-                { label: "Engine", value: "Rust, Tokio, Axum, Reqwest, Serde" },
-                {
-                  label: "Control Plane",
-                  value: "Next.js App Router, Tailwind CSS, REST API integration",
-                },
-                {
-                  label: "Deployment",
-                  value: "Docker, GitHub Actions, cloud-native services",
-                },
-                {
-                  label: "Observability",
-                  value:
-                    "JSON logs, events, metrics, audit records, SIEM-ready output",
-                },
-                {
-                  label: "Proxy Endpoint",
-                  value: "http://127.0.0.1:8080",
-                },
-                {
-                  label: "Admin API",
-                  value: "http://127.0.0.1:9090",
-                },
-              ].map((row, i, arr) => (
-                <div
-                  key={row.label}
-                  className={`flex gap-4 px-5 py-3 text-sm ${
-                    i < arr.length - 1 ? "border-b border-slate-100" : ""
-                  }`}
-                >
-                  <span className="font-semibold text-slate-700 w-36 shrink-0">
-                    {row.label}
-                  </span>
-                  <span className="text-slate-600 font-mono">{row.value}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Roadmap */}
-          <div className="mb-10">
-            <h3 className="text-slate-900 font-semibold mb-4">Roadmap</h3>
-            <ul className="space-y-2">
-              {productRoadmap.map((item) => (
-                <li
-                  key={item}
-                  className="flex gap-2 items-start text-sm text-slate-700"
-                >
-                  <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-red-500 shrink-0" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Repos */}
+    <main id="main-content" className="company-overview-page overflow-hidden bg-white text-slate-800">
+      <section className="relative isolate bg-[#070708] py-16 text-white sm:py-20 lg:py-24">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(239,31,36,0.28),transparent_32%),radial-gradient(circle_at_82%_20%,rgba(248,113,113,0.15),transparent_30%),linear-gradient(135deg,#050506_0%,#111114_50%,#26090b_100%)]" aria-hidden="true" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.045)_1px,transparent_1px)] bg-[size:52px_52px] opacity-35" aria-hidden="true" />
+        <div className="container-shell relative z-10 grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(340px,0.74fr)]">
           <div>
-            <h3 className="text-slate-900 font-semibold mb-4">
-              Open Source Repositories
-            </h3>
-            <div className="bg-white border border-slate-200 rounded-xl overflow-hidden">
+            <Image src="/logos/uzyntra-logo-main-dark.webp" alt="UZYNTRA Security" width={210} height={72} priority className="h-auto w-[210px]" />
+            <p className="mt-12 inline-flex rounded-full border border-red-500/40 bg-red-500/10 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-red-200">
+              Confidential Company Overview
+            </p>
+            <h1 className="mt-6 max-w-4xl text-4xl font-black leading-tight text-white sm:text-5xl lg:text-6xl">
+              Enterprise security, secure engineering, and product-ready execution.
+            </h1>
+            <p className="mt-6 max-w-3xl text-base leading-8 text-white/72 sm:text-lg">
+              UZYNTRA Security delivers cybersecurity services, secure software engineering, blockchain systems, and professional training for organizations that need to identify risk and build systems that are secure by design.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Link href="/contact" className="btn-solid inline-flex h-12 items-center justify-center gap-2 rounded-full px-7 text-sm font-bold">
+                Start an Engagement
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+              <Link href="/products/uzyntra-api-firewall" className="btn-stroke inline-flex h-12 items-center justify-center gap-2 rounded-full px-7 text-sm font-bold">
+                Explore Platform
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+            </div>
+          </div>
+
+          <div className="rounded-[30px] border border-white/14 bg-white/[0.07] p-3 shadow-[0_28px_90px_rgba(0,0,0,0.5)] backdrop-blur-md">
+            <div className="rounded-[22px] border border-white/10 bg-[#111114] p-6">
+              <p className="text-xs font-black uppercase tracking-[0.18em] text-red-400">UZYNTRA Scope</p>
+              <div className="mt-6 grid gap-3">
+                {[
+                  ["Services", "Cybersecurity, cloud, blockchain, automation"],
+                  ["Product", "UZYNTRA API Firewall Platform"],
+                  ["Training", "Professional cybersecurity and AI programs"],
+                  ["Delivery", "Reports, architecture, labs, deployment"],
+                ].map(([label, value]) => (
+                  <div key={label} className="rounded-2xl border border-white/10 bg-white/[0.055] p-4">
+                    <p className="text-[10px] font-black uppercase tracking-[0.16em] text-white/42">{label}</p>
+                    <p className="mt-1 text-base font-black text-white">{value}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-slate-200 bg-white py-14">
+        <div className="container-shell grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+          <div>
+            <p className="eyebrow">About</p>
+            <h2 className="font-semibold text-slate-950">Built where offensive security meets secure engineering.</h2>
+          </div>
+          <div className="space-y-5 text-sm leading-7 text-slate-600">
+            <p>
+              UZYNTRA Security operates at the intersection of offensive security, secure engineering, and emerging technology. The company serves organizations that need both vulnerability discovery and the engineering capability to remove risk from production systems.
+            </p>
+            <div className="grid gap-4 sm:grid-cols-2">
               {[
-                {
-                  label: "Firewall Engine",
-                  href: "https://github.com/UsamaMatrix/uzyntra-api-firewall",
-                  display: "github.com/UsamaMatrix/uzyntra-api-firewall",
-                },
-                {
-                  label: "Operator UI",
-                  href: "https://github.com/UsamaMatrix/uzyntra-ui",
-                  display: "github.com/UsamaMatrix/uzyntra-ui",
-                },
-                {
-                  label: "Organisation",
-                  href: "https://github.com/UZYNTRA-Security",
-                  display: "github.com/UZYNTRA-Security",
-                },
-              ].map((repo, i, arr) => (
-                <div
-                  key={repo.label}
-                  className={`flex gap-4 px-5 py-3 text-sm ${
-                    i < arr.length - 1 ? "border-b border-slate-100" : ""
-                  }`}
-                >
-                  <span className="font-semibold text-slate-700 w-36 shrink-0">
-                    {repo.label}
-                  </span>
-                  <a
-                    href={repo.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-red-600 hover:underline font-mono"
-                  >
-                    {repo.display}
-                  </a>
+                "Offensive security services for APIs, SaaS platforms, web apps, cloud, and identity systems.",
+                "Secure backend, cloud, blockchain, and automation engineering with security embedded from design.",
+                "A flagship open-source Rust API Firewall platform with a Next.js operator console.",
+                "Professional training and certification programs built around practical labs and assessment.",
+              ].map((item) => (
+                <div key={item} className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                  <CheckCircle2 className="h-5 w-5 text-red-600" aria-hidden="true" />
+                  <p className="mt-3 font-semibold text-slate-800">{item}</p>
                 </div>
               ))}
             </div>
@@ -580,115 +228,158 @@ export default function CompanyOverviewPage() {
         </div>
       </section>
 
-      {/* ── Courses ── */}
-      <section className="py-16 px-6 border-b border-slate-100">
-        <div className="max-w-5xl mx-auto">
-          <p className="text-red-600 text-xs font-semibold uppercase tracking-widest mb-3">
-            Courses
-          </p>
-          <h2 className="text-2xl font-bold text-slate-900 mb-2">
-            Professional Training Programmes
-          </h2>
-          <p className="text-slate-500 text-sm mb-10">
-            Structured, lab-intensive programmes with verified certification.
-            Live instruction, 5 days/week, 2 hours/day.
-          </p>
-
-          <div className="grid sm:grid-cols-2 gap-6">
-            {courses.map((course) => (
-              <div
-                key={course.href}
-                className="border border-slate-200 rounded-xl overflow-hidden flex flex-col"
-              >
-                <div className="bg-slate-900 px-6 py-5">
-                  <p className="text-red-400 text-xs font-semibold uppercase tracking-widest mb-1">
-                    {course.eyebrow}
-                  </p>
-                  <h3 className="text-white font-bold text-lg leading-snug">
-                    {course.title}
-                  </h3>
-                </div>
-                <div className="p-6 flex flex-col flex-1">
-                  <p className="text-slate-600 text-sm leading-relaxed mb-5">
-                    {course.description}
-                  </p>
-                  <ul className="space-y-2 mb-6 flex-1">
-                    {course.highlights.map((h) => (
-                      <li
-                        key={h}
-                        className="flex gap-2 items-start text-sm text-slate-700"
-                      >
-                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-red-500 shrink-0" />
-                        {h}
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="border-t border-slate-100 pt-4 space-y-1 text-sm">
-                    <div className="flex justify-between">
-                      <span className="text-slate-500">Duration</span>
-                      <span className="font-semibold text-slate-800">
-                        {course.duration}
-                      </span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-slate-500">Fee</span>
-                      <span className="font-semibold text-slate-800">
-                        {course.price}
-                      </span>
-                    </div>
-                    <div className="flex justify-between gap-4">
-                      <span className="text-slate-500 shrink-0">Certificate</span>
-                      <span className="font-semibold text-slate-800 text-right">
-                        {course.cert}
-                      </span>
-                    </div>
-                  </div>
-                  <Link
-                    href={course.href}
-                    className="mt-5 block text-center bg-red-600 hover:bg-red-700 text-white text-sm font-semibold py-2.5 rounded-lg transition-colors"
-                  >
-                    View Full Curriculum
-                  </Link>
-                </div>
-              </div>
+      <section className="section-shell bg-slate-50">
+        <div className="container-shell">
+          <div className="max-w-3xl">
+            <p className="eyebrow">Services</p>
+            <h2 className="font-semibold text-slate-950">Five core service lines for serious security work.</h2>
+            <p className="mt-4 text-slate-600">
+              Each service line is designed to move from discovery to durable improvement: testing, remediation, engineering, automation, and deployment.
+            </p>
+          </div>
+          <div className="mt-10 grid gap-5 lg:grid-cols-5">
+            {services.map(({ href, icon: Icon, eyebrow, title, description, points }) => (
+              <Link key={title} href={href} className="group flex h-full flex-col rounded-[26px] border border-slate-200 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-red-300 hover:shadow-[0_22px_60px_rgba(15,23,42,0.12)]">
+                <span className="flex h-12 w-12 items-center justify-center rounded-2xl border border-red-200 bg-red-50 text-red-600 transition-colors group-hover:bg-red-600 group-hover:text-white">
+                  <Icon className="h-6 w-6" strokeWidth={1.8} aria-hidden="true" />
+                </span>
+                <p className="mt-5 text-[10px] font-black uppercase tracking-[0.16em] text-red-600">{eyebrow}</p>
+                <h3 className="mt-2 text-lg font-black leading-tight text-slate-950">{title}</h3>
+                <p className="mt-3 text-sm leading-6 text-slate-600">{description}</p>
+                <ul className="mt-5 space-y-2">
+                  {points.map((point) => (
+                    <li key={point} className="flex gap-2 text-xs font-semibold leading-5 text-slate-600">
+                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-red-500" />
+                      {point}
+                    </li>
+                  ))}
+                </ul>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── Contact ── */}
-      <section className="py-16 px-6 bg-slate-900 text-white">
-        <div className="max-w-5xl mx-auto">
-          <p className="text-red-400 text-xs font-semibold uppercase tracking-widest mb-3">
-            Contact & Engagement
-          </p>
-          <h2 className="text-2xl font-bold mb-8">Get in Touch</h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
-            {[
-              { label: "Website", value: "uzyntra.com", href: "https://uzyntra.com" },
-              { label: "Email", value: "security@uzyntra.com", href: "mailto:security@uzyntra.com" },
-              { label: "Phone", value: "+92 333 5545728", href: "tel:+923335545728" },
-              { label: "GitHub", value: "github.com/UZYNTRA-Security", href: "https://github.com/UZYNTRA-Security" },
-              { label: "LinkedIn", value: "linkedin.com/company/uzyntra", href: "https://linkedin.com/company/uzyntra" },
-              { label: "X (Twitter)", value: "x.com/uzyntra", href: "https://x.com/uzyntra" },
-            ].map((c) => (
-              <a
-                key={c.label}
-                href={c.href}
-                target={c.href.startsWith("http") ? "_blank" : undefined}
-                rel="noopener noreferrer"
-                className="bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-xl p-4 transition-colors"
-              >
-                <p className="text-slate-400 text-xs mb-1">{c.label}</p>
-                <p className="text-white text-sm font-medium">{c.value}</p>
+      <section className="section-shell bg-white">
+        <div className="container-shell grid gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:items-start">
+          <div className="lg:sticky lg:top-28">
+            <p className="eyebrow">Flagship Product</p>
+            <h2 className="font-semibold text-slate-950">UZYNTRA API Firewall Platform</h2>
+            <p className="mt-4 text-slate-600">
+              A high-performance Rust API security engine unified with a Next.js operator control console for real-time inspection, threat detection, active mitigation, telemetry, and policy control.
+            </p>
+            <div className="mt-8 overflow-hidden rounded-[30px] border border-slate-200 bg-[#080809] p-3 shadow-[0_28px_80px_rgba(15,23,42,0.18)]">
+              <div className="relative aspect-[16/10] overflow-hidden rounded-[22px] border border-white/10 bg-[#050506]">
+                <Image
+                  src="/images/products/ui-dashboard-overview.webp"
+                  alt="UZYNTRA API Firewall operator dashboard"
+                  fill
+                  sizes="(min-width: 1024px) 46vw, calc(100vw - 2rem)"
+                  className="object-contain p-3"
+                />
+              </div>
+            </div>
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <Link href="/products/uzyntra-api-firewall" className="btn-solid inline-flex h-12 items-center justify-center gap-2 rounded-full px-6 text-sm font-bold">
+                View Product Page
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+              <a href={siteConfig.productLinks.apiFirewallRepo} target="_blank" rel="noreferrer" className="btn-stroke inline-flex h-12 items-center justify-center gap-2 rounded-full px-6 text-sm font-bold">
+                <GitBranch className="h-4 w-4" aria-hidden="true" />
+                GitHub Repo
               </a>
-            ))}
+            </div>
           </div>
-          <div className="border-t border-slate-700 pt-8 text-center text-slate-500 text-sm">
-            © UZYNTRA Security. All rights reserved.{" "}
-            <a href="https://uzyntra.com" className="text-red-400 hover:underline">
-              uzyntra.com
-            </a>
+
+          <div className="space-y-8">
+            <div>
+              <h3 className="text-2xl font-black text-slate-950">Rust engine capabilities</h3>
+              <div className="mt-5 grid gap-4 sm:grid-cols-2">
+                {engineCapabilities.map(({ icon: Icon, title, body }) => (
+                  <div key={title} className="surface-card p-5">
+                    <Icon className="h-5 w-5 text-red-600" strokeWidth={1.8} aria-hidden="true" />
+                    <h4 className="mt-3 text-base font-black text-slate-950">{title}</h4>
+                    <p className="mt-2 text-sm leading-6 text-slate-600">{body}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-2xl font-black text-slate-950">Operator control console</h3>
+              <div className="mt-5 grid gap-4 sm:grid-cols-2">
+                {consoleModules.map(({ icon: Icon, title, body }) => (
+                  <div key={title} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+                    <Icon className="h-5 w-5 text-red-600" strokeWidth={1.8} aria-hidden="true" />
+                    <h4 className="mt-3 text-base font-black text-slate-950">{title}</h4>
+                    <p className="mt-2 text-sm leading-6 text-slate-600">{body}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-[26px] border border-slate-200 bg-slate-50 p-6">
+              <h3 className="text-xl font-black text-slate-950">Detection coverage</h3>
+              <div className="mt-5 flex flex-wrap gap-2">
+                {detectionCoverage.map((item) => (
+                  <span key={item} className="rounded-full border border-red-200 bg-red-50 px-3 py-1.5 text-xs font-black text-red-700">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-shell bg-slate-50">
+        <div className="container-shell">
+          <div className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
+            <div>
+              <p className="eyebrow">Courses</p>
+              <h2 className="font-semibold text-slate-950">Professional training programs.</h2>
+              <p className="mt-4 text-slate-600">
+                Lab-intensive programs with practical instruction, project work, reporting, and verified completion.
+              </p>
+            </div>
+            <div className="grid gap-5 sm:grid-cols-2">
+              {courses.map(({ href, icon: Icon, eyebrow, title, detail, price }) => (
+                <Link key={title} href={href} className="group rounded-[26px] border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-red-300 hover:shadow-[0_22px_60px_rgba(15,23,42,0.12)]">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl border border-red-200 bg-red-50 text-red-600 transition-colors group-hover:bg-red-600 group-hover:text-white">
+                    <Icon className="h-6 w-6" strokeWidth={1.8} aria-hidden="true" />
+                  </span>
+                  <p className="mt-5 text-[10px] font-black uppercase tracking-[0.16em] text-red-600">{eyebrow}</p>
+                  <h3 className="mt-2 text-xl font-black text-slate-950">{title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-slate-600">{detail}</p>
+                  <p className="mt-5 text-sm font-black text-slate-950">{price}</p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-shell bg-[#080809] text-white">
+        <div className="container-shell">
+          <div className="rounded-[30px] border border-white/12 bg-white/[0.06] p-8 shadow-[0_28px_90px_rgba(0,0,0,0.38)] sm:p-10">
+            <div className="grid gap-8 lg:grid-cols-[0.86fr_1.14fr] lg:items-end">
+              <div>
+                <p className="text-xs font-black uppercase tracking-[0.18em] text-red-300">Contact & Engagement</p>
+                <h2 className="mt-4 text-3xl font-black text-white sm:text-4xl">Start with the right security conversation.</h2>
+                <p className="mt-4 text-sm leading-7 text-white/68">
+                  Reach out for security testing, product deployment, secure engineering, blockchain systems, automation, or training enquiries.
+                </p>
+              </div>
+              <div className="grid gap-3 sm:grid-cols-2">
+                {contactCards.map(({ icon: Icon, label, value, href }) => (
+                  <a key={label} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noreferrer" : undefined} className="group rounded-2xl border border-white/10 bg-white/[0.055] p-4 transition-all duration-300 hover:border-red-400/55 hover:bg-red-950/20">
+                    <Icon className="h-5 w-5 text-red-400" aria-hidden="true" />
+                    <p className="mt-3 text-[10px] font-black uppercase tracking-[0.16em] text-white/42">{label}</p>
+                    <p className="mt-1 break-words text-sm font-black text-white group-hover:text-red-200">{value}</p>
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>

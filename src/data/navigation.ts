@@ -155,6 +155,7 @@ export const footerNavigation = {
     { title: "Blog", href: "/blog" },
     { title: "Contact", href: "/contact" },
     { title: "Download", href: "/download" },
+    { title: "Company Overview", href: "/company-overview" },
   ],
   services: [
     { title: "API & SaaS Security Testing", href: "/services/api-security-testing" },

@@ -1,0 +1,4 @@
+import { requireCustomer } from "@/lib/commerce/auth";
+import { assertSameOrigin,CommerceError,uuidPattern } from "@/lib/commerce/validation";
+import { errorResponse,json,readJson } from "@/lib/commerce/http";
+export async function POST(request:Request,{params}:{params:Promise<{id:string}>}){try{assertSameOrigin(request);const {id}=await params;if(!uuidPattern.test(id))throw new CommerceError("Order not found.",404);const body=await readJson(request) as Record<string,unknown>;if(!body||Object.keys(body).some(k=>k!=="reason")||typeof body.reason!=="string")throw new CommerceError("Provide a refund reason.");const {db}=await requireCustomer();const {data,error}=await db.rpc("request_refund",{p_order_id:id,p_reason:body.reason});if(error)throw new CommerceError(error.code==="23505"?"A refund request already exists for this order.":error.message,error.code==="23505"?409:400);return json({refundRequestId:data},201);}catch(error){return errorResponse(error)}}

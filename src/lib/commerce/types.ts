@@ -1,6 +1,6 @@
 export type Currency = "PKR" | "USD";
 export type ManualMethod = { id: "bank_transfer" | "jazzcash" | "easypaisa" | "remittance"; label: string; accountName: string; instructions: string; currencies: Currency[] };
-export type OfferingType = "course" | "product" | "service" | "contribution";
+export type OfferingType = "course" | "product" | "service" | "donation";
 export type Price = { id: string; currency: Currency; amount: number; region: string };
 export type Offering = { id: string; slug: string; title: string; type: OfferingType; prices: Price[] };
 export type CartItem = { offering_id: string; price_id: string };

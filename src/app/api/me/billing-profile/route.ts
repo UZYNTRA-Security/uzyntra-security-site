@@ -1,0 +1,4 @@
+import { requireCustomer } from "@/lib/commerce/auth";
+import { assertSameOrigin,CommerceError } from "@/lib/commerce/validation";
+import { errorResponse,json,readJson } from "@/lib/commerce/http";
+export async function POST(request:Request){try{assertSameOrigin(request);const body=await readJson(request) as Record<string,unknown>;if(!body||Object.keys(body).some(k=>!["fullName","organization"].includes(k))||typeof body.fullName!=="string"||(body.organization!==null&&body.organization!==undefined&&typeof body.organization!=="string"))throw new CommerceError("Invalid billing details.");const {db}=await requireCustomer();const {error}=await db.rpc("update_billing_profile",{p_full_name:body.fullName,p_organization:body.organization||null});if(error)throw new CommerceError(error.message);return json({saved:true})}catch(error){return errorResponse(error)}}

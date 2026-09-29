@@ -4,6 +4,8 @@ For database migrations, Supabase authentication, regional pricing, and the curr
 payment boundaries, see [Commerce Foundation](docs/COMMERCE-FOUNDATION.md).
 Manual verification, confirmed Offensive AI prices, and promotion behavior are in
 [Manual Payments and Discounts](docs/MANUAL-PAYMENTS-AND-DISCOUNTS.md).
+Refunds, invoices, fulfillment, and admin operations are documented in
+[Commerce Operations](docs/COMMERCE-OPERATIONS.md).
 
 ## Getting Started
 

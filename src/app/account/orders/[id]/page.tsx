@@ -7,6 +7,7 @@ import { formatMoney, uuidPattern } from "@/lib/commerce/validation";
 import type { Order } from "@/lib/commerce/types";
 import { getManualMethods } from "@/lib/payments/manual";
 import { ManualPaymentForm } from "@/components/commerce/manual-payment-form";
+import { RefundRequest } from "@/components/commerce/refund-actions";
 export const metadata = { title: "Order details", robots: { index: false, follow: false } };
 export default async function OrderPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -15,7 +16,7 @@ export default async function OrderPage({ params }: { params: Promise<{ id: stri
   const db = await createSessionClient();
   const { data: { user } } = await db.auth.getUser();
   if (!user?.email_confirmed_at) redirect(`/auth?next=/account/orders/${id}`);
-  const { data, error } = await db.from("orders").select("id,order_number,status,payment_status,currency,subtotal,discount_total,total,created_at,expires_at,order_items(id,title_snapshot,unit_amount,quantity,currency),payment_attempts(id,status,method,manual_submissions(id,status,review_reason,created_at))").eq("id", id).eq("user_id", user.id).maybeSingle();
+  const { data, error } = await db.from("orders").select("id,order_number,status,payment_status,currency,subtotal,discount_total,total,created_at,expires_at,order_items(id,title_snapshot,unit_amount,quantity,currency),payment_attempts(id,status,method,manual_submissions(id,status,review_reason,created_at)),invoices(id),refund_requests(id,status,review_reason)").eq("id", id).eq("user_id", user.id).maybeSingle();
   if (error) return <CommerceShell title="Order details"><p role="alert">Your order could not be loaded. Please try again later.</p></CommerceShell>;
   if (!data) notFound();
   const order = data as Order;
@@ -29,6 +30,11 @@ export default async function OrderPage({ params }: { params: Promise<{ id: stri
       <p className="border-t pt-4 text-xl font-bold">Total: {formatMoney(order.total, order.currency)}</p>
       <p>Created {new Date(order.created_at).toLocaleDateString("en-GB", { timeZone: "UTC" })}. Price valid until {new Date(order.expires_at).toLocaleDateString("en-GB", { timeZone: "UTC" })}.</p>
       {order.payment_status === "paid" ? <p>Your payment is approved and course access is active.</p> : reviewAttempt ? <p>Payment submitted and awaiting administrator verification. Access remains locked.</p> : <ManualPaymentForm orderId={order.id} methods={getManualMethods(order.currency)} initialAttemptId={pendingAttempt?.id} initialMethod={pendingAttempt?.method} />}
+      {(data.invoices as Array<{id:string}>|null)?.length?<Link className="inline-block underline" href={`/account/orders/${order.id}/invoice`}>View invoice / receipt</Link>:null}
+      {order.payment_status === "paid" && !(data.refund_requests as Array<{id:string;status:string}>|null)?.some(item => item.status === "requested") && (
+        <RefundRequest orderId={order.id}/>
+      )}
+      {(data.refund_requests as Array<{id:string;status:string;review_reason:string|null}>|null)?.map(item=><p key={item.id}>Refund: {item.status}{item.review_reason?` · ${item.review_reason}`:""}</p>)}
       <Link className="inline-block underline" href="/contact">Contact admissions about this order</Link>
     </div>
   </CommerceShell>;

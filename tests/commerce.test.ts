@@ -44,7 +44,7 @@ test("PostgreSQL migrations, RLS and transactional checkout", async t => {
       create table storage.objects(id uuid default gen_random_uuid() primary key,bucket_id text,name text);
       create function storage.foldername(text) returns text[] language sql immutable as $$ select (string_to_array($1,'/'))[1:greatest(array_length(string_to_array($1,'/'),1)-1,0)] $$;
     `);
-    for (const filename of ["202609250001_commerce_foundation.sql", "202609250002_initial_catalog.sql", "202609250003_private_evidence_bucket.sql", "202609290001_manual_payments.sql"]) {
+    for (const filename of ["202609250001_commerce_foundation.sql", "202609250002_initial_catalog.sql", "202609250003_private_evidence_bucket.sql", "202609290001_manual_payments.sql", "202609290002_commerce_operations.sql"]) {
       await db.exec(await readFile(new URL(`../supabase/migrations/${filename}`, import.meta.url), "utf8"));
     }
     await db.query("insert into auth.users(id,email_confirmed_at,email) values ($1,now(),'alice@example.com'),($2,now(),'bob@example.com'),($3,now(),'admin@example.com'),($4,null,'unverified@example.com')", [alice,bob,admin,unverified]);
@@ -138,6 +138,13 @@ test("PostgreSQL migrations, RLS and transactional checkout", async t => {
       assert.deepEqual([Number(order.subtotal),Number(order.discount_total),Number(order.total)],[5400000,540000,4860000]);
       assert.equal((await db.query("select * from order_discounts where order_id=$1",[discounted.id])).rows.length,1);
     });
+    await t.test("expired orders and direct financial mutations are rejected",async()=>{
+      const target=(await db.query<{id:string;price_id:string}>("select o.id,p.id price_id from offerings o join prices p on p.offering_id=o.id where o.slug='python-programming' and p.currency='PKR'")).rows[0];
+      const expired=(await asUser<{id:string}>(bob,"select create_checkout('PKR',$1::jsonb,$2::uuid,null) id",[JSON.stringify([{offering_id:target.id,price_id:target.price_id}]),"10000000-0000-4000-8000-000000000011"])).rows[0];
+      await db.query("update orders set expires_at=now()-interval '1 minute' where id=$1",[expired.id]);
+      await assert.rejects(asUser(bob,"select create_manual_payment_attempt($1,'bank_transfer',$2)",[expired.id,"10000000-0000-4000-8000-000000000012"]),/not payable/);
+      await assert.rejects(asUser(bob,"update orders set total=1 where id=$1",[expired.id]),/permission denied/);
+    });
     await t.test("manual review is authorized, atomic, idempotent, and gates access",async()=>{
       const target=(await db.query<{id:string;price_id:string}>("select o.id,p.id price_id from offerings o join prices p on p.offering_id=o.id where o.slug='python-programming' and p.currency='USD'")).rows[0];
       const order=(await asUser<{id:string}>(alice,"select create_checkout('USD',$1::jsonb,$2::uuid,null) id",[JSON.stringify([{offering_id:target.id,price_id:target.price_id}]),"10000000-0000-4000-8000-000000000008"])).rows[0];
@@ -151,9 +158,22 @@ test("PostgreSQL migrations, RLS and transactional checkout", async t => {
       assert.equal((await db.query<{payment_status:string}>("select payment_status from orders where id=$1",[order.id])).rows[0].payment_status,"paid");
       assert.equal((await db.query("select * from entitlements where order_id=$1 and status='active'",[order.id])).rows.length,1);
       assert.equal((await db.query("select * from payment_receipts where order_id=$1",[order.id])).rows.length,1);
-      assert.equal((await db.query("select * from notification_outbox where user_id=$1",[alice])).rows.length,1);
+      assert.equal((await db.query("select * from invoices where order_id=$1",[order.id])).rows.length,1);
+      assert.equal((await db.query("select * from fulfillment_records where order_id=$1 and status='active'",[order.id])).rows.length,1);
+      assert.equal((await db.query("select * from notification_outbox where user_id=$1",[alice])).rows.length,2);
       await assert.rejects(asUser(admin,"select review_manual_payment($1,'approve',null)",[submission.id]),/already been reviewed/);
       assert.equal((await db.query("select * from entitlements where order_id=$1",[order.id])).rows.length,1);
+      const refund=(await asUser<{id:string}>(alice,"select request_refund($1,'The course purchase is no longer needed') id",[order.id])).rows[0];
+      await assert.rejects(asUser(bob,"select request_refund($1,'Attempting to refund another user order')",[order.id]),/not found/);
+      await assert.rejects(asUser(alice,"select review_refund($1,'approve','Approved','REF-001')",[refund.id]),/Administrator/);
+      await asUser(admin,"select review_refund($1,'approve','Approved after manual review','REF-001')",[refund.id]);
+      assert.equal((await db.query<{payment_status:string}>("select payment_status from orders where id=$1",[order.id])).rows[0].payment_status,"refunded");
+      assert.equal((await db.query<{status:string}>("select status from entitlements where order_id=$1",[order.id])).rows[0].status,"revoked");
+      assert.equal((await db.query("select * from refunds where order_id=$1",[order.id])).rows.length,1);
+      assert.equal((await db.query("select * from credit_notes")).rows.length,1);
+      await assert.rejects(asUser(admin,"select review_refund($1,'approve','Again','REF-002')",[refund.id]),/already reviewed/);
+      assert.equal((await asUser(bob,"select * from invoices where order_id=$1",[order.id])).rows.length,0);
+      assert.equal((await asUser(alice,"select * from invoices where order_id=$1",[order.id])).rows.length,1);
     });
   } finally { await db.close(); }
 });

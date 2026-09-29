@@ -1,9 +1,9 @@
 # UZYNTRA Commerce Foundation — Phase A
 
-This milestone introduces database-backed catalog prices, email-code authentication,
-roles, a cart, transactional unpaid orders, and read-only account/admin views.
-There is no payment collection, manual-payment approval, payment success endpoint,
-or automatic course access. The gateway adapter is a type contract only.
+Phase A introduced database-backed prices, authentication, roles, a cart, and
+transactional unpaid orders. Manual payment review and discounts are now covered
+in [Manual Payments and Discounts](MANUAL-PAYMENTS-AND-DISCOUNTS.md). No external
+gateway is connected; the gateway adapter remains a type contract only.
 
 ## Setup
 
@@ -16,7 +16,8 @@ or automatic course access. The gateway adapter is a type contract only.
    These migrations have NOT been applied to a hosted project by this change.
 3. Add `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` to
    `.env.local` and the deployment's environment variables. See `.env.example`.
-   Keep existing EmailJS configuration. No service-role key is used by the app.
+   Keep existing EmailJS configuration. Phase B's notification worker uses a
+   server-only service-role key as described in the manual-payment guide.
 4. Set `NEXT_PUBLIC_SITE_URL` to your actual public origin, including scheme
    (for example `https://uzyntra.com`), with no path. Use localhost for development.
    Production mutation APIs check this origin. Preview deployments need their own
@@ -67,8 +68,7 @@ There is no automatic FX conversion. Region labels describe market pricing, not
 eligibility restrictions: customers may select either active currency.
 
 The 22 existing catalog courses keep their published PKR/USD prices. The dedicated
-`offensive-ai` page only published USD 400. That offering has no invented PKR price;
-add an approved PKR price explicitly before enabling local checkout for it.
+`offensive-ai` offering now has confirmed prices of USD 400 and PKR 55,000.
 Certification paths marked “Assessment Based” stay inquiry-only. Existing public
 GitHub downloads are not paid products and have not been converted to gated goods.
 
@@ -95,13 +95,13 @@ Direct customer writes to any financial table, roles or entitlements are denied.
 - Per-customer advisory locking serializes checkout. Retrying the same key/cart
   returns the same order; reusing it with a changed cart is rejected. A customer
   may create at most 20 new orders per hour. This limit also applies to direct RPC calls.
-- Orders are created `open` / `unpaid`. No payment attempt or entitlement is
-  created. The quoted price expires after seven days; a future payment flow must
-  enforce expiry. Phase A does not implement an expiration scheduler.
+- Orders are created `open` / `unpaid`. Checkout itself creates no entitlement.
+  Manual payment submission enforces the seven-day quote expiry, and access is
+  granted only after administrator approval.
 - The cart retains a pending key across sign-in and network retries where browser
   session storage is available. A failed attempt does not clear the cart.
-- Customers only read their own orders/items/attempts/entitlements. Admins can
-  read orders across customers but have no mutation controls or write privileges.
+- Customers only read their own orders/items/attempts/entitlements. Admin payment
+  decisions run through a narrowly scoped, atomic database function.
 - All sensitive APIs return `private, no-store`; the proxy also prevents caching
   authenticated pages and refreshes Supabase cookies. Server checks use `getUser()`.
 - Cookie-authenticated POST APIs require a matching Origin and reject cross-site
@@ -124,7 +124,7 @@ authorization depends on country or currency cookies.
 - `/cart`, `POST /api/checkout`: cart and unpaid order creation.
 - `/account`, `/account/orders/[id]`, `/api/orders`, `/api/orders/[id]`: owned orders.
 - `/api/me/entitlements`: owned access records (empty until future fulfillment).
-- `/admin`, `/api/admin/orders`: server-authorized read-only administration.
+- `/admin`, `/api/admin/orders`: server-authorized orders and payment review.
 - `/api/catalog`: active database prices and display currency.
 - `src/lib/payments/adapter.ts`: provider capability, payment verification and
   refund contracts. Future adapters report facts and never grant course access.
@@ -150,11 +150,9 @@ routes deny access. Confirm no course access appears merely from order creation.
 
 ## Next milestone
 
-Add manual payment instructions, submissions and private evidence policies;
-verified transaction receipts; MFA-protected review and audit records; atomic
-payment confirmation and fulfillment; notification outbox and receipts; refund
-records. Only then implement a provider adapter, webhook inbox and reconciliation.
-Do not activate card buttons until a real approved provider is connected.
+Verify the full manual-payment flow in staging, enforce administrator MFA, and add
+refund/reconciliation operations. Only then implement a provider adapter and
+webhook inbox. Do not activate card buttons until a real provider is connected.
 
 References: [Supabase email OTP](https://supabase.com/docs/guides/auth/auth-email-passwordless),
 [SSR authentication](https://supabase.com/docs/guides/auth/server-side/creating-a-client?framework=nextjs),

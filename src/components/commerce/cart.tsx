@@ -11,6 +11,7 @@ export function Cart() {
   const { cart, offerings, currency, loading, available, remove, clear } = useCommerce();
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
+  const [couponCode,setCouponCode]=useState("");
   const pendingCheckout = useRef<{ fingerprint: string; key: string } | null>(null);
   const inFlight = useRef(false);
   const router = useRouter();
@@ -22,7 +23,7 @@ export function Cart() {
     inFlight.current = true;
     setBusy(true); setError("");
     const items = lines.map(line => ({ offering_id: line.id, price_id: line.price!.id })).sort((a, b) => a.offering_id.localeCompare(b.offering_id));
-    const fingerprint = JSON.stringify({ currency, items });
+    const fingerprint = JSON.stringify({ currency, items, couponCode: couponCode.trim().toUpperCase() || null });
     try {
       let key: string = crypto.randomUUID();
       if (pendingCheckout.current?.fingerprint === fingerprint) key = pendingCheckout.current.key;
@@ -53,8 +54,9 @@ export function Cart() {
     </div>
     <aside className="surface-card h-fit space-y-5 p-6"><h2 className="text-xl font-bold">Order summary</h2><p className="text-2xl font-bold">{complete ? formatMoney(total, currency) : "—"}</p>
       <p className="text-sm">Prices are fixed for each currency. Changing currency uses that market’s listed price, not a live exchange rate.</p>
-      <p className="text-sm">Create an unpaid order for your account. Payment collection is not available yet, and course access remains locked.</p>
-      <p className="text-sm">{currency === "PKR" ? "Local transfers and card payments are planned." : "International card and bank payment options are planned."}</p>
+      <p className="text-sm">Create an unpaid order for your account. Course access remains locked until payment is verified.</p>
+      <p className="text-sm">{currency === "PKR" ? "Configured bank, JazzCash, and Easypaisa methods are offered after checkout." : "Configured international remittance instructions are offered after checkout."}</p>
+      <label className="block space-y-2 text-sm"><span>Coupon code (optional)</span><input className="w-full rounded-lg border border-slate-400 bg-transparent p-3 uppercase" value={couponCode} maxLength={32} pattern="[A-Za-z0-9_-]{3,32}" onChange={event=>setCouponCode(event.target.value)} /></label>
       <Button className="w-full" disabled={!complete || busy} onClick={checkout}>{busy ? "Creating order…" : "Create unpaid order"}</Button>
       <p role="alert" className="text-sm text-red-600">{error}</p>
       <Link href="/contact" className="block text-sm underline">Corporate seats or a custom quote? Contact sales</Link>

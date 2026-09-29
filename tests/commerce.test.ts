@@ -13,7 +13,7 @@ const key = "10000000-0000-4000-8000-000000000001";
 
 test("HTTP boundaries reject price injection, redirects, CSRF and oversized payloads", async () => {
   const valid = { currency: "PKR", items: [{ offering_id: alice, price_id: bob }] };
-  assert.deepEqual(parseCheckout(valid), valid);
+  assert.deepEqual(parseCheckout(valid), { ...valid, couponCode: null });
   for (const input of [null, { ...valid, amount: 1 }, { ...valid, user_id: bob }, { ...valid, currency: "EUR" }, { ...valid, items: [] }, { ...valid, items: [valid.items[0], valid.items[0]] }, { ...valid, items: [{ ...valid.items[0], amount: 1 }] }]) {
     assert.throws(() => parseCheckout(input));
   }
@@ -35,17 +35,19 @@ test("PostgreSQL migrations, RLS and transactional checkout", async t => {
     await db.exec(`
       create role anon nologin; create role authenticated nologin;
       create schema auth; create schema storage;
-      create table auth.users(id uuid primary key, email_confirmed_at timestamptz);
+      create table auth.users(id uuid primary key, email_confirmed_at timestamptz, email text, raw_user_meta_data jsonb default '{}'::jsonb);
       create function auth.uid() returns uuid language sql stable as
         $$ select nullif(current_setting('request.jwt.claim.sub', true), '')::uuid $$;
       grant usage on schema auth to anon, authenticated;
       grant execute on function auth.uid() to anon, authenticated;
       create table storage.buckets(id text primary key, name text, public boolean, file_size_limit bigint, allowed_mime_types text[]);
+      create table storage.objects(id uuid default gen_random_uuid() primary key,bucket_id text,name text);
+      create function storage.foldername(text) returns text[] language sql immutable as $$ select (string_to_array($1,'/'))[1:greatest(array_length(string_to_array($1,'/'),1)-1,0)] $$;
     `);
-    for (const filename of ["202609250001_commerce_foundation.sql", "202609250002_initial_catalog.sql", "202609250003_private_evidence_bucket.sql"]) {
+    for (const filename of ["202609250001_commerce_foundation.sql", "202609250002_initial_catalog.sql", "202609250003_private_evidence_bucket.sql", "202609290001_manual_payments.sql"]) {
       await db.exec(await readFile(new URL(`../supabase/migrations/${filename}`, import.meta.url), "utf8"));
     }
-    await db.query("insert into auth.users values ($1,now()),($2,now()),($3,now()),($4,null)", [alice,bob,admin,unverified]);
+    await db.query("insert into auth.users(id,email_confirmed_at,email) values ($1,now(),'alice@example.com'),($2,now(),'bob@example.com'),($3,now(),'admin@example.com'),($4,null,'unverified@example.com')", [alice,bob,admin,unverified]);
     await db.query("update public.user_roles set role='admin' where user_id=$1", [admin]);
     async function asUser<T>(user: string, sql: string, params: unknown[] = []) {
       await db.query("select set_config('request.jwt.claim.sub',$1,false)", [user]);
@@ -60,7 +62,8 @@ test("PostgreSQL migrations, RLS and transactional checkout", async t => {
 
     await t.test("catalog has fixed regional prices and a private evidence bucket", async () => {
       assert.equal((await db.query("select * from offerings")).rows.length, 23);
-      assert.equal((await db.query("select * from prices")).rows.length, 45);
+      assert.equal((await db.query("select * from prices")).rows.length, 46);
+      assert.equal(Number((await db.query<{amount:number}>("select p.amount from prices p join offerings o on o.id=p.offering_id where o.slug='offensive-ai' and p.currency='PKR'")).rows[0].amount),5500000);
       assert.equal((await db.query<{public:boolean}>("select public from storage.buckets")).rows[0].public, false);
       await db.exec("set role anon");
       assert.equal((await db.query("select * from currencies")).rows.length, 2);
@@ -125,6 +128,32 @@ test("PostgreSQL migrations, RLS and transactional checkout", async t => {
       const active = (await db.query<{id:string}>("select id from prices where offering_id=$1 and active and currency='PKR'", [course.id])).rows[0];
       await assert.rejects(checkout(alice, "PKR", [{offering_id:course.id, price_id:active.id}], "10000000-0000-4000-8000-000000000005"), /already have access/);
       assert.equal((await asUser(bob, "select * from entitlements")).rows.length, 0);
+    });
+    await t.test("coupon totals are computed and snapshotted by the database",async()=>{
+      const target=(await db.query<{id:string;price_id:string;amount:number}>("select o.id,p.id price_id,p.amount from offerings o join prices p on p.offering_id=o.id where o.slug='artificial-intelligence' and p.currency='PKR'")).rows[0];
+      await db.query("insert into discounts(name,code,mode,value_type,value,currency) values ('Student launch','LEARN10','coupon','percentage',1000,'PKR')");
+      await assert.rejects(asUser(bob,"select create_checkout('PKR',$1::jsonb,$2::uuid,'FAKE')",[JSON.stringify([{offering_id:target.id,price_id:target.price_id}]),"10000000-0000-4000-8000-000000000006"]),/Coupon/);
+      const discounted=(await asUser<{id:string}>(bob,"select create_checkout('PKR',$1::jsonb,$2::uuid,'LEARN10') id",[JSON.stringify([{offering_id:target.id,price_id:target.price_id}]),"10000000-0000-4000-8000-000000000007"])).rows[0];
+      const order=(await db.query<{subtotal:number;discount_total:number;total:number}>("select subtotal,discount_total,total from orders where id=$1",[discounted.id])).rows[0];
+      assert.deepEqual([Number(order.subtotal),Number(order.discount_total),Number(order.total)],[5400000,540000,4860000]);
+      assert.equal((await db.query("select * from order_discounts where order_id=$1",[discounted.id])).rows.length,1);
+    });
+    await t.test("manual review is authorized, atomic, idempotent, and gates access",async()=>{
+      const target=(await db.query<{id:string;price_id:string}>("select o.id,p.id price_id from offerings o join prices p on p.offering_id=o.id where o.slug='python-programming' and p.currency='USD'")).rows[0];
+      const order=(await asUser<{id:string}>(alice,"select create_checkout('USD',$1::jsonb,$2::uuid,null) id",[JSON.stringify([{offering_id:target.id,price_id:target.price_id}]),"10000000-0000-4000-8000-000000000008"])).rows[0];
+      const attempt=(await asUser<{id:string}>(alice,"select create_manual_payment_attempt($1,'remittance',$2) id",[order.id,"10000000-0000-4000-8000-000000000009"])).rows[0];
+      assert.equal((await db.query("select * from entitlements where order_id=$1",[order.id])).rows.length,0);
+      await assert.rejects(asUser(bob,"select submit_manual_payment($1,'TX-FAKE','Mallory',null,now(),$2)",[attempt.id,`${bob}/${order.id}/10000000-0000-4000-8000-000000000010.pdf`]),/not found/);
+      const submission=(await asUser<{id:string}>(alice,"select submit_manual_payment($1,'TX-12345','Alice',null,now(),$2) id",[attempt.id,`${alice}/${order.id}/10000000-0000-4000-8000-000000000010.pdf`])).rows[0];
+      assert.equal((await db.query("select * from entitlements where order_id=$1",[order.id])).rows.length,0);
+      await assert.rejects(asUser(alice,"select review_manual_payment($1,'approve',null)",[submission.id]),/Administrator/);
+      await asUser(admin,"select review_manual_payment($1,'approve',null)",[submission.id]);
+      assert.equal((await db.query<{payment_status:string}>("select payment_status from orders where id=$1",[order.id])).rows[0].payment_status,"paid");
+      assert.equal((await db.query("select * from entitlements where order_id=$1 and status='active'",[order.id])).rows.length,1);
+      assert.equal((await db.query("select * from payment_receipts where order_id=$1",[order.id])).rows.length,1);
+      assert.equal((await db.query("select * from notification_outbox where user_id=$1",[alice])).rows.length,1);
+      await assert.rejects(asUser(admin,"select review_manual_payment($1,'approve',null)",[submission.id]),/already been reviewed/);
+      assert.equal((await db.query("select * from entitlements where order_id=$1",[order.id])).rows.length,1);
     });
   } finally { await db.close(); }
 });

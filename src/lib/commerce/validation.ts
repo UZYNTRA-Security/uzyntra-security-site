@@ -9,10 +9,10 @@ export function defaultCurrency(country: string | null): Currency { return count
 export function formatMoney(amount: number, currency: Currency) {
   return new Intl.NumberFormat("en", { style: "currency", currency, currencyDisplay: "code" }).format(amount / 100);
 }
-export function parseCheckout(value: unknown): { currency: Currency; items: CartItem[] } {
+export function parseCheckout(value: unknown): { currency: Currency; items: CartItem[]; couponCode: string | null } {
   if (!value || typeof value !== "object" || Array.isArray(value)) throw new CommerceError("Invalid checkout request.");
   const input = value as Record<string, unknown>;
-  if (Object.keys(input).some(key => !["currency", "items"].includes(key))) throw new CommerceError("Only currency and cart items are accepted.");
+  if (Object.keys(input).some(key => !["currency", "items", "couponCode"].includes(key))) throw new CommerceError("Only currency, cart items, and a coupon code are accepted.");
   if (!isCurrency(input.currency)) throw new CommerceError("Choose PKR or USD.");
   if (!Array.isArray(input.items) || input.items.length < 1 || input.items.length > 10) throw new CommerceError("Choose between 1 and 10 courses.");
   const items: CartItem[] = input.items.map(item => {
@@ -22,7 +22,8 @@ export function parseCheckout(value: unknown): { currency: Currency; items: Cart
     return { offering_id: item.offering_id, price_id: item.price_id };
   });
   if (new Set(items.map(item => item.offering_id)).size !== items.length) throw new CommerceError("A course can only appear once in your cart.");
-  return { currency: input.currency, items };
+  if (input.couponCode !== undefined && input.couponCode !== null && (typeof input.couponCode !== "string" || !/^[A-Za-z0-9_-]{3,32}$/.test(input.couponCode.trim()))) throw new CommerceError("Enter a valid coupon code.");
+  return { currency: input.currency, items, couponCode: typeof input.couponCode === "string" ? input.couponCode.trim().toUpperCase() : null };
 }
 export function assertSameOrigin(request: Request) {
   const expected = process.env.NODE_ENV === "production" ? process.env.NEXT_PUBLIC_SITE_URL || new URL(request.url).origin : new URL(request.url).origin;

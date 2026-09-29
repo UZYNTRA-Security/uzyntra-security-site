@@ -2,6 +2,8 @@ UZYNTRA Security's Next.js website and commerce foundation.
 
 For database migrations, Supabase authentication, regional pricing, and the current
 payment boundaries, see [Commerce Foundation](docs/COMMERCE-FOUNDATION.md).
+Manual verification, confirmed Offensive AI prices, and promotion behavior are in
+[Manual Payments and Discounts](docs/MANUAL-PAYMENTS-AND-DISCOUNTS.md).
 
 ## Getting Started
 

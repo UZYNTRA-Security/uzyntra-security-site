@@ -9,7 +9,7 @@ export async function POST(request: Request) {
     const key = request.headers.get("idempotency-key");
     if (!key || !uuidPattern.test(key)) throw new CommerceError("A valid idempotency key is required.");
     const input = parseCheckout(await readJson(request));
-    const { data, error } = await db.rpc("create_checkout", { p_currency: input.currency, p_items: input.items, p_idempotency_key: key });
+    const { data, error } = await db.rpc("create_checkout", { p_currency: input.currency, p_items: input.items, p_idempotency_key: key, p_coupon_code: input.couponCode });
     if (error) {
       if (error.code === "23505") throw new CommerceError("This checkout key belongs to a different cart.", 409);
       if (error.code === "28000") throw new CommerceError("Please verify your email before checkout.", 401);

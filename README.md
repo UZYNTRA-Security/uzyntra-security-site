@@ -1,4 +1,7 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+UZYNTRA Security's Next.js website and commerce foundation.
+
+For database migrations, Supabase authentication, regional pricing, and the current
+payment boundaries, see [Commerce Foundation](docs/COMMERCE-FOUNDATION.md).
 
 ## Getting Started
 

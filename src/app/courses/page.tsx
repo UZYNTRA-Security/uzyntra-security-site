@@ -6,6 +6,7 @@ import { ArrowRight, Award, Bot, GraduationCap, MessageSquare } from "lucide-rea
 import { PageHero } from "@/components/sections/page-hero";
 import { certificationPrograms, coursePrograms } from "@/data/exclusive-course-catalog";
 import { siteConfig } from "@/config/site";
+import { CoursePrice, CurrencySelect } from "@/components/commerce/course-price";
 
 export const metadata: Metadata = {
   title: "Courses | UZYNTRA Security",
@@ -31,6 +32,7 @@ export default function CoursesPage() {
 
       <section className="section-tight pb-0">
         <div className="container-shell">
+          <div className="mb-6 flex justify-end"><CurrencySelect /></div>
           <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-red-700">Exclusive Certification</p>
@@ -73,9 +75,10 @@ export default function CoursesPage() {
                   <p className="text-sm leading-7 text-slate-600">AI-powered web pentesting certification with GPT agents, Burp Suite labs, API testing, reporting, and capstone assessment.</p>
                 </div>
                 <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-                  {["10 Domains", "42 Modules", "GPT Agents", "$400 USD"].map((item) => (
+                  {["10 Domains", "42 Modules", "GPT Agents"].map((item) => (
                     <div key={item} className="rounded-lg border border-red-100 bg-red-50/60 px-3 py-2 text-xs font-bold text-red-700">{item}</div>
                   ))}
+                  <div className="rounded-lg border border-red-100 bg-red-50/60 px-3 py-2 text-xs font-bold text-red-700"><CoursePrice slug="offensive-ai" /></div>
                 </div>
                 <span className="btn-solid mt-auto inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl px-6 text-sm font-semibold sm:w-fit">
                   View Certification
@@ -125,8 +128,7 @@ export default function CoursesPage() {
 
                   <div className="grid grid-cols-2 gap-1.5 text-xs font-medium text-slate-700">
                     <span>{course.duration}</span>
-                    <span>{course.pricePkr}</span>
-                    <span>{course.priceUsd}</span>
+                    <CoursePrice slug={course.slug} />
                     <span>{course.category}</span>
                   </div>
 

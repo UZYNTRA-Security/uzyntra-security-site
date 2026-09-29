@@ -35,6 +35,7 @@ import { FaGithub, FaLinkedinIn } from "react-icons/fa6";
 import { siteConfig } from "@/config/site";
 import { OffensiveAIModuleIntro } from "@/components/offensive-ai/module-intro";
 import { OffensiveAICourseTabs } from "@/components/offensive-ai/course-tabs";
+import { AddCourse, CoursePrice, CurrencySelect } from "@/components/commerce/course-price";
 
 export const metadata: Metadata = {
   title: "Offensive AI Certified Web Pentester | UZYNTRA Security",
@@ -90,7 +91,7 @@ const stats = [
   { label: "Domains", value: "10" },
   { label: "Modules", value: "42" },
   { label: "Format", value: "Labs + Capstone" },
-  { label: "Program Fee", value: "$400 USD", oldValue: "$799 USD" },
+  { label: "Program Fee", value: <CoursePrice slug="offensive-ai" /> },
 ] as const;
 
 const audienceChips = [
@@ -307,6 +308,7 @@ export default function OffensiveAIPage() {
               </div>
 
               <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+                <AddCourse slug="offensive-ai" />
                 <Link href={ENROLL_URL} className="offensive-ai-hero-primary btn-solid inline-flex h-12 items-center justify-center gap-2 rounded-full px-7 text-sm font-semibold">
                   <MessageSquare className="h-4 w-4 shrink-0" aria-hidden="true" />
                   Enquire Now
@@ -339,14 +341,7 @@ export default function OffensiveAIPage() {
                     {stats.map((item) => (
                       <div key={item.label} className="offensive-ai-hero-stat-card rounded-xl border border-white/10 bg-white/[0.06] p-3">
                         <p className="text-[9px] font-black uppercase tracking-[0.14em] text-white/45">{item.label}</p>
-                                                {"oldValue" in item ? (
-                          <p className="mt-1 flex flex-wrap items-baseline gap-2 text-white">
-                            <span className="text-xs font-bold text-white/45 line-through">{item.oldValue}</span>
-                            <strong className="text-base font-black text-white">{item.value}</strong>
-                          </p>
-                        ) : (
-                          <p className="mt-1 text-sm font-black text-white">{item.value}</p>
-                        )}
+                        <p className="mt-1 text-sm font-black text-white">{item.value}</p>
                       </div>
                     ))}
                   </div>
@@ -510,10 +505,12 @@ export default function OffensiveAIPage() {
                 <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/75">Build Offensive AI Skill</p>
                 <h2 className="mt-3 text-2xl font-black text-white sm:text-3xl">Ready to enroll?</h2>
                 <p className="mt-3 max-w-[680px] text-sm leading-7 text-white/82">
-                  Total program fee: <span className="offensive-ai-old-price line-through">$799 USD</span> <strong className="text-lg font-black text-white">$400 USD</strong>. Training includes course material, hands-on labs, capstone project, and certification assessment.
+                  Total program fee: <strong className="text-lg font-black text-white"><CoursePrice slug="offensive-ai" /></strong>. Training includes course material, hands-on labs, capstone project, and certification assessment.
                 </p>
+                <CurrencySelect />
               </div>
               <div className="flex flex-col gap-3 sm:flex-row lg:shrink-0">
+                <AddCourse slug="offensive-ai" />
                 <Link href={ENROLL_URL} className="offensive-ai-pricing-btn offensive-ai-pricing-primary inline-flex h-12 items-center justify-center gap-2 rounded-full px-8 text-sm font-bold">
                   <MessageSquare className="h-4 w-4 shrink-0" aria-hidden="true" />
                   Enquire Now

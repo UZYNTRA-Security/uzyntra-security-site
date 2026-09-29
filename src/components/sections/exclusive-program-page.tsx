@@ -32,6 +32,7 @@ import { FaGithub, FaLinkedinIn } from "react-icons/fa6";
 import { siteConfig } from "@/config/site";
 import { OffensiveAICourseTabs } from "@/components/offensive-ai/course-tabs";
 import type { ExclusiveProgram } from "@/data/exclusive-course-catalog";
+import { AddCourse, CoursePrice, CurrencySelect } from "@/components/commerce/course-price";
 
 type ExclusiveProgramPageProps = {
   program: ExclusiveProgram;
@@ -73,8 +74,7 @@ const instructorSkills = [
 ] as const;
 
 function getInvestmentLabel(program: ExclusiveProgram) {
-  if (program.pricePkr && program.priceUsd) return `${program.pricePkr} / ${program.priceUsd}`;
-  return program.priceUsd ?? program.pricePkr ?? "Contact admissions";
+  return program.kind === "course" ? <CoursePrice slug={program.slug} /> : "Assessment Based";
 }
 
 function getStats(program: ExclusiveProgram, moduleCount: number) {
@@ -82,7 +82,7 @@ function getStats(program: ExclusiveProgram, moduleCount: number) {
     { label: "Domains", value: String(program.domains.length) },
     { label: "Modules", value: String(moduleCount) },
     { label: "Duration", value: program.duration },
-    { label: program.kind === "course" ? "Program Fee" : "Credential", value: getInvestmentLabel(program), oldValue: program.oldPriceUsd },
+    { label: program.kind === "course" ? "Program Fee" : "Credential", value: getInvestmentLabel(program) },
   ];
 }
 
@@ -135,6 +135,7 @@ export function ExclusiveProgramPage({ program }: ExclusiveProgramPageProps) {
               </div>
 
               <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+                {program.kind === "course" && <AddCourse slug={program.slug} />}
                 <Link href={ENROLL_URL} className="offensive-ai-hero-primary btn-solid inline-flex h-12 items-center justify-center gap-2 rounded-full px-7 text-sm font-semibold">
                   <MessageSquare className="h-4 w-4 shrink-0" aria-hidden="true" />
                   Enquire Now
@@ -167,14 +168,7 @@ export function ExclusiveProgramPage({ program }: ExclusiveProgramPageProps) {
                     {stats.map((item) => (
                       <div key={item.label} className="offensive-ai-hero-stat-card rounded-xl border border-white/10 bg-white/[0.06] p-3">
                         <p className="text-[9px] font-black uppercase tracking-[0.14em] text-white/45">{item.label}</p>
-                        {"oldValue" in item && item.oldValue ? (
-                          <p className="mt-1 flex flex-wrap items-baseline gap-2 text-white">
-                            <span className="text-xs font-bold text-white/45 line-through">{item.oldValue}</span>
-                            <strong className="text-base font-black text-white">{item.value}</strong>
-                          </p>
-                        ) : (
-                          <p className="mt-1 text-sm font-black text-white">{item.value}</p>
-                        )}
+                        <p className="mt-1 text-sm font-black text-white">{item.value}</p>
                       </div>
                     ))}
                   </div>
@@ -353,12 +347,14 @@ export function ExclusiveProgramPage({ program }: ExclusiveProgramPageProps) {
               <div>
                 <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/75">{program.code}</p>
                 <h2 className="mt-3 text-2xl font-black text-white sm:text-3xl">Ready to enroll?</h2>
+                {program.kind === "course" && <div className="mt-3"><CurrencySelect /></div>}
                 <p className="mt-3 max-w-[680px] text-sm leading-7 text-white/82">
-                  Investment: {program.oldPriceUsd ? <span className="offensive-ai-old-price line-through">{program.oldPriceUsd}</span> : null}{" "}
+                  Investment: {" "}
                   <strong className="text-lg font-black text-white">{getInvestmentLabel(program)}</strong>. Training includes practical labs, course material, project work, and verified assessment.
                 </p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row lg:shrink-0">
+                {program.kind === "course" && <AddCourse slug={program.slug} />}
                 <Link href={ENROLL_URL} className="offensive-ai-pricing-btn offensive-ai-pricing-primary inline-flex h-12 items-center justify-center gap-2 rounded-full px-8 text-sm font-bold">
                   <MessageSquare className="h-4 w-4 shrink-0" aria-hidden="true" />
                   Enquire Now

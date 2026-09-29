@@ -5,6 +5,7 @@ import { DesktopNav } from "@/components/navigation/desktop-nav";
 import { MobileNav } from "@/components/navigation/mobile-nav";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { ThemedLogo } from "@/components/ui/themed-logo";
+import { CurrencySelect } from "@/components/commerce/course-price";
 
 export function SiteHeader() {
   return (
@@ -32,6 +33,8 @@ export function SiteHeader() {
 
           {/* Right actions */}
           <div className="flex items-center gap-1.5">
+            <span className="hidden sm:inline-flex"><CurrencySelect /></span>
+            <Link href="/cart" className="px-2 text-xs font-semibold">Cart</Link>
             <ThemeToggle />
             <Link
               href="/contact"

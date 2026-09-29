@@ -11,6 +11,7 @@ import { BackToTopButton } from "@/components/ui/back-to-top-button";
 import { GoogleAnalytics } from "@/components/analytics";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
+import { CommerceProvider } from "@/components/commerce/provider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -164,9 +165,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
           Skip to content
         </a>
         <div className="relative flex min-h-screen flex-col" style={{ overflowX: "clip", zIndex: 1 }}>
+          <CommerceProvider>
           <SiteHeader />
           <div className="flex flex-1 flex-col">{children}</div>
           <SiteFooter />
+          </CommerceProvider>
         </div>
         <BackToTopButton />
         <SpeedInsights />
